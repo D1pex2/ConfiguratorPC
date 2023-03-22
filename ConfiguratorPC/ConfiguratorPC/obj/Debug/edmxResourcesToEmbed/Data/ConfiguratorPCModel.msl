@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ConfiguratorPCModelContainer" CdmEntityContainer="ConfiguratorPCEntities">
+    <EntitySetMapping Name="Components">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.Component">
+        <MappingFragment StoreEntitySet="Component">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FormFactors">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.FormFactor">
+        <MappingFragment StoreEntitySet="FormFactor">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemoryFormFactors">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.MemoryFormFactor">
+        <MappingFragment StoreEntitySet="MemoryFormFactor">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemoryTypes">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.MemoryType">
+        <MappingFragment StoreEntitySet="MemoryType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MotherBoards">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.MotherBoard">
+        <MappingFragment StoreEntitySet="MotherBoard">
+          <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+          <ScalarProperty Name="IdFormFactor" ColumnName="IdFormFactor" />
+          <ScalarProperty Name="IdSocket" ColumnName="IdSocket" />
+          <ScalarProperty Name="IdMemoryType" ColumnName="IdMemoryType" />
+          <ScalarProperty Name="IdMemoryFormFactor" ColumnName="IdMemoryFormFactor" />
+          <ScalarProperty Name="MemoryQuantity" ColumnName="MemoryQuantity" />
+          <ScalarProperty Name="PCIEx16Quantity" ColumnName="PCIEx16Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Processors">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.Processor">
+        <MappingFragment StoreEntitySet="Processor">
+          <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+          <ScalarProperty Name="IdSocket" ColumnName="IdSocket" />
+          <ScalarProperty Name="MaxMemorySize" ColumnName="MaxMemorySize" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sockets">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.Socket">
+        <MappingFragment StoreEntitySet="Socket">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Case" TypeName="ConfiguratorPCModel.Case" StoreEntitySet="Case">
+      <EndProperty Name="Component">
+        <ScalarProperty Name="Id" ColumnName="IdComponent" />
+      </EndProperty>
+      <EndProperty Name="FormFactor">
+        <ScalarProperty Name="Id" ColumnName="IdFormFactor" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SupportedProcessorMemoryType" TypeName="ConfiguratorPCModel.SupportedProcessorMemoryType" StoreEntitySet="SupportedProcessorMemoryType">
+      <EndProperty Name="MemoryType">
+        <ScalarProperty Name="Id" ColumnName="IdMemoryType" />
+      </EndProperty>
+      <EndProperty Name="Processor">
+        <ScalarProperty Name="IdComponent" ColumnName="IdProcessor" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

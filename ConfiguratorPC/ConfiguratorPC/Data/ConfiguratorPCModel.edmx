@@ -1,0 +1,593 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ConfiguratorPCModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Case">
+          <Key>
+            <PropertyRef Name="IdComponent" />
+          </Key>
+          <Property Name="IdComponent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdFormFactor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Component">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="9" Scale="2" Nullable="false" />
+          <Property Name="Picture" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="FormFactor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemoryFormFactor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemoryType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MotherBoard">
+          <Key>
+            <PropertyRef Name="IdComponent" />
+          </Key>
+          <Property Name="IdComponent" Type="int" Nullable="false" />
+          <Property Name="IdFormFactor" Type="int" Nullable="false" />
+          <Property Name="IdSocket" Type="int" Nullable="false" />
+          <Property Name="IdMemoryType" Type="int" Nullable="false" />
+          <Property Name="IdMemoryFormFactor" Type="int" />
+          <Property Name="MemoryQuantity" Type="tinyint" Nullable="false" />
+          <Property Name="PCIEx16Quantity" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Processor">
+          <Key>
+            <PropertyRef Name="IdComponent" />
+          </Key>
+          <Property Name="IdComponent" Type="int" Nullable="false" />
+          <Property Name="IdSocket" Type="int" Nullable="false" />
+          <Property Name="MaxMemorySize" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Socket">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SupportedProcessorMemoryType">
+          <Key>
+            <PropertyRef Name="IdProcessor" />
+            <PropertyRef Name="IdMemoryType" />
+          </Key>
+          <Property Name="IdProcessor" Type="int" Nullable="false" />
+          <Property Name="IdMemoryType" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Case_Component">
+          <End Role="Component" Type="Self.Component" Multiplicity="1" />
+          <End Role="Case" Type="Self.Case" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Component">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Case">
+              <PropertyRef Name="IdComponent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Case_FormFactor">
+          <End Role="FormFactor" Type="Self.FormFactor" Multiplicity="1" />
+          <End Role="Case" Type="Self.Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormFactor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Case">
+              <PropertyRef Name="IdFormFactor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoard_Component">
+          <End Role="Component" Type="Self.Component" Multiplicity="1" />
+          <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Component">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdComponent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoard_FormFactor">
+          <End Role="FormFactor" Type="Self.FormFactor" Multiplicity="1" />
+          <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormFactor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdFormFactor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoard_MemoryFormFactor">
+          <End Role="MemoryFormFactor" Type="Self.MemoryFormFactor" Multiplicity="0..1" />
+          <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemoryFormFactor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdMemoryFormFactor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoard_MemoryType">
+          <End Role="MemoryType" Type="Self.MemoryType" Multiplicity="1" />
+          <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemoryType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdMemoryType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoard_Socket">
+          <End Role="Socket" Type="Self.Socket" Multiplicity="1" />
+          <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Socket">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdSocket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Processor_Component">
+          <End Role="Component" Type="Self.Component" Multiplicity="1" />
+          <End Role="Processor" Type="Self.Processor" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Component">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Processor">
+              <PropertyRef Name="IdComponent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Processor_Socket">
+          <End Role="Socket" Type="Self.Socket" Multiplicity="1" />
+          <End Role="Processor" Type="Self.Processor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Socket">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Processor">
+              <PropertyRef Name="IdSocket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupportedProcessorMemoryType_MemoryType">
+          <End Role="MemoryType" Type="Self.MemoryType" Multiplicity="1" />
+          <End Role="SupportedProcessorMemoryType" Type="Self.SupportedProcessorMemoryType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemoryType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupportedProcessorMemoryType">
+              <PropertyRef Name="IdMemoryType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupportedProcessorMemoryType_Processor">
+          <End Role="Processor" Type="Self.Processor" Multiplicity="1" />
+          <End Role="SupportedProcessorMemoryType" Type="Self.SupportedProcessorMemoryType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Processor">
+              <PropertyRef Name="IdComponent" />
+            </Principal>
+            <Dependent Role="SupportedProcessorMemoryType">
+              <PropertyRef Name="IdProcessor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ConfiguratorPCModelContainer">
+          <EntitySet Name="Case" EntityType="Self.Case" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Component" EntityType="Self.Component" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FormFactor" EntityType="Self.FormFactor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemoryFormFactor" EntityType="Self.MemoryFormFactor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemoryType" EntityType="Self.MemoryType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MotherBoard" EntityType="Self.MotherBoard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Processor" EntityType="Self.Processor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Socket" EntityType="Self.Socket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SupportedProcessorMemoryType" EntityType="Self.SupportedProcessorMemoryType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Case_Component" Association="Self.FK_Case_Component">
+            <End Role="Component" EntitySet="Component" />
+            <End Role="Case" EntitySet="Case" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Case_FormFactor" Association="Self.FK_Case_FormFactor">
+            <End Role="FormFactor" EntitySet="FormFactor" />
+            <End Role="Case" EntitySet="Case" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_Component" Association="Self.FK_MotherBoard_Component">
+            <End Role="Component" EntitySet="Component" />
+            <End Role="MotherBoard" EntitySet="MotherBoard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_FormFactor" Association="Self.FK_MotherBoard_FormFactor">
+            <End Role="FormFactor" EntitySet="FormFactor" />
+            <End Role="MotherBoard" EntitySet="MotherBoard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_MemoryFormFactor" Association="Self.FK_MotherBoard_MemoryFormFactor">
+            <End Role="MemoryFormFactor" EntitySet="MemoryFormFactor" />
+            <End Role="MotherBoard" EntitySet="MotherBoard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_MemoryType" Association="Self.FK_MotherBoard_MemoryType">
+            <End Role="MemoryType" EntitySet="MemoryType" />
+            <End Role="MotherBoard" EntitySet="MotherBoard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_Socket" Association="Self.FK_MotherBoard_Socket">
+            <End Role="Socket" EntitySet="Socket" />
+            <End Role="MotherBoard" EntitySet="MotherBoard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Processor_Component" Association="Self.FK_Processor_Component">
+            <End Role="Component" EntitySet="Component" />
+            <End Role="Processor" EntitySet="Processor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Processor_Socket" Association="Self.FK_Processor_Socket">
+            <End Role="Socket" EntitySet="Socket" />
+            <End Role="Processor" EntitySet="Processor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupportedProcessorMemoryType_MemoryType" Association="Self.FK_SupportedProcessorMemoryType_MemoryType">
+            <End Role="MemoryType" EntitySet="MemoryType" />
+            <End Role="SupportedProcessorMemoryType" EntitySet="SupportedProcessorMemoryType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupportedProcessorMemoryType_Processor" Association="Self.FK_SupportedProcessorMemoryType_Processor">
+            <End Role="Processor" EntitySet="Processor" />
+            <End Role="SupportedProcessorMemoryType" EntitySet="SupportedProcessorMemoryType" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ConfiguratorPCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Component">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="9" Scale="2" Nullable="false" />
+          <Property Name="Picture" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="MotherBoard" Relationship="Self.FK_MotherBoard_Component" FromRole="Component" ToRole="MotherBoard" />
+          <NavigationProperty Name="Processor" Relationship="Self.FK_Processor_Component" FromRole="Component" ToRole="Processor" />
+          <NavigationProperty Name="FormFactor" Relationship="Self.Case" FromRole="Component" ToRole="FormFactor" />
+        </EntityType>
+        <EntityType Name="FormFactor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="MotherBoards" Relationship="Self.FK_MotherBoard_FormFactor" FromRole="FormFactor" ToRole="MotherBoard" />
+          <NavigationProperty Name="Components" Relationship="Self.Case" FromRole="FormFactor" ToRole="Component" />
+        </EntityType>
+        <EntityType Name="MemoryFormFactor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="MotherBoards" Relationship="Self.FK_MotherBoard_MemoryFormFactor" FromRole="MemoryFormFactor" ToRole="MotherBoard" />
+        </EntityType>
+        <EntityType Name="MemoryType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="MotherBoards" Relationship="Self.FK_MotherBoard_MemoryType" FromRole="MemoryType" ToRole="MotherBoard" />
+          <NavigationProperty Name="Processors" Relationship="Self.SupportedProcessorMemoryType" FromRole="MemoryType" ToRole="Processor" />
+        </EntityType>
+        <EntityType Name="MotherBoard">
+          <Key>
+            <PropertyRef Name="IdComponent" />
+          </Key>
+          <Property Name="IdComponent" Type="Int32" Nullable="false" />
+          <Property Name="IdFormFactor" Type="Int32" Nullable="false" />
+          <Property Name="IdSocket" Type="Int32" Nullable="false" />
+          <Property Name="IdMemoryType" Type="Int32" Nullable="false" />
+          <Property Name="IdMemoryFormFactor" Type="Int32" />
+          <Property Name="MemoryQuantity" Type="Byte" Nullable="false" />
+          <Property Name="PCIEx16Quantity" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Component" Relationship="Self.FK_MotherBoard_Component" FromRole="MotherBoard" ToRole="Component" />
+          <NavigationProperty Name="FormFactor" Relationship="Self.FK_MotherBoard_FormFactor" FromRole="MotherBoard" ToRole="FormFactor" />
+          <NavigationProperty Name="MemoryFormFactor" Relationship="Self.FK_MotherBoard_MemoryFormFactor" FromRole="MotherBoard" ToRole="MemoryFormFactor" />
+          <NavigationProperty Name="MemoryType" Relationship="Self.FK_MotherBoard_MemoryType" FromRole="MotherBoard" ToRole="MemoryType" />
+          <NavigationProperty Name="Socket" Relationship="Self.FK_MotherBoard_Socket" FromRole="MotherBoard" ToRole="Socket" />
+        </EntityType>
+        <EntityType Name="Processor">
+          <Key>
+            <PropertyRef Name="IdComponent" />
+          </Key>
+          <Property Name="IdComponent" Type="Int32" Nullable="false" />
+          <Property Name="IdSocket" Type="Int32" Nullable="false" />
+          <Property Name="MaxMemorySize" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Component" Relationship="Self.FK_Processor_Component" FromRole="Processor" ToRole="Component" />
+          <NavigationProperty Name="Socket" Relationship="Self.FK_Processor_Socket" FromRole="Processor" ToRole="Socket" />
+          <NavigationProperty Name="MemoryTypes" Relationship="Self.SupportedProcessorMemoryType" FromRole="Processor" ToRole="MemoryType" />
+        </EntityType>
+        <EntityType Name="Socket">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="MotherBoards" Relationship="Self.FK_MotherBoard_Socket" FromRole="Socket" ToRole="MotherBoard" />
+          <NavigationProperty Name="Processors" Relationship="Self.FK_Processor_Socket" FromRole="Socket" ToRole="Processor" />
+        </EntityType>
+        <Association Name="FK_MotherBoard_Component">
+          <End Role="Component" Type="Self.Component" Multiplicity="1" />
+          <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Component">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdComponent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Processor_Component">
+          <End Role="Component" Type="Self.Component" Multiplicity="1" />
+          <End Role="Processor" Type="Self.Processor" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Component">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Processor">
+              <PropertyRef Name="IdComponent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoard_FormFactor">
+          <End Role="FormFactor" Type="Self.FormFactor" Multiplicity="1" />
+          <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormFactor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdFormFactor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoard_MemoryFormFactor">
+          <End Role="MemoryFormFactor" Type="Self.MemoryFormFactor" Multiplicity="0..1" />
+          <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemoryFormFactor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdMemoryFormFactor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoard_MemoryType">
+          <End Role="MemoryType" Type="Self.MemoryType" Multiplicity="1" />
+          <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemoryType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdMemoryType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoard_Socket">
+          <End Role="Socket" Type="Self.Socket" Multiplicity="1" />
+          <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Socket">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdSocket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Processor_Socket">
+          <End Role="Socket" Type="Self.Socket" Multiplicity="1" />
+          <End Role="Processor" Type="Self.Processor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Socket">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Processor">
+              <PropertyRef Name="IdSocket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Case">
+          <End Role="Component" Type="Self.Component" Multiplicity="*" />
+          <End Role="FormFactor" Type="Self.FormFactor" Multiplicity="0..1" />
+        </Association>
+        <Association Name="SupportedProcessorMemoryType">
+          <End Role="MemoryType" Type="Self.MemoryType" Multiplicity="*" />
+          <End Role="Processor" Type="Self.Processor" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ConfiguratorPCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Components" EntityType="Self.Component" />
+          <EntitySet Name="FormFactors" EntityType="Self.FormFactor" />
+          <EntitySet Name="MemoryFormFactors" EntityType="Self.MemoryFormFactor" />
+          <EntitySet Name="MemoryTypes" EntityType="Self.MemoryType" />
+          <EntitySet Name="MotherBoards" EntityType="Self.MotherBoard" />
+          <EntitySet Name="Processors" EntityType="Self.Processor" />
+          <EntitySet Name="Sockets" EntityType="Self.Socket" />
+          <AssociationSet Name="FK_MotherBoard_Component" Association="Self.FK_MotherBoard_Component">
+            <End Role="Component" EntitySet="Components" />
+            <End Role="MotherBoard" EntitySet="MotherBoards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Processor_Component" Association="Self.FK_Processor_Component">
+            <End Role="Component" EntitySet="Components" />
+            <End Role="Processor" EntitySet="Processors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_FormFactor" Association="Self.FK_MotherBoard_FormFactor">
+            <End Role="FormFactor" EntitySet="FormFactors" />
+            <End Role="MotherBoard" EntitySet="MotherBoards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_MemoryFormFactor" Association="Self.FK_MotherBoard_MemoryFormFactor">
+            <End Role="MemoryFormFactor" EntitySet="MemoryFormFactors" />
+            <End Role="MotherBoard" EntitySet="MotherBoards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_MemoryType" Association="Self.FK_MotherBoard_MemoryType">
+            <End Role="MemoryType" EntitySet="MemoryTypes" />
+            <End Role="MotherBoard" EntitySet="MotherBoards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_Socket" Association="Self.FK_MotherBoard_Socket">
+            <End Role="Socket" EntitySet="Sockets" />
+            <End Role="MotherBoard" EntitySet="MotherBoards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Processor_Socket" Association="Self.FK_Processor_Socket">
+            <End Role="Socket" EntitySet="Sockets" />
+            <End Role="Processor" EntitySet="Processors" />
+          </AssociationSet>
+          <AssociationSet Name="Case" Association="Self.Case">
+            <End Role="Component" EntitySet="Components" />
+            <End Role="FormFactor" EntitySet="FormFactors" />
+          </AssociationSet>
+          <AssociationSet Name="SupportedProcessorMemoryType" Association="Self.SupportedProcessorMemoryType">
+            <End Role="MemoryType" EntitySet="MemoryTypes" />
+            <End Role="Processor" EntitySet="Processors" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ConfiguratorPCModelContainer" CdmEntityContainer="ConfiguratorPCEntities">
+          <EntitySetMapping Name="Components">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.Component">
+              <MappingFragment StoreEntitySet="Component">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormFactors">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.FormFactor">
+              <MappingFragment StoreEntitySet="FormFactor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemoryFormFactors">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.MemoryFormFactor">
+              <MappingFragment StoreEntitySet="MemoryFormFactor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemoryTypes">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.MemoryType">
+              <MappingFragment StoreEntitySet="MemoryType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MotherBoards">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.MotherBoard">
+              <MappingFragment StoreEntitySet="MotherBoard">
+                <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+                <ScalarProperty Name="IdFormFactor" ColumnName="IdFormFactor" />
+                <ScalarProperty Name="IdSocket" ColumnName="IdSocket" />
+                <ScalarProperty Name="IdMemoryType" ColumnName="IdMemoryType" />
+                <ScalarProperty Name="IdMemoryFormFactor" ColumnName="IdMemoryFormFactor" />
+                <ScalarProperty Name="MemoryQuantity" ColumnName="MemoryQuantity" />
+                <ScalarProperty Name="PCIEx16Quantity" ColumnName="PCIEx16Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Processors">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.Processor">
+              <MappingFragment StoreEntitySet="Processor">
+                <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+                <ScalarProperty Name="IdSocket" ColumnName="IdSocket" />
+                <ScalarProperty Name="MaxMemorySize" ColumnName="MaxMemorySize" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sockets">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.Socket">
+              <MappingFragment StoreEntitySet="Socket">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Case" TypeName="ConfiguratorPCModel.Case" StoreEntitySet="Case">
+            <EndProperty Name="Component">
+              <ScalarProperty Name="Id" ColumnName="IdComponent" />
+            </EndProperty>
+            <EndProperty Name="FormFactor">
+              <ScalarProperty Name="Id" ColumnName="IdFormFactor" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SupportedProcessorMemoryType" TypeName="ConfiguratorPCModel.SupportedProcessorMemoryType" StoreEntitySet="SupportedProcessorMemoryType">
+            <EndProperty Name="MemoryType">
+              <ScalarProperty Name="Id" ColumnName="IdMemoryType" />
+            </EndProperty>
+            <EndProperty Name="Processor">
+              <ScalarProperty Name="IdComponent" ColumnName="IdProcessor" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище ConfiguratorPCModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Component">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="9" Scale="2" Nullable="false" />
+    <Property Name="Picture" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="MotherBoard">
+    <Key>
+      <PropertyRef Name="IdComponent" />
+    </Key>
+    <Property Name="IdComponent" Type="int" Nullable="false" />
+    <Property Name="FormFactor" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Processor">
+    <Key>
+      <PropertyRef Name="IdComponent" />
+    </Key>
+    <Property Name="IdComponent" Type="int" Nullable="false" />
+    <Property Name="Chipset" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_MotherBoard_Component">
+    <End Role="Component" Type="Self.Component" Multiplicity="1" />
+    <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Component">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MotherBoard">
+        <PropertyRef Name="IdComponent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Processor_Component">
+    <End Role="Component" Type="Self.Component" Multiplicity="1" />
+    <End Role="Processor" Type="Self.Processor" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Component">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Processor">
+        <PropertyRef Name="IdComponent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище ConfiguratorPCModelContainer">
+    <EntitySet Name="Component" EntityType="Self.Component" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MotherBoard" EntityType="Self.MotherBoard" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Processor" EntityType="Self.Processor" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_MotherBoard_Component" Association="Self.FK_MotherBoard_Component">
+      <End Role="Component" EntitySet="Component" />
+      <End Role="MotherBoard" EntitySet="MotherBoard" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Processor_Component" Association="Self.FK_Processor_Component">
+      <End Role="Component" EntitySet="Component" />
+      <End Role="Processor" EntitySet="Processor" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

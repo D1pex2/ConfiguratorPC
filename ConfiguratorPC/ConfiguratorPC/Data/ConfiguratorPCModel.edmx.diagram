@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3a81e1589fd846fb8d126080cd7a5d35" Name="Diagram1">
+        <EntityTypeShape EntityType="ConfiguratorPCModel.Component" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.FormFactor" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.MemoryFormFactor" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.MemoryType" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.MotherBoard" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.Processor" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.Socket" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_Component" ManuallyRouted="false" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_Processor_Component" ManuallyRouted="false" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_FormFactor" ManuallyRouted="false" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_MemoryFormFactor" ManuallyRouted="false" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_MemoryType" ManuallyRouted="false" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_Socket" ManuallyRouted="false" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_Processor_Socket" ManuallyRouted="false" />
+        <AssociationConnector Association="ConfiguratorPCModel.Case" ManuallyRouted="false" />
+        <AssociationConnector Association="ConfiguratorPCModel.SupportedProcessorMemoryType" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
