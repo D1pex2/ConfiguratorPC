@@ -35,79 +35,53 @@ namespace ConfiguratorPC
             Configurator.Processor = null;
         }
 
+        private void ProcessorButton_ChangeComponent(object sender, EventArgs e)
+        {
+            Configurator.Processor = ProcessorButton.Component.Processor;
+        }
+
+        private void ProcessorButton_UpdateCompatibleComponents(object sender, EventArgs e)
+        {
+            try
+            {
+                ProcessorButton.CompatibleComponents = Configurator.CompatibleProcessors.Select(p => p.Component).ToList();
+            }
+            catch (Exception ex)
+            {
+                FeedBack.ShowError(ex);
+            }
+        }
+
         private void MotherBoardButton_DeleteComponent(object sender, EventArgs e)
         {
             Configurator.MotherBoard = null;
         }
 
-        private void ProcessorButton_ChangeComponent(object sender, EventArgs e)
-        {
-            if (ProcessorsList.Visibility == Visibility.Collapsed)
-            {
-                ProcessorsList.Items.Clear();
-                foreach (var item in Configurator.CompatibleProcessors)
-                {
-                    ProcessorsList.Items.Add(item);
-                }
-                ProcessorsList.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                ProcessorsList.Visibility = Visibility.Collapsed;
-            }
-        }
-
         private void MotherBoardButton_ChangeComponent(object sender, EventArgs e)
         {
-            if (MotherBoardsList.Visibility == Visibility.Collapsed)
+            Configurator.MotherBoard = MotherBoardButton.Component.MotherBoard;
+        }
+
+        private void MotherBoardButton_UpdateCompatibleComponents(object sender, EventArgs e)
+        {
+            try
             {
-                MotherBoardsList.Items.Clear();
-                foreach (var item in Configurator.CompatibleMotherBoards)
-                {
-                    MotherBoardsList.Items.Add(item);
-                }
-                MotherBoardsList.Visibility = Visibility.Visible;
+                MotherBoardButton.CompatibleComponents = Configurator.CompatibleMotherBoards.Select(m => m.Component).ToList();
             }
-            else
+            catch (Exception ex)
             {
-                MotherBoardsList.Visibility = Visibility.Collapsed;
+                FeedBack.ShowError(ex);
             }
         }
 
-        private void ProcessorsList_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void ComponentButton_ListOpened(object sender, EventArgs e)
         {
-            var item = ProcessorsList.SelectedItem;
-            if (item != null)
+            List<Controls.ComponentButton> componentButtons = ConfigStackPanel.Children.OfType<Controls.ComponentButton>().ToList();
+            var componentButton = sender as Controls.ComponentButton;
+            componentButtons.Remove(componentButton);
+            foreach (var item in componentButtons)
             {
-                Processor processor = item as Processor;
-                Configurator.Processor = processor;
-                ProcessorButton.Component = processor.Component;
-                ProcessorsList.Visibility = Visibility.Collapsed;
-            }
-        }
-
-        private void MotherBoardsList_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            var item = MotherBoardsList.SelectedItem;
-            if (item != null)
-            {
-                MotherBoard motherBoard = item as MotherBoard;
-                Configurator.MotherBoard = motherBoard;
-                MotherBoardButton.Component = motherBoard.Component;
-                MotherBoardsList.Visibility = Visibility.Collapsed;
-            }
-        }
-
-        private void List_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            List<ListView> listViews = ConfigStackPanel.Children.OfType<ListView>().ToList();
-            var senderListView = sender as ListView;
-            listViews.Remove(senderListView);
-            foreach (var item in listViews)
-            {
-                item.IsVisibleChanged -= List_IsVisibleChanged;
-                item.Visibility = Visibility.Collapsed;
-                item.IsVisibleChanged += List_IsVisibleChanged;
+                item.CollapseList();
             }
         }
     }

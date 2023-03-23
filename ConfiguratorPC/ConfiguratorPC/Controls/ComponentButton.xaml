@@ -5,14 +5,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ConfiguratorPC.Controls"
              mc:Ignorable="d" 
-             MinHeight="50" Width="Auto">
-    <Border BorderBrush="Gray" BorderThickness="2">
-        <DockPanel>
-            <TextBlock x:Name="TypeTextBlock" Text="Тип компонента" MinWidth="150"  VerticalAlignment="Center"/>
-            <Image Height="40" Width="40"/>
-            <Button x:Name="InteractionButton" Content="Добавить" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right" Background="Transparent" Click="InteractionButton_Click"/>
-            <TextBlock x:Name="PriceTextBlock" VerticalAlignment="Center"  HorizontalAlignment="Right" DockPanel.Dock="Right"/>
-            <TextBlock x:Name="NameTextBlock" VerticalAlignment="Center"/>
-        </DockPanel>
-    </Border>
+             MinHeight="70" Width="Auto">
+    <StackPanel>
+        <Border BorderBrush="Gray" BorderThickness="2" MinHeight="70">
+            <DockPanel>
+                <TextBlock x:Name="TypeTextBlock" Text="Тип компонента" MinWidth="150"  VerticalAlignment="Center"/>
+                <Image Height="60" Width="60"/>
+                <Button x:Name="InteractionButton" Width="100" Content="Добавить" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right" Background="Transparent" Click="InteractionButton_Click"/>
+                <TextBlock x:Name="PriceTextBlock" VerticalAlignment="Center"  HorizontalAlignment="Right" DockPanel.Dock="Right"/>
+                <TextBlock x:Name="NameTextBlock" VerticalAlignment="Center"/>
+            </DockPanel>
+        </Border>
+        <ListView x:Name="ComponentsList" Visibility="Collapsed" HorizontalContentAlignment="Stretch" PreviewMouseLeftButtonDown="ComponentsList_PreviewMouseLeftButtonDown" IsVisibleChanged="ComponentsList_IsVisibleChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel MinHeight="70">
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding Price, StringFormat={}{0} руб.}" DockPanel.Dock="Right" VerticalAlignment="Center"/>
+                        <TextBlock/>
+                        <Image/>
+                    </DockPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackPanel>
 </UserControl>

@@ -23,9 +23,15 @@ namespace ConfiguratorPC.Controls
     {
         public string ComponentType { get => TypeTextBlock.Text; set => TypeTextBlock.Text = value; }
 
+        public event EventHandler UpdateCompatibleComponents;
+
         public event EventHandler ChangeComponent;
 
         public event EventHandler DeleteComponent;
+
+        public event EventHandler ListOpened;
+
+        public List<Component> CompatibleComponents { get; set; }
 
         private Component component;
 
@@ -55,16 +61,55 @@ namespace ConfiguratorPC.Controls
             InitializeComponent();
         }
 
+        public void CollapseList()
+        {
+            ComponentsList.Visibility = Visibility.Collapsed;
+        }
+
         private void InteractionButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Component == null)
+            if (ComponentsList.Visibility != Visibility.Collapsed)
             {
-                ChangeComponent?.Invoke(this, EventArgs.Empty);
+                ComponentsList.Visibility = Visibility.Collapsed;
+            }
+            else if (Component == null)
+            {
+                ComponentsList.Items.Clear();
+                UpdateCompatibleComponents?.Invoke(this, EventArgs.Empty);
+                if (CompatibleComponents == null)
+                {
+                    throw new ArgumentNullException("Подпишитесь на событие UpdateCompatibleComponents и присвойте значение к переменной CompatibleComponents");
+                }
+                foreach (var item in CompatibleComponents)
+                {
+                    ComponentsList.Items.Add(item);
+                }
+                ComponentsList.Visibility = Visibility.Visible;
             }
             else
             {
                 DeleteComponent?.Invoke(this, EventArgs.Empty);
                 Component = null;
+            }
+        }
+
+        private void ComponentsList_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var item = ComponentsList.SelectedItem;
+            if (item != null)
+            {
+                Component component = item as Component;
+                Component = component;
+                ChangeComponent?.Invoke(this, EventArgs.Empty);
+                ComponentsList.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void ComponentsList_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (ComponentsList.Visibility == Visibility.Visible)
+            {
+                ListOpened?.Invoke(this, EventArgs.Empty);
             }
         }
     }
