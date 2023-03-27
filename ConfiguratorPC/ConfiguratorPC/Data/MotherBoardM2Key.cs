@@ -12,20 +12,14 @@ namespace ConfiguratorPC.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Component
+    public partial class MotherBoardM2Key
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public string Picture { get; set; }
+        public int IdMotherBoard { get; set; }
+        public int IdFormFactor { get; set; }
+        public int IdKey { get; set; }
     
-        public virtual Case Case { get; set; }
-        public virtual DataStorage DataStorage { get; set; }
+        public virtual M2FormFactor M2FormFactor { get; set; }
+        public virtual M2Key M2Key { get; set; }
         public virtual MotherBoard MotherBoard { get; set; }
-        public virtual PowerSupply PowerSupply { get; set; }
-        public virtual Processor Processor { get; set; }
-        public virtual ProcessorCooler ProcessorCooler { get; set; }
-        public virtual RAM RAM { get; set; }
-        public virtual VideoCard VideoCard { get; set; }
     }
 }

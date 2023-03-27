@@ -1,81 +1,266 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Хранилище ConfiguratorPCModelContainer" CdmEntityContainer="ConfiguratorPCEntities">
+    <EntitySetMapping Name="Cases">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.Case">
+        <MappingFragment StoreEntitySet="Case">
+          <ScalarProperty Name="Storage25Quantity" ColumnName="Storage25Quantity" />
+          <ScalarProperty Name="Storage35Quantity" ColumnName="Storage35Quantity" />
+          <ScalarProperty Name="LiquidCoolerCompatible" ColumnName="LiquidCoolerCompatible" />
+          <ScalarProperty Name="MaxCoolerHeigth" ColumnName="MaxCoolerHeigth" />
+          <ScalarProperty Name="MaxVideoCardLength" ColumnName="MaxVideoCardLength" />
+          <ScalarProperty Name="ExpansionSlotsQuantity" ColumnName="ExpansionSlotsQuantity" />
+          <ScalarProperty Name="IdPowerSupplyFormFactor" ColumnName="IdPowerSupplyFormFactor" />
+          <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Components">
       <EntityTypeMapping TypeName="ConfiguratorPCModel.Component">
         <MappingFragment StoreEntitySet="Component">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="FormFactors">
-      <EntityTypeMapping TypeName="ConfiguratorPCModel.FormFactor">
-        <MappingFragment StoreEntitySet="FormFactor">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
+    <EntitySetMapping Name="Coolers">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.Cooler">
+        <MappingFragment StoreEntitySet="Cooler">
+          <ScalarProperty Name="Heigth" ColumnName="Heigth" />
+          <ScalarProperty Name="IdProcessorCooler" ColumnName="IdProcessorCooler" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MemoryFormFactors">
-      <EntityTypeMapping TypeName="ConfiguratorPCModel.MemoryFormFactor">
-        <MappingFragment StoreEntitySet="MemoryFormFactor">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+    <EntitySetMapping Name="Cores">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.Core">
+        <MappingFragment StoreEntitySet="Core">
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MemoryTypes">
-      <EntityTypeMapping TypeName="ConfiguratorPCModel.MemoryType">
-        <MappingFragment StoreEntitySet="MemoryType">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+    <EntitySetMapping Name="DataStorages">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.DataStorage">
+        <MappingFragment StoreEntitySet="DataStorage">
+          <ScalarProperty Name="MemorySize" ColumnName="MemorySize" />
+          <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GraphicsProcessingUnits">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.GraphicsProcessingUnit">
+        <MappingFragment StoreEntitySet="GraphicsProcessingUnit">
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HDDs">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.HDD">
+        <MappingFragment StoreEntitySet="HDD">
+          <ScalarProperty Name="FormFactor" ColumnName="FormFactor" />
+          <ScalarProperty Name="IdDataStorage" ColumnName="IdDataStorage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LiquidCoolers">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.LiquidCooler">
+        <MappingFragment StoreEntitySet="LiquidCooler">
+          <ScalarProperty Name="IdProcessorCooler" ColumnName="IdProcessorCooler" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M2FormFactor">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.M2FormFactor">
+        <MappingFragment StoreEntitySet="M2FormFactor">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M2Key">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.M2Key">
+        <MappingFragment StoreEntitySet="M2Key">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M2SSD">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.M2SSD">
+        <MappingFragment StoreEntitySet="M2SSD">
+          <ScalarProperty Name="IdFormFactor" ColumnName="IdFormFactor" />
+          <ScalarProperty Name="IdSSD" ColumnName="IdSSD" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="MotherBoards">
       <EntityTypeMapping TypeName="ConfiguratorPCModel.MotherBoard">
         <MappingFragment StoreEntitySet="MotherBoard">
-          <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
-          <ScalarProperty Name="IdFormFactor" ColumnName="IdFormFactor" />
-          <ScalarProperty Name="IdSocket" ColumnName="IdSocket" />
-          <ScalarProperty Name="IdMemoryType" ColumnName="IdMemoryType" />
-          <ScalarProperty Name="IdMemoryFormFactor" ColumnName="IdMemoryFormFactor" />
-          <ScalarProperty Name="MemoryQuantity" ColumnName="MemoryQuantity" />
+          <ScalarProperty Name="M2Quantity" ColumnName="M2Quantity" />
+          <ScalarProperty Name="SATAQuantity" ColumnName="SATAQuantity" />
+          <ScalarProperty Name="ProcessorSupplyQuantity" ColumnName="ProcessorSupplyQuantity" />
           <ScalarProperty Name="PCIEx16Quantity" ColumnName="PCIEx16Quantity" />
+          <ScalarProperty Name="RAMQuantity" ColumnName="RAMQuantity" />
+          <ScalarProperty Name="MaxRAMSize" ColumnName="MaxRAMSize" />
+          <ScalarProperty Name="IdRAMFormFactor" ColumnName="IdRAMFormFactor" />
+          <ScalarProperty Name="IdRAMType" ColumnName="IdRAMType" />
+          <ScalarProperty Name="IdSocket" ColumnName="IdSocket" />
+          <ScalarProperty Name="IdMotherBoardFormFactor" ColumnName="IdMotherBoardFormFactor" />
+          <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MotherBoardFormFactors">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.MotherBoardFormFactor">
+        <MappingFragment StoreEntitySet="MotherBoardFormFactor">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MotherBoardM2Key">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.MotherBoardM2Key">
+        <MappingFragment StoreEntitySet="MotherBoardM2Key">
+          <ScalarProperty Name="IdKey" ColumnName="IdKey" />
+          <ScalarProperty Name="IdFormFactor" ColumnName="IdFormFactor" />
+          <ScalarProperty Name="IdMotherBoard" ColumnName="IdMotherBoard" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PowerSupplies">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.PowerSupply">
+        <MappingFragment StoreEntitySet="PowerSupply">
+          <ScalarProperty Name="SATASupplyQuantity" ColumnName="SATASupplyQuantity" />
+          <ScalarProperty Name="ProcessorSupplyQuantity" ColumnName="ProcessorSupplyQuantity" />
+          <ScalarProperty Name="VideoCardSupplyQuantity" ColumnName="VideoCardSupplyQuantity" />
+          <ScalarProperty Name="Power" ColumnName="Power" />
+          <ScalarProperty Name="IdPowerSupplyFormFactor" ColumnName="IdPowerSupplyFormFactor" />
+          <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PowerSupplyFormFactors">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.PowerSupplyFormFactor">
+        <MappingFragment StoreEntitySet="PowerSupplyFormFactor">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Processors">
       <EntityTypeMapping TypeName="ConfiguratorPCModel.Processor">
         <MappingFragment StoreEntitySet="Processor">
-          <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
-          <ScalarProperty Name="IdSocket" ColumnName="IdSocket" />
+          <ScalarProperty Name="HasCooler" ColumnName="HasCooler" />
           <ScalarProperty Name="MaxMemorySize" ColumnName="MaxMemorySize" />
+          <ScalarProperty Name="IdCore" ColumnName="IdCore" />
+          <ScalarProperty Name="IdGraphicsProcessingUnit" ColumnName="IdGraphicsProcessingUnit" />
+          <ScalarProperty Name="IdSocket" ColumnName="IdSocket" />
+          <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProcessorCoolers">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.ProcessorCooler">
+        <MappingFragment StoreEntitySet="ProcessorCooler">
+          <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RAMs">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.RAM">
+        <MappingFragment StoreEntitySet="RAM">
+          <ScalarProperty Name="MemorySize" ColumnName="MemorySize" />
+          <ScalarProperty Name="IdRAMType" ColumnName="IdRAMType" />
+          <ScalarProperty Name="IdRAMFormFactor" ColumnName="IdRAMFormFactor" />
+          <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RAMFormFactors">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.RAMFormFactor">
+        <MappingFragment StoreEntitySet="RAMFormFactor">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RAMTypes">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.RAMType">
+        <MappingFragment StoreEntitySet="RAMType">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SataSSDs">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.SataSSD">
+        <MappingFragment StoreEntitySet="SataSSD">
+          <ScalarProperty Name="IdSSD" ColumnName="IdSSD" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Sockets">
       <EntityTypeMapping TypeName="ConfiguratorPCModel.Socket">
         <MappingFragment StoreEntitySet="Socket">
-          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="Case" TypeName="ConfiguratorPCModel.Case" StoreEntitySet="Case">
-      <EndProperty Name="Component">
-        <ScalarProperty Name="Id" ColumnName="IdComponent" />
+    <EntitySetMapping Name="SSDs">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.SSD">
+        <MappingFragment StoreEntitySet="SSD">
+          <ScalarProperty Name="IdDataStorage" ColumnName="IdDataStorage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VideoCards">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.VideoCard">
+        <MappingFragment StoreEntitySet="VideoCard">
+          <ScalarProperty Name="ExtraPowerSupply" ColumnName="ExtraPowerSupply" />
+          <ScalarProperty Name="Length" ColumnName="Length" />
+          <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CaseCompatibleMotherBoardFormFactor" TypeName="ConfiguratorPCModel.CaseCompatibleMotherBoardFormFactor" StoreEntitySet="CaseCompatibleMotherBoardFormFactor">
+      <EndProperty Name="MotherBoardFormFactor">
+        <ScalarProperty Name="Id" ColumnName="IdMotherBoardFormFactor" />
       </EndProperty>
-      <EndProperty Name="FormFactor">
-        <ScalarProperty Name="Id" ColumnName="IdFormFactor" />
+      <EndProperty Name="Case">
+        <ScalarProperty Name="IdComponent" ColumnName="IdCase" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="SupportedProcessorMemoryType" TypeName="ConfiguratorPCModel.SupportedProcessorMemoryType" StoreEntitySet="SupportedProcessorMemoryType">
-      <EndProperty Name="MemoryType">
-        <ScalarProperty Name="Id" ColumnName="IdMemoryType" />
+    <AssociationSetMapping Name="CoolerCompatibleSocket" TypeName="ConfiguratorPCModel.CoolerCompatibleSocket" StoreEntitySet="CoolerCompatibleSocket">
+      <EndProperty Name="Socket">
+        <ScalarProperty Name="Id" ColumnName="IdSocket" />
+      </EndProperty>
+      <EndProperty Name="ProcessorCooler">
+        <ScalarProperty Name="IdComponent" ColumnName="IdProcessorCooler" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="M2SSDKey" TypeName="ConfiguratorPCModel.M2SSDKey" StoreEntitySet="M2SSDKey">
+      <EndProperty Name="M2SSD">
+        <ScalarProperty Name="IdSSD" ColumnName="IdM2SSD" />
+      </EndProperty>
+      <EndProperty Name="M2Key">
+        <ScalarProperty Name="Id" ColumnName="IdKey" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MotherBoardCompatibleCore" TypeName="ConfiguratorPCModel.MotherBoardCompatibleCore" StoreEntitySet="MotherBoardCompatibleCore">
+      <EndProperty Name="MotherBoard">
+        <ScalarProperty Name="IdComponent" ColumnName="IdMotherBoard" />
+      </EndProperty>
+      <EndProperty Name="Core">
+        <ScalarProperty Name="Id" ColumnName="IdCore" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ProcessorCompatibleMemoryType" TypeName="ConfiguratorPCModel.ProcessorCompatibleMemoryType" StoreEntitySet="ProcessorCompatibleMemoryType">
+      <EndProperty Name="RAMType">
+        <ScalarProperty Name="Id" ColumnName="IdRAMType" />
       </EndProperty>
       <EndProperty Name="Processor">
         <ScalarProperty Name="IdComponent" ColumnName="IdProcessor" />

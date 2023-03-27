@@ -12,35 +12,21 @@ namespace ConfiguratorPC.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class MotherBoard
+    public partial class M2FormFactor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MotherBoard()
+        public M2FormFactor()
         {
+            this.M2SSD = new HashSet<M2SSD>();
             this.MotherBoardM2Key = new HashSet<MotherBoardM2Key>();
-            this.Cores = new HashSet<Core>();
         }
     
-        public int IdComponent { get; set; }
-        public int IdMotherBoardFormFactor { get; set; }
-        public int IdSocket { get; set; }
-        public int IdRAMType { get; set; }
-        public int IdRAMFormFactor { get; set; }
-        public byte MaxRAMSize { get; set; }
-        public byte RAMQuantity { get; set; }
-        public byte PCIEx16Quantity { get; set; }
-        public byte ProcessorSupplyQuantity { get; set; }
-        public byte SATAQuantity { get; set; }
-        public byte M2Quantity { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
     
-        public virtual Component Component { get; set; }
-        public virtual MotherBoardFormFactor MotherBoardFormFactor { get; set; }
-        public virtual RAMFormFactor RAMFormFactor { get; set; }
-        public virtual RAMType RAMType { get; set; }
-        public virtual Socket Socket { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<M2SSD> M2SSD { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MotherBoardM2Key> MotherBoardM2Key { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Core> Cores { get; set; }
     }
 }

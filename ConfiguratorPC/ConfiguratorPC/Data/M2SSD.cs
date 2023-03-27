@@ -12,21 +12,20 @@ namespace ConfiguratorPC.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class FormFactor
+    public partial class M2SSD
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public FormFactor()
+        public M2SSD()
         {
-            this.MotherBoards = new HashSet<MotherBoard>();
-            this.Components = new HashSet<Component>();
+            this.M2Key = new HashSet<M2Key>();
         }
     
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int IdSSD { get; set; }
+        public Nullable<int> IdFormFactor { get; set; }
     
+        public virtual M2FormFactor M2FormFactor { get; set; }
+        public virtual SSD SSD { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MotherBoard> MotherBoards { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Component> Components { get; set; }
+        public virtual ICollection<M2Key> M2Key { get; set; }
     }
 }

@@ -12,10 +12,58 @@
             <Setter Property="Margin" Value="0,0,0,-2"/>
         </Style>
     </Window.Resources>
-    <StackPanel Margin="5" x:Name="ConfigStackPanel">
-        <controls:ComponentButton x:Name="ProcessorButton" ComponentType="Процессор" DeleteComponent="ProcessorButton_DeleteComponent" ListOpened="ComponentButton_ListOpened"
-                                  ChangeComponent="ProcessorButton_ChangeComponent" UpdateCompatibleComponents="ProcessorButton_UpdateCompatibleComponents"/>
-        <controls:ComponentButton x:Name="MotherBoardButton" ComponentType="Материнская плата" DeleteComponent="MotherBoardButton_DeleteComponent" ListOpened="ComponentButton_ListOpened"
-                                  ChangeComponent="MotherBoardButton_ChangeComponent" UpdateCompatibleComponents="MotherBoardButton_UpdateCompatibleComponents"/>
-    </StackPanel>
+    <ListView x:Name="ConfigListView" IsTextSearchEnabled="False">
+        <ListView.ItemContainerStyle>
+            <Style TargetType="ListViewItem">
+                <Setter Property="HorizontalContentAlignment"  Value="Stretch"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListBoxItem">
+                            <ContentPresenter/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ListView.ItemContainerStyle>
+        <ListViewItem>
+            <controls:ComponentButton x:Name="ProcessorButton" ComponentTypeLabel="Процессор" ListOpened="ComponentButton_ListOpened"
+                                      ComponentAdded="ProcessorButton_ComponentAdded" ComponentDeleted="ProcessorButton_ComponentDeleted"
+                                      UpdateCompatibleComponents="ProcessorButton_UpdateCompatibleComponents"/>
+        </ListViewItem>
+        <ListViewItem>
+            <controls:ComponentButton x:Name="MotherBoardButton" ComponentTypeLabel="Материнская плата" ListOpened="ComponentButton_ListOpened"
+                                      ComponentAdded="MotherBoardButton_ComponentAdded" ComponentDeleted="MotherBoardButton_ComponentDeleted"
+                                      UpdateCompatibleComponents="MotherBoardButton_UpdateCompatibleComponents"/>
+        </ListViewItem>
+        <ListViewItem>
+            <controls:ComponentButton x:Name="CaseButton" ComponentTypeLabel="Корпус" ListOpened="ComponentButton_ListOpened"
+                                      ComponentAdded="CaseButton_ComponentAdded" ComponentDeleted="CaseButton_ComponentDeleted"
+                                      UpdateCompatibleComponents="CaseButton_UpdateCompatibleComponents"/>
+        </ListViewItem>
+        <ListViewItem>
+            <controls:ComponentButton x:Name="VideoCardButton" ComponentTypeLabel="Видеокарта" ListOpened="ComponentButton_ListOpened"
+                                      ComponentAdded="VideoCardButton_ComponentAdded" ComponentDeleted="VideoCardButton_ComponentDeleted"
+                                      UpdateCompatibleComponents="VideoCardButton_UpdateCompatibleComponents"/>
+        </ListViewItem>
+        <ListViewItem>
+            <controls:ComponentButton x:Name="CoolerButton" ComponentTypeLabel="Охлаждение процессора" ListOpened="ComponentButton_ListOpened"
+                                      ComponentAdded="CoolerButton_ComponentAdded" ComponentDeleted="CoolerButton_ComponentDeleted"
+                                      UpdateCompatibleComponents="CoolerButton_UpdateCompatibleComponents"/>
+        </ListViewItem>
+        <ListViewItem>
+            <controls:ComponentButton x:Name="RAMButton" ComponentTypeLabel="Оперативная память" ListOpened="ComponentButton_ListOpened"
+                                      ComponentAdded="RAMButton_ComponentAdded" ComponentDeleted="RAMButton_ComponentDeleted"
+                                      UpdateCompatibleComponents="RAMButton_UpdateCompatibleComponents"/>
+        </ListViewItem>
+        <ListViewItem>
+            <controls:ComponentButton x:Name="MemoryButton" ComponentTypeLabel="Хранение данных" ListOpened="ComponentButton_ListOpened"
+                                      ComponentAdded="MemoryButton_ComponentAdded" ComponentDeleted="MemoryButton_ComponentDeleted"
+                                      UpdateCompatibleComponents="MemoryButton_UpdateCompatibleComponents"/>
+        </ListViewItem>
+        <ListViewItem>
+            <controls:ComponentButton x:Name="PowerSupplyButton" ComponentTypeLabel="Блок питания" ListOpened="ComponentButton_ListOpened"
+                                      ComponentAdded="PowerSupplyButton_ComponentAdded" ComponentDeleted="PowerSupplyButton_ComponentDeleted"
+                                      UpdateCompatibleComponents="PowerSupplyButton_UpdateCompatibleComponents"/>
+        </ListViewItem>
+    </ListView>
 </Window>

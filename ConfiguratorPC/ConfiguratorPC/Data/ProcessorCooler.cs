@@ -12,24 +12,20 @@ namespace ConfiguratorPC.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Socket
+    public partial class ProcessorCooler
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Socket()
+        public ProcessorCooler()
         {
-            this.MotherBoards = new HashSet<MotherBoard>();
-            this.Processors = new HashSet<Processor>();
-            this.ProcessorCoolers = new HashSet<ProcessorCooler>();
+            this.Sockets = new HashSet<Socket>();
         }
     
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int IdComponent { get; set; }
     
+        public virtual Component Component { get; set; }
+        public virtual Cooler Cooler { get; set; }
+        public virtual LiquidCooler LiquidCooler { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MotherBoard> MotherBoards { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Processor> Processors { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProcessorCooler> ProcessorCoolers { get; set; }
+        public virtual ICollection<Socket> Sockets { get; set; }
     }
 }

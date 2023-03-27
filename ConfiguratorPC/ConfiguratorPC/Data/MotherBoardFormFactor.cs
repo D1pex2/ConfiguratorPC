@@ -12,12 +12,13 @@ namespace ConfiguratorPC.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class MemoryFormFactor
+    public partial class MotherBoardFormFactor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MemoryFormFactor()
+        public MotherBoardFormFactor()
         {
             this.MotherBoards = new HashSet<MotherBoard>();
+            this.Cases = new HashSet<Case>();
         }
     
         public int Id { get; set; }
@@ -25,5 +26,7 @@ namespace ConfiguratorPC.Data
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MotherBoard> MotherBoards { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Case> Cases { get; set; }
     }
 }

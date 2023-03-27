@@ -21,17 +21,17 @@ namespace ConfiguratorPC.Controls
     /// </summary>
     public partial class ComponentButton : UserControl
     {
-        public string ComponentType { get => TypeTextBlock.Text; set => TypeTextBlock.Text = value; }
+        public event EventHandler ListOpened;
+
+        public event EventHandler ComponentAdded;
+
+        public event EventHandler ComponentDeleted;
 
         public event EventHandler UpdateCompatibleComponents;
 
-        public event EventHandler ChangeComponent;
-
-        public event EventHandler DeleteComponent;
-
-        public event EventHandler ListOpened;
-
         public List<Component> CompatibleComponents { get; set; }
+
+        public string ComponentTypeLabel { get => TypeTextBlock.Text; set => TypeTextBlock.Text = value; }
 
         private Component component;
 
@@ -74,12 +74,9 @@ namespace ConfiguratorPC.Controls
             }
             else if (Component == null)
             {
+
                 ComponentsList.Items.Clear();
                 UpdateCompatibleComponents?.Invoke(this, EventArgs.Empty);
-                if (CompatibleComponents == null)
-                {
-                    throw new ArgumentNullException("Подпишитесь на событие UpdateCompatibleComponents и присвойте значение к переменной CompatibleComponents");
-                }
                 foreach (var item in CompatibleComponents)
                 {
                     ComponentsList.Items.Add(item);
@@ -88,8 +85,9 @@ namespace ConfiguratorPC.Controls
             }
             else
             {
-                DeleteComponent?.Invoke(this, EventArgs.Empty);
+                ComponentDeleted?.Invoke(this, EventArgs.Empty);
                 Component = null;
+                ListOpened?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -98,9 +96,8 @@ namespace ConfiguratorPC.Controls
             var item = ComponentsList.SelectedItem;
             if (item != null)
             {
-                Component component = item as Component;
-                Component = component;
-                ChangeComponent?.Invoke(this, EventArgs.Empty);
+                Component = item as Component;
+                ComponentAdded?.Invoke(this, EventArgs.Empty);
                 ComponentsList.Visibility = Visibility.Collapsed;
             }
         }

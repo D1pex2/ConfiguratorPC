@@ -12,20 +12,16 @@ namespace ConfiguratorPC.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Component
+    public partial class PowerSupply
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public string Picture { get; set; }
+        public int IdComponent { get; set; }
+        public int IdPowerSupplyFormFactor { get; set; }
+        public short Power { get; set; }
+        public byte VideoCardSupplyQuantity { get; set; }
+        public byte ProcessorSupplyQuantity { get; set; }
+        public byte SATASupplyQuantity { get; set; }
     
-        public virtual Case Case { get; set; }
-        public virtual DataStorage DataStorage { get; set; }
-        public virtual MotherBoard MotherBoard { get; set; }
-        public virtual PowerSupply PowerSupply { get; set; }
-        public virtual Processor Processor { get; set; }
-        public virtual ProcessorCooler ProcessorCooler { get; set; }
-        public virtual RAM RAM { get; set; }
-        public virtual VideoCard VideoCard { get; set; }
+        public virtual Component Component { get; set; }
+        public virtual PowerSupplyFormFactor PowerSupplyFormFactor { get; set; }
     }
 }

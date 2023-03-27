@@ -17,16 +17,21 @@ namespace ConfiguratorPC.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Processor()
         {
-            this.MemoryTypes = new HashSet<MemoryType>();
+            this.RAMTypes = new HashSet<RAMType>();
         }
     
         public int IdComponent { get; set; }
         public int IdSocket { get; set; }
+        public Nullable<int> IdGraphicsProcessingUnit { get; set; }
+        public int IdCore { get; set; }
         public int MaxMemorySize { get; set; }
+        public bool HasCooler { get; set; }
     
         public virtual Component Component { get; set; }
+        public virtual Core Core { get; set; }
+        public virtual GraphicsProcessingUnit GraphicsProcessingUnit { get; set; }
         public virtual Socket Socket { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MemoryType> MemoryTypes { get; set; }
+        public virtual ICollection<RAMType> RAMTypes { get; set; }
     }
 }

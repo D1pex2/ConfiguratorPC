@@ -12,24 +12,26 @@ namespace ConfiguratorPC.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Socket
+    public partial class Case
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Socket()
+        public Case()
         {
-            this.MotherBoards = new HashSet<MotherBoard>();
-            this.Processors = new HashSet<Processor>();
-            this.ProcessorCoolers = new HashSet<ProcessorCooler>();
+            this.MotherBoardFormFactors = new HashSet<MotherBoardFormFactor>();
         }
     
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int IdComponent { get; set; }
+        public int IdPowerSupplyFormFactor { get; set; }
+        public byte ExpansionSlotsQuantity { get; set; }
+        public int MaxVideoCardLength { get; set; }
+        public int MaxCoolerHeigth { get; set; }
+        public bool LiquidCoolerCompatible { get; set; }
+        public byte Storage35Quantity { get; set; }
+        public byte Storage25Quantity { get; set; }
     
+        public virtual Component Component { get; set; }
+        public virtual PowerSupplyFormFactor PowerSupplyFormFactor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MotherBoard> MotherBoards { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Processor> Processors { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProcessorCooler> ProcessorCoolers { get; set; }
+        public virtual ICollection<MotherBoardFormFactor> MotherBoardFormFactors { get; set; }
     }
 }
