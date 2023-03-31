@@ -23,22 +23,45 @@ namespace ConfiguratorPC.Controls
     {
         public event EventHandler ListOpened;
 
-        public event EventHandler ComponentAdded;
+        private ComponentType type;
 
-        public event EventHandler ComponentDeleted;
+        private Configurator configurator;
 
-        public event EventHandler UpdateCompatibleComponents;
+        private List<Component> CompatibleComponents
+        {
+            get
+            {
+                switch (type)
+                {
+                    case ComponentType.Processor:
+                        return configurator.CompatibleProcessors.Select(c => c.Component).ToList();
+                    case ComponentType.MotherBoard:
+                        return configurator.CompatibleMotherBoards.Select(c => c.Component).ToList();
+                    case ComponentType.Case:
+                        return configurator.CompatibleCases.Select(c => c.Component).ToList();
+                    case ComponentType.Videocard:
+                        return configurator.CompatibleVideoCards.Select(c => c.Component).ToList();
+                    case ComponentType.Cooler:
+                        return configurator.CompatibleProcessorCooler.Select(c => c.Component).ToList();
+                    case ComponentType.RAM:
+                        return configurator.CompatibleRAMs.Select(c => c.Component).ToList();
+                    case ComponentType.DataStorage:
+                        return configurator.CompatibleDataStorage.Select(c => c.Component).ToList();
+                    case ComponentType.PowerSupply:
+                        return configurator.CompatiblePowerSupply.Select(c => c.Component).ToList();
+                    default:
+                        return null;
+                }
+            }
+        }
 
         private string searchTextBoxPlaceholder = "Поиск по наименованию...";
-
-        public List<Component> CompatibleComponents { get; set; }
 
         public List<Component> FilteredComponents
         {
             get
             {
-                var filtered = new List<Component>();
-                filtered.AddRange(CompatibleComponents);
+                var filtered = CompatibleComponents;
                 filtered = filtered.OrderBy(f => f.Name).ToList();
                 if (SearchTextBox.Text != searchTextBoxPlaceholder)
                 {
@@ -57,8 +80,6 @@ namespace ConfiguratorPC.Controls
                 return filtered;
             }
         }
-
-        public string ComponentTypeLabel { get => TypeTextBlock.Text; set => TypeTextBlock.Text = value; }
 
         private Component component;
 
@@ -91,6 +112,41 @@ namespace ConfiguratorPC.Controls
             SearchTextBox.Text = searchTextBoxPlaceholder;
             SearchTextBox.TextChanged += SearchTextBox_TextChanged;
             SortComboBox.SelectionChanged += SortComboBox_SelectionChanged;
+        }
+
+        public void Init(Configurator configurator, ComponentType type)
+        {
+            this.configurator = configurator;
+            this.type = type;
+            switch (type)
+            {
+                case ComponentType.Processor:
+                    TypeTextBlock.Text = "Процессор";
+                    break;
+                case ComponentType.MotherBoard:
+                    TypeTextBlock.Text = "Материнская плата";
+                    break;
+                case ComponentType.Case:
+                    TypeTextBlock.Text = "Корпус";
+                    break;
+                case ComponentType.Videocard:
+                    TypeTextBlock.Text = "Видеокарта";
+                    break;
+                case ComponentType.Cooler:
+                    TypeTextBlock.Text = "Охлаждение процессора";
+                    break;
+                case ComponentType.RAM:
+                    TypeTextBlock.Text = "Оперативная память";
+                    break;
+                case ComponentType.DataStorage:
+                    TypeTextBlock.Text = "Хранение данных";
+                    break;
+                case ComponentType.PowerSupply:
+                    TypeTextBlock.Text = "Блок питания";
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void SetPriceLimits()
@@ -134,34 +190,45 @@ namespace ConfiguratorPC.Controls
             }
             else if (Component == null)
             {
-                UpdateCompatibleComponents?.Invoke(this, EventArgs.Empty);
                 SetPriceLimits();
+                SearchTextBox.Text = searchTextBoxPlaceholder;
+                SortComboBox.SelectedIndex = 0;
                 FillList();
                 ComponentsBorder.Visibility = Visibility.Visible;
             }
             else
             {
-                ComponentDeleted?.Invoke(this, EventArgs.Empty);
+                switch (type)
+                {
+                    case ComponentType.Processor:
+                        configurator.Processor = null;
+                        break;
+                    case ComponentType.MotherBoard:
+                        configurator.MotherBoard = null;
+                        break;
+                    case ComponentType.Case:
+                        configurator.Case = null;
+                        break;
+                    case ComponentType.Videocard:
+                        configurator.VideoCard = null;
+                        break;
+                    case ComponentType.Cooler:
+                        configurator.ProcessorCooler = null;
+                        break;
+                    case ComponentType.RAM:
+                        configurator.RAM = null;
+                        break;
+                    case ComponentType.DataStorage:
+                        configurator.DataStorage = null;
+                        break;
+                    case ComponentType.PowerSupply:
+                        configurator.PowerSupply = null;
+                        break;
+                    default:
+                        break;
+                }
                 Component = null;
                 ListOpened?.Invoke(this, EventArgs.Empty);
-            }
-        }
-
-        private void ComponentsList_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (ComponentsBorder.Visibility == Visibility.Visible)
-            {
-                InteractionButton.Content = "- Свернуть";
-                ButtonBorder.CornerRadius = new CornerRadius(10, 10, 0, 0);
-                ListOpened?.Invoke(this, EventArgs.Empty);
-            }
-            else
-            {
-                ButtonBorder.CornerRadius = new CornerRadius(10, 10, 10, 10);
-                if (Component == null)
-                {
-                    InteractionButton.Content = "+ Добавить";
-                }
             }
         }
 
@@ -171,7 +238,35 @@ namespace ConfiguratorPC.Controls
             if (item != null)
             {
                 Component = item as Component;
-                ComponentAdded?.Invoke(this, EventArgs.Empty);
+                switch (type)
+                {
+                    case ComponentType.Processor:
+                        configurator.Processor = component.Processor;
+                        break;
+                    case ComponentType.MotherBoard:
+                        configurator.MotherBoard = component.MotherBoard;
+                        break;
+                    case ComponentType.Case:
+                        configurator.Case = component.Case;
+                        break;
+                    case ComponentType.Videocard:
+                        configurator.VideoCard = component.VideoCard;
+                        break;
+                    case ComponentType.Cooler:
+                        configurator.ProcessorCooler = component.ProcessorCooler;
+                        break;
+                    case ComponentType.RAM:
+                        configurator.RAM = component.RAM;
+                        break;
+                    case ComponentType.DataStorage:
+                        configurator.DataStorage = component.DataStorage;
+                        break;
+                    case ComponentType.PowerSupply:
+                        configurator.PowerSupply = component.PowerSupply;
+                        break;
+                    default:
+                        break;
+                }
                 ComponentsBorder.Visibility = Visibility.Collapsed;
             }
         }
@@ -222,6 +317,24 @@ namespace ConfiguratorPC.Controls
         private void PriceNumeric_ValueChanged(object sender, EventArgs e)
         {
             FillList();
+        }
+
+        private void ComponentsBorder_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (ComponentsBorder.Visibility == Visibility.Visible)
+            {
+                InteractionButton.Content = "- Свернуть";
+                ButtonBorder.CornerRadius = new CornerRadius(10, 10, 0, 0);
+                ListOpened?.Invoke(this, EventArgs.Empty);
+            }
+            else
+            {
+                ButtonBorder.CornerRadius = new CornerRadius(10, 10, 10, 10);
+                if (Component == null)
+                {
+                    InteractionButton.Content = "+ Добавить";
+                }
+            }
         }
     }
 }

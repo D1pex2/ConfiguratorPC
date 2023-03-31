@@ -60,30 +60,14 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Column="1" Grid.Row="1" MaxWidth="1300">
                 <StackPanel x:Name="ConfigStackPanel" Margin="2">
-                    <controls:ComponentButton x:Name="ProcessorButton" ComponentTypeLabel="Процессор" ListOpened="ComponentButton_ListOpened"
-                                      ComponentAdded="ProcessorButton_ComponentAdded" ComponentDeleted="ProcessorButton_ComponentDeleted"
-                                      UpdateCompatibleComponents="ProcessorButton_UpdateCompatibleComponents"/>
-                    <controls:ComponentButton x:Name="MotherBoardButton" ComponentTypeLabel="Материнская плата" ListOpened="ComponentButton_ListOpened"
-                                      ComponentAdded="MotherBoardButton_ComponentAdded" ComponentDeleted="MotherBoardButton_ComponentDeleted"
-                                      UpdateCompatibleComponents="MotherBoardButton_UpdateCompatibleComponents"/>
-                    <controls:ComponentButton x:Name="CaseButton" ComponentTypeLabel="Корпус" ListOpened="ComponentButton_ListOpened"
-                                      ComponentAdded="CaseButton_ComponentAdded" ComponentDeleted="CaseButton_ComponentDeleted"
-                                      UpdateCompatibleComponents="CaseButton_UpdateCompatibleComponents"/>
-                    <controls:ComponentButton x:Name="VideoCardButton" ComponentTypeLabel="Видеокарта" ListOpened="ComponentButton_ListOpened"
-                                      ComponentAdded="VideoCardButton_ComponentAdded" ComponentDeleted="VideoCardButton_ComponentDeleted"
-                                      UpdateCompatibleComponents="VideoCardButton_UpdateCompatibleComponents"/>
-                    <controls:ComponentButton x:Name="CoolerButton" ComponentTypeLabel="Охлаждение процессора" ListOpened="ComponentButton_ListOpened"
-                                      ComponentAdded="CoolerButton_ComponentAdded" ComponentDeleted="CoolerButton_ComponentDeleted"
-                                      UpdateCompatibleComponents="CoolerButton_UpdateCompatibleComponents"/>
-                    <controls:ComponentButton x:Name="RAMButton" ComponentTypeLabel="Оперативная память" ListOpened="ComponentButton_ListOpened"
-                                      ComponentAdded="RAMButton_ComponentAdded" ComponentDeleted="RAMButton_ComponentDeleted"
-                                      UpdateCompatibleComponents="RAMButton_UpdateCompatibleComponents"/>
-                    <controls:ComponentButton x:Name="MemoryButton" ComponentTypeLabel="Хранение данных" ListOpened="ComponentButton_ListOpened"
-                                      ComponentAdded="MemoryButton_ComponentAdded" ComponentDeleted="MemoryButton_ComponentDeleted"
-                                      UpdateCompatibleComponents="MemoryButton_UpdateCompatibleComponents"/>
-                    <controls:ComponentButton x:Name="PowerSupplyButton" ComponentTypeLabel="Блок питания" ListOpened="ComponentButton_ListOpened"
-                                      ComponentAdded="PowerSupplyButton_ComponentAdded" ComponentDeleted="PowerSupplyButton_ComponentDeleted"
-                                      UpdateCompatibleComponents="PowerSupplyButton_UpdateCompatibleComponents"/>
+                    <controls:ComponentButton x:Name="ProcessorButton" ListOpened="ComponentButton_ListOpened"/>
+                    <controls:ComponentButton x:Name="MotherBoardButton" ListOpened="ComponentButton_ListOpened"/>
+                    <controls:ComponentButton x:Name="CaseButton" ListOpened="ComponentButton_ListOpened"/>
+                    <controls:ComponentButton x:Name="VideoCardButton" ListOpened="ComponentButton_ListOpened"/>
+                    <controls:ComponentButton x:Name="CoolerButton" ListOpened="ComponentButton_ListOpened"/>
+                    <controls:ComponentButton x:Name="RAMButton" ListOpened="ComponentButton_ListOpened"/>
+                    <controls:ComponentButton x:Name="MemoryButton" ListOpened="ComponentButton_ListOpened"/>
+                    <controls:ComponentButton x:Name="PowerSupplyButton" ListOpened="ComponentButton_ListOpened"/>
                 </StackPanel>
             </Border>
         </Grid>

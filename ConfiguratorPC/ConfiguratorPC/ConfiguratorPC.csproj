@@ -82,6 +82,7 @@
     <Compile Include="Data\Case.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\ComponentType.cs" />
     <Compile Include="Data\Component.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
@@ -176,7 +177,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configurator.cs" />
+    <Compile Include="Data\Configurator.cs" />
     <Compile Include="Data\SSD.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>

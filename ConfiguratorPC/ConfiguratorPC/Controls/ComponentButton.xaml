@@ -50,7 +50,7 @@
                 <TextBlock x:Name="NameTextBlock" VerticalAlignment="Center" TextWrapping="Wrap"/>
             </DockPanel>
         </Border>
-        <Border CornerRadius="0 0 10 10" Background="#dbdbdb" Style="{StaticResource BorderDefault}" x:Name="ComponentsBorder" Visibility="Collapsed" MaxHeight="500">
+        <Border CornerRadius="0 0 10 10" Background="#dbdbdb" Style="{StaticResource BorderDefault}" x:Name="ComponentsBorder" IsVisibleChanged="ComponentsBorder_IsVisibleChanged" Visibility="Collapsed" MaxHeight="500">
             <ScrollViewer x:Name="ComponentsScrollViewer">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -94,7 +94,7 @@
                     <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource BorderDefault}" Margin="5" Background="#f5f5f5">
                         <StackPanel>
                             <ListView x:Name="ComponentsList" ScrollViewer.CanContentScroll="False" BorderThickness="0" HorizontalContentAlignment="Stretch" Background="Transparent"
-                              ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionMode="Single" IsVisibleChanged="ComponentsList_IsVisibleChanged" PreviewMouseWheel="ComponentsList_PreviewMouseWheel">
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionMode="Single" PreviewMouseWheel="ComponentsList_PreviewMouseWheel">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <Border MinHeight="160" Style="{StaticResource BorderDefault}" Margin="5">
