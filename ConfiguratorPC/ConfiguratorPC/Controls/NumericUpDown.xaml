@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="ConfiguratorPC.Controls.NumericUpDown"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ConfiguratorPC.Controls"
+             mc:Ignorable="d">
+    <Border Style="{StaticResource BorderDefault}" BorderBrush="Black" Background="Transparent">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="NumericTextBox" HorizontalAlignment="Stretch" LostFocus="NumericTextBox_LostFocus" TextChanged="NumericTextBox_TextChanged" Background="Transparent"
+                 VerticalContentAlignment="Center" FontSize="14" BorderThickness="0" Margin="8,0,0,0" PreviewKeyDown="NumericTextBox_PreviewKeyDown" />
+            <TextBlock Text="₽" HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Center" FontSize="14"/>
+        </Grid>
+    </Border>
+</UserControl>

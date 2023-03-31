@@ -17,7 +17,7 @@ namespace ConfiguratorPC.Data
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
-        public string Picture { get; set; }
+        public byte[] Picture { get; set; }
     
         public virtual Case Case { get; set; }
         public virtual DataStorage DataStorage { get; set; }

@@ -28,7 +28,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="Price" Type="decimal" Precision="9" Scale="2" Nullable="false" />
-    <Property Name="Picture" Type="nchar" MaxLength="10" />
+    <Property Name="Picture" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="Cooler">
     <Key>
@@ -214,12 +214,6 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="5" Nullable="false" />
-  </EntityType>
-  <EntityType Name="SataSSD">
-    <Key>
-      <PropertyRef Name="IdSSD" />
-    </Key>
-    <Property Name="IdSSD" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Socket">
     <Key>
@@ -725,7 +719,6 @@
     <EntitySet Name="RAM" EntityType="Self.RAM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RAMFormFactor" EntityType="Self.RAMFormFactor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RAMType" EntityType="Self.RAMType" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SataSSD" EntityType="Self.SataSSD" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Socket" EntityType="Self.Socket" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SSD" EntityType="Self.SSD" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VideoCard" EntityType="Self.VideoCard" Schema="dbo" store:Type="Tables" />

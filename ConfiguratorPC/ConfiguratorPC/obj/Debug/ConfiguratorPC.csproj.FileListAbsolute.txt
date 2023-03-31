@@ -9,6 +9,7 @@ C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bi
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\ConfiguratorPC.csproj.SuggestedBindingRedirects.cache
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\ConfiguratorWindow.g.cs
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\Controls\ComponentButton.g.cs
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\Controls\NumericUpDown.g.cs
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\App.g.cs
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\ConfiguratorPC_Content.g.cs
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\GeneratedInternalTypeHelper.g.cs
@@ -17,6 +18,7 @@ C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\ob
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\App.baml
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\ConfiguratorWindow.baml
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\Controls\ComponentButton.baml
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\Controls\NumericUpDown.baml
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\ConfiguratorPC.g.resources
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\ConfiguratorPC.Properties.Resources.resources
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\ConfiguratorPC.csproj.GenerateResource.cache

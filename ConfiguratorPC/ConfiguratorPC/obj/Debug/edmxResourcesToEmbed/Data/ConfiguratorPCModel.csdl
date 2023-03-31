@@ -22,7 +22,6 @@
     <EntitySet Name="RAMs" EntityType="ConfiguratorPCModel.RAM" />
     <EntitySet Name="RAMFormFactors" EntityType="ConfiguratorPCModel.RAMFormFactor" />
     <EntitySet Name="RAMTypes" EntityType="ConfiguratorPCModel.RAMType" />
-    <EntitySet Name="SataSSDs" EntityType="ConfiguratorPCModel.SataSSD" />
     <EntitySet Name="Sockets" EntityType="ConfiguratorPCModel.Socket" />
     <EntitySet Name="SSDs" EntityType="ConfiguratorPCModel.SSD" />
     <EntitySet Name="VideoCards" EntityType="ConfiguratorPCModel.VideoCard" />
@@ -182,7 +181,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="Price" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
-    <Property Name="Picture" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="Case" Relationship="ConfiguratorPCModel.FK_Case_Component" FromRole="Component" ToRole="Case" />
     <NavigationProperty Name="DataStorage" Relationship="ConfiguratorPCModel.FK_DataStorage_Component" FromRole="Component" ToRole="DataStorage" />
     <NavigationProperty Name="MotherBoard" Relationship="ConfiguratorPCModel.FK_MotherBoard_Component" FromRole="Component" ToRole="MotherBoard" />
@@ -393,12 +392,6 @@
     <NavigationProperty Name="MotherBoards" Relationship="ConfiguratorPCModel.FK_MotherBoard_RAMType" FromRole="RAMType" ToRole="MotherBoard" />
     <NavigationProperty Name="RAMs" Relationship="ConfiguratorPCModel.FK_RAM_RAMType" FromRole="RAMType" ToRole="RAM" />
     <NavigationProperty Name="Processors" Relationship="ConfiguratorPCModel.ProcessorCompatibleMemoryType" FromRole="RAMType" ToRole="Processor" />
-  </EntityType>
-  <EntityType Name="SataSSD">
-    <Key>
-      <PropertyRef Name="IdSSD" />
-    </Key>
-    <Property Name="IdSSD" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Socket">
     <Key>

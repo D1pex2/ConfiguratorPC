@@ -33,7 +33,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="9" Scale="2" Nullable="false" />
-          <Property Name="Picture" Type="nchar" MaxLength="10" />
+          <Property Name="Picture" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Cooler">
           <Key>
@@ -219,12 +219,6 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="5" Nullable="false" />
-        </EntityType>
-        <EntityType Name="SataSSD">
-          <Key>
-            <PropertyRef Name="IdSSD" />
-          </Key>
-          <Property Name="IdSSD" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Socket">
           <Key>
@@ -730,7 +724,6 @@
           <EntitySet Name="RAM" EntityType="Self.RAM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RAMFormFactor" EntityType="Self.RAMFormFactor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RAMType" EntityType="Self.RAMType" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SataSSD" EntityType="Self.SataSSD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Socket" EntityType="Self.Socket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SSD" EntityType="Self.SSD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VideoCard" EntityType="Self.VideoCard" Schema="dbo" store:Type="Tables" />
@@ -913,7 +906,6 @@
           <EntitySet Name="RAMs" EntityType="ConfiguratorPCModel.RAM" />
           <EntitySet Name="RAMFormFactors" EntityType="ConfiguratorPCModel.RAMFormFactor" />
           <EntitySet Name="RAMTypes" EntityType="ConfiguratorPCModel.RAMType" />
-          <EntitySet Name="SataSSDs" EntityType="ConfiguratorPCModel.SataSSD" />
           <EntitySet Name="Sockets" EntityType="ConfiguratorPCModel.Socket" />
           <EntitySet Name="SSDs" EntityType="ConfiguratorPCModel.SSD" />
           <EntitySet Name="VideoCards" EntityType="ConfiguratorPCModel.VideoCard" />
@@ -1073,7 +1065,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
-          <Property Name="Picture" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Case" Relationship="ConfiguratorPCModel.FK_Case_Component" FromRole="Component" ToRole="Case" />
           <NavigationProperty Name="DataStorage" Relationship="ConfiguratorPCModel.FK_DataStorage_Component" FromRole="Component" ToRole="DataStorage" />
           <NavigationProperty Name="MotherBoard" Relationship="ConfiguratorPCModel.FK_MotherBoard_Component" FromRole="Component" ToRole="MotherBoard" />
@@ -1284,12 +1276,6 @@
           <NavigationProperty Name="MotherBoards" Relationship="ConfiguratorPCModel.FK_MotherBoard_RAMType" FromRole="RAMType" ToRole="MotherBoard" />
           <NavigationProperty Name="RAMs" Relationship="ConfiguratorPCModel.FK_RAM_RAMType" FromRole="RAMType" ToRole="RAM" />
           <NavigationProperty Name="Processors" Relationship="ConfiguratorPCModel.ProcessorCompatibleMemoryType" FromRole="RAMType" ToRole="Processor" />
-        </EntityType>
-        <EntityType Name="SataSSD">
-          <Key>
-            <PropertyRef Name="IdSSD" />
-          </Key>
-          <Property Name="IdSSD" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Socket">
           <Key>
@@ -1871,13 +1857,6 @@
               <MappingFragment StoreEntitySet="RAMType">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SataSSDs">
-            <EntityTypeMapping TypeName="ConfiguratorPCModel.SataSSD">
-              <MappingFragment StoreEntitySet="SataSSD">
-                <ScalarProperty Name="IdSSD" ColumnName="IdSSD" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

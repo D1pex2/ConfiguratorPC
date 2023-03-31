@@ -32,11 +32,7 @@ namespace ConfiguratorPC
 
         private void ComponentButton_ListOpened(object sender, EventArgs e)
         {
-            List<Controls.ComponentButton> componentButtons = new List<Controls.ComponentButton>();
-            foreach (ListViewItem item in ConfigListView.Items)
-            {
-                componentButtons.Add(item.Content as Controls.ComponentButton);
-            }
+            List<Controls.ComponentButton> componentButtons = ConfigStackPanel.Children.OfType<Controls.ComponentButton>().ToList();
             var componentButton = sender as Controls.ComponentButton;
             componentButtons.Remove(componentButton);
             foreach (var item in componentButtons)
@@ -163,6 +159,50 @@ namespace ConfiguratorPC
         private void PowerSupplyButton_UpdateCompatibleComponents(object sender, EventArgs e)
         {
             PowerSupplyButton.CompatibleComponents = Configurator.CompatiblePowerSupply.Select(p => p.Component).ToList();
+        }
+
+        private void TitleBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void MaxMinButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Normal)
+            {
+                WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                WindowState = WindowState.Normal;
+            }
+        }
+
+        private void HideButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void ConfigWindow_StateChanged(object sender, EventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+            {
+                MaxMinButtonImage.Source = new BitmapImage(new Uri("Resources/minimize.png", UriKind.Relative));
+                TitleBorder.Height = 35;
+                TitleDockPanel.Margin = new Thickness(5, 5, 5, 0);
+                WindowScrollViewer.Margin = new Thickness(0, 0, 4, 0);
+            }
+            else if(WindowState == WindowState.Normal)
+            {
+                MaxMinButtonImage.Source = new BitmapImage(new Uri("Resources/maximize.png", UriKind.Relative));
+                TitleBorder.Height =30;
+                TitleDockPanel.Margin = WindowScrollViewer.Margin = new Thickness(0, 0, 0, 0);
+            }
         }
     }
 }

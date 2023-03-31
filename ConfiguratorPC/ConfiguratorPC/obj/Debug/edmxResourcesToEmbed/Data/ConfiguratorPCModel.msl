@@ -195,13 +195,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SataSSDs">
-      <EntityTypeMapping TypeName="ConfiguratorPCModel.SataSSD">
-        <MappingFragment StoreEntitySet="SataSSD">
-          <ScalarProperty Name="IdSSD" ColumnName="IdSSD" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Sockets">
       <EntityTypeMapping TypeName="ConfiguratorPCModel.Socket">
         <MappingFragment StoreEntitySet="Socket">

@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -75,12 +76,16 @@
     <Compile Include="Controls\ComponentButton.xaml.cs">
       <DependentUpon>ComponentButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\NumericUpDown.xaml.cs">
+      <DependentUpon>NumericUpDown.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Data\Case.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Component.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\ComponentExtended.cs" />
     <Compile Include="Data\ConfiguratorPCModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -154,9 +159,6 @@
     <Compile Include="Data\RAMType.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\SataSSD.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Data\Socket.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
@@ -165,6 +167,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Controls\ComponentButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\NumericUpDown.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -225,6 +231,14 @@
       <DependentUpon>ConfiguratorPCModel.edmx</DependentUpon>
       <LastGenOutput>ConfiguratorPCModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\up.png" />
+    <Resource Include="Resources\down.png" />
+    <Resource Include="Resources\search.png" />
+    <Resource Include="Resources\circuit.png" />
+    <Resource Include="Resources\minimize.png" />
+    <Resource Include="Resources\maximize.png" />
+    <Resource Include="Resources\hide.png" />
+    <Resource Include="Resources\close.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

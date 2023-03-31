@@ -46,7 +46,6 @@ namespace ConfiguratorPC.Data
         public virtual DbSet<RAM> RAMs { get; set; }
         public virtual DbSet<RAMFormFactor> RAMFormFactors { get; set; }
         public virtual DbSet<RAMType> RAMTypes { get; set; }
-        public virtual DbSet<SataSSD> SataSSDs { get; set; }
         public virtual DbSet<Socket> Sockets { get; set; }
         public virtual DbSet<SSD> SSDs { get; set; }
         public virtual DbSet<VideoCard> VideoCards { get; set; }
