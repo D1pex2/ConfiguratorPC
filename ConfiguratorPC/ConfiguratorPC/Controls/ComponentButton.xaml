@@ -89,6 +89,14 @@
                                 <local:NumericUpDown x:Name="MinPriceNumeric" Margin="5" Height="35" ValueChanged="PriceNumeric_ValueChanged"/>
                                 <local:NumericUpDown x:Name="MaxPriceNumeric" Margin="5" Height="35" Grid.Column="1" ValueChanged="PriceNumeric_ValueChanged"/>
                             </Grid>
+                            <TextBlock Style="{StaticResource TitleTextBlock}" Text="Производитель" Margin="15,10,5,5"/>
+                            <ComboBox x:Name="ManufacturerComboBox" DisplayMemberPath="Name" Margin="5" BorderThickness="0">
+                                <ComboBox.ItemContainerStyle>
+                                    <Style TargetType="ComboBoxItem">
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                    </Style>
+                                </ComboBox.ItemContainerStyle>
+                            </ComboBox>
                         </StackPanel>
                     </Border>
                     <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource BorderDefault}" Margin="5" Background="#f5f5f5">

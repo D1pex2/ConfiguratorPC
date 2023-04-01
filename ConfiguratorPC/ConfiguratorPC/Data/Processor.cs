@@ -26,10 +26,30 @@ namespace ConfiguratorPC.Data
         public int IdCore { get; set; }
         public int MaxMemorySize { get; set; }
         public bool HasCooler { get; set; }
+        public byte CoreQuantity { get; set; }
+        public byte MaxThreadQuantity { get; set; }
+        public byte ProductiveCoreQuantity { get; set; }
+        public Nullable<byte> EnergyEfficientCoreQuantity { get; set; }
+        public decimal CacheL2Size { get; set; }
+        public decimal CacheL3Size { get; set; }
+        public byte TechPprocess { get; set; }
+        public decimal BaseFrequency { get; set; }
+        public Nullable<decimal> MaxFrequency { get; set; }
+        public Nullable<decimal> BaseFrequencyEnergyEfficientCore { get; set; }
+        public Nullable<decimal> MaxFrequencyEnergyEfficientCore { get; set; }
+        public bool FreeMultiplier { get; set; }
+        public byte ChannelQuantity { get; set; }
+        public short MaxRAMFrequency { get; set; }
+        public bool HasECC { get; set; }
+        public byte TDP { get; set; }
+        public byte MaxTemperature { get; set; }
+        public Nullable<int> IdPCIEController { get; set; }
+        public byte PCIEQuantity { get; set; }
     
         public virtual Component Component { get; set; }
         public virtual Core Core { get; set; }
         public virtual GraphicsProcessingUnit GraphicsProcessingUnit { get; set; }
+        public virtual PCIEController PCIEController { get; set; }
         public virtual Socket Socket { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RAMType> RAMTypes { get; set; }

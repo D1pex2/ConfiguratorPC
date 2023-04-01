@@ -77,6 +77,11 @@ namespace ConfiguratorPC.Controls
                         break;
                 }
                 filtered = filtered.Where(f => f.Price >= (decimal)MinPriceNumeric.Value && f.Price <= (decimal)MaxPriceNumeric.Value).ToList();
+                var manufacturer = ManufacturerComboBox.SelectedItem as Manufacturer;
+                if (manufacturer.Id != -1)
+                {
+                    filtered = filtered.Where(f => f.IdManufacturer == manufacturer.Id).ToList();
+                }
                 return filtered;
             }
         }
@@ -111,42 +116,55 @@ namespace ConfiguratorPC.Controls
             InitializeComponent();
             SearchTextBox.Text = searchTextBoxPlaceholder;
             SearchTextBox.TextChanged += SearchTextBox_TextChanged;
-            SortComboBox.SelectionChanged += SortComboBox_SelectionChanged;
+            SortComboBox.SelectionChanged += ComboBox_SelectionChanged;
         }
 
         public void Init(Configurator configurator, ComponentType type)
         {
             this.configurator = configurator;
             this.type = type;
+            List<Manufacturer> manufacturers = new List<Manufacturer>();
+            manufacturers.Add(new Manufacturer { Id = -1, Name = "Любой" });
             switch (type)
             {
                 case ComponentType.Processor:
                     TypeTextBlock.Text = "Процессор";
+                    manufacturers.AddRange(DAL.Context.Processors.Select(p => p.Component.Manufacturer).Distinct().ToList());
                     break;
                 case ComponentType.MotherBoard:
                     TypeTextBlock.Text = "Материнская плата";
+                    manufacturers.AddRange(DAL.Context.MotherBoards.Select(p => p.Component.Manufacturer).Distinct().ToList());
                     break;
                 case ComponentType.Case:
                     TypeTextBlock.Text = "Корпус";
+                    manufacturers.AddRange(DAL.Context.Cases.Select(p => p.Component.Manufacturer).Distinct().ToList());
                     break;
                 case ComponentType.Videocard:
                     TypeTextBlock.Text = "Видеокарта";
+                    manufacturers.AddRange(DAL.Context.VideoCards.Select(p => p.Component.Manufacturer).Distinct().ToList());
                     break;
                 case ComponentType.Cooler:
                     TypeTextBlock.Text = "Охлаждение процессора";
+                    manufacturers.AddRange(DAL.Context.ProcessorCoolers.Select(p => p.Component.Manufacturer).Distinct().ToList());
                     break;
                 case ComponentType.RAM:
                     TypeTextBlock.Text = "Оперативная память";
+                    manufacturers.AddRange(DAL.Context.RAMs.Select(p => p.Component.Manufacturer).Distinct().ToList());
                     break;
                 case ComponentType.DataStorage:
                     TypeTextBlock.Text = "Хранение данных";
+                    manufacturers.AddRange(DAL.Context.DataStorages.Select(p => p.Component.Manufacturer).Distinct().ToList());
                     break;
                 case ComponentType.PowerSupply:
                     TypeTextBlock.Text = "Блок питания";
+                    manufacturers.AddRange(DAL.Context.PowerSupplies.Select(p => p.Component.Manufacturer).Distinct().ToList());
                     break;
                 default:
                     break;
             }
+            ManufacturerComboBox.ItemsSource = manufacturers;
+            ManufacturerComboBox.SelectionChanged += ComboBox_SelectionChanged;
+            ManufacturerComboBox.SelectedIndex = 0;
         }
 
         private void SetPriceLimits()
@@ -309,7 +327,7 @@ namespace ConfiguratorPC.Controls
             FillList();
         }
 
-        private void SortComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FillList();
         }

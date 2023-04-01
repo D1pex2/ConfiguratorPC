@@ -20,7 +20,16 @@ namespace ConfiguratorPC.Data
         public byte VideoCardSupplyQuantity { get; set; }
         public byte ProcessorSupplyQuantity { get; set; }
         public byte SATASupplyQuantity { get; set; }
+        public int IdColor { get; set; }
+        public string MainPowerConnector { get; set; }
+        public string ProcessorConnector { get; set; }
+        public string VideocartConnector { get; set; }
+        public string CoolerSystem { get; set; }
+        public short Length { get; set; }
+        public short Width { get; set; }
+        public short Heigth { get; set; }
     
+        public virtual Color Color { get; set; }
         public virtual Component Component { get; set; }
         public virtual PowerSupplyFormFactor PowerSupplyFormFactor { get; set; }
     }

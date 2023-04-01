@@ -82,6 +82,15 @@
     <Compile Include="Data\Case.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\CaseConnector.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\CaseSize.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Color.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\ComponentType.cs" />
     <Compile Include="Data\Component.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
@@ -102,6 +111,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ConfiguratorPCModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Data\Connector.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Cooler.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
@@ -118,6 +130,9 @@
     <Compile Include="Data\HDD.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\LightingType.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\LiquidCooler.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
@@ -130,6 +145,12 @@
     <Compile Include="Data\M2SSD.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Manufacturer.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Material.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\MotherBoard.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
@@ -137,6 +158,9 @@
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\MotherBoardM2Key.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\PCIEController.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\PowerSupply.cs">

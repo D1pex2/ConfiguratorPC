@@ -12,22 +12,21 @@ namespace ConfiguratorPC.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Component
+    public partial class Color
     {
-        public int Id { get; set; }
-        public int IdManufacturer { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public byte[] Picture { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Color()
+        {
+            this.Cases = new HashSet<Case>();
+            this.PowerSupplies = new HashSet<PowerSupply>();
+        }
     
-        public virtual Manufacturer Manufacturer { get; set; }
-        public virtual DataStorage DataStorage { get; set; }
-        public virtual MotherBoard MotherBoard { get; set; }
-        public virtual PowerSupply PowerSupply { get; set; }
-        public virtual Processor Processor { get; set; }
-        public virtual ProcessorCooler ProcessorCooler { get; set; }
-        public virtual RAM RAM { get; set; }
-        public virtual VideoCard VideoCard { get; set; }
-        public virtual Case Case { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Case> Cases { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PowerSupply> PowerSupplies { get; set; }
     }
 }

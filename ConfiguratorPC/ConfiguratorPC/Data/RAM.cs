@@ -18,6 +18,15 @@ namespace ConfiguratorPC.Data
         public int IdRAMFormFactor { get; set; }
         public int IdRAMType { get; set; }
         public byte MemorySize { get; set; }
+        public short Frequency { get; set; }
+        public bool HasRegistr { get; set; }
+        public bool HasECC { get; set; }
+        public byte CASLatency { get; set; }
+        public byte RAStoCAASDelay { get; set; }
+        public byte RowPrechargeDelay { get; set; }
+        public byte ActivateToPreChargeDelay { get; set; }
+        public bool HasRadiator { get; set; }
+        public decimal Voltage { get; set; }
     
         public virtual Component Component { get; set; }
         public virtual RAMFormFactor RAMFormFactor { get; set; }

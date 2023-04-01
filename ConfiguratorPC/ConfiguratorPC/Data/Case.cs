@@ -17,10 +17,12 @@ namespace ConfiguratorPC.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Case()
         {
+            this.CaseConnectors = new HashSet<CaseConnector>();
             this.MotherBoardFormFactors = new HashSet<MotherBoardFormFactor>();
         }
     
         public int IdComponent { get; set; }
+        public int IdCaseSize { get; set; }
         public int IdPowerSupplyFormFactor { get; set; }
         public byte ExpansionSlotsQuantity { get; set; }
         public int MaxVideoCardLength { get; set; }
@@ -28,10 +30,28 @@ namespace ConfiguratorPC.Data
         public bool LiquidCoolerCompatible { get; set; }
         public byte Storage35Quantity { get; set; }
         public byte Storage25Quantity { get; set; }
+        public string MotherBoardOrientation { get; set; }
+        public short Length { get; set; }
+        public short Width { get; set; }
+        public short Height { get; set; }
+        public int IdMainColor { get; set; }
+        public int IdMaterial { get; set; }
+        public bool HasWindow { get; set; }
+        public Nullable<int> IdFrontPanelMaterial { get; set; }
+        public Nullable<int> IdLigthingType { get; set; }
+        public string PowerSupplyOrientation { get; set; }
+        public bool HasCardReader { get; set; }
     
-        public virtual Component Component { get; set; }
-        public virtual PowerSupplyFormFactor PowerSupplyFormFactor { get; set; }
+        public virtual CaseSize CaseSize { get; set; }
+        public virtual Color Color { get; set; }
+        public virtual Material Material { get; set; }
+        public virtual LightingType LightingType { get; set; }
+        public virtual Material Material1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CaseConnector> CaseConnectors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MotherBoardFormFactor> MotherBoardFormFactors { get; set; }
+        public virtual Component Component { get; set; }
+        public virtual PowerSupplyFormFactor PowerSupplyFormFactor { get; set; }
     }
 }
