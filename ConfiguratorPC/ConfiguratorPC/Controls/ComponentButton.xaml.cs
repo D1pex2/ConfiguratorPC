@@ -150,6 +150,11 @@ namespace ConfiguratorPC.Controls
                 case ComponentType.RAM:
                     TypeTextBlock.Text = "Оперативная память";
                     manufacturers.AddRange(DAL.Context.RAMs.Select(p => p.Component.Manufacturer).Distinct().ToList());
+
+                    NumericRam.ValueChanged += NumericRam_ValueChanged;
+                    configurator.MotherBoardChanged += Configurator_MotherBoardChanged;
+                    configurator.ProcessorChanged += Configurator_ProcessorChanged;
+                    configurator.RAMChanged += Configurator_RAMChanged;
                     break;
                 case ComponentType.DataStorage:
                     TypeTextBlock.Text = "Хранение данных";
@@ -353,6 +358,38 @@ namespace ConfiguratorPC.Controls
                     InteractionButton.Content = "+ Добавить";
                 }
             }
+        }
+
+        private void NumericRam_ValueChanged(object sender, EventArgs e)
+        {
+            configurator.RAMQuantity = NumericRam.Value;
+        }
+
+
+        private void Configurator_MotherBoardChanged(object sender, EventArgs e)
+        {
+            NumericRam.MaxValue = configurator.MaxRAMQuantity;
+            NumericRam.Value = 1;
+        }
+
+        private void Configurator_RAMChanged(object sender, EventArgs e)
+        {
+            if (configurator.RAM != null)
+            {
+                NumericRam.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                NumericRam.Visibility = Visibility.Collapsed;
+            }
+            NumericRam.MaxValue = configurator.MaxRAMQuantity;
+            NumericRam.Value = 1;
+        }
+
+        private void Configurator_ProcessorChanged(object sender, EventArgs e)
+        {
+            NumericRam.MaxValue = configurator.MaxRAMQuantity;
+            NumericRam.Value = 1;
         }
     }
 }

@@ -76,6 +76,9 @@
     <Compile Include="Controls\ComponentButton.xaml.cs">
       <DependentUpon>ComponentButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\NumericTextBox.xaml.cs">
+      <DependentUpon>NumericTextBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\NumericUpDown.xaml.cs">
       <DependentUpon>NumericUpDown.xaml</DependentUpon>
     </Compile>
@@ -192,6 +195,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Controls\ComponentButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\NumericTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

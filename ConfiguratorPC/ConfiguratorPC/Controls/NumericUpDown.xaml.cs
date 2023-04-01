@@ -20,66 +20,43 @@ namespace ConfiguratorPC.Controls
     /// </summary>
     public partial class NumericUpDown : UserControl
     {
-        private double minValue = 0;
+        public event EventHandler ValueChanged;
 
-        public double MinValue { get => minValue; set => minValue = value; }
+        private int value;
 
-        private double maxValue = double.MaxValue;
-
-        public double MaxValue { get => maxValue; set => maxValue = value; }
-
-        private double value = 0;
-
-        public double Value
+        public int Value 
         { 
-            get => value; 
+            get => value;
             set
             {
-                this.value = value;
-                NumericTextBox.Text = String.Format("{0:F2}", this.value);
+                if (value >= MinValue && value <= MaxValue)
+                {
+                    this.value = value;
+                    NumTextBox.Text = this.value.ToString();
+                    ValueChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
 
-        public event EventHandler ValueChanged;
+        public int Step { get; set; } = 1;
+
+        public int MaxValue { get; set; } = int.MaxValue;
+
+        public int MinValue { get; set; } = int.MinValue;
 
         public NumericUpDown()
         {
             InitializeComponent();
-            Value = MinValue;
         }
 
-        private void NumericTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void DecreaseButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!double.TryParse(NumericTextBox.Text, out value))
-            {
-                NumericTextBox.Text = String.Format("{0:F2}", value);
-            }
+            Value -= Step;
         }
 
-        private void EnterValue()
+        private void IncreaseButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Value < MinValue)
-            {
-                Value = MinValue;
-            }
-            if (Value > MaxValue)
-            {
-                Value = MaxValue;
-            }
-            ValueChanged?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void NumericTextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            EnterValue();
-        }
-
-        private void NumericTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                EnterValue();
-            }
+            Value += Step;
         }
     }
 }

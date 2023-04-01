@@ -18,7 +18,7 @@
             <DockPanel Margin="15,0,15,0">
                 <TextBlock x:Name="TypeTextBlock" Text="Тип компонента" MinWidth="150"  VerticalAlignment="Center"/>
                 <Image x:Name="ComponentImage" Height="60" Width="60" Stretch="Uniform"/>
-                <Button x:Name="InteractionButton" Width="100" Margin="15,0,0,0" Content="+ Добавить" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right"
+                <Button x:Name="InteractionButton" Width="100" Content="+ Добавить" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right"
                         Click="InteractionButton_Click">
                     <Button.Resources>
                         <Style TargetType="Border">
@@ -47,6 +47,7 @@
                     </Button.Style>
                 </Button>
                 <TextBlock x:Name="PriceTextBlock" FontWeight="DemiBold" VerticalAlignment="Center"  HorizontalAlignment="Right" DockPanel.Dock="Right"/>
+                <local:NumericUpDown MinValue="1" MaxValue="1" x:Name="NumericRam" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
                 <TextBlock x:Name="NameTextBlock" VerticalAlignment="Center" TextWrapping="Wrap"/>
             </DockPanel>
         </Border>
@@ -55,14 +56,14 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="220"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Border Grid.Column="1" Style="{StaticResource BorderDefault}" Margin="5" Height="40">
+                    <Border Grid.Column="1" VerticalAlignment="Top" Style="{StaticResource BorderDefault}" Margin="5,8,5,5" Height="40">
                         <DockPanel>
                             <Image Source="/Resources/search.png" Width="30" Height="30" Margin="15,5,5,5"/>
                             <TextBox x:Name="SearchTextBox" GotFocus="SearchTextBox_GotFocus" LostFocus="SearchTextBox_LostFocus" Margin="5" VerticalContentAlignment="Center" BorderThickness="0" FontSize="16"/>
@@ -86,8 +87,8 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <local:NumericUpDown x:Name="MinPriceNumeric" Margin="5" Height="35" ValueChanged="PriceNumeric_ValueChanged"/>
-                                <local:NumericUpDown x:Name="MaxPriceNumeric" Margin="5" Height="35" Grid.Column="1" ValueChanged="PriceNumeric_ValueChanged"/>
+                                <local:NumericTextBox x:Name="MinPriceNumeric" Margin="5" Height="35" ValueChanged="PriceNumeric_ValueChanged"/>
+                                <local:NumericTextBox x:Name="MaxPriceNumeric" Margin="5" Height="35" Grid.Column="1" ValueChanged="PriceNumeric_ValueChanged"/>
                             </Grid>
                             <TextBlock Style="{StaticResource TitleTextBlock}" Text="Производитель" Margin="15,10,5,5"/>
                             <ComboBox x:Name="ManufacturerComboBox" DisplayMemberPath="Name" Margin="5" BorderThickness="0">
@@ -99,7 +100,7 @@
                             </ComboBox>
                         </StackPanel>
                     </Border>
-                    <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource BorderDefault}" Margin="5" Background="#f5f5f5">
+                    <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource BorderDefault}" VerticalAlignment="Top" Margin="5" Background="#f5f5f5">
                         <StackPanel>
                             <ListView x:Name="ComponentsList" ScrollViewer.CanContentScroll="False" BorderThickness="0" HorizontalContentAlignment="Stretch" Background="Transparent"
                               ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionMode="Single" PreviewMouseWheel="ComponentsList_PreviewMouseWheel">

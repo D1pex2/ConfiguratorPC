@@ -9,13 +9,35 @@ namespace ConfiguratorPC
 {
     public class Configurator
     {
+        public event EventHandler MotherBoardChanged;
+
+        public event EventHandler ProcessorChanged;
+
+        public event EventHandler RAMChanged;
+
         private Processor processor;
 
-        public Processor Processor { get => processor; set => processor = value; }
+        public Processor Processor 
+        { 
+            get => processor;
+            set
+            {
+                processor = value;
+                ProcessorChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
 
         private MotherBoard motherBoard;
 
-        public MotherBoard MotherBoard { get => motherBoard; set => motherBoard = value; }
+        public MotherBoard MotherBoard 
+        { 
+            get => motherBoard;
+            set
+            {
+                motherBoard = value;
+                MotherBoardChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
 
         private Case pcCase;
 
@@ -31,8 +53,48 @@ namespace ConfiguratorPC
 
         private RAM ram;
 
-        public RAM RAM { get => ram; set => ram = value; }
+        public RAM RAM 
+        { 
+            get => ram;
+            set
+            {
+                ram = value;
+                RAMChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
 
+        public int MaxRAMQuantity
+        {
+            get
+            {
+                if (Processor != null && MotherBoard != null && RAM != null)
+                {
+                    var processorRAMQuantity = Processor.MaxMemorySize / RAM.MemorySize;
+                    var motherBoardRAMQuantity = MotherBoard.MaxRAMSize / RAM.MemorySize;
+                    var lessQuantity = processorRAMQuantity < motherBoardRAMQuantity ? processorRAMQuantity : motherBoardRAMQuantity;
+                    if (lessQuantity < MotherBoard.RAMQuantity)
+                    {
+                        return lessQuantity;
+                    }
+                        return MotherBoard.RAMQuantity;
+                }
+                return 1;
+            }
+        }
+
+        public int RAMQuantity { get; set; } = 1;
+
+        public int CommonRAMSize
+        {
+            get
+            {
+                if (RAM != null)
+                {
+                    return RAM.MemorySize * RAMQuantity;
+                }
+                return 0;
+            }
+        }
         private PowerSupply powerSupply;
 
         public PowerSupply PowerSupply { get => powerSupply; set => powerSupply = value; }
