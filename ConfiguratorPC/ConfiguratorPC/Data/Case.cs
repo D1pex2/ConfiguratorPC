@@ -44,14 +44,14 @@ namespace ConfiguratorPC.Data
     
         public virtual CaseSize CaseSize { get; set; }
         public virtual Color Color { get; set; }
+        public virtual Component Component { get; set; }
         public virtual Material Material { get; set; }
         public virtual LightingType LightingType { get; set; }
         public virtual Material Material1 { get; set; }
+        public virtual PowerSupplyFormFactor PowerSupplyFormFactor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CaseConnector> CaseConnectors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MotherBoardFormFactor> MotherBoardFormFactors { get; set; }
-        public virtual Component Component { get; set; }
-        public virtual PowerSupplyFormFactor PowerSupplyFormFactor { get; set; }
     }
 }

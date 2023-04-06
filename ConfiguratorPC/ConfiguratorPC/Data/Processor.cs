@@ -32,7 +32,7 @@ namespace ConfiguratorPC.Data
         public Nullable<byte> EnergyEfficientCoreQuantity { get; set; }
         public decimal CacheL2Size { get; set; }
         public decimal CacheL3Size { get; set; }
-        public byte TechPprocess { get; set; }
+        public byte TechProcess { get; set; }
         public decimal BaseFrequency { get; set; }
         public Nullable<decimal> MaxFrequency { get; set; }
         public Nullable<decimal> BaseFrequencyEnergyEfficientCore { get; set; }

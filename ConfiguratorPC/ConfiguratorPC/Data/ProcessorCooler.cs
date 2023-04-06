@@ -21,10 +21,22 @@ namespace ConfiguratorPC.Data
         }
     
         public int IdComponent { get; set; }
+        public int IdRadiatorMaterial { get; set; }
+        public byte FanQuantity { get; set; }
+        public string FanSize { get; set; }
+        public string FanConnector { get; set; }
+        public short MaxRotationSpeed { get; set; }
+        public short MinRotationSpeed { get; set; }
+        public string AdjustmentRotationSpeed { get; set; }
+        public byte MaxNoiseLevel { get; set; }
+        public decimal MaxAirflow { get; set; }
+        public decimal MaxStaticPressure { get; set; }
+        public string BearingType { get; set; }
     
         public virtual Component Component { get; set; }
         public virtual Cooler Cooler { get; set; }
         public virtual LiquidCooler LiquidCooler { get; set; }
+        public virtual Material Material { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Socket> Sockets { get; set; }
     }

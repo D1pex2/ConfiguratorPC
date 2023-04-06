@@ -22,6 +22,8 @@ namespace ConfiguratorPC.Controls
     {
         private double minValue = 0;
 
+        public double DefaultValue { get; set; } = 0;
+
         public double MinValue { get => minValue; set => minValue = value; }
 
         private double maxValue = double.MaxValue;
@@ -41,6 +43,8 @@ namespace ConfiguratorPC.Controls
         }
 
         public event EventHandler ValueChanged;
+
+        public event EventHandler ResetValueButtonClick;
 
         public NumericTextBox()
         {
@@ -80,6 +84,12 @@ namespace ConfiguratorPC.Controls
             {
                 EnterValue();
             }
+        }
+
+        private void TextBlock_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Value = DefaultValue;
+            ValueChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

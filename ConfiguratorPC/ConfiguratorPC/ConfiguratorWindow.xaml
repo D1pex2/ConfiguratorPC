@@ -6,10 +6,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ConfiguratorPC" xmlns:controls="clr-namespace:ConfiguratorPC.Controls"
         mc:Ignorable="d"
-        Title="Конфигуратор ПК" Height="600" Width="900" WindowStyle="None" Background="#f5f5f5"
+        Title="Конфигуратор сборки ПК" Height="600" Width="900" WindowStyle="None" Background="#f5f5f5"
         ResizeMode="CanResizeWithGrip" AllowsTransparency="True" MinWidth="900" MinHeight="450" StateChanged="ConfigWindow_StateChanged">
     <Window.Resources>
-        <Style TargetType="controls:ComponentButton">
+        <Style TargetType="controls:ComponentConfigurator">
             <Setter Property="Margin" Value="0,0,0, 5"/>
         </Style>
         <Style TargetType="Button" x:Key="WindowButton">
@@ -60,14 +60,14 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Column="1" Grid.Row="1" MaxWidth="1300">
                 <StackPanel x:Name="ConfigStackPanel" Margin="2">
-                    <controls:ComponentButton x:Name="ProcessorButton" ListOpened="ComponentButton_ListOpened"/>
-                    <controls:ComponentButton x:Name="MotherBoardButton" ListOpened="ComponentButton_ListOpened"/>
-                    <controls:ComponentButton x:Name="CaseButton" ListOpened="ComponentButton_ListOpened"/>
-                    <controls:ComponentButton x:Name="VideoCardButton" ListOpened="ComponentButton_ListOpened"/>
-                    <controls:ComponentButton x:Name="CoolerButton" ListOpened="ComponentButton_ListOpened"/>
-                    <controls:ComponentButton x:Name="RAMButton" ListOpened="ComponentButton_ListOpened"/>
-                    <controls:ComponentButton x:Name="MemoryButton" ListOpened="ComponentButton_ListOpened"/>
-                    <controls:ComponentButton x:Name="PowerSupplyButton" ListOpened="ComponentButton_ListOpened"/>
+                        <controls:ComponentConfigurator x:Name="ProcessorConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
+                        <controls:ComponentConfigurator x:Name="MotherBoardConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
+                        <controls:ComponentConfigurator x:Name="CaseConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
+                        <controls:ComponentConfigurator x:Name="VideoCardConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
+                        <controls:ComponentConfigurator x:Name="CoolerConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
+                        <controls:ComponentConfigurator x:Name="RAMConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
+                        <controls:ComponentConfigurator x:Name="MemoryConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
+                        <controls:ComponentConfigurator x:Name="PowerSupplyConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
                 </StackPanel>
             </Border>
         </Grid>

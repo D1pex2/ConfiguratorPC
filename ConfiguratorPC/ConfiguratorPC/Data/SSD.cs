@@ -15,6 +15,12 @@ namespace ConfiguratorPC.Data
     public partial class SSD
     {
         public int IdDataStorage { get; set; }
+        public string BitQuantityOnCell { get; set; }
+        public string MemoryStructure { get; set; }
+        public short MinSpeed { get; set; }
+        public short MaxSpeed { get; set; }
+        public byte TotalBytesWritten { get; set; }
+        public decimal DWPD { get; set; }
     
         public virtual DataStorage DataStorage { get; set; }
         public virtual M2SSD M2SSD { get; set; }

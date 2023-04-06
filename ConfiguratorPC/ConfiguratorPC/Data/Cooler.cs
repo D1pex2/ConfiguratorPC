@@ -15,8 +15,17 @@ namespace ConfiguratorPC.Data
     public partial class Cooler
     {
         public int IdProcessorCooler { get; set; }
-        public byte Heigth { get; set; }
+        public short Heigth { get; set; }
+        public short DissipationPower { get; set; }
+        public string ConstructionType { get; set; }
+        public int IdBaseMaterial { get; set; }
+        public Nullable<byte> TermPipeQiantity { get; set; }
+        public Nullable<byte> TermPipeDiameter { get; set; }
+        public string NickelCoating { get; set; }
+        public short Width { get; set; }
+        public short Length { get; set; }
     
+        public virtual Material Material { get; set; }
         public virtual ProcessorCooler ProcessorCooler { get; set; }
     }
 }

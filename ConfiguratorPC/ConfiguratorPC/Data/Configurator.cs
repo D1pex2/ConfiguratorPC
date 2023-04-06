@@ -151,7 +151,8 @@ namespace ConfiguratorPC
                 }
                 if (PowerSupply != null)
                 {
-                    motherBoards = motherBoards.Where(m => m.ProcessorSupplyQuantity <= PowerSupply.ProcessorSupplyQuantity).ToList();
+                    motherBoards = motherBoards.Where(m => m.MotherBoardPowerPlug.MotherBoardPowerConnectors.Any(c => PowerSupply.PowerSupplyMotherBoardConnectors.Any(mc => mc.IdMotherBoardPowerConnector == c.Id)))
+                        .Where(m => m.ProcessorPowerPlug.ProcessorPowerConnectors.Any(c => PowerSupply.PowerSupplyProcessorPowerConnectors.Any(pc => pc.IdProcessorPowerConnector == c.Id))).ToList();
                 }
                 if (DataStorage != null && DataStorage.SSD != null && DataStorage.SSD.M2SSD != null)
                 {
@@ -172,7 +173,7 @@ namespace ConfiguratorPC
                 }
                 if (VideoCard != null)
                 {
-                    cases = cases.Where(c => c.ExpansionSlotsQuantity >= 1 && c.MaxVideoCardLength >= VideoCard.Length).ToList();
+                    cases = cases.Where(c => c.ExpansionSlotsQuantity >= VideoCard.ExpansionSlotSize && c.MaxVideoCardLength >= VideoCard.Length).ToList();
                 }
                 if (ProcessorCooler != null)
                 {
@@ -204,14 +205,11 @@ namespace ConfiguratorPC
                 }
                 if (Case != null)
                 {
-                    videoCards = Case.ExpansionSlotsQuantity >= 1 ? videoCards.Where(v => v.Length <= Case.MaxVideoCardLength).ToList() : new List<VideoCard>();
+                    videoCards = videoCards.Where(v => v.Length <= Case.MaxVideoCardLength && v.ExpansionSlotSize <= Case.ExpansionSlotsQuantity).ToList();
                 }
                 if (PowerSupply != null)
                 {
-                    if (PowerSupply.VideoCardSupplyQuantity == 0)
-                    {
-                        videoCards = videoCards.Where(v => !v.ExtraPowerSupply).ToList();
-                    }
+                    videoCards = videoCards.Where(v => v.VideoCardPowerPlug == null || v.VideoCardPowerPlug.VideoPowerConnectors.Any(c => PowerSupply.PowerSupplyVideoPowerConnectors.Any(vc => vc.IdVideoPowerConnector == c.Id))).ToList();
                 }
                 return videoCards;
             }
@@ -280,7 +278,8 @@ namespace ConfiguratorPC
                 List<PowerSupply> powerSupplies = DAL.Context.PowerSupplies.ToList();
                 if (MotherBoard != null)
                 {
-                    powerSupplies = powerSupplies.Where(ps => ps.ProcessorSupplyQuantity >= MotherBoard.ProcessorSupplyQuantity).ToList();
+                    powerSupplies = powerSupplies.Where(ps => ps.PowerSupplyProcessorPowerConnectors.Any(c => MotherBoard.ProcessorPowerPlug.ProcessorPowerConnectors.Any(pc => pc.Id == c.IdProcessorPowerConnector)))
+                        .Where(ps => ps.PowerSupplyMotherBoardConnectors.Any(c => MotherBoard.MotherBoardPowerPlug.MotherBoardPowerConnectors.Any(mc => mc.Id == c.IdMotherBoardPowerConnector))).ToList();
                 }
                 if (Case != null)
                 {
@@ -288,9 +287,9 @@ namespace ConfiguratorPC
                 }
                 if (VideoCard != null)
                 {
-                    if (VideoCard.ExtraPowerSupply)
+                    if (VideoCard.VideoCardPowerPlug != null)
                     {
-                        powerSupplies = powerSupplies.Where(ps => ps.VideoCardSupplyQuantity >= 1).ToList();
+                        powerSupplies = powerSupplies.Where(ps => ps.PowerSupplyVideoPowerConnectors.Any(c => VideoCard.VideoCardPowerPlug.VideoPowerConnectors.Any(vc => vc.Id == c.IdVideoPowerConnector))).ToList();
                     }
                 }
                 return powerSupplies;

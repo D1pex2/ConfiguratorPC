@@ -19,6 +19,9 @@ namespace ConfiguratorPC.Data
         {
             this.Cases = new HashSet<Case>();
             this.Cases1 = new HashSet<Case>();
+            this.Coolers = new HashSet<Cooler>();
+            this.LiquidCoolers = new HashSet<LiquidCooler>();
+            this.ProcessorCoolers = new HashSet<ProcessorCooler>();
         }
     
         public int Id { get; set; }
@@ -28,5 +31,11 @@ namespace ConfiguratorPC.Data
         public virtual ICollection<Case> Cases { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Case> Cases1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cooler> Coolers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LiquidCooler> LiquidCoolers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProcessorCooler> ProcessorCoolers { get; set; }
     }
 }

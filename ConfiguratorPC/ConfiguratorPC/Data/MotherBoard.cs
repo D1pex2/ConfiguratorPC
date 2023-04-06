@@ -17,8 +17,10 @@ namespace ConfiguratorPC.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MotherBoard()
         {
+            this.MotherBoardConnectors = new HashSet<MotherBoardConnector>();
             this.MotherBoardM2Key = new HashSet<MotherBoardM2Key>();
             this.Cores = new HashSet<Core>();
+            this.VideoOutputs = new HashSet<VideoOutput>();
         }
     
         public int IdComponent { get; set; }
@@ -29,18 +31,46 @@ namespace ConfiguratorPC.Data
         public byte MaxRAMSize { get; set; }
         public byte RAMQuantity { get; set; }
         public byte PCIEx16Quantity { get; set; }
-        public byte ProcessorSupplyQuantity { get; set; }
         public byte SATAQuantity { get; set; }
         public byte M2Quantity { get; set; }
+        public short Height { get; set; }
+        public short Width { get; set; }
+        public int IdChipset { get; set; }
+        public short MaxRAMFrequency { get; set; }
+        public int IdPCIControllerVersion { get; set; }
+        public byte RJ45Quantity { get; set; }
+        public byte AnalogAudioOutputQuantity { get; set; }
+        public string CoolerPowerSupply { get; set; }
+        public bool M2KeyE { get; set; }
+        public bool InterfaceLPT { get; set; }
+        public string SoundSchema { get; set; }
+        public Nullable<int> IdSoundAdapterChipset { get; set; }
+        public Nullable<int> IdNetworkAdapterChipset { get; set; }
+        public Nullable<byte> NetworkAdapterSpeed { get; set; }
+        public bool HasWiFi { get; set; }
+        public bool HasBluetooth { get; set; }
+        public byte PowerPhaseQuantity { get; set; }
+        public int IdMotherBoardPowerPlug { get; set; }
+        public int IdProcessorPowerPlug { get; set; }
     
+        public virtual Chipset Chipset { get; set; }
         public virtual Component Component { get; set; }
         public virtual MotherBoardFormFactor MotherBoardFormFactor { get; set; }
+        public virtual MotherBoardPowerPlug MotherBoardPowerPlug { get; set; }
+        public virtual NetworkAdapterChipset NetworkAdapterChipset { get; set; }
+        public virtual PCIEController PCIEController { get; set; }
+        public virtual ProcessorPowerPlug ProcessorPowerPlug { get; set; }
         public virtual RAMFormFactor RAMFormFactor { get; set; }
         public virtual RAMType RAMType { get; set; }
         public virtual Socket Socket { get; set; }
+        public virtual SoundAdapterChipset SoundAdapterChipset { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MotherBoardConnector> MotherBoardConnectors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MotherBoardM2Key> MotherBoardM2Key { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Core> Cores { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VideoOutput> VideoOutputs { get; set; }
     }
 }

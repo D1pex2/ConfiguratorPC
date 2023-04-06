@@ -54,6 +54,13 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
+        <EntityType Name="Chipset">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Color">
           <Key>
             <PropertyRef Name="Id" />
@@ -83,7 +90,15 @@
             <PropertyRef Name="IdProcessorCooler" />
           </Key>
           <Property Name="IdProcessorCooler" Type="int" Nullable="false" />
-          <Property Name="Heigth" Type="tinyint" Nullable="false" />
+          <Property Name="Heigth" Type="smallint" Nullable="false" />
+          <Property Name="DissipationPower" Type="smallint" Nullable="false" />
+          <Property Name="ConstructionType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdBaseMaterial" Type="int" Nullable="false" />
+          <Property Name="TermPipeQiantity" Type="tinyint" />
+          <Property Name="TermPipeDiameter" Type="tinyint" />
+          <Property Name="NickelCoating" Type="nvarchar" MaxLength="100" />
+          <Property Name="Width" Type="smallint" Nullable="false" />
+          <Property Name="Length" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="CoolerCompatibleSocket">
           <Key>
@@ -106,6 +121,18 @@
           </Key>
           <Property Name="IdComponent" Type="int" Nullable="false" />
           <Property Name="MemorySize" Type="smallint" Nullable="false" />
+          <Property Name="Width" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Length" Type="smallint" Nullable="false" />
+          <Property Name="Thickness" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="Mass" Type="smallint" Nullable="false" />
+          <Property Name="EnergyUse" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GraphicProcessor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="GraphicsProcessingUnit">
           <Key>
@@ -123,6 +150,13 @@
           </Key>
           <Property Name="IdDataStorage" Type="int" Nullable="false" />
           <Property Name="FormFactor" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="CacheSize" Type="smallint" Nullable="false" />
+          <Property Name="RotationSpeed" Type="smallint" Nullable="false" />
+          <Property Name="WriteTech" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="ActiveNoiseLevel" Type="tinyint" Nullable="false" />
+          <Property Name="PassiveNoiseLevel" Type="tinyint" Nullable="false" />
+          <Property Name="PassiveEnergyUse" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="MaxTemp" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="LightingType">
           <Key>
@@ -136,6 +170,17 @@
             <PropertyRef Name="IdProcessorCooler" />
           </Key>
           <Property Name="IdProcessorCooler" Type="int" Nullable="false" />
+          <Property Name="Serviced" Type="bit" Nullable="false" />
+          <Property Name="IdWaterblockMaterial" Type="int" Nullable="false" />
+          <Property Name="WaterblockSize" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RadiatorMountingSize" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RadiatorLength" Type="smallint" Nullable="false" />
+          <Property Name="RadiatorWidth" Type="smallint" Nullable="false" />
+          <Property Name="RadiatorThickness" Type="smallint" Nullable="false" />
+          <Property Name="PumpRotationSpeed" Type="smallint" Nullable="false" />
+          <Property Name="PumpConnector" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="PipeLength" Type="smallint" Nullable="false" />
+          <Property Name="TransparentPipe" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="M2FormFactor">
           <Key>
@@ -180,6 +225,13 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Microarchitecture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="MotherBoard">
           <Key>
             <PropertyRef Name="IdComponent" />
@@ -192,9 +244,27 @@
           <Property Name="MaxRAMSize" Type="tinyint" Nullable="false" />
           <Property Name="RAMQuantity" Type="tinyint" Nullable="false" />
           <Property Name="PCIEx16Quantity" Type="tinyint" Nullable="false" />
-          <Property Name="ProcessorSupplyQuantity" Type="tinyint" Nullable="false" />
           <Property Name="SATAQuantity" Type="tinyint" Nullable="false" />
           <Property Name="M2Quantity" Type="tinyint" Nullable="false" />
+          <Property Name="Height" Type="smallint" Nullable="false" />
+          <Property Name="Width" Type="smallint" Nullable="false" />
+          <Property Name="IdChipset" Type="int" Nullable="false" />
+          <Property Name="MaxRAMFrequency" Type="smallint" Nullable="false" />
+          <Property Name="IdPCIControllerVersion" Type="int" Nullable="false" />
+          <Property Name="RJ45Quantity" Type="tinyint" Nullable="false" />
+          <Property Name="AnalogAudioOutputQuantity" Type="tinyint" Nullable="false" />
+          <Property Name="CoolerPowerSupply" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="M2KeyE" Type="bit" Nullable="false" />
+          <Property Name="InterfaceLPT" Type="bit" Nullable="false" />
+          <Property Name="SoundSchema" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="IdSoundAdapterChipset" Type="int" />
+          <Property Name="IdNetworkAdapterChipset" Type="int" />
+          <Property Name="NetworkAdapterSpeed" Type="tinyint" />
+          <Property Name="HasWiFi" Type="bit" Nullable="false" />
+          <Property Name="HasBluetooth" Type="bit" Nullable="false" />
+          <Property Name="PowerPhaseQuantity" Type="tinyint" Nullable="false" />
+          <Property Name="IdMotherBoardPowerPlug" Type="int" Nullable="false" />
+          <Property Name="IdProcessorPowerPlug" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="MotherBoardCompatibleCore">
           <Key>
@@ -203,6 +273,23 @@
           </Key>
           <Property Name="IdMotherBoard" Type="int" Nullable="false" />
           <Property Name="IdCore" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MotherBoardConnector">
+          <Key>
+            <PropertyRef Name="IdMotherBoard" />
+            <PropertyRef Name="IdConnector" />
+          </Key>
+          <Property Name="IdMotherBoard" Type="int" Nullable="false" />
+          <Property Name="IdConnector" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MotherBoardConnectorPlug">
+          <Key>
+            <PropertyRef Name="IdMotherBoardPowerPlug" />
+            <PropertyRef Name="IdMotherBoardConnector" />
+          </Key>
+          <Property Name="IdMotherBoardPowerPlug" Type="int" Nullable="false" />
+          <Property Name="IdMotherBoardConnector" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="MotherBoardFormFactor">
           <Key>
@@ -221,6 +308,35 @@
           <Property Name="IdFormFactor" Type="int" Nullable="false" />
           <Property Name="IdKey" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="MotherBoardPowerConnector">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MotherBoardPowerPlug">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MotherBoardVideoOutput">
+          <Key>
+            <PropertyRef Name="IdMotherBoard" />
+            <PropertyRef Name="IdVideoOutput" />
+          </Key>
+          <Property Name="IdMotherBoard" Type="int" Nullable="false" />
+          <Property Name="IdVideoOutput" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NetworkAdapterChipset">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="PCIEController">
           <Key>
             <PropertyRef Name="Id" />
@@ -235,13 +351,8 @@
           <Property Name="IdComponent" Type="int" Nullable="false" />
           <Property Name="IdPowerSupplyFormFactor" Type="int" Nullable="false" />
           <Property Name="Power" Type="smallint" Nullable="false" />
-          <Property Name="VideoCardSupplyQuantity" Type="tinyint" Nullable="false" />
-          <Property Name="ProcessorSupplyQuantity" Type="tinyint" Nullable="false" />
-          <Property Name="SATASupplyQuantity" Type="tinyint" Nullable="false" />
+          <Property Name="SATAConnectorQuantity" Type="tinyint" Nullable="false" />
           <Property Name="IdColor" Type="int" Nullable="false" />
-          <Property Name="MainPowerConnector" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="ProcessorConnector" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="VideocartConnector" Type="varchar" MaxLength="10" />
           <Property Name="CoolerSystem" Type="nvarchar" MaxLength="9" Nullable="false" />
           <Property Name="Length" Type="smallint" Nullable="false" />
           <Property Name="Width" Type="smallint" Nullable="false" />
@@ -253,6 +364,33 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PowerSupplyMotherBoardConnector">
+          <Key>
+            <PropertyRef Name="IdPowerSupply" />
+            <PropertyRef Name="IdMotherBoardPowerConnector" />
+          </Key>
+          <Property Name="IdPowerSupply" Type="int" Nullable="false" />
+          <Property Name="IdMotherBoardPowerConnector" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PowerSupplyProcessorPowerConnector">
+          <Key>
+            <PropertyRef Name="IdPowerSupply" />
+            <PropertyRef Name="IdProcessorPowerConnector" />
+          </Key>
+          <Property Name="IdPowerSupply" Type="int" Nullable="false" />
+          <Property Name="IdProcessorPowerConnector" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PowerSupplyVideoPowerConnector">
+          <Key>
+            <PropertyRef Name="IdPowerSupply" />
+            <PropertyRef Name="IdVideoPowerConnector" />
+          </Key>
+          <Property Name="IdPowerSupply" Type="int" Nullable="false" />
+          <Property Name="IdVideoPowerConnector" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Processor">
           <Key>
@@ -270,7 +408,7 @@
           <Property Name="EnergyEfficientCoreQuantity" Type="tinyint" />
           <Property Name="CacheL2Size" Type="decimal" Precision="3" Scale="1" Nullable="false" />
           <Property Name="CacheL3Size" Type="decimal" Precision="3" Scale="1" Nullable="false" />
-          <Property Name="TechPprocess" Type="tinyint" Nullable="false" />
+          <Property Name="TechProcess" Type="tinyint" Nullable="false" />
           <Property Name="BaseFrequency" Type="decimal" Precision="3" Scale="1" Nullable="false" />
           <Property Name="MaxFrequency" Type="decimal" Precision="3" Scale="1" />
           <Property Name="BaseFrequencyEnergyEfficientCore" Type="decimal" Precision="3" Scale="1" />
@@ -292,11 +430,44 @@
           <Property Name="IdProcessor" Type="int" Nullable="false" />
           <Property Name="IdRAMType" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="ProcessorConnectorPlug">
+          <Key>
+            <PropertyRef Name="IdProcessorPowerPlug" />
+            <PropertyRef Name="IdProcessorPowerConnector" />
+          </Key>
+          <Property Name="IdProcessorPowerPlug" Type="int" Nullable="false" />
+          <Property Name="IdProcessorPowerConnector" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="ProcessorCooler">
           <Key>
             <PropertyRef Name="IdComponent" />
           </Key>
           <Property Name="IdComponent" Type="int" Nullable="false" />
+          <Property Name="IdRadiatorMaterial" Type="int" Nullable="false" />
+          <Property Name="FanQuantity" Type="tinyint" Nullable="false" />
+          <Property Name="FanSize" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="FanConnector" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="MaxRotationSpeed" Type="smallint" Nullable="false" />
+          <Property Name="MinRotationSpeed" Type="smallint" Nullable="false" />
+          <Property Name="AdjustmentRotationSpeed" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaxNoiseLevel" Type="tinyint" Nullable="false" />
+          <Property Name="MaxAirflow" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="MaxStaticPressure" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="BearingType" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProcessorPowerConnector">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProcessorPowerPlug">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="RAM">
           <Key>
@@ -337,19 +508,109 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="SoundAdapterChipset">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="SSD">
           <Key>
             <PropertyRef Name="IdDataStorage" />
           </Key>
           <Property Name="IdDataStorage" Type="int" Nullable="false" />
+          <Property Name="BitQuantityOnCell" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MemoryStructure" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MinSpeed" Type="smallint" Nullable="false" />
+          <Property Name="MaxSpeed" Type="smallint" Nullable="false" />
+          <Property Name="TotalBytesWritten" Type="tinyint" Nullable="false" />
+          <Property Name="DWPD" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="VideoCard">
           <Key>
             <PropertyRef Name="IdComponent" />
           </Key>
           <Property Name="IdComponent" Type="int" Nullable="false" />
-          <Property Name="Length" Type="int" Nullable="false" />
-          <Property Name="ExtraPowerSupply" Type="bit" Nullable="false" />
+          <Property Name="Length" Type="smallint" Nullable="false" />
+          <Property Name="IdGraphicProcessor" Type="int" Nullable="false" />
+          <Property Name="IdMicroarchitecture" Type="int" Nullable="false" />
+          <Property Name="TechProcess" Type="tinyint" Nullable="false" />
+          <Property Name="VideoMemorySize" Type="tinyint" Nullable="false" />
+          <Property Name="IdVideoMemoryType" Type="int" Nullable="false" />
+          <Property Name="MemoryBusBitRate" Type="smallint" Nullable="false" />
+          <Property Name="MaxMemoryBandwidth" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="EffectiveMemoryFrequency" Type="smallint" Nullable="false" />
+          <Property Name="VideoChipFrequency" Type="smallint" Nullable="false" />
+          <Property Name="ALUQuantity" Type="tinyint" Nullable="false" />
+          <Property Name="TextureBlockQuantity" Type="tinyint" Nullable="false" />
+          <Property Name="RasterizationBlockQuantity" Type="tinyint" Nullable="false" />
+          <Property Name="RayTracingSupport" Type="bit" Nullable="false" />
+          <Property Name="MaxMonitorQuantity" Type="tinyint" Nullable="false" />
+          <Property Name="IdPCIEController" Type="int" Nullable="false" />
+          <Property Name="PowerSupply" Type="smallint" Nullable="false" />
+          <Property Name="CoolerType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FanType" Type="nvarchar" MaxLength="20" />
+          <Property Name="FanQuantity" Type="tinyint" />
+          <Property Name="ExpansionSlotSize" Type="tinyint" Nullable="false" />
+          <Property Name="Width" Type="smallint" Nullable="false" />
+          <Property Name="Thickness" Type="smallint" Nullable="false" />
+          <Property Name="Mass" Type="smallint" Nullable="false" />
+          <Property Name="IdVideoCardPowerPlug" Type="int" />
+        </EntityType>
+        <EntityType Name="VideoCardConnectorPlug">
+          <Key>
+            <PropertyRef Name="IdVideoCardPowerPlug" />
+            <PropertyRef Name="IdVideoPowerConnector" />
+          </Key>
+          <Property Name="IdVideoCardPowerPlug" Type="int" Nullable="false" />
+          <Property Name="IdVideoPowerConnector" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VideoCardOutput">
+          <Key>
+            <PropertyRef Name="IdVideoCard" />
+            <PropertyRef Name="IdVideoOutput" />
+          </Key>
+          <Property Name="IdVideoCard" Type="int" Nullable="false" />
+          <Property Name="IdVideoOutput" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VideoCardPowerPlug">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VideoMemoryType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VideoOutput">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VideoPowerConnector">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <Association Name="FK_Case_CaseSize">
           <End Role="CaseSize" Type="Self.CaseSize" Multiplicity="1" />
@@ -543,6 +804,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Cooler_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="Cooler" Type="Self.Cooler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cooler">
+              <PropertyRef Name="IdBaseMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Cooler_ProcessorCooler">
           <End Role="ProcessorCooler" Type="Self.ProcessorCooler" Multiplicity="1" />
           <End Role="Cooler" Type="Self.Cooler" Multiplicity="0..1" />
@@ -600,6 +873,18 @@
             </Principal>
             <Dependent Role="HDD">
               <PropertyRef Name="IdDataStorage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LiquidCooler_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="LiquidCooler" Type="Self.LiquidCooler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LiquidCooler">
+              <PropertyRef Name="IdWaterblockMaterial" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -663,6 +948,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MotherBoard_Chipset">
+          <End Role="Chipset" Type="Self.Chipset" Multiplicity="1" />
+          <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chipset">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdChipset" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MotherBoard_Component">
           <End Role="Component" Type="Self.Component" Multiplicity="1" />
           <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="0..1" />
@@ -684,6 +981,54 @@
             </Principal>
             <Dependent Role="MotherBoard">
               <PropertyRef Name="IdMotherBoardFormFactor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoard_MotherBoardPowerPlug">
+          <End Role="MotherBoardPowerPlug" Type="Self.MotherBoardPowerPlug" Multiplicity="1" />
+          <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MotherBoardPowerPlug">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdMotherBoardPowerPlug" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoard_NetworkAdapterChipset">
+          <End Role="NetworkAdapterChipset" Type="Self.NetworkAdapterChipset" Multiplicity="0..1" />
+          <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NetworkAdapterChipset">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdNetworkAdapterChipset" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoard_PCIEController">
+          <End Role="PCIEController" Type="Self.PCIEController" Multiplicity="1" />
+          <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PCIEController">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdPCIControllerVersion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoard_ProcessorPowerPlug">
+          <End Role="ProcessorPowerPlug" Type="Self.ProcessorPowerPlug" Multiplicity="1" />
+          <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessorPowerPlug">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdProcessorPowerPlug" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -723,6 +1068,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MotherBoard_SoundAdapterChipset">
+          <End Role="SoundAdapterChipset" Type="Self.SoundAdapterChipset" Multiplicity="0..1" />
+          <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SoundAdapterChipset">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdSoundAdapterChipset" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoardConnector_Connector">
+          <End Role="Connector" Type="Self.Connector" Multiplicity="1" />
+          <End Role="MotherBoardConnector" Type="Self.MotherBoardConnector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Connector">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoardConnector">
+              <PropertyRef Name="IdConnector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoardConnector_MotherBoard">
+          <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="1" />
+          <End Role="MotherBoardConnector" Type="Self.MotherBoardConnector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MotherBoard">
+              <PropertyRef Name="IdComponent" />
+            </Principal>
+            <Dependent Role="MotherBoardConnector">
+              <PropertyRef Name="IdMotherBoard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoardConnectorPlug_MotherBoardPowerConnector">
+          <End Role="MotherBoardPowerConnector" Type="Self.MotherBoardPowerConnector" Multiplicity="1" />
+          <End Role="MotherBoardConnectorPlug" Type="Self.MotherBoardConnectorPlug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MotherBoardPowerConnector">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoardConnectorPlug">
+              <PropertyRef Name="IdMotherBoardConnector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoardConnectorPlug_MotherBoardPowerPlug">
+          <End Role="MotherBoardPowerPlug" Type="Self.MotherBoardPowerPlug" Multiplicity="1" />
+          <End Role="MotherBoardConnectorPlug" Type="Self.MotherBoardConnectorPlug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MotherBoardPowerPlug">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoardConnectorPlug">
+              <PropertyRef Name="IdMotherBoardPowerPlug" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MotherBoardM2Key_M2FormFactor">
           <End Role="M2FormFactor" Type="Self.M2FormFactor" Multiplicity="1" />
           <End Role="MotherBoardM2Key" Type="Self.MotherBoardM2Key" Multiplicity="*" />
@@ -759,6 +1164,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MotherBoardVideoOutput_MotherBoard">
+          <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="1" />
+          <End Role="MotherBoardVideoOutput" Type="Self.MotherBoardVideoOutput" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MotherBoard">
+              <PropertyRef Name="IdComponent" />
+            </Principal>
+            <Dependent Role="MotherBoardVideoOutput">
+              <PropertyRef Name="IdMotherBoard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoardVideoOutput_VideoOutput">
+          <End Role="VideoOutput" Type="Self.VideoOutput" Multiplicity="1" />
+          <End Role="MotherBoardVideoOutput" Type="Self.MotherBoardVideoOutput" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoOutput">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoardVideoOutput">
+              <PropertyRef Name="IdVideoOutput" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PowerSupply_Color">
           <End Role="Color" Type="Self.Color" Multiplicity="1" />
           <End Role="PowerSupply" Type="Self.PowerSupply" Multiplicity="*" />
@@ -792,6 +1221,78 @@
             </Principal>
             <Dependent Role="PowerSupply">
               <PropertyRef Name="IdPowerSupplyFormFactor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PowerSupplyMotherBoardConnector_MotherBoardPowerConnector">
+          <End Role="MotherBoardPowerConnector" Type="Self.MotherBoardPowerConnector" Multiplicity="1" />
+          <End Role="PowerSupplyMotherBoardConnector" Type="Self.PowerSupplyMotherBoardConnector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MotherBoardPowerConnector">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PowerSupplyMotherBoardConnector">
+              <PropertyRef Name="IdMotherBoardPowerConnector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PowerSupplyMotherBoardConnector_PowerSupply">
+          <End Role="PowerSupply" Type="Self.PowerSupply" Multiplicity="1" />
+          <End Role="PowerSupplyMotherBoardConnector" Type="Self.PowerSupplyMotherBoardConnector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PowerSupply">
+              <PropertyRef Name="IdComponent" />
+            </Principal>
+            <Dependent Role="PowerSupplyMotherBoardConnector">
+              <PropertyRef Name="IdPowerSupply" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PowerSupplyProcessorPowerConnector_PowerSupply">
+          <End Role="PowerSupply" Type="Self.PowerSupply" Multiplicity="1" />
+          <End Role="PowerSupplyProcessorPowerConnector" Type="Self.PowerSupplyProcessorPowerConnector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PowerSupply">
+              <PropertyRef Name="IdComponent" />
+            </Principal>
+            <Dependent Role="PowerSupplyProcessorPowerConnector">
+              <PropertyRef Name="IdPowerSupply" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PowerSupplyProcessorPowerConnector_ProcessorPowerConnector">
+          <End Role="ProcessorPowerConnector" Type="Self.ProcessorPowerConnector" Multiplicity="1" />
+          <End Role="PowerSupplyProcessorPowerConnector" Type="Self.PowerSupplyProcessorPowerConnector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessorPowerConnector">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PowerSupplyProcessorPowerConnector">
+              <PropertyRef Name="IdProcessorPowerConnector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PowerSupplyVideoPowerConnector_PowerSupply">
+          <End Role="PowerSupply" Type="Self.PowerSupply" Multiplicity="1" />
+          <End Role="PowerSupplyVideoPowerConnector" Type="Self.PowerSupplyVideoPowerConnector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PowerSupply">
+              <PropertyRef Name="IdComponent" />
+            </Principal>
+            <Dependent Role="PowerSupplyVideoPowerConnector">
+              <PropertyRef Name="IdPowerSupply" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PowerSupplyVideoPowerConnector_VideoPowerConnector">
+          <End Role="VideoPowerConnector" Type="Self.VideoPowerConnector" Multiplicity="1" />
+          <End Role="PowerSupplyVideoPowerConnector" Type="Self.PowerSupplyVideoPowerConnector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoPowerConnector">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PowerSupplyVideoPowerConnector">
+              <PropertyRef Name="IdVideoPowerConnector" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -855,6 +1356,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProcessorConnectorPlug_ProcessorPowerConnector">
+          <End Role="ProcessorPowerConnector" Type="Self.ProcessorPowerConnector" Multiplicity="1" />
+          <End Role="ProcessorConnectorPlug" Type="Self.ProcessorConnectorPlug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessorPowerConnector">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProcessorConnectorPlug">
+              <PropertyRef Name="IdProcessorPowerConnector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProcessorConnectorPlug_ProcessorPowerPlug">
+          <End Role="ProcessorPowerPlug" Type="Self.ProcessorPowerPlug" Multiplicity="1" />
+          <End Role="ProcessorConnectorPlug" Type="Self.ProcessorConnectorPlug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessorPowerPlug">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProcessorConnectorPlug">
+              <PropertyRef Name="IdProcessorPowerPlug" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProcessorCooler_Component">
           <End Role="Component" Type="Self.Component" Multiplicity="1" />
           <End Role="ProcessorCooler" Type="Self.ProcessorCooler" Multiplicity="0..1" />
@@ -864,6 +1389,18 @@
             </Principal>
             <Dependent Role="ProcessorCooler">
               <PropertyRef Name="IdComponent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProcessorCooler_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="ProcessorCooler" Type="Self.ProcessorCooler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProcessorCooler">
+              <PropertyRef Name="IdRadiatorMaterial" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -927,11 +1464,120 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_VideoCard_GraphicProcessor">
+          <End Role="GraphicProcessor" Type="Self.GraphicProcessor" Multiplicity="1" />
+          <End Role="VideoCard" Type="Self.VideoCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GraphicProcessor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoCard">
+              <PropertyRef Name="IdGraphicProcessor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCard_Microarchitecture">
+          <End Role="Microarchitecture" Type="Self.Microarchitecture" Multiplicity="1" />
+          <End Role="VideoCard" Type="Self.VideoCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Microarchitecture">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoCard">
+              <PropertyRef Name="IdMicroarchitecture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCard_PCIEController">
+          <End Role="PCIEController" Type="Self.PCIEController" Multiplicity="1" />
+          <End Role="VideoCard" Type="Self.VideoCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PCIEController">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoCard">
+              <PropertyRef Name="IdPCIEController" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCard_VideoCardPowerPlug">
+          <End Role="VideoCardPowerPlug" Type="Self.VideoCardPowerPlug" Multiplicity="0..1" />
+          <End Role="VideoCard" Type="Self.VideoCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoCardPowerPlug">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoCard">
+              <PropertyRef Name="IdVideoCardPowerPlug" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCard_VideoMemoryType">
+          <End Role="VideoMemoryType" Type="Self.VideoMemoryType" Multiplicity="1" />
+          <End Role="VideoCard" Type="Self.VideoCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoMemoryType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoCard">
+              <PropertyRef Name="IdVideoMemoryType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCardConnectorPlug_VideoCardPowerPlug">
+          <End Role="VideoCardPowerPlug" Type="Self.VideoCardPowerPlug" Multiplicity="1" />
+          <End Role="VideoCardConnectorPlug" Type="Self.VideoCardConnectorPlug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoCardPowerPlug">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoCardConnectorPlug">
+              <PropertyRef Name="IdVideoCardPowerPlug" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCardConnectorPlug_VideoPowerConnector">
+          <End Role="VideoPowerConnector" Type="Self.VideoPowerConnector" Multiplicity="1" />
+          <End Role="VideoCardConnectorPlug" Type="Self.VideoCardConnectorPlug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoPowerConnector">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoCardConnectorPlug">
+              <PropertyRef Name="IdVideoPowerConnector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCardOutput_VideoCard">
+          <End Role="VideoCard" Type="Self.VideoCard" Multiplicity="1" />
+          <End Role="VideoCardOutput" Type="Self.VideoCardOutput" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoCard">
+              <PropertyRef Name="IdComponent" />
+            </Principal>
+            <Dependent Role="VideoCardOutput">
+              <PropertyRef Name="IdVideoCard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCardOutput_VideoOutput">
+          <End Role="VideoOutput" Type="Self.VideoOutput" Multiplicity="1" />
+          <End Role="VideoCardOutput" Type="Self.VideoCardOutput" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoOutput">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoCardOutput">
+              <PropertyRef Name="IdVideoOutput" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище ConfiguratorPCModelContainer">
           <EntitySet Name="Case" EntityType="Self.Case" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CaseCompatibleMotherBoardFormFactor" EntityType="Self.CaseCompatibleMotherBoardFormFactor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CaseConnector" EntityType="Self.CaseConnector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CaseSize" EntityType="Self.CaseSize" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Chipset" EntityType="Self.Chipset" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Component" EntityType="Self.Component" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Connector" EntityType="Self.Connector" Schema="dbo" store:Type="Tables" />
@@ -939,6 +1585,7 @@
           <EntitySet Name="CoolerCompatibleSocket" EntityType="Self.CoolerCompatibleSocket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Core" EntityType="Self.Core" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DataStorage" EntityType="Self.DataStorage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GraphicProcessor" EntityType="Self.GraphicProcessor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GraphicsProcessingUnit" EntityType="Self.GraphicsProcessingUnit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HDD" EntityType="Self.HDD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LightingType" EntityType="Self.LightingType" Schema="dbo" store:Type="Tables" />
@@ -949,22 +1596,43 @@
           <EntitySet Name="M2SSDKey" EntityType="Self.M2SSDKey" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Microarchitecture" EntityType="Self.Microarchitecture" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MotherBoard" EntityType="Self.MotherBoard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MotherBoardCompatibleCore" EntityType="Self.MotherBoardCompatibleCore" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MotherBoardConnector" EntityType="Self.MotherBoardConnector" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MotherBoardConnectorPlug" EntityType="Self.MotherBoardConnectorPlug" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MotherBoardFormFactor" EntityType="Self.MotherBoardFormFactor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MotherBoardM2Key" EntityType="Self.MotherBoardM2Key" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MotherBoardPowerConnector" EntityType="Self.MotherBoardPowerConnector" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MotherBoardPowerPlug" EntityType="Self.MotherBoardPowerPlug" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MotherBoardVideoOutput" EntityType="Self.MotherBoardVideoOutput" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NetworkAdapterChipset" EntityType="Self.NetworkAdapterChipset" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PCIEController" EntityType="Self.PCIEController" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PowerSupply" EntityType="Self.PowerSupply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PowerSupplyFormFactor" EntityType="Self.PowerSupplyFormFactor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PowerSupplyMotherBoardConnector" EntityType="Self.PowerSupplyMotherBoardConnector" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PowerSupplyProcessorPowerConnector" EntityType="Self.PowerSupplyProcessorPowerConnector" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PowerSupplyVideoPowerConnector" EntityType="Self.PowerSupplyVideoPowerConnector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Processor" EntityType="Self.Processor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProcessorCompatibleMemoryType" EntityType="Self.ProcessorCompatibleMemoryType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProcessorConnectorPlug" EntityType="Self.ProcessorConnectorPlug" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProcessorCooler" EntityType="Self.ProcessorCooler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProcessorPowerConnector" EntityType="Self.ProcessorPowerConnector" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProcessorPowerPlug" EntityType="Self.ProcessorPowerPlug" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RAM" EntityType="Self.RAM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RAMFormFactor" EntityType="Self.RAMFormFactor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RAMType" EntityType="Self.RAMType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Socket" EntityType="Self.Socket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SoundAdapterChipset" EntityType="Self.SoundAdapterChipset" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SSD" EntityType="Self.SSD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VideoCard" EntityType="Self.VideoCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoCardConnectorPlug" EntityType="Self.VideoCardConnectorPlug" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoCardOutput" EntityType="Self.VideoCardOutput" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoCardPowerPlug" EntityType="Self.VideoCardPowerPlug" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoMemoryType" EntityType="Self.VideoMemoryType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoOutput" EntityType="Self.VideoOutput" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoPowerConnector" EntityType="Self.VideoPowerConnector" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Case_CaseSize" Association="Self.FK_Case_CaseSize">
             <End Role="CaseSize" EntitySet="CaseSize" />
             <End Role="Case" EntitySet="Case" />
@@ -1029,6 +1697,10 @@
             <End Role="Manufacturer" EntitySet="Manufacturer" />
             <End Role="Component" EntitySet="Component" />
           </AssociationSet>
+          <AssociationSet Name="FK_Cooler_Material" Association="Self.FK_Cooler_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="Cooler" EntitySet="Cooler" />
+          </AssociationSet>
           <AssociationSet Name="FK_Cooler_ProcessorCooler" Association="Self.FK_Cooler_ProcessorCooler">
             <End Role="ProcessorCooler" EntitySet="ProcessorCooler" />
             <End Role="Cooler" EntitySet="Cooler" />
@@ -1048,6 +1720,10 @@
           <AssociationSet Name="FK_HDD_DataStorage" Association="Self.FK_HDD_DataStorage">
             <End Role="DataStorage" EntitySet="DataStorage" />
             <End Role="HDD" EntitySet="HDD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LiquidCooler_Material" Association="Self.FK_LiquidCooler_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="LiquidCooler" EntitySet="LiquidCooler" />
           </AssociationSet>
           <AssociationSet Name="FK_LiquidCooler_ProcessorCooler" Association="Self.FK_LiquidCooler_ProcessorCooler">
             <End Role="ProcessorCooler" EntitySet="ProcessorCooler" />
@@ -1069,12 +1745,32 @@
             <End Role="M2SSD" EntitySet="M2SSD" />
             <End Role="M2SSDKey" EntitySet="M2SSDKey" />
           </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_Chipset" Association="Self.FK_MotherBoard_Chipset">
+            <End Role="Chipset" EntitySet="Chipset" />
+            <End Role="MotherBoard" EntitySet="MotherBoard" />
+          </AssociationSet>
           <AssociationSet Name="FK_MotherBoard_Component" Association="Self.FK_MotherBoard_Component">
             <End Role="Component" EntitySet="Component" />
             <End Role="MotherBoard" EntitySet="MotherBoard" />
           </AssociationSet>
           <AssociationSet Name="FK_MotherBoard_MotherBoardFormFactor" Association="Self.FK_MotherBoard_MotherBoardFormFactor">
             <End Role="MotherBoardFormFactor" EntitySet="MotherBoardFormFactor" />
+            <End Role="MotherBoard" EntitySet="MotherBoard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_MotherBoardPowerPlug" Association="Self.FK_MotherBoard_MotherBoardPowerPlug">
+            <End Role="MotherBoardPowerPlug" EntitySet="MotherBoardPowerPlug" />
+            <End Role="MotherBoard" EntitySet="MotherBoard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_NetworkAdapterChipset" Association="Self.FK_MotherBoard_NetworkAdapterChipset">
+            <End Role="NetworkAdapterChipset" EntitySet="NetworkAdapterChipset" />
+            <End Role="MotherBoard" EntitySet="MotherBoard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_PCIEController" Association="Self.FK_MotherBoard_PCIEController">
+            <End Role="PCIEController" EntitySet="PCIEController" />
+            <End Role="MotherBoard" EntitySet="MotherBoard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_ProcessorPowerPlug" Association="Self.FK_MotherBoard_ProcessorPowerPlug">
+            <End Role="ProcessorPowerPlug" EntitySet="ProcessorPowerPlug" />
             <End Role="MotherBoard" EntitySet="MotherBoard" />
           </AssociationSet>
           <AssociationSet Name="FK_MotherBoard_RAMFormFactor" Association="Self.FK_MotherBoard_RAMFormFactor">
@@ -1089,6 +1785,26 @@
             <End Role="Socket" EntitySet="Socket" />
             <End Role="MotherBoard" EntitySet="MotherBoard" />
           </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_SoundAdapterChipset" Association="Self.FK_MotherBoard_SoundAdapterChipset">
+            <End Role="SoundAdapterChipset" EntitySet="SoundAdapterChipset" />
+            <End Role="MotherBoard" EntitySet="MotherBoard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoardConnector_Connector" Association="Self.FK_MotherBoardConnector_Connector">
+            <End Role="Connector" EntitySet="Connector" />
+            <End Role="MotherBoardConnector" EntitySet="MotherBoardConnector" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoardConnector_MotherBoard" Association="Self.FK_MotherBoardConnector_MotherBoard">
+            <End Role="MotherBoard" EntitySet="MotherBoard" />
+            <End Role="MotherBoardConnector" EntitySet="MotherBoardConnector" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoardConnectorPlug_MotherBoardPowerConnector" Association="Self.FK_MotherBoardConnectorPlug_MotherBoardPowerConnector">
+            <End Role="MotherBoardPowerConnector" EntitySet="MotherBoardPowerConnector" />
+            <End Role="MotherBoardConnectorPlug" EntitySet="MotherBoardConnectorPlug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoardConnectorPlug_MotherBoardPowerPlug" Association="Self.FK_MotherBoardConnectorPlug_MotherBoardPowerPlug">
+            <End Role="MotherBoardPowerPlug" EntitySet="MotherBoardPowerPlug" />
+            <End Role="MotherBoardConnectorPlug" EntitySet="MotherBoardConnectorPlug" />
+          </AssociationSet>
           <AssociationSet Name="FK_MotherBoardM2Key_M2FormFactor" Association="Self.FK_MotherBoardM2Key_M2FormFactor">
             <End Role="M2FormFactor" EntitySet="M2FormFactor" />
             <End Role="MotherBoardM2Key" EntitySet="MotherBoardM2Key" />
@@ -1101,6 +1817,14 @@
             <End Role="MotherBoard" EntitySet="MotherBoard" />
             <End Role="MotherBoardM2Key" EntitySet="MotherBoardM2Key" />
           </AssociationSet>
+          <AssociationSet Name="FK_MotherBoardVideoOutput_MotherBoard" Association="Self.FK_MotherBoardVideoOutput_MotherBoard">
+            <End Role="MotherBoard" EntitySet="MotherBoard" />
+            <End Role="MotherBoardVideoOutput" EntitySet="MotherBoardVideoOutput" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoardVideoOutput_VideoOutput" Association="Self.FK_MotherBoardVideoOutput_VideoOutput">
+            <End Role="VideoOutput" EntitySet="VideoOutput" />
+            <End Role="MotherBoardVideoOutput" EntitySet="MotherBoardVideoOutput" />
+          </AssociationSet>
           <AssociationSet Name="FK_PowerSupply_Color" Association="Self.FK_PowerSupply_Color">
             <End Role="Color" EntitySet="Color" />
             <End Role="PowerSupply" EntitySet="PowerSupply" />
@@ -1112,6 +1836,30 @@
           <AssociationSet Name="FK_PowerSupply_PowerSupplyFormFactor" Association="Self.FK_PowerSupply_PowerSupplyFormFactor">
             <End Role="PowerSupplyFormFactor" EntitySet="PowerSupplyFormFactor" />
             <End Role="PowerSupply" EntitySet="PowerSupply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PowerSupplyMotherBoardConnector_MotherBoardPowerConnector" Association="Self.FK_PowerSupplyMotherBoardConnector_MotherBoardPowerConnector">
+            <End Role="MotherBoardPowerConnector" EntitySet="MotherBoardPowerConnector" />
+            <End Role="PowerSupplyMotherBoardConnector" EntitySet="PowerSupplyMotherBoardConnector" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PowerSupplyMotherBoardConnector_PowerSupply" Association="Self.FK_PowerSupplyMotherBoardConnector_PowerSupply">
+            <End Role="PowerSupply" EntitySet="PowerSupply" />
+            <End Role="PowerSupplyMotherBoardConnector" EntitySet="PowerSupplyMotherBoardConnector" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PowerSupplyProcessorPowerConnector_PowerSupply" Association="Self.FK_PowerSupplyProcessorPowerConnector_PowerSupply">
+            <End Role="PowerSupply" EntitySet="PowerSupply" />
+            <End Role="PowerSupplyProcessorPowerConnector" EntitySet="PowerSupplyProcessorPowerConnector" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PowerSupplyProcessorPowerConnector_ProcessorPowerConnector" Association="Self.FK_PowerSupplyProcessorPowerConnector_ProcessorPowerConnector">
+            <End Role="ProcessorPowerConnector" EntitySet="ProcessorPowerConnector" />
+            <End Role="PowerSupplyProcessorPowerConnector" EntitySet="PowerSupplyProcessorPowerConnector" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PowerSupplyVideoPowerConnector_PowerSupply" Association="Self.FK_PowerSupplyVideoPowerConnector_PowerSupply">
+            <End Role="PowerSupply" EntitySet="PowerSupply" />
+            <End Role="PowerSupplyVideoPowerConnector" EntitySet="PowerSupplyVideoPowerConnector" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PowerSupplyVideoPowerConnector_VideoPowerConnector" Association="Self.FK_PowerSupplyVideoPowerConnector_VideoPowerConnector">
+            <End Role="VideoPowerConnector" EntitySet="VideoPowerConnector" />
+            <End Role="PowerSupplyVideoPowerConnector" EntitySet="PowerSupplyVideoPowerConnector" />
           </AssociationSet>
           <AssociationSet Name="FK_Processor_Component" Association="Self.FK_Processor_Component">
             <End Role="Component" EntitySet="Component" />
@@ -1133,8 +1881,20 @@
             <End Role="Socket" EntitySet="Socket" />
             <End Role="Processor" EntitySet="Processor" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProcessorConnectorPlug_ProcessorPowerConnector" Association="Self.FK_ProcessorConnectorPlug_ProcessorPowerConnector">
+            <End Role="ProcessorPowerConnector" EntitySet="ProcessorPowerConnector" />
+            <End Role="ProcessorConnectorPlug" EntitySet="ProcessorConnectorPlug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProcessorConnectorPlug_ProcessorPowerPlug" Association="Self.FK_ProcessorConnectorPlug_ProcessorPowerPlug">
+            <End Role="ProcessorPowerPlug" EntitySet="ProcessorPowerPlug" />
+            <End Role="ProcessorConnectorPlug" EntitySet="ProcessorConnectorPlug" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProcessorCooler_Component" Association="Self.FK_ProcessorCooler_Component">
             <End Role="Component" EntitySet="Component" />
+            <End Role="ProcessorCooler" EntitySet="ProcessorCooler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProcessorCooler_Material" Association="Self.FK_ProcessorCooler_Material">
+            <End Role="Material" EntitySet="Material" />
             <End Role="ProcessorCooler" EntitySet="ProcessorCooler" />
           </AssociationSet>
           <AssociationSet Name="FK_RAM_Component" Association="Self.FK_RAM_Component">
@@ -1157,6 +1917,42 @@
             <End Role="Component" EntitySet="Component" />
             <End Role="VideoCard" EntitySet="VideoCard" />
           </AssociationSet>
+          <AssociationSet Name="FK_VideoCard_GraphicProcessor" Association="Self.FK_VideoCard_GraphicProcessor">
+            <End Role="GraphicProcessor" EntitySet="GraphicProcessor" />
+            <End Role="VideoCard" EntitySet="VideoCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCard_Microarchitecture" Association="Self.FK_VideoCard_Microarchitecture">
+            <End Role="Microarchitecture" EntitySet="Microarchitecture" />
+            <End Role="VideoCard" EntitySet="VideoCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCard_PCIEController" Association="Self.FK_VideoCard_PCIEController">
+            <End Role="PCIEController" EntitySet="PCIEController" />
+            <End Role="VideoCard" EntitySet="VideoCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCard_VideoCardPowerPlug" Association="Self.FK_VideoCard_VideoCardPowerPlug">
+            <End Role="VideoCardPowerPlug" EntitySet="VideoCardPowerPlug" />
+            <End Role="VideoCard" EntitySet="VideoCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCard_VideoMemoryType" Association="Self.FK_VideoCard_VideoMemoryType">
+            <End Role="VideoMemoryType" EntitySet="VideoMemoryType" />
+            <End Role="VideoCard" EntitySet="VideoCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCardConnectorPlug_VideoCardPowerPlug" Association="Self.FK_VideoCardConnectorPlug_VideoCardPowerPlug">
+            <End Role="VideoCardPowerPlug" EntitySet="VideoCardPowerPlug" />
+            <End Role="VideoCardConnectorPlug" EntitySet="VideoCardConnectorPlug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCardConnectorPlug_VideoPowerConnector" Association="Self.FK_VideoCardConnectorPlug_VideoPowerConnector">
+            <End Role="VideoPowerConnector" EntitySet="VideoPowerConnector" />
+            <End Role="VideoCardConnectorPlug" EntitySet="VideoCardConnectorPlug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCardOutput_VideoCard" Association="Self.FK_VideoCardOutput_VideoCard">
+            <End Role="VideoCard" EntitySet="VideoCard" />
+            <End Role="VideoCardOutput" EntitySet="VideoCardOutput" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCardOutput_VideoOutput" Association="Self.FK_VideoCardOutput_VideoOutput">
+            <End Role="VideoOutput" EntitySet="VideoOutput" />
+            <End Role="VideoCardOutput" EntitySet="VideoCardOutput" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -1166,12 +1962,14 @@
           <EntitySet Name="Cases" EntityType="ConfiguratorPCModel.Case" />
           <EntitySet Name="CaseConnectors" EntityType="ConfiguratorPCModel.CaseConnector" />
           <EntitySet Name="CaseSizes" EntityType="ConfiguratorPCModel.CaseSize" />
+          <EntitySet Name="Chipsets" EntityType="ConfiguratorPCModel.Chipset" />
           <EntitySet Name="Colors" EntityType="ConfiguratorPCModel.Color" />
           <EntitySet Name="Components" EntityType="ConfiguratorPCModel.Component" />
           <EntitySet Name="Connectors" EntityType="ConfiguratorPCModel.Connector" />
           <EntitySet Name="Coolers" EntityType="ConfiguratorPCModel.Cooler" />
           <EntitySet Name="Cores" EntityType="ConfiguratorPCModel.Core" />
           <EntitySet Name="DataStorages" EntityType="ConfiguratorPCModel.DataStorage" />
+          <EntitySet Name="GraphicProcessors" EntityType="ConfiguratorPCModel.GraphicProcessor" />
           <EntitySet Name="GraphicsProcessingUnits" EntityType="ConfiguratorPCModel.GraphicsProcessingUnit" />
           <EntitySet Name="HDDs" EntityType="ConfiguratorPCModel.HDD" />
           <EntitySet Name="LightingTypes" EntityType="ConfiguratorPCModel.LightingType" />
@@ -1181,26 +1979,46 @@
           <EntitySet Name="M2SSD" EntityType="ConfiguratorPCModel.M2SSD" />
           <EntitySet Name="Manufacturers" EntityType="ConfiguratorPCModel.Manufacturer" />
           <EntitySet Name="Materials" EntityType="ConfiguratorPCModel.Material" />
+          <EntitySet Name="Microarchitectures" EntityType="ConfiguratorPCModel.Microarchitecture" />
           <EntitySet Name="MotherBoards" EntityType="ConfiguratorPCModel.MotherBoard" />
+          <EntitySet Name="MotherBoardConnectors" EntityType="ConfiguratorPCModel.MotherBoardConnector" />
           <EntitySet Name="MotherBoardFormFactors" EntityType="ConfiguratorPCModel.MotherBoardFormFactor" />
           <EntitySet Name="MotherBoardM2Key" EntityType="ConfiguratorPCModel.MotherBoardM2Key" />
+          <EntitySet Name="MotherBoardPowerConnectors" EntityType="ConfiguratorPCModel.MotherBoardPowerConnector" />
+          <EntitySet Name="MotherBoardPowerPlugs" EntityType="ConfiguratorPCModel.MotherBoardPowerPlug" />
+          <EntitySet Name="NetworkAdapterChipsets" EntityType="ConfiguratorPCModel.NetworkAdapterChipset" />
           <EntitySet Name="PCIEControllers" EntityType="ConfiguratorPCModel.PCIEController" />
           <EntitySet Name="PowerSupplies" EntityType="ConfiguratorPCModel.PowerSupply" />
           <EntitySet Name="PowerSupplyFormFactors" EntityType="ConfiguratorPCModel.PowerSupplyFormFactor" />
+          <EntitySet Name="PowerSupplyMotherBoardConnectors" EntityType="ConfiguratorPCModel.PowerSupplyMotherBoardConnector" />
+          <EntitySet Name="PowerSupplyProcessorPowerConnectors" EntityType="ConfiguratorPCModel.PowerSupplyProcessorPowerConnector" />
+          <EntitySet Name="PowerSupplyVideoPowerConnectors" EntityType="ConfiguratorPCModel.PowerSupplyVideoPowerConnector" />
           <EntitySet Name="Processors" EntityType="ConfiguratorPCModel.Processor" />
           <EntitySet Name="ProcessorCoolers" EntityType="ConfiguratorPCModel.ProcessorCooler" />
+          <EntitySet Name="ProcessorPowerConnectors" EntityType="ConfiguratorPCModel.ProcessorPowerConnector" />
+          <EntitySet Name="ProcessorPowerPlugs" EntityType="ConfiguratorPCModel.ProcessorPowerPlug" />
           <EntitySet Name="RAMs" EntityType="ConfiguratorPCModel.RAM" />
           <EntitySet Name="RAMFormFactors" EntityType="ConfiguratorPCModel.RAMFormFactor" />
           <EntitySet Name="RAMTypes" EntityType="ConfiguratorPCModel.RAMType" />
           <EntitySet Name="Sockets" EntityType="ConfiguratorPCModel.Socket" />
+          <EntitySet Name="SoundAdapterChipsets" EntityType="ConfiguratorPCModel.SoundAdapterChipset" />
           <EntitySet Name="SSDs" EntityType="ConfiguratorPCModel.SSD" />
+          <EntitySet Name="sysdiagrams" EntityType="ConfiguratorPCModel.sysdiagram" />
           <EntitySet Name="VideoCards" EntityType="ConfiguratorPCModel.VideoCard" />
+          <EntitySet Name="VideoCardPowerPlugs" EntityType="ConfiguratorPCModel.VideoCardPowerPlug" />
+          <EntitySet Name="VideoMemoryTypes" EntityType="ConfiguratorPCModel.VideoMemoryType" />
+          <EntitySet Name="VideoOutputs" EntityType="ConfiguratorPCModel.VideoOutput" />
+          <EntitySet Name="VideoPowerConnectors" EntityType="ConfiguratorPCModel.VideoPowerConnector" />
           <AssociationSet Name="FK_Case_CaseSize" Association="ConfiguratorPCModel.FK_Case_CaseSize">
             <End Role="CaseSize" EntitySet="CaseSizes" />
             <End Role="Case" EntitySet="Cases" />
           </AssociationSet>
           <AssociationSet Name="FK_Case_Color" Association="ConfiguratorPCModel.FK_Case_Color">
             <End Role="Color" EntitySet="Colors" />
+            <End Role="Case" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Case_Component" Association="ConfiguratorPCModel.FK_Case_Component">
+            <End Role="Component" EntitySet="Components" />
             <End Role="Case" EntitySet="Cases" />
           </AssociationSet>
           <AssociationSet Name="FK_Case_FrontPanelMaterial" Association="ConfiguratorPCModel.FK_Case_FrontPanelMaterial">
@@ -1215,6 +2033,10 @@
             <End Role="Material" EntitySet="Materials" />
             <End Role="Case" EntitySet="Cases" />
           </AssociationSet>
+          <AssociationSet Name="FK_Case_PowerSupplyFormFactor" Association="ConfiguratorPCModel.FK_Case_PowerSupplyFormFactor">
+            <End Role="PowerSupplyFormFactor" EntitySet="PowerSupplyFormFactors" />
+            <End Role="Case" EntitySet="Cases" />
+          </AssociationSet>
           <AssociationSet Name="FK_CaseConnector_Case" Association="ConfiguratorPCModel.FK_CaseConnector_Case">
             <End Role="Case" EntitySet="Cases" />
             <End Role="CaseConnector" EntitySet="CaseConnectors" />
@@ -1222,6 +2044,10 @@
           <AssociationSet Name="FK_CaseConnector_Connector" Association="ConfiguratorPCModel.FK_CaseConnector_Connector">
             <End Role="Connector" EntitySet="Connectors" />
             <End Role="CaseConnector" EntitySet="CaseConnectors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_Chipset" Association="ConfiguratorPCModel.FK_MotherBoard_Chipset">
+            <End Role="Chipset" EntitySet="Chipsets" />
+            <End Role="MotherBoard" EntitySet="MotherBoards" />
           </AssociationSet>
           <AssociationSet Name="FK_PowerSupply_Color" Association="ConfiguratorPCModel.FK_PowerSupply_Color">
             <End Role="Color" EntitySet="Colors" />
@@ -1259,6 +2085,14 @@
             <End Role="Component" EntitySet="Components" />
             <End Role="VideoCard" EntitySet="VideoCards" />
           </AssociationSet>
+          <AssociationSet Name="FK_MotherBoardConnector_Connector" Association="ConfiguratorPCModel.FK_MotherBoardConnector_Connector">
+            <End Role="Connector" EntitySet="Connectors" />
+            <End Role="MotherBoardConnector" EntitySet="MotherBoardConnectors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cooler_Material" Association="ConfiguratorPCModel.FK_Cooler_Material">
+            <End Role="Material" EntitySet="Materials" />
+            <End Role="Cooler" EntitySet="Coolers" />
+          </AssociationSet>
           <AssociationSet Name="FK_Cooler_ProcessorCooler" Association="ConfiguratorPCModel.FK_Cooler_ProcessorCooler">
             <End Role="ProcessorCooler" EntitySet="ProcessorCoolers" />
             <End Role="Cooler" EntitySet="Coolers" />
@@ -1275,9 +2109,17 @@
             <End Role="DataStorage" EntitySet="DataStorages" />
             <End Role="SSD" EntitySet="SSDs" />
           </AssociationSet>
+          <AssociationSet Name="FK_VideoCard_GraphicProcessor" Association="ConfiguratorPCModel.FK_VideoCard_GraphicProcessor">
+            <End Role="GraphicProcessor" EntitySet="GraphicProcessors" />
+            <End Role="VideoCard" EntitySet="VideoCards" />
+          </AssociationSet>
           <AssociationSet Name="FK_Processor_GraphicsProcessingUnit" Association="ConfiguratorPCModel.FK_Processor_GraphicsProcessingUnit">
             <End Role="GraphicsProcessingUnit" EntitySet="GraphicsProcessingUnits" />
             <End Role="Processor" EntitySet="Processors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LiquidCooler_Material" Association="ConfiguratorPCModel.FK_LiquidCooler_Material">
+            <End Role="Material" EntitySet="Materials" />
+            <End Role="LiquidCooler" EntitySet="LiquidCoolers" />
           </AssociationSet>
           <AssociationSet Name="FK_LiquidCooler_ProcessorCooler" Association="ConfiguratorPCModel.FK_LiquidCooler_ProcessorCooler">
             <End Role="ProcessorCooler" EntitySet="ProcessorCoolers" />
@@ -1299,8 +2141,32 @@
             <End Role="SSD" EntitySet="SSDs" />
             <End Role="M2SSD" EntitySet="M2SSD" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProcessorCooler_Material" Association="ConfiguratorPCModel.FK_ProcessorCooler_Material">
+            <End Role="Material" EntitySet="Materials" />
+            <End Role="ProcessorCooler" EntitySet="ProcessorCoolers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCard_Microarchitecture" Association="ConfiguratorPCModel.FK_VideoCard_Microarchitecture">
+            <End Role="Microarchitecture" EntitySet="Microarchitectures" />
+            <End Role="VideoCard" EntitySet="VideoCards" />
+          </AssociationSet>
           <AssociationSet Name="FK_MotherBoard_MotherBoardFormFactor" Association="ConfiguratorPCModel.FK_MotherBoard_MotherBoardFormFactor">
             <End Role="MotherBoardFormFactor" EntitySet="MotherBoardFormFactors" />
+            <End Role="MotherBoard" EntitySet="MotherBoards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_MotherBoardPowerPlug" Association="ConfiguratorPCModel.FK_MotherBoard_MotherBoardPowerPlug">
+            <End Role="MotherBoardPowerPlug" EntitySet="MotherBoardPowerPlugs" />
+            <End Role="MotherBoard" EntitySet="MotherBoards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_NetworkAdapterChipset" Association="ConfiguratorPCModel.FK_MotherBoard_NetworkAdapterChipset">
+            <End Role="NetworkAdapterChipset" EntitySet="NetworkAdapterChipsets" />
+            <End Role="MotherBoard" EntitySet="MotherBoards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_PCIEController" Association="ConfiguratorPCModel.FK_MotherBoard_PCIEController">
+            <End Role="PCIEController" EntitySet="PCIEControllers" />
+            <End Role="MotherBoard" EntitySet="MotherBoards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_ProcessorPowerPlug" Association="ConfiguratorPCModel.FK_MotherBoard_ProcessorPowerPlug">
+            <End Role="ProcessorPowerPlug" EntitySet="ProcessorPowerPlugs" />
             <End Role="MotherBoard" EntitySet="MotherBoards" />
           </AssociationSet>
           <AssociationSet Name="FK_MotherBoard_RAMFormFactor" Association="ConfiguratorPCModel.FK_MotherBoard_RAMFormFactor">
@@ -1315,17 +2181,53 @@
             <End Role="Socket" EntitySet="Sockets" />
             <End Role="MotherBoard" EntitySet="MotherBoards" />
           </AssociationSet>
+          <AssociationSet Name="FK_MotherBoard_SoundAdapterChipset" Association="ConfiguratorPCModel.FK_MotherBoard_SoundAdapterChipset">
+            <End Role="SoundAdapterChipset" EntitySet="SoundAdapterChipsets" />
+            <End Role="MotherBoard" EntitySet="MotherBoards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotherBoardConnector_MotherBoard" Association="ConfiguratorPCModel.FK_MotherBoardConnector_MotherBoard">
+            <End Role="MotherBoard" EntitySet="MotherBoards" />
+            <End Role="MotherBoardConnector" EntitySet="MotherBoardConnectors" />
+          </AssociationSet>
           <AssociationSet Name="FK_MotherBoardM2Key_MotherBoard" Association="ConfiguratorPCModel.FK_MotherBoardM2Key_MotherBoard">
             <End Role="MotherBoard" EntitySet="MotherBoards" />
             <End Role="MotherBoardM2Key" EntitySet="MotherBoardM2Key" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PowerSupplyMotherBoardConnector_MotherBoardPowerConnector" Association="ConfiguratorPCModel.FK_PowerSupplyMotherBoardConnector_MotherBoardPowerConnector">
+            <End Role="MotherBoardPowerConnector" EntitySet="MotherBoardPowerConnectors" />
+            <End Role="PowerSupplyMotherBoardConnector" EntitySet="PowerSupplyMotherBoardConnectors" />
           </AssociationSet>
           <AssociationSet Name="FK_Processor_PCIEController" Association="ConfiguratorPCModel.FK_Processor_PCIEController">
             <End Role="PCIEController" EntitySet="PCIEControllers" />
             <End Role="Processor" EntitySet="Processors" />
           </AssociationSet>
+          <AssociationSet Name="FK_VideoCard_PCIEController" Association="ConfiguratorPCModel.FK_VideoCard_PCIEController">
+            <End Role="PCIEController" EntitySet="PCIEControllers" />
+            <End Role="VideoCard" EntitySet="VideoCards" />
+          </AssociationSet>
           <AssociationSet Name="FK_PowerSupply_PowerSupplyFormFactor" Association="ConfiguratorPCModel.FK_PowerSupply_PowerSupplyFormFactor">
             <End Role="PowerSupplyFormFactor" EntitySet="PowerSupplyFormFactors" />
             <End Role="PowerSupply" EntitySet="PowerSupplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PowerSupplyMotherBoardConnector_PowerSupply" Association="ConfiguratorPCModel.FK_PowerSupplyMotherBoardConnector_PowerSupply">
+            <End Role="PowerSupply" EntitySet="PowerSupplies" />
+            <End Role="PowerSupplyMotherBoardConnector" EntitySet="PowerSupplyMotherBoardConnectors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PowerSupplyProcessorPowerConnector_PowerSupply" Association="ConfiguratorPCModel.FK_PowerSupplyProcessorPowerConnector_PowerSupply">
+            <End Role="PowerSupply" EntitySet="PowerSupplies" />
+            <End Role="PowerSupplyProcessorPowerConnector" EntitySet="PowerSupplyProcessorPowerConnectors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PowerSupplyVideoPowerConnector_PowerSupply" Association="ConfiguratorPCModel.FK_PowerSupplyVideoPowerConnector_PowerSupply">
+            <End Role="PowerSupply" EntitySet="PowerSupplies" />
+            <End Role="PowerSupplyVideoPowerConnector" EntitySet="PowerSupplyVideoPowerConnectors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PowerSupplyProcessorPowerConnector_ProcessorPowerConnector" Association="ConfiguratorPCModel.FK_PowerSupplyProcessorPowerConnector_ProcessorPowerConnector">
+            <End Role="ProcessorPowerConnector" EntitySet="ProcessorPowerConnectors" />
+            <End Role="PowerSupplyProcessorPowerConnector" EntitySet="PowerSupplyProcessorPowerConnectors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PowerSupplyVideoPowerConnector_VideoPowerConnector" Association="ConfiguratorPCModel.FK_PowerSupplyVideoPowerConnector_VideoPowerConnector">
+            <End Role="VideoPowerConnector" EntitySet="VideoPowerConnectors" />
+            <End Role="PowerSupplyVideoPowerConnector" EntitySet="PowerSupplyVideoPowerConnectors" />
           </AssociationSet>
           <AssociationSet Name="FK_Processor_Socket" Association="ConfiguratorPCModel.FK_Processor_Socket">
             <End Role="Socket" EntitySet="Sockets" />
@@ -1338,6 +2240,14 @@
           <AssociationSet Name="FK_RAM_RAMType" Association="ConfiguratorPCModel.FK_RAM_RAMType">
             <End Role="RAMType" EntitySet="RAMTypes" />
             <End Role="RAM" EntitySet="RAMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCard_VideoCardPowerPlug" Association="ConfiguratorPCModel.FK_VideoCard_VideoCardPowerPlug">
+            <End Role="VideoCardPowerPlug" EntitySet="VideoCardPowerPlugs" />
+            <End Role="VideoCard" EntitySet="VideoCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCard_VideoMemoryType" Association="ConfiguratorPCModel.FK_VideoCard_VideoMemoryType">
+            <End Role="VideoMemoryType" EntitySet="VideoMemoryTypes" />
+            <End Role="VideoCard" EntitySet="VideoCards" />
           </AssociationSet>
           <AssociationSet Name="CaseCompatibleMotherBoardFormFactor" Association="ConfiguratorPCModel.CaseCompatibleMotherBoardFormFactor">
             <End Role="Case" EntitySet="Cases" />
@@ -1355,17 +2265,29 @@
             <End Role="Core" EntitySet="Cores" />
             <End Role="MotherBoard" EntitySet="MotherBoards" />
           </AssociationSet>
+          <AssociationSet Name="MotherBoardConnectorPlug" Association="ConfiguratorPCModel.MotherBoardConnectorPlug">
+            <End Role="MotherBoardPowerConnector" EntitySet="MotherBoardPowerConnectors" />
+            <End Role="MotherBoardPowerPlug" EntitySet="MotherBoardPowerPlugs" />
+          </AssociationSet>
+          <AssociationSet Name="MotherBoardVideoOutput" Association="ConfiguratorPCModel.MotherBoardVideoOutput">
+            <End Role="MotherBoard" EntitySet="MotherBoards" />
+            <End Role="VideoOutput" EntitySet="VideoOutputs" />
+          </AssociationSet>
           <AssociationSet Name="ProcessorCompatibleMemoryType" Association="ConfiguratorPCModel.ProcessorCompatibleMemoryType">
             <End Role="Processor" EntitySet="Processors" />
             <End Role="RAMType" EntitySet="RAMTypes" />
           </AssociationSet>
-          <AssociationSet Name="FK_Case_Component" Association="ConfiguratorPCModel.FK_Case_Component">
-            <End Role="Component" EntitySet="Components" />
-            <End Role="Case" EntitySet="Cases" />
+          <AssociationSet Name="ProcessorConnectorPlug" Association="ConfiguratorPCModel.ProcessorConnectorPlug">
+            <End Role="ProcessorPowerConnector" EntitySet="ProcessorPowerConnectors" />
+            <End Role="ProcessorPowerPlug" EntitySet="ProcessorPowerPlugs" />
           </AssociationSet>
-          <AssociationSet Name="FK_Case_PowerSupplyFormFactor" Association="ConfiguratorPCModel.FK_Case_PowerSupplyFormFactor">
-            <End Role="PowerSupplyFormFactor" EntitySet="PowerSupplyFormFactors" />
-            <End Role="Case" EntitySet="Cases" />
+          <AssociationSet Name="VideoCardConnectorPlug" Association="ConfiguratorPCModel.VideoCardConnectorPlug">
+            <End Role="VideoCardPowerPlug" EntitySet="VideoCardPowerPlugs" />
+            <End Role="VideoPowerConnector" EntitySet="VideoPowerConnectors" />
+          </AssociationSet>
+          <AssociationSet Name="VideoCardOutput" Association="ConfiguratorPCModel.VideoCardOutput">
+            <End Role="VideoCard" EntitySet="VideoCards" />
+            <End Role="VideoOutput" EntitySet="VideoOutputs" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Case">
@@ -1394,13 +2316,13 @@
           <Property Name="HasCardReader" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="CaseSize" Relationship="ConfiguratorPCModel.FK_Case_CaseSize" FromRole="Case" ToRole="CaseSize" />
           <NavigationProperty Name="Color" Relationship="ConfiguratorPCModel.FK_Case_Color" FromRole="Case" ToRole="Color" />
+          <NavigationProperty Name="Component" Relationship="ConfiguratorPCModel.FK_Case_Component" FromRole="Case" ToRole="Component" />
           <NavigationProperty Name="Material" Relationship="ConfiguratorPCModel.FK_Case_FrontPanelMaterial" FromRole="Case" ToRole="Material" />
           <NavigationProperty Name="LightingType" Relationship="ConfiguratorPCModel.FK_Case_LightingType" FromRole="Case" ToRole="LightingType" />
           <NavigationProperty Name="Material1" Relationship="ConfiguratorPCModel.FK_Case_Material" FromRole="Case" ToRole="Material" />
+          <NavigationProperty Name="PowerSupplyFormFactor" Relationship="ConfiguratorPCModel.FK_Case_PowerSupplyFormFactor" FromRole="Case" ToRole="PowerSupplyFormFactor" />
           <NavigationProperty Name="CaseConnectors" Relationship="ConfiguratorPCModel.FK_CaseConnector_Case" FromRole="Case" ToRole="CaseConnector" />
           <NavigationProperty Name="MotherBoardFormFactors" Relationship="ConfiguratorPCModel.CaseCompatibleMotherBoardFormFactor" FromRole="Case" ToRole="MotherBoardFormFactor" />
-          <NavigationProperty Name="Component" Relationship="ConfiguratorPCModel.FK_Case_Component" FromRole="Case" ToRole="Component" />
-          <NavigationProperty Name="PowerSupplyFormFactor" Relationship="ConfiguratorPCModel.FK_Case_PowerSupplyFormFactor" FromRole="Case" ToRole="PowerSupplyFormFactor" />
         </EntityType>
         <EntityType Name="CaseConnector">
           <Key>
@@ -1421,6 +2343,14 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Cases" Relationship="ConfiguratorPCModel.FK_Case_CaseSize" FromRole="CaseSize" ToRole="Case" />
         </EntityType>
+        <EntityType Name="Chipset">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MotherBoards" Relationship="ConfiguratorPCModel.FK_MotherBoard_Chipset" FromRole="Chipset" ToRole="MotherBoard" />
+        </EntityType>
         <EntityType Name="Color">
           <Key>
             <PropertyRef Name="Id" />
@@ -1439,6 +2369,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
           <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Case" Relationship="ConfiguratorPCModel.FK_Case_Component" FromRole="Component" ToRole="Case" />
           <NavigationProperty Name="Manufacturer" Relationship="ConfiguratorPCModel.FK_Component_Manufacturer" FromRole="Component" ToRole="Manufacturer" />
           <NavigationProperty Name="DataStorage" Relationship="ConfiguratorPCModel.FK_DataStorage_Component" FromRole="Component" ToRole="DataStorage" />
           <NavigationProperty Name="MotherBoard" Relationship="ConfiguratorPCModel.FK_MotherBoard_Component" FromRole="Component" ToRole="MotherBoard" />
@@ -1447,7 +2378,6 @@
           <NavigationProperty Name="ProcessorCooler" Relationship="ConfiguratorPCModel.FK_ProcessorCooler_Component" FromRole="Component" ToRole="ProcessorCooler" />
           <NavigationProperty Name="RAM" Relationship="ConfiguratorPCModel.FK_RAM_Component" FromRole="Component" ToRole="RAM" />
           <NavigationProperty Name="VideoCard" Relationship="ConfiguratorPCModel.FK_VideoCard_Component" FromRole="Component" ToRole="VideoCard" />
-          <NavigationProperty Name="Case" Relationship="ConfiguratorPCModel.FK_Case_Component" FromRole="Component" ToRole="Case" />
         </EntityType>
         <EntityType Name="Connector">
           <Key>
@@ -1456,13 +2386,23 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CaseConnectors" Relationship="ConfiguratorPCModel.FK_CaseConnector_Connector" FromRole="Connector" ToRole="CaseConnector" />
+          <NavigationProperty Name="MotherBoardConnectors" Relationship="ConfiguratorPCModel.FK_MotherBoardConnector_Connector" FromRole="Connector" ToRole="MotherBoardConnector" />
         </EntityType>
         <EntityType Name="Cooler">
           <Key>
             <PropertyRef Name="IdProcessorCooler" />
           </Key>
           <Property Name="IdProcessorCooler" Type="Int32" Nullable="false" />
-          <Property Name="Heigth" Type="Byte" Nullable="false" />
+          <Property Name="Heigth" Type="Int16" Nullable="false" />
+          <Property Name="DissipationPower" Type="Int16" Nullable="false" />
+          <Property Name="ConstructionType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdBaseMaterial" Type="Int32" Nullable="false" />
+          <Property Name="TermPipeQiantity" Type="Byte" />
+          <Property Name="TermPipeDiameter" Type="Byte" />
+          <Property Name="NickelCoating" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Width" Type="Int16" Nullable="false" />
+          <Property Name="Length" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Material" Relationship="ConfiguratorPCModel.FK_Cooler_Material" FromRole="Cooler" ToRole="Material" />
           <NavigationProperty Name="ProcessorCooler" Relationship="ConfiguratorPCModel.FK_Cooler_ProcessorCooler" FromRole="Cooler" ToRole="ProcessorCooler" />
         </EntityType>
         <EntityType Name="Core">
@@ -1480,9 +2420,22 @@
           </Key>
           <Property Name="IdComponent" Type="Int32" Nullable="false" />
           <Property Name="MemorySize" Type="Int16" Nullable="false" />
+          <Property Name="Width" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="Length" Type="Int16" Nullable="false" />
+          <Property Name="Thickness" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
+          <Property Name="Mass" Type="Int16" Nullable="false" />
+          <Property Name="EnergyUse" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
           <NavigationProperty Name="Component" Relationship="ConfiguratorPCModel.FK_DataStorage_Component" FromRole="DataStorage" ToRole="Component" />
           <NavigationProperty Name="HDD" Relationship="ConfiguratorPCModel.FK_HDD_DataStorage" FromRole="DataStorage" ToRole="HDD" />
           <NavigationProperty Name="SSD" Relationship="ConfiguratorPCModel.FK_SSD_DataStorage" FromRole="DataStorage" ToRole="SSD" />
+        </EntityType>
+        <EntityType Name="GraphicProcessor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="VideoCards" Relationship="ConfiguratorPCModel.FK_VideoCard_GraphicProcessor" FromRole="GraphicProcessor" ToRole="VideoCard" />
         </EntityType>
         <EntityType Name="GraphicsProcessingUnit">
           <Key>
@@ -1501,6 +2454,13 @@
           </Key>
           <Property Name="IdDataStorage" Type="Int32" Nullable="false" />
           <Property Name="FormFactor" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="CacheSize" Type="Int16" Nullable="false" />
+          <Property Name="RotationSpeed" Type="Int16" Nullable="false" />
+          <Property Name="WriteTech" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="ActiveNoiseLevel" Type="Byte" Nullable="false" />
+          <Property Name="PassiveNoiseLevel" Type="Byte" Nullable="false" />
+          <Property Name="PassiveEnergyUse" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+          <Property Name="MaxTemp" Type="Byte" Nullable="false" />
           <NavigationProperty Name="DataStorage" Relationship="ConfiguratorPCModel.FK_HDD_DataStorage" FromRole="HDD" ToRole="DataStorage" />
         </EntityType>
         <EntityType Name="LightingType">
@@ -1516,6 +2476,18 @@
             <PropertyRef Name="IdProcessorCooler" />
           </Key>
           <Property Name="IdProcessorCooler" Type="Int32" Nullable="false" />
+          <Property Name="Serviced" Type="Boolean" Nullable="false" />
+          <Property Name="IdWaterblockMaterial" Type="Int32" Nullable="false" />
+          <Property Name="WaterblockSize" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RadiatorMountingSize" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RadiatorLength" Type="Int16" Nullable="false" />
+          <Property Name="RadiatorWidth" Type="Int16" Nullable="false" />
+          <Property Name="RadiatorThickness" Type="Int16" Nullable="false" />
+          <Property Name="PumpRotationSpeed" Type="Int16" Nullable="false" />
+          <Property Name="PumpConnector" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PipeLength" Type="Int16" Nullable="false" />
+          <Property Name="TransparentPipe" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Material" Relationship="ConfiguratorPCModel.FK_LiquidCooler_Material" FromRole="LiquidCooler" ToRole="Material" />
           <NavigationProperty Name="ProcessorCooler" Relationship="ConfiguratorPCModel.FK_LiquidCooler_ProcessorCooler" FromRole="LiquidCooler" ToRole="ProcessorCooler" />
         </EntityType>
         <EntityType Name="M2FormFactor">
@@ -1562,6 +2534,17 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Cases" Relationship="ConfiguratorPCModel.FK_Case_FrontPanelMaterial" FromRole="Material" ToRole="Case" />
           <NavigationProperty Name="Cases1" Relationship="ConfiguratorPCModel.FK_Case_Material" FromRole="Material" ToRole="Case" />
+          <NavigationProperty Name="Coolers" Relationship="ConfiguratorPCModel.FK_Cooler_Material" FromRole="Material" ToRole="Cooler" />
+          <NavigationProperty Name="LiquidCoolers" Relationship="ConfiguratorPCModel.FK_LiquidCooler_Material" FromRole="Material" ToRole="LiquidCooler" />
+          <NavigationProperty Name="ProcessorCoolers" Relationship="ConfiguratorPCModel.FK_ProcessorCooler_Material" FromRole="Material" ToRole="ProcessorCooler" />
+        </EntityType>
+        <EntityType Name="Microarchitecture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="VideoCards" Relationship="ConfiguratorPCModel.FK_VideoCard_Microarchitecture" FromRole="Microarchitecture" ToRole="VideoCard" />
         </EntityType>
         <EntityType Name="MotherBoard">
           <Key>
@@ -1575,16 +2558,53 @@
           <Property Name="MaxRAMSize" Type="Byte" Nullable="false" />
           <Property Name="RAMQuantity" Type="Byte" Nullable="false" />
           <Property Name="PCIEx16Quantity" Type="Byte" Nullable="false" />
-          <Property Name="ProcessorSupplyQuantity" Type="Byte" Nullable="false" />
           <Property Name="SATAQuantity" Type="Byte" Nullable="false" />
           <Property Name="M2Quantity" Type="Byte" Nullable="false" />
+          <Property Name="Height" Type="Int16" Nullable="false" />
+          <Property Name="Width" Type="Int16" Nullable="false" />
+          <Property Name="IdChipset" Type="Int32" Nullable="false" />
+          <Property Name="MaxRAMFrequency" Type="Int16" Nullable="false" />
+          <Property Name="IdPCIControllerVersion" Type="Int32" Nullable="false" />
+          <Property Name="RJ45Quantity" Type="Byte" Nullable="false" />
+          <Property Name="AnalogAudioOutputQuantity" Type="Byte" Nullable="false" />
+          <Property Name="CoolerPowerSupply" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="M2KeyE" Type="Boolean" Nullable="false" />
+          <Property Name="InterfaceLPT" Type="Boolean" Nullable="false" />
+          <Property Name="SoundSchema" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="IdSoundAdapterChipset" Type="Int32" />
+          <Property Name="IdNetworkAdapterChipset" Type="Int32" />
+          <Property Name="NetworkAdapterSpeed" Type="Byte" />
+          <Property Name="HasWiFi" Type="Boolean" Nullable="false" />
+          <Property Name="HasBluetooth" Type="Boolean" Nullable="false" />
+          <Property Name="PowerPhaseQuantity" Type="Byte" Nullable="false" />
+          <Property Name="IdMotherBoardPowerPlug" Type="Int32" Nullable="false" />
+          <Property Name="IdProcessorPowerPlug" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Chipset" Relationship="ConfiguratorPCModel.FK_MotherBoard_Chipset" FromRole="MotherBoard" ToRole="Chipset" />
           <NavigationProperty Name="Component" Relationship="ConfiguratorPCModel.FK_MotherBoard_Component" FromRole="MotherBoard" ToRole="Component" />
           <NavigationProperty Name="MotherBoardFormFactor" Relationship="ConfiguratorPCModel.FK_MotherBoard_MotherBoardFormFactor" FromRole="MotherBoard" ToRole="MotherBoardFormFactor" />
+          <NavigationProperty Name="MotherBoardPowerPlug" Relationship="ConfiguratorPCModel.FK_MotherBoard_MotherBoardPowerPlug" FromRole="MotherBoard" ToRole="MotherBoardPowerPlug" />
+          <NavigationProperty Name="NetworkAdapterChipset" Relationship="ConfiguratorPCModel.FK_MotherBoard_NetworkAdapterChipset" FromRole="MotherBoard" ToRole="NetworkAdapterChipset" />
+          <NavigationProperty Name="PCIEController" Relationship="ConfiguratorPCModel.FK_MotherBoard_PCIEController" FromRole="MotherBoard" ToRole="PCIEController" />
+          <NavigationProperty Name="ProcessorPowerPlug" Relationship="ConfiguratorPCModel.FK_MotherBoard_ProcessorPowerPlug" FromRole="MotherBoard" ToRole="ProcessorPowerPlug" />
           <NavigationProperty Name="RAMFormFactor" Relationship="ConfiguratorPCModel.FK_MotherBoard_RAMFormFactor" FromRole="MotherBoard" ToRole="RAMFormFactor" />
           <NavigationProperty Name="RAMType" Relationship="ConfiguratorPCModel.FK_MotherBoard_RAMType" FromRole="MotherBoard" ToRole="RAMType" />
           <NavigationProperty Name="Socket" Relationship="ConfiguratorPCModel.FK_MotherBoard_Socket" FromRole="MotherBoard" ToRole="Socket" />
+          <NavigationProperty Name="SoundAdapterChipset" Relationship="ConfiguratorPCModel.FK_MotherBoard_SoundAdapterChipset" FromRole="MotherBoard" ToRole="SoundAdapterChipset" />
+          <NavigationProperty Name="MotherBoardConnectors" Relationship="ConfiguratorPCModel.FK_MotherBoardConnector_MotherBoard" FromRole="MotherBoard" ToRole="MotherBoardConnector" />
           <NavigationProperty Name="MotherBoardM2Key" Relationship="ConfiguratorPCModel.FK_MotherBoardM2Key_MotherBoard" FromRole="MotherBoard" ToRole="MotherBoardM2Key" />
           <NavigationProperty Name="Cores" Relationship="ConfiguratorPCModel.MotherBoardCompatibleCore" FromRole="MotherBoard" ToRole="Core" />
+          <NavigationProperty Name="VideoOutputs" Relationship="ConfiguratorPCModel.MotherBoardVideoOutput" FromRole="MotherBoard" ToRole="VideoOutput" />
+        </EntityType>
+        <EntityType Name="MotherBoardConnector">
+          <Key>
+            <PropertyRef Name="IdMotherBoard" />
+            <PropertyRef Name="IdConnector" />
+          </Key>
+          <Property Name="IdMotherBoard" Type="Int32" Nullable="false" />
+          <Property Name="IdConnector" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Connector" Relationship="ConfiguratorPCModel.FK_MotherBoardConnector_Connector" FromRole="MotherBoardConnector" ToRole="Connector" />
+          <NavigationProperty Name="MotherBoard" Relationship="ConfiguratorPCModel.FK_MotherBoardConnector_MotherBoard" FromRole="MotherBoardConnector" ToRole="MotherBoard" />
         </EntityType>
         <EntityType Name="MotherBoardFormFactor">
           <Key>
@@ -1608,13 +2628,41 @@
           <NavigationProperty Name="M2Key" Relationship="ConfiguratorPCModel.FK_MotherBoardM2Key_M2Key" FromRole="MotherBoardM2Key" ToRole="M2Key" />
           <NavigationProperty Name="MotherBoard" Relationship="ConfiguratorPCModel.FK_MotherBoardM2Key_MotherBoard" FromRole="MotherBoardM2Key" ToRole="MotherBoard" />
         </EntityType>
+        <EntityType Name="MotherBoardPowerConnector">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PowerSupplyMotherBoardConnectors" Relationship="ConfiguratorPCModel.FK_PowerSupplyMotherBoardConnector_MotherBoardPowerConnector" FromRole="MotherBoardPowerConnector" ToRole="PowerSupplyMotherBoardConnector" />
+          <NavigationProperty Name="MotherBoardPowerPlugs" Relationship="ConfiguratorPCModel.MotherBoardConnectorPlug" FromRole="MotherBoardPowerConnector" ToRole="MotherBoardPowerPlug" />
+        </EntityType>
+        <EntityType Name="MotherBoardPowerPlug">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MotherBoards" Relationship="ConfiguratorPCModel.FK_MotherBoard_MotherBoardPowerPlug" FromRole="MotherBoardPowerPlug" ToRole="MotherBoard" />
+          <NavigationProperty Name="MotherBoardPowerConnectors" Relationship="ConfiguratorPCModel.MotherBoardConnectorPlug" FromRole="MotherBoardPowerPlug" ToRole="MotherBoardPowerConnector" />
+        </EntityType>
+        <EntityType Name="NetworkAdapterChipset">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MotherBoards" Relationship="ConfiguratorPCModel.FK_MotherBoard_NetworkAdapterChipset" FromRole="NetworkAdapterChipset" ToRole="MotherBoard" />
+        </EntityType>
         <EntityType Name="PCIEController">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MotherBoards" Relationship="ConfiguratorPCModel.FK_MotherBoard_PCIEController" FromRole="PCIEController" ToRole="MotherBoard" />
           <NavigationProperty Name="Processors" Relationship="ConfiguratorPCModel.FK_Processor_PCIEController" FromRole="PCIEController" ToRole="Processor" />
+          <NavigationProperty Name="VideoCards" Relationship="ConfiguratorPCModel.FK_VideoCard_PCIEController" FromRole="PCIEController" ToRole="VideoCard" />
         </EntityType>
         <EntityType Name="PowerSupply">
           <Key>
@@ -1623,13 +2671,8 @@
           <Property Name="IdComponent" Type="Int32" Nullable="false" />
           <Property Name="IdPowerSupplyFormFactor" Type="Int32" Nullable="false" />
           <Property Name="Power" Type="Int16" Nullable="false" />
-          <Property Name="VideoCardSupplyQuantity" Type="Byte" Nullable="false" />
-          <Property Name="ProcessorSupplyQuantity" Type="Byte" Nullable="false" />
-          <Property Name="SATASupplyQuantity" Type="Byte" Nullable="false" />
+          <Property Name="SATAConnectorQuantity" Type="Byte" Nullable="false" />
           <Property Name="IdColor" Type="Int32" Nullable="false" />
-          <Property Name="MainPowerConnector" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="ProcessorConnector" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="VideocartConnector" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="CoolerSystem" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
           <Property Name="Length" Type="Int16" Nullable="false" />
           <Property Name="Width" Type="Int16" Nullable="false" />
@@ -1637,6 +2680,9 @@
           <NavigationProperty Name="Color" Relationship="ConfiguratorPCModel.FK_PowerSupply_Color" FromRole="PowerSupply" ToRole="Color" />
           <NavigationProperty Name="Component" Relationship="ConfiguratorPCModel.FK_PowerSupply_Component" FromRole="PowerSupply" ToRole="Component" />
           <NavigationProperty Name="PowerSupplyFormFactor" Relationship="ConfiguratorPCModel.FK_PowerSupply_PowerSupplyFormFactor" FromRole="PowerSupply" ToRole="PowerSupplyFormFactor" />
+          <NavigationProperty Name="PowerSupplyMotherBoardConnectors" Relationship="ConfiguratorPCModel.FK_PowerSupplyMotherBoardConnector_PowerSupply" FromRole="PowerSupply" ToRole="PowerSupplyMotherBoardConnector" />
+          <NavigationProperty Name="PowerSupplyProcessorPowerConnectors" Relationship="ConfiguratorPCModel.FK_PowerSupplyProcessorPowerConnector_PowerSupply" FromRole="PowerSupply" ToRole="PowerSupplyProcessorPowerConnector" />
+          <NavigationProperty Name="PowerSupplyVideoPowerConnectors" Relationship="ConfiguratorPCModel.FK_PowerSupplyVideoPowerConnector_PowerSupply" FromRole="PowerSupply" ToRole="PowerSupplyVideoPowerConnector" />
         </EntityType>
         <EntityType Name="PowerSupplyFormFactor">
           <Key>
@@ -1644,8 +2690,41 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="PowerSupplies" Relationship="ConfiguratorPCModel.FK_PowerSupply_PowerSupplyFormFactor" FromRole="PowerSupplyFormFactor" ToRole="PowerSupply" />
           <NavigationProperty Name="Cases" Relationship="ConfiguratorPCModel.FK_Case_PowerSupplyFormFactor" FromRole="PowerSupplyFormFactor" ToRole="Case" />
+          <NavigationProperty Name="PowerSupplies" Relationship="ConfiguratorPCModel.FK_PowerSupply_PowerSupplyFormFactor" FromRole="PowerSupplyFormFactor" ToRole="PowerSupply" />
+        </EntityType>
+        <EntityType Name="PowerSupplyMotherBoardConnector">
+          <Key>
+            <PropertyRef Name="IdPowerSupply" />
+            <PropertyRef Name="IdMotherBoardPowerConnector" />
+          </Key>
+          <Property Name="IdPowerSupply" Type="Int32" Nullable="false" />
+          <Property Name="IdMotherBoardPowerConnector" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="MotherBoardPowerConnector" Relationship="ConfiguratorPCModel.FK_PowerSupplyMotherBoardConnector_MotherBoardPowerConnector" FromRole="PowerSupplyMotherBoardConnector" ToRole="MotherBoardPowerConnector" />
+          <NavigationProperty Name="PowerSupply" Relationship="ConfiguratorPCModel.FK_PowerSupplyMotherBoardConnector_PowerSupply" FromRole="PowerSupplyMotherBoardConnector" ToRole="PowerSupply" />
+        </EntityType>
+        <EntityType Name="PowerSupplyProcessorPowerConnector">
+          <Key>
+            <PropertyRef Name="IdPowerSupply" />
+            <PropertyRef Name="IdProcessorPowerConnector" />
+          </Key>
+          <Property Name="IdPowerSupply" Type="Int32" Nullable="false" />
+          <Property Name="IdProcessorPowerConnector" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="PowerSupply" Relationship="ConfiguratorPCModel.FK_PowerSupplyProcessorPowerConnector_PowerSupply" FromRole="PowerSupplyProcessorPowerConnector" ToRole="PowerSupply" />
+          <NavigationProperty Name="ProcessorPowerConnector" Relationship="ConfiguratorPCModel.FK_PowerSupplyProcessorPowerConnector_ProcessorPowerConnector" FromRole="PowerSupplyProcessorPowerConnector" ToRole="ProcessorPowerConnector" />
+        </EntityType>
+        <EntityType Name="PowerSupplyVideoPowerConnector">
+          <Key>
+            <PropertyRef Name="IdPowerSupply" />
+            <PropertyRef Name="IdVideoPowerConnector" />
+          </Key>
+          <Property Name="IdPowerSupply" Type="Int32" Nullable="false" />
+          <Property Name="IdVideoPowerConnector" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="PowerSupply" Relationship="ConfiguratorPCModel.FK_PowerSupplyVideoPowerConnector_PowerSupply" FromRole="PowerSupplyVideoPowerConnector" ToRole="PowerSupply" />
+          <NavigationProperty Name="VideoPowerConnector" Relationship="ConfiguratorPCModel.FK_PowerSupplyVideoPowerConnector_VideoPowerConnector" FromRole="PowerSupplyVideoPowerConnector" ToRole="VideoPowerConnector" />
         </EntityType>
         <EntityType Name="Processor">
           <Key>
@@ -1663,7 +2742,7 @@
           <Property Name="EnergyEfficientCoreQuantity" Type="Byte" />
           <Property Name="CacheL2Size" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
           <Property Name="CacheL3Size" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
-          <Property Name="TechPprocess" Type="Byte" Nullable="false" />
+          <Property Name="TechProcess" Type="Byte" Nullable="false" />
           <Property Name="BaseFrequency" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
           <Property Name="MaxFrequency" Type="Decimal" Precision="3" Scale="1" />
           <Property Name="BaseFrequencyEnergyEfficientCore" Type="Decimal" Precision="3" Scale="1" />
@@ -1688,10 +2767,40 @@
             <PropertyRef Name="IdComponent" />
           </Key>
           <Property Name="IdComponent" Type="Int32" Nullable="false" />
+          <Property Name="IdRadiatorMaterial" Type="Int32" Nullable="false" />
+          <Property Name="FanQuantity" Type="Byte" Nullable="false" />
+          <Property Name="FanSize" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="FanConnector" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="MaxRotationSpeed" Type="Int16" Nullable="false" />
+          <Property Name="MinRotationSpeed" Type="Int16" Nullable="false" />
+          <Property Name="AdjustmentRotationSpeed" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaxNoiseLevel" Type="Byte" Nullable="false" />
+          <Property Name="MaxAirflow" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="MaxStaticPressure" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="BearingType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Component" Relationship="ConfiguratorPCModel.FK_ProcessorCooler_Component" FromRole="ProcessorCooler" ToRole="Component" />
           <NavigationProperty Name="Cooler" Relationship="ConfiguratorPCModel.FK_Cooler_ProcessorCooler" FromRole="ProcessorCooler" ToRole="Cooler" />
           <NavigationProperty Name="LiquidCooler" Relationship="ConfiguratorPCModel.FK_LiquidCooler_ProcessorCooler" FromRole="ProcessorCooler" ToRole="LiquidCooler" />
+          <NavigationProperty Name="Material" Relationship="ConfiguratorPCModel.FK_ProcessorCooler_Material" FromRole="ProcessorCooler" ToRole="Material" />
           <NavigationProperty Name="Sockets" Relationship="ConfiguratorPCModel.CoolerCompatibleSocket" FromRole="ProcessorCooler" ToRole="Socket" />
+        </EntityType>
+        <EntityType Name="ProcessorPowerConnector">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PowerSupplyProcessorPowerConnectors" Relationship="ConfiguratorPCModel.FK_PowerSupplyProcessorPowerConnector_ProcessorPowerConnector" FromRole="ProcessorPowerConnector" ToRole="PowerSupplyProcessorPowerConnector" />
+          <NavigationProperty Name="ProcessorPowerPlugs" Relationship="ConfiguratorPCModel.ProcessorConnectorPlug" FromRole="ProcessorPowerConnector" ToRole="ProcessorPowerPlug" />
+        </EntityType>
+        <EntityType Name="ProcessorPowerPlug">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MotherBoards" Relationship="ConfiguratorPCModel.FK_MotherBoard_ProcessorPowerPlug" FromRole="ProcessorPowerPlug" ToRole="MotherBoard" />
+          <NavigationProperty Name="ProcessorPowerConnectors" Relationship="ConfiguratorPCModel.ProcessorConnectorPlug" FromRole="ProcessorPowerPlug" ToRole="ProcessorPowerConnector" />
         </EntityType>
         <EntityType Name="RAM">
           <Key>
@@ -1743,22 +2852,110 @@
           <NavigationProperty Name="Processors" Relationship="ConfiguratorPCModel.FK_Processor_Socket" FromRole="Socket" ToRole="Processor" />
           <NavigationProperty Name="ProcessorCoolers" Relationship="ConfiguratorPCModel.CoolerCompatibleSocket" FromRole="Socket" ToRole="ProcessorCooler" />
         </EntityType>
+        <EntityType Name="SoundAdapterChipset">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MotherBoards" Relationship="ConfiguratorPCModel.FK_MotherBoard_SoundAdapterChipset" FromRole="SoundAdapterChipset" ToRole="MotherBoard" />
+        </EntityType>
         <EntityType Name="SSD">
           <Key>
             <PropertyRef Name="IdDataStorage" />
           </Key>
           <Property Name="IdDataStorage" Type="Int32" Nullable="false" />
+          <Property Name="BitQuantityOnCell" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MemoryStructure" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MinSpeed" Type="Int16" Nullable="false" />
+          <Property Name="MaxSpeed" Type="Int16" Nullable="false" />
+          <Property Name="TotalBytesWritten" Type="Byte" Nullable="false" />
+          <Property Name="DWPD" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
           <NavigationProperty Name="DataStorage" Relationship="ConfiguratorPCModel.FK_SSD_DataStorage" FromRole="SSD" ToRole="DataStorage" />
           <NavigationProperty Name="M2SSD" Relationship="ConfiguratorPCModel.FK_M2SSD_SSD" FromRole="SSD" ToRole="M2SSD" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="VideoCard">
           <Key>
             <PropertyRef Name="IdComponent" />
           </Key>
           <Property Name="IdComponent" Type="Int32" Nullable="false" />
-          <Property Name="Length" Type="Int32" Nullable="false" />
-          <Property Name="ExtraPowerSupply" Type="Boolean" Nullable="false" />
+          <Property Name="Length" Type="Int16" Nullable="false" />
+          <Property Name="IdGraphicProcessor" Type="Int32" Nullable="false" />
+          <Property Name="IdMicroarchitecture" Type="Int32" Nullable="false" />
+          <Property Name="TechProcess" Type="Byte" Nullable="false" />
+          <Property Name="VideoMemorySize" Type="Byte" Nullable="false" />
+          <Property Name="IdVideoMemoryType" Type="Int32" Nullable="false" />
+          <Property Name="MemoryBusBitRate" Type="Int16" Nullable="false" />
+          <Property Name="MaxMemoryBandwidth" Type="Decimal" Nullable="false" Precision="4" Scale="1" />
+          <Property Name="EffectiveMemoryFrequency" Type="Int16" Nullable="false" />
+          <Property Name="VideoChipFrequency" Type="Int16" Nullable="false" />
+          <Property Name="ALUQuantity" Type="Byte" Nullable="false" />
+          <Property Name="TextureBlockQuantity" Type="Byte" Nullable="false" />
+          <Property Name="RasterizationBlockQuantity" Type="Byte" Nullable="false" />
+          <Property Name="RayTracingSupport" Type="Boolean" Nullable="false" />
+          <Property Name="MaxMonitorQuantity" Type="Byte" Nullable="false" />
+          <Property Name="IdPCIEController" Type="Int32" Nullable="false" />
+          <Property Name="PowerSupply" Type="Int16" Nullable="false" />
+          <Property Name="CoolerType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FanType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FanQuantity" Type="Byte" />
+          <Property Name="ExpansionSlotSize" Type="Byte" Nullable="false" />
+          <Property Name="Width" Type="Int16" Nullable="false" />
+          <Property Name="Thickness" Type="Int16" Nullable="false" />
+          <Property Name="Mass" Type="Int16" Nullable="false" />
+          <Property Name="IdVideoCardPowerPlug" Type="Int32" />
           <NavigationProperty Name="Component" Relationship="ConfiguratorPCModel.FK_VideoCard_Component" FromRole="VideoCard" ToRole="Component" />
+          <NavigationProperty Name="GraphicProcessor" Relationship="ConfiguratorPCModel.FK_VideoCard_GraphicProcessor" FromRole="VideoCard" ToRole="GraphicProcessor" />
+          <NavigationProperty Name="Microarchitecture" Relationship="ConfiguratorPCModel.FK_VideoCard_Microarchitecture" FromRole="VideoCard" ToRole="Microarchitecture" />
+          <NavigationProperty Name="PCIEController" Relationship="ConfiguratorPCModel.FK_VideoCard_PCIEController" FromRole="VideoCard" ToRole="PCIEController" />
+          <NavigationProperty Name="VideoCardPowerPlug" Relationship="ConfiguratorPCModel.FK_VideoCard_VideoCardPowerPlug" FromRole="VideoCard" ToRole="VideoCardPowerPlug" />
+          <NavigationProperty Name="VideoMemoryType" Relationship="ConfiguratorPCModel.FK_VideoCard_VideoMemoryType" FromRole="VideoCard" ToRole="VideoMemoryType" />
+          <NavigationProperty Name="VideoOutputs" Relationship="ConfiguratorPCModel.VideoCardOutput" FromRole="VideoCard" ToRole="VideoOutput" />
+        </EntityType>
+        <EntityType Name="VideoCardPowerPlug">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="VideoCards" Relationship="ConfiguratorPCModel.FK_VideoCard_VideoCardPowerPlug" FromRole="VideoCardPowerPlug" ToRole="VideoCard" />
+          <NavigationProperty Name="VideoPowerConnectors" Relationship="ConfiguratorPCModel.VideoCardConnectorPlug" FromRole="VideoCardPowerPlug" ToRole="VideoPowerConnector" />
+        </EntityType>
+        <EntityType Name="VideoMemoryType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="VideoCards" Relationship="ConfiguratorPCModel.FK_VideoCard_VideoMemoryType" FromRole="VideoMemoryType" ToRole="VideoCard" />
+        </EntityType>
+        <EntityType Name="VideoOutput">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MotherBoards" Relationship="ConfiguratorPCModel.MotherBoardVideoOutput" FromRole="VideoOutput" ToRole="MotherBoard" />
+          <NavigationProperty Name="VideoCards" Relationship="ConfiguratorPCModel.VideoCardOutput" FromRole="VideoOutput" ToRole="VideoCard" />
+        </EntityType>
+        <EntityType Name="VideoPowerConnector">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PowerSupplyVideoPowerConnectors" Relationship="ConfiguratorPCModel.FK_PowerSupplyVideoPowerConnector_VideoPowerConnector" FromRole="VideoPowerConnector" ToRole="PowerSupplyVideoPowerConnector" />
+          <NavigationProperty Name="VideoCardPowerPlugs" Relationship="ConfiguratorPCModel.VideoCardConnectorPlug" FromRole="VideoPowerConnector" ToRole="VideoCardPowerPlug" />
         </EntityType>
         <Association Name="FK_Case_CaseSize">
           <End Type="ConfiguratorPCModel.CaseSize" Role="CaseSize" Multiplicity="1" />
@@ -1781,6 +2978,18 @@
             </Principal>
             <Dependent Role="Case">
               <PropertyRef Name="IdMainColor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Case_Component">
+          <End Type="ConfiguratorPCModel.Component" Role="Component" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.Case" Role="Case" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Component">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Case">
+              <PropertyRef Name="IdComponent" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1820,6 +3029,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Case_PowerSupplyFormFactor">
+          <End Type="ConfiguratorPCModel.PowerSupplyFormFactor" Role="PowerSupplyFormFactor" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.Case" Role="Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PowerSupplyFormFactor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Case">
+              <PropertyRef Name="IdPowerSupplyFormFactor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CaseConnector_Case">
           <End Type="ConfiguratorPCModel.Case" Role="Case" Multiplicity="1" />
           <End Type="ConfiguratorPCModel.CaseConnector" Role="CaseConnector" Multiplicity="*" />
@@ -1841,6 +3062,18 @@
             </Principal>
             <Dependent Role="CaseConnector">
               <PropertyRef Name="IdConnector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoard_Chipset">
+          <End Type="ConfiguratorPCModel.Chipset" Role="Chipset" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.MotherBoard" Role="MotherBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chipset">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdChipset" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1952,6 +3185,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MotherBoardConnector_Connector">
+          <End Type="ConfiguratorPCModel.Connector" Role="Connector" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.MotherBoardConnector" Role="MotherBoardConnector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Connector">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoardConnector">
+              <PropertyRef Name="IdConnector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cooler_Material">
+          <End Type="ConfiguratorPCModel.Material" Role="Material" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.Cooler" Role="Cooler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cooler">
+              <PropertyRef Name="IdBaseMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Cooler_ProcessorCooler">
           <End Type="ConfiguratorPCModel.ProcessorCooler" Role="ProcessorCooler" Multiplicity="1" />
           <End Type="ConfiguratorPCModel.Cooler" Role="Cooler" Multiplicity="0..1" />
@@ -2000,6 +3257,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_VideoCard_GraphicProcessor">
+          <End Type="ConfiguratorPCModel.GraphicProcessor" Role="GraphicProcessor" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GraphicProcessor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoCard">
+              <PropertyRef Name="IdGraphicProcessor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Processor_GraphicsProcessingUnit">
           <End Type="ConfiguratorPCModel.GraphicsProcessingUnit" Role="GraphicsProcessingUnit" Multiplicity="0..1" />
           <End Type="ConfiguratorPCModel.Processor" Role="Processor" Multiplicity="*" />
@@ -2009,6 +3278,18 @@
             </Principal>
             <Dependent Role="Processor">
               <PropertyRef Name="IdGraphicsProcessingUnit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LiquidCooler_Material">
+          <End Type="ConfiguratorPCModel.Material" Role="Material" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.LiquidCooler" Role="LiquidCooler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LiquidCooler">
+              <PropertyRef Name="IdWaterblockMaterial" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2072,6 +3353,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProcessorCooler_Material">
+          <End Type="ConfiguratorPCModel.Material" Role="Material" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.ProcessorCooler" Role="ProcessorCooler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProcessorCooler">
+              <PropertyRef Name="IdRadiatorMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCard_Microarchitecture">
+          <End Type="ConfiguratorPCModel.Microarchitecture" Role="Microarchitecture" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Microarchitecture">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoCard">
+              <PropertyRef Name="IdMicroarchitecture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MotherBoard_MotherBoardFormFactor">
           <End Type="ConfiguratorPCModel.MotherBoardFormFactor" Role="MotherBoardFormFactor" Multiplicity="1" />
           <End Type="ConfiguratorPCModel.MotherBoard" Role="MotherBoard" Multiplicity="*" />
@@ -2081,6 +3386,54 @@
             </Principal>
             <Dependent Role="MotherBoard">
               <PropertyRef Name="IdMotherBoardFormFactor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoard_MotherBoardPowerPlug">
+          <End Type="ConfiguratorPCModel.MotherBoardPowerPlug" Role="MotherBoardPowerPlug" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.MotherBoard" Role="MotherBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MotherBoardPowerPlug">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdMotherBoardPowerPlug" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoard_NetworkAdapterChipset">
+          <End Type="ConfiguratorPCModel.NetworkAdapterChipset" Role="NetworkAdapterChipset" Multiplicity="0..1" />
+          <End Type="ConfiguratorPCModel.MotherBoard" Role="MotherBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NetworkAdapterChipset">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdNetworkAdapterChipset" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoard_PCIEController">
+          <End Type="ConfiguratorPCModel.PCIEController" Role="PCIEController" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.MotherBoard" Role="MotherBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PCIEController">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdPCIControllerVersion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoard_ProcessorPowerPlug">
+          <End Type="ConfiguratorPCModel.ProcessorPowerPlug" Role="ProcessorPowerPlug" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.MotherBoard" Role="MotherBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessorPowerPlug">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdProcessorPowerPlug" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2120,6 +3473,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MotherBoard_SoundAdapterChipset">
+          <End Type="ConfiguratorPCModel.SoundAdapterChipset" Role="SoundAdapterChipset" Multiplicity="0..1" />
+          <End Type="ConfiguratorPCModel.MotherBoard" Role="MotherBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SoundAdapterChipset">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MotherBoard">
+              <PropertyRef Name="IdSoundAdapterChipset" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotherBoardConnector_MotherBoard">
+          <End Type="ConfiguratorPCModel.MotherBoard" Role="MotherBoard" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.MotherBoardConnector" Role="MotherBoardConnector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MotherBoard">
+              <PropertyRef Name="IdComponent" />
+            </Principal>
+            <Dependent Role="MotherBoardConnector">
+              <PropertyRef Name="IdMotherBoard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MotherBoardM2Key_MotherBoard">
           <End Type="ConfiguratorPCModel.MotherBoard" Role="MotherBoard" Multiplicity="1" />
           <End Type="ConfiguratorPCModel.MotherBoardM2Key" Role="MotherBoardM2Key" Multiplicity="*" />
@@ -2129,6 +3506,18 @@
             </Principal>
             <Dependent Role="MotherBoardM2Key">
               <PropertyRef Name="IdMotherBoard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PowerSupplyMotherBoardConnector_MotherBoardPowerConnector">
+          <End Type="ConfiguratorPCModel.MotherBoardPowerConnector" Role="MotherBoardPowerConnector" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.PowerSupplyMotherBoardConnector" Role="PowerSupplyMotherBoardConnector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MotherBoardPowerConnector">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PowerSupplyMotherBoardConnector">
+              <PropertyRef Name="IdMotherBoardPowerConnector" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2144,6 +3533,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_VideoCard_PCIEController">
+          <End Type="ConfiguratorPCModel.PCIEController" Role="PCIEController" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PCIEController">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoCard">
+              <PropertyRef Name="IdPCIEController" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PowerSupply_PowerSupplyFormFactor">
           <End Type="ConfiguratorPCModel.PowerSupplyFormFactor" Role="PowerSupplyFormFactor" Multiplicity="1" />
           <End Type="ConfiguratorPCModel.PowerSupply" Role="PowerSupply" Multiplicity="*" />
@@ -2153,6 +3554,66 @@
             </Principal>
             <Dependent Role="PowerSupply">
               <PropertyRef Name="IdPowerSupplyFormFactor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PowerSupplyMotherBoardConnector_PowerSupply">
+          <End Type="ConfiguratorPCModel.PowerSupply" Role="PowerSupply" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.PowerSupplyMotherBoardConnector" Role="PowerSupplyMotherBoardConnector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PowerSupply">
+              <PropertyRef Name="IdComponent" />
+            </Principal>
+            <Dependent Role="PowerSupplyMotherBoardConnector">
+              <PropertyRef Name="IdPowerSupply" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PowerSupplyProcessorPowerConnector_PowerSupply">
+          <End Type="ConfiguratorPCModel.PowerSupply" Role="PowerSupply" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.PowerSupplyProcessorPowerConnector" Role="PowerSupplyProcessorPowerConnector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PowerSupply">
+              <PropertyRef Name="IdComponent" />
+            </Principal>
+            <Dependent Role="PowerSupplyProcessorPowerConnector">
+              <PropertyRef Name="IdPowerSupply" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PowerSupplyVideoPowerConnector_PowerSupply">
+          <End Type="ConfiguratorPCModel.PowerSupply" Role="PowerSupply" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.PowerSupplyVideoPowerConnector" Role="PowerSupplyVideoPowerConnector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PowerSupply">
+              <PropertyRef Name="IdComponent" />
+            </Principal>
+            <Dependent Role="PowerSupplyVideoPowerConnector">
+              <PropertyRef Name="IdPowerSupply" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PowerSupplyProcessorPowerConnector_ProcessorPowerConnector">
+          <End Type="ConfiguratorPCModel.ProcessorPowerConnector" Role="ProcessorPowerConnector" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.PowerSupplyProcessorPowerConnector" Role="PowerSupplyProcessorPowerConnector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessorPowerConnector">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PowerSupplyProcessorPowerConnector">
+              <PropertyRef Name="IdProcessorPowerConnector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PowerSupplyVideoPowerConnector_VideoPowerConnector">
+          <End Type="ConfiguratorPCModel.VideoPowerConnector" Role="VideoPowerConnector" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.PowerSupplyVideoPowerConnector" Role="PowerSupplyVideoPowerConnector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoPowerConnector">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PowerSupplyVideoPowerConnector">
+              <PropertyRef Name="IdVideoPowerConnector" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2192,6 +3653,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_VideoCard_VideoCardPowerPlug">
+          <End Type="ConfiguratorPCModel.VideoCardPowerPlug" Role="VideoCardPowerPlug" Multiplicity="0..1" />
+          <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoCardPowerPlug">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoCard">
+              <PropertyRef Name="IdVideoCardPowerPlug" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCard_VideoMemoryType">
+          <End Type="ConfiguratorPCModel.VideoMemoryType" Role="VideoMemoryType" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoMemoryType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoCard">
+              <PropertyRef Name="IdVideoMemoryType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="CaseCompatibleMotherBoardFormFactor">
           <End Type="ConfiguratorPCModel.Case" Role="Case" Multiplicity="*" />
           <End Type="ConfiguratorPCModel.MotherBoardFormFactor" Role="MotherBoardFormFactor" Multiplicity="*" />
@@ -2208,33 +3693,29 @@
           <End Type="ConfiguratorPCModel.Core" Role="Core" Multiplicity="*" />
           <End Type="ConfiguratorPCModel.MotherBoard" Role="MotherBoard" Multiplicity="*" />
         </Association>
+        <Association Name="MotherBoardConnectorPlug">
+          <End Type="ConfiguratorPCModel.MotherBoardPowerConnector" Role="MotherBoardPowerConnector" Multiplicity="*" />
+          <End Type="ConfiguratorPCModel.MotherBoardPowerPlug" Role="MotherBoardPowerPlug" Multiplicity="*" />
+        </Association>
+        <Association Name="MotherBoardVideoOutput">
+          <End Type="ConfiguratorPCModel.MotherBoard" Role="MotherBoard" Multiplicity="*" />
+          <End Type="ConfiguratorPCModel.VideoOutput" Role="VideoOutput" Multiplicity="*" />
+        </Association>
         <Association Name="ProcessorCompatibleMemoryType">
           <End Type="ConfiguratorPCModel.Processor" Role="Processor" Multiplicity="*" />
           <End Type="ConfiguratorPCModel.RAMType" Role="RAMType" Multiplicity="*" />
         </Association>
-        <Association Name="FK_Case_Component">
-          <End Type="ConfiguratorPCModel.Component" Role="Component" Multiplicity="1" />
-          <End Type="ConfiguratorPCModel.Case" Role="Case" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Component">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Case">
-              <PropertyRef Name="IdComponent" />
-            </Dependent>
-          </ReferentialConstraint>
+        <Association Name="ProcessorConnectorPlug">
+          <End Type="ConfiguratorPCModel.ProcessorPowerConnector" Role="ProcessorPowerConnector" Multiplicity="*" />
+          <End Type="ConfiguratorPCModel.ProcessorPowerPlug" Role="ProcessorPowerPlug" Multiplicity="*" />
         </Association>
-        <Association Name="FK_Case_PowerSupplyFormFactor">
-          <End Type="ConfiguratorPCModel.PowerSupplyFormFactor" Role="PowerSupplyFormFactor" Multiplicity="1" />
-          <End Type="ConfiguratorPCModel.Case" Role="Case" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PowerSupplyFormFactor">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Case">
-              <PropertyRef Name="IdPowerSupplyFormFactor" />
-            </Dependent>
-          </ReferentialConstraint>
+        <Association Name="VideoCardConnectorPlug">
+          <End Type="ConfiguratorPCModel.VideoCardPowerPlug" Role="VideoCardPowerPlug" Multiplicity="*" />
+          <End Type="ConfiguratorPCModel.VideoPowerConnector" Role="VideoPowerConnector" Multiplicity="*" />
+        </Association>
+        <Association Name="VideoCardOutput">
+          <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="*" />
+          <End Type="ConfiguratorPCModel.VideoOutput" Role="VideoOutput" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -2285,6 +3766,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Chipsets">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.Chipset">
+              <MappingFragment StoreEntitySet="Chipset">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Colors">
             <EntityTypeMapping TypeName="ConfiguratorPCModel.Color">
               <MappingFragment StoreEntitySet="Color">
@@ -2315,6 +3804,14 @@
           <EntitySetMapping Name="Coolers">
             <EntityTypeMapping TypeName="ConfiguratorPCModel.Cooler">
               <MappingFragment StoreEntitySet="Cooler">
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="NickelCoating" ColumnName="NickelCoating" />
+                <ScalarProperty Name="TermPipeDiameter" ColumnName="TermPipeDiameter" />
+                <ScalarProperty Name="TermPipeQiantity" ColumnName="TermPipeQiantity" />
+                <ScalarProperty Name="IdBaseMaterial" ColumnName="IdBaseMaterial" />
+                <ScalarProperty Name="ConstructionType" ColumnName="ConstructionType" />
+                <ScalarProperty Name="DissipationPower" ColumnName="DissipationPower" />
                 <ScalarProperty Name="Heigth" ColumnName="Heigth" />
                 <ScalarProperty Name="IdProcessorCooler" ColumnName="IdProcessorCooler" />
               </MappingFragment>
@@ -2331,8 +3828,21 @@
           <EntitySetMapping Name="DataStorages">
             <EntityTypeMapping TypeName="ConfiguratorPCModel.DataStorage">
               <MappingFragment StoreEntitySet="DataStorage">
+                <ScalarProperty Name="EnergyUse" ColumnName="EnergyUse" />
+                <ScalarProperty Name="Mass" ColumnName="Mass" />
+                <ScalarProperty Name="Thickness" ColumnName="Thickness" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
                 <ScalarProperty Name="MemorySize" ColumnName="MemorySize" />
                 <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GraphicProcessors">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.GraphicProcessor">
+              <MappingFragment StoreEntitySet="GraphicProcessor">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2350,6 +3860,13 @@
           <EntitySetMapping Name="HDDs">
             <EntityTypeMapping TypeName="ConfiguratorPCModel.HDD">
               <MappingFragment StoreEntitySet="HDD">
+                <ScalarProperty Name="MaxTemp" ColumnName="MaxTemp" />
+                <ScalarProperty Name="PassiveEnergyUse" ColumnName="PassiveEnergyUse" />
+                <ScalarProperty Name="PassiveNoiseLevel" ColumnName="PassiveNoiseLevel" />
+                <ScalarProperty Name="ActiveNoiseLevel" ColumnName="ActiveNoiseLevel" />
+                <ScalarProperty Name="WriteTech" ColumnName="WriteTech" />
+                <ScalarProperty Name="RotationSpeed" ColumnName="RotationSpeed" />
+                <ScalarProperty Name="CacheSize" ColumnName="CacheSize" />
                 <ScalarProperty Name="FormFactor" ColumnName="FormFactor" />
                 <ScalarProperty Name="IdDataStorage" ColumnName="IdDataStorage" />
               </MappingFragment>
@@ -2366,6 +3883,17 @@
           <EntitySetMapping Name="LiquidCoolers">
             <EntityTypeMapping TypeName="ConfiguratorPCModel.LiquidCooler">
               <MappingFragment StoreEntitySet="LiquidCooler">
+                <ScalarProperty Name="TransparentPipe" ColumnName="TransparentPipe" />
+                <ScalarProperty Name="PipeLength" ColumnName="PipeLength" />
+                <ScalarProperty Name="PumpConnector" ColumnName="PumpConnector" />
+                <ScalarProperty Name="PumpRotationSpeed" ColumnName="PumpRotationSpeed" />
+                <ScalarProperty Name="RadiatorThickness" ColumnName="RadiatorThickness" />
+                <ScalarProperty Name="RadiatorWidth" ColumnName="RadiatorWidth" />
+                <ScalarProperty Name="RadiatorLength" ColumnName="RadiatorLength" />
+                <ScalarProperty Name="RadiatorMountingSize" ColumnName="RadiatorMountingSize" />
+                <ScalarProperty Name="WaterblockSize" ColumnName="WaterblockSize" />
+                <ScalarProperty Name="IdWaterblockMaterial" ColumnName="IdWaterblockMaterial" />
+                <ScalarProperty Name="Serviced" ColumnName="Serviced" />
                 <ScalarProperty Name="IdProcessorCooler" ColumnName="IdProcessorCooler" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2410,12 +3938,38 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Microarchitectures">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.Microarchitecture">
+              <MappingFragment StoreEntitySet="Microarchitecture">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="MotherBoards">
             <EntityTypeMapping TypeName="ConfiguratorPCModel.MotherBoard">
               <MappingFragment StoreEntitySet="MotherBoard">
+                <ScalarProperty Name="IdProcessorPowerPlug" ColumnName="IdProcessorPowerPlug" />
+                <ScalarProperty Name="IdMotherBoardPowerPlug" ColumnName="IdMotherBoardPowerPlug" />
+                <ScalarProperty Name="PowerPhaseQuantity" ColumnName="PowerPhaseQuantity" />
+                <ScalarProperty Name="HasBluetooth" ColumnName="HasBluetooth" />
+                <ScalarProperty Name="HasWiFi" ColumnName="HasWiFi" />
+                <ScalarProperty Name="NetworkAdapterSpeed" ColumnName="NetworkAdapterSpeed" />
+                <ScalarProperty Name="IdNetworkAdapterChipset" ColumnName="IdNetworkAdapterChipset" />
+                <ScalarProperty Name="IdSoundAdapterChipset" ColumnName="IdSoundAdapterChipset" />
+                <ScalarProperty Name="SoundSchema" ColumnName="SoundSchema" />
+                <ScalarProperty Name="InterfaceLPT" ColumnName="InterfaceLPT" />
+                <ScalarProperty Name="M2KeyE" ColumnName="M2KeyE" />
+                <ScalarProperty Name="CoolerPowerSupply" ColumnName="CoolerPowerSupply" />
+                <ScalarProperty Name="AnalogAudioOutputQuantity" ColumnName="AnalogAudioOutputQuantity" />
+                <ScalarProperty Name="RJ45Quantity" ColumnName="RJ45Quantity" />
+                <ScalarProperty Name="IdPCIControllerVersion" ColumnName="IdPCIControllerVersion" />
+                <ScalarProperty Name="MaxRAMFrequency" ColumnName="MaxRAMFrequency" />
+                <ScalarProperty Name="IdChipset" ColumnName="IdChipset" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
                 <ScalarProperty Name="M2Quantity" ColumnName="M2Quantity" />
                 <ScalarProperty Name="SATAQuantity" ColumnName="SATAQuantity" />
-                <ScalarProperty Name="ProcessorSupplyQuantity" ColumnName="ProcessorSupplyQuantity" />
                 <ScalarProperty Name="PCIEx16Quantity" ColumnName="PCIEx16Quantity" />
                 <ScalarProperty Name="RAMQuantity" ColumnName="RAMQuantity" />
                 <ScalarProperty Name="MaxRAMSize" ColumnName="MaxRAMSize" />
@@ -2424,6 +3978,15 @@
                 <ScalarProperty Name="IdSocket" ColumnName="IdSocket" />
                 <ScalarProperty Name="IdMotherBoardFormFactor" ColumnName="IdMotherBoardFormFactor" />
                 <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MotherBoardConnectors">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.MotherBoardConnector">
+              <MappingFragment StoreEntitySet="MotherBoardConnector">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IdConnector" ColumnName="IdConnector" />
+                <ScalarProperty Name="IdMotherBoard" ColumnName="IdMotherBoard" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2444,6 +4007,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MotherBoardPowerConnectors">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.MotherBoardPowerConnector">
+              <MappingFragment StoreEntitySet="MotherBoardPowerConnector">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MotherBoardPowerPlugs">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.MotherBoardPowerPlug">
+              <MappingFragment StoreEntitySet="MotherBoardPowerPlug">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NetworkAdapterChipsets">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.NetworkAdapterChipset">
+              <MappingFragment StoreEntitySet="NetworkAdapterChipset">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PCIEControllers">
             <EntityTypeMapping TypeName="ConfiguratorPCModel.PCIEController">
               <MappingFragment StoreEntitySet="PCIEController">
@@ -2459,13 +4046,8 @@
                 <ScalarProperty Name="Width" ColumnName="Width" />
                 <ScalarProperty Name="Length" ColumnName="Length" />
                 <ScalarProperty Name="CoolerSystem" ColumnName="CoolerSystem" />
-                <ScalarProperty Name="VideocartConnector" ColumnName="VideocartConnector" />
-                <ScalarProperty Name="ProcessorConnector" ColumnName="ProcessorConnector" />
-                <ScalarProperty Name="MainPowerConnector" ColumnName="MainPowerConnector" />
                 <ScalarProperty Name="IdColor" ColumnName="IdColor" />
-                <ScalarProperty Name="SATASupplyQuantity" ColumnName="SATASupplyQuantity" />
-                <ScalarProperty Name="ProcessorSupplyQuantity" ColumnName="ProcessorSupplyQuantity" />
-                <ScalarProperty Name="VideoCardSupplyQuantity" ColumnName="VideoCardSupplyQuantity" />
+                <ScalarProperty Name="SATAConnectorQuantity" ColumnName="SATAConnectorQuantity" />
                 <ScalarProperty Name="Power" ColumnName="Power" />
                 <ScalarProperty Name="IdPowerSupplyFormFactor" ColumnName="IdPowerSupplyFormFactor" />
                 <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
@@ -2477,6 +4059,33 @@
               <MappingFragment StoreEntitySet="PowerSupplyFormFactor">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PowerSupplyMotherBoardConnectors">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.PowerSupplyMotherBoardConnector">
+              <MappingFragment StoreEntitySet="PowerSupplyMotherBoardConnector">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IdMotherBoardPowerConnector" ColumnName="IdMotherBoardPowerConnector" />
+                <ScalarProperty Name="IdPowerSupply" ColumnName="IdPowerSupply" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PowerSupplyProcessorPowerConnectors">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.PowerSupplyProcessorPowerConnector">
+              <MappingFragment StoreEntitySet="PowerSupplyProcessorPowerConnector">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IdProcessorPowerConnector" ColumnName="IdProcessorPowerConnector" />
+                <ScalarProperty Name="IdPowerSupply" ColumnName="IdPowerSupply" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PowerSupplyVideoPowerConnectors">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.PowerSupplyVideoPowerConnector">
+              <MappingFragment StoreEntitySet="PowerSupplyVideoPowerConnector">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IdVideoPowerConnector" ColumnName="IdVideoPowerConnector" />
+                <ScalarProperty Name="IdPowerSupply" ColumnName="IdPowerSupply" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2495,7 +4104,7 @@
                 <ScalarProperty Name="BaseFrequencyEnergyEfficientCore" ColumnName="BaseFrequencyEnergyEfficientCore" />
                 <ScalarProperty Name="MaxFrequency" ColumnName="MaxFrequency" />
                 <ScalarProperty Name="BaseFrequency" ColumnName="BaseFrequency" />
-                <ScalarProperty Name="TechPprocess" ColumnName="TechPprocess" />
+                <ScalarProperty Name="TechProcess" ColumnName="TechProcess" />
                 <ScalarProperty Name="CacheL3Size" ColumnName="CacheL3Size" />
                 <ScalarProperty Name="CacheL2Size" ColumnName="CacheL2Size" />
                 <ScalarProperty Name="EnergyEfficientCoreQuantity" ColumnName="EnergyEfficientCoreQuantity" />
@@ -2514,7 +4123,34 @@
           <EntitySetMapping Name="ProcessorCoolers">
             <EntityTypeMapping TypeName="ConfiguratorPCModel.ProcessorCooler">
               <MappingFragment StoreEntitySet="ProcessorCooler">
+                <ScalarProperty Name="BearingType" ColumnName="BearingType" />
+                <ScalarProperty Name="MaxStaticPressure" ColumnName="MaxStaticPressure" />
+                <ScalarProperty Name="MaxAirflow" ColumnName="MaxAirflow" />
+                <ScalarProperty Name="MaxNoiseLevel" ColumnName="MaxNoiseLevel" />
+                <ScalarProperty Name="AdjustmentRotationSpeed" ColumnName="AdjustmentRotationSpeed" />
+                <ScalarProperty Name="MinRotationSpeed" ColumnName="MinRotationSpeed" />
+                <ScalarProperty Name="MaxRotationSpeed" ColumnName="MaxRotationSpeed" />
+                <ScalarProperty Name="FanConnector" ColumnName="FanConnector" />
+                <ScalarProperty Name="FanSize" ColumnName="FanSize" />
+                <ScalarProperty Name="FanQuantity" ColumnName="FanQuantity" />
+                <ScalarProperty Name="IdRadiatorMaterial" ColumnName="IdRadiatorMaterial" />
                 <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcessorPowerConnectors">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.ProcessorPowerConnector">
+              <MappingFragment StoreEntitySet="ProcessorPowerConnector">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcessorPowerPlugs">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.ProcessorPowerPlug">
+              <MappingFragment StoreEntitySet="ProcessorPowerPlug">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2561,19 +4197,99 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SoundAdapterChipsets">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.SoundAdapterChipset">
+              <MappingFragment StoreEntitySet="SoundAdapterChipset">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SSDs">
             <EntityTypeMapping TypeName="ConfiguratorPCModel.SSD">
               <MappingFragment StoreEntitySet="SSD">
+                <ScalarProperty Name="DWPD" ColumnName="DWPD" />
+                <ScalarProperty Name="TotalBytesWritten" ColumnName="TotalBytesWritten" />
+                <ScalarProperty Name="MaxSpeed" ColumnName="MaxSpeed" />
+                <ScalarProperty Name="MinSpeed" ColumnName="MinSpeed" />
+                <ScalarProperty Name="MemoryStructure" ColumnName="MemoryStructure" />
+                <ScalarProperty Name="BitQuantityOnCell" ColumnName="BitQuantityOnCell" />
                 <ScalarProperty Name="IdDataStorage" ColumnName="IdDataStorage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VideoCards">
             <EntityTypeMapping TypeName="ConfiguratorPCModel.VideoCard">
               <MappingFragment StoreEntitySet="VideoCard">
-                <ScalarProperty Name="ExtraPowerSupply" ColumnName="ExtraPowerSupply" />
+                <ScalarProperty Name="IdVideoCardPowerPlug" ColumnName="IdVideoCardPowerPlug" />
+                <ScalarProperty Name="Mass" ColumnName="Mass" />
+                <ScalarProperty Name="Thickness" ColumnName="Thickness" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="ExpansionSlotSize" ColumnName="ExpansionSlotSize" />
+                <ScalarProperty Name="FanQuantity" ColumnName="FanQuantity" />
+                <ScalarProperty Name="FanType" ColumnName="FanType" />
+                <ScalarProperty Name="CoolerType" ColumnName="CoolerType" />
+                <ScalarProperty Name="PowerSupply" ColumnName="PowerSupply" />
+                <ScalarProperty Name="IdPCIEController" ColumnName="IdPCIEController" />
+                <ScalarProperty Name="MaxMonitorQuantity" ColumnName="MaxMonitorQuantity" />
+                <ScalarProperty Name="RayTracingSupport" ColumnName="RayTracingSupport" />
+                <ScalarProperty Name="RasterizationBlockQuantity" ColumnName="RasterizationBlockQuantity" />
+                <ScalarProperty Name="TextureBlockQuantity" ColumnName="TextureBlockQuantity" />
+                <ScalarProperty Name="ALUQuantity" ColumnName="ALUQuantity" />
+                <ScalarProperty Name="VideoChipFrequency" ColumnName="VideoChipFrequency" />
+                <ScalarProperty Name="EffectiveMemoryFrequency" ColumnName="EffectiveMemoryFrequency" />
+                <ScalarProperty Name="MaxMemoryBandwidth" ColumnName="MaxMemoryBandwidth" />
+                <ScalarProperty Name="MemoryBusBitRate" ColumnName="MemoryBusBitRate" />
+                <ScalarProperty Name="IdVideoMemoryType" ColumnName="IdVideoMemoryType" />
+                <ScalarProperty Name="VideoMemorySize" ColumnName="VideoMemorySize" />
+                <ScalarProperty Name="TechProcess" ColumnName="TechProcess" />
+                <ScalarProperty Name="IdMicroarchitecture" ColumnName="IdMicroarchitecture" />
+                <ScalarProperty Name="IdGraphicProcessor" ColumnName="IdGraphicProcessor" />
                 <ScalarProperty Name="Length" ColumnName="Length" />
                 <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoCardPowerPlugs">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.VideoCardPowerPlug">
+              <MappingFragment StoreEntitySet="VideoCardPowerPlug">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoMemoryTypes">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.VideoMemoryType">
+              <MappingFragment StoreEntitySet="VideoMemoryType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoOutputs">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.VideoOutput">
+              <MappingFragment StoreEntitySet="VideoOutput">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoPowerConnectors">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.VideoPowerConnector">
+              <MappingFragment StoreEntitySet="VideoPowerConnector">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2609,12 +4325,52 @@
               <ScalarProperty Name="Id" ColumnName="IdCore" />
             </EndProperty>
           </AssociationSetMapping>
+          <AssociationSetMapping Name="MotherBoardConnectorPlug" TypeName="ConfiguratorPCModel.MotherBoardConnectorPlug" StoreEntitySet="MotherBoardConnectorPlug">
+            <EndProperty Name="MotherBoardPowerPlug">
+              <ScalarProperty Name="Id" ColumnName="IdMotherBoardPowerPlug" />
+            </EndProperty>
+            <EndProperty Name="MotherBoardPowerConnector">
+              <ScalarProperty Name="Id" ColumnName="IdMotherBoardConnector" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="MotherBoardVideoOutput" TypeName="ConfiguratorPCModel.MotherBoardVideoOutput" StoreEntitySet="MotherBoardVideoOutput">
+            <EndProperty Name="VideoOutput">
+              <ScalarProperty Name="Id" ColumnName="IdVideoOutput" />
+            </EndProperty>
+            <EndProperty Name="MotherBoard">
+              <ScalarProperty Name="IdComponent" ColumnName="IdMotherBoard" />
+            </EndProperty>
+          </AssociationSetMapping>
           <AssociationSetMapping Name="ProcessorCompatibleMemoryType" TypeName="ConfiguratorPCModel.ProcessorCompatibleMemoryType" StoreEntitySet="ProcessorCompatibleMemoryType">
             <EndProperty Name="RAMType">
               <ScalarProperty Name="Id" ColumnName="IdRAMType" />
             </EndProperty>
             <EndProperty Name="Processor">
               <ScalarProperty Name="IdComponent" ColumnName="IdProcessor" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ProcessorConnectorPlug" TypeName="ConfiguratorPCModel.ProcessorConnectorPlug" StoreEntitySet="ProcessorConnectorPlug">
+            <EndProperty Name="ProcessorPowerPlug">
+              <ScalarProperty Name="Id" ColumnName="IdProcessorPowerPlug" />
+            </EndProperty>
+            <EndProperty Name="ProcessorPowerConnector">
+              <ScalarProperty Name="Id" ColumnName="IdProcessorPowerConnector" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="VideoCardConnectorPlug" TypeName="ConfiguratorPCModel.VideoCardConnectorPlug" StoreEntitySet="VideoCardConnectorPlug">
+            <EndProperty Name="VideoPowerConnector">
+              <ScalarProperty Name="Id" ColumnName="IdVideoPowerConnector" />
+            </EndProperty>
+            <EndProperty Name="VideoCardPowerPlug">
+              <ScalarProperty Name="Id" ColumnName="IdVideoCardPowerPlug" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="VideoCardOutput" TypeName="ConfiguratorPCModel.VideoCardOutput" StoreEntitySet="VideoCardOutput">
+            <EndProperty Name="VideoOutput">
+              <ScalarProperty Name="Id" ColumnName="IdVideoOutput" />
+            </EndProperty>
+            <EndProperty Name="VideoCard">
+              <ScalarProperty Name="IdComponent" ColumnName="IdVideoCard" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

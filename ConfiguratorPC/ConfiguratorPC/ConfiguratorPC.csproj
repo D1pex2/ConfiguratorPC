@@ -73,8 +73,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\ComponentButton.xaml.cs">
-      <DependentUpon>ComponentButton.xaml</DependentUpon>
+    <Compile Include="Controls\ComponentConfigurator.xaml.cs">
+      <DependentUpon>ComponentConfigurator.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\NumericTextBox.xaml.cs">
       <DependentUpon>NumericTextBox.xaml</DependentUpon>
@@ -89,6 +89,9 @@
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\CaseSize.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Chipset.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Color.cs">
@@ -127,6 +130,9 @@
     <Compile Include="Data\DataStorage.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\GraphicProcessor.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\GraphicsProcessingUnit.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
@@ -154,13 +160,28 @@
     <Compile Include="Data\Material.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Microarchitecture.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\MotherBoard.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MotherBoardConnector.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\MotherBoardFormFactor.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\MotherBoardM2Key.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MotherBoardPowerConnector.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MotherBoardPowerPlug.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\NetworkAdapterChipset.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\PCIEController.cs">
@@ -172,10 +193,25 @@
     <Compile Include="Data\PowerSupplyFormFactor.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\PowerSupplyMotherBoardConnector.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\PowerSupplyProcessorPowerConnector.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\PowerSupplyVideoPowerConnector.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Processor.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\ProcessorCooler.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\ProcessorPowerConnector.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\ProcessorPowerPlug.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\RAM.cs">
@@ -194,7 +230,7 @@
       <DependentUpon>ConfiguratorWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Controls\ComponentButton.xaml">
+    <Page Include="Controls\ComponentConfigurator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -209,10 +245,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Configurator.cs" />
+    <Compile Include="Data\SoundAdapterChipset.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\SSD.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\sysdiagram.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\VideoCard.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\VideoCardPowerPlug.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\VideoMemoryType.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\VideoOutput.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\VideoPowerConnector.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="FeedBack.cs" />

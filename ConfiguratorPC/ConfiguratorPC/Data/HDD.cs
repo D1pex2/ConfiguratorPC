@@ -16,6 +16,13 @@ namespace ConfiguratorPC.Data
     {
         public int IdDataStorage { get; set; }
         public string FormFactor { get; set; }
+        public short CacheSize { get; set; }
+        public short RotationSpeed { get; set; }
+        public string WriteTech { get; set; }
+        public byte ActiveNoiseLevel { get; set; }
+        public byte PassiveNoiseLevel { get; set; }
+        public decimal PassiveEnergyUse { get; set; }
+        public byte MaxTemp { get; set; }
     
         public virtual DataStorage DataStorage { get; set; }
     }

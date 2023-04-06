@@ -18,6 +18,7 @@ namespace ConfiguratorPC.Data
         public Connector()
         {
             this.CaseConnectors = new HashSet<CaseConnector>();
+            this.MotherBoardConnectors = new HashSet<MotherBoardConnector>();
         }
     
         public int Id { get; set; }
@@ -25,5 +26,7 @@ namespace ConfiguratorPC.Data
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CaseConnector> CaseConnectors { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MotherBoardConnector> MotherBoardConnectors { get; set; }
     }
 }

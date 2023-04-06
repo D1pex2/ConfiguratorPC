@@ -1,0 +1,347 @@
+﻿<UserControl x:Class="ConfiguratorPC.Controls.ComponentConfigurator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ConfiguratorPC.Controls"
+             mc:Ignorable="d" 
+             MinHeight="70" Width="Auto">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" x:Key="TitleTextBlock">
+            <Setter Property="Margin" Value="15,5,5,5"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize"  Value="16"/>
+            <Setter Property="TextWrapping"  Value="Wrap"/>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel>
+        <Border x:Name="ButtonBorder" Style="{StaticResource BorderDefault}" MinHeight="75">
+            <DockPanel Margin="15,0,15,0">
+                <TextBlock x:Name="TypeTextBlock" Text="Тип компонента" MinWidth="150"  VerticalAlignment="Center"/>
+                <Image x:Name="ComponentImage" Height="60" Width="60" Stretch="Uniform"/>
+                <Button x:Name="InteractionButton" Width="100" Content="+ Добавить" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right"
+                        Click="InteractionButton_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5 5 5 5"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}" BorderBrush="#c9c9c9" BorderThickness="1">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF00B3FF"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <TextBlock x:Name="PriceTextBlock" FontWeight="DemiBold" VerticalAlignment="Center"  HorizontalAlignment="Right" DockPanel.Dock="Right"/>
+                <local:NumericUpDown MinValue="1" MaxValue="1" x:Name="NumericRam" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
+                <TextBlock x:Name="NameTextBlock" VerticalAlignment="Center" TextWrapping="Wrap"/>
+            </DockPanel>
+        </Border>
+        <Border CornerRadius="0 0 10 10" Background="#dbdbdb" Style="{StaticResource BorderDefault}" x:Name="ComponentsBorder" IsVisibleChanged="ComponentsBorder_IsVisibleChanged" Visibility="Collapsed" MaxHeight="500">
+            <ScrollViewer x:Name="ComponentsScrollViewer">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="1" VerticalAlignment="Top" Style="{StaticResource BorderDefault}" Margin="5,8,5,5" Height="40">
+                        <DockPanel>
+                            <Image Source="/Resources/search.png" Width="30" Height="30" Margin="15,5,5,5"/>
+                            <TextBox x:Name="SearchTextBox" GotFocus="SearchTextBox_GotFocus" LostFocus="SearchTextBox_LostFocus" Margin="5" VerticalContentAlignment="Center" BorderThickness="0" FontSize="16"/>
+                        </DockPanel>
+                    </Border>
+                    <Border Grid.RowSpan="3" Height="Auto" VerticalAlignment="Top" Style="{StaticResource BorderDefault}" Margin="5,8,5,5">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource TitleTextBlock}" Text="Сортировка" Margin="15,10,5,5"/>
+                            <ComboBox x:Name="SortComboBox" Margin="5" BorderThickness="0">
+                                <ComboBox.ItemContainerStyle>
+                                    <Style TargetType="ComboBoxItem">
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                    </Style>
+                                </ComboBox.ItemContainerStyle>
+                                <ComboBoxItem IsSelected="True" Content="Сначала недорогие"/>
+                                <ComboBoxItem Content="Сначала дорогие"/>
+                            </ComboBox>
+                            <TextBlock Style="{StaticResource TitleTextBlock}" Text="Цена"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <local:NumericTextBox x:Name="MinPriceNumeric" Margin="5" Height="35" ValueChanged="NumericTextBox_ValueChanged"/>
+                                <local:NumericTextBox x:Name="MaxPriceNumeric" Margin="5" Height="35" Grid.Column="1" ValueChanged="NumericTextBox_ValueChanged"/>
+                            </Grid>
+                            <TextBlock Style="{StaticResource TitleTextBlock}" Text="Производитель"/>
+                            <ComboBox x:Name="ManufacturerComboBox" DisplayMemberPath="Name" Margin="5" BorderThickness="0">
+                                <ComboBox.ItemContainerStyle>
+                                    <Style TargetType="ComboBoxItem">
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                    </Style>
+                                </ComboBox.ItemContainerStyle>
+                            </ComboBox>
+                            <StackPanel x:Name="ProcessorFiltersStackPanel" Visibility="Collapsed">
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Сокет"/>
+                                <ComboBox x:Name="ProcSocketComboBox" DisplayMemberPath="Name" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                </ComboBox>
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Интегрированное графическое ядро"/>
+                                <ComboBox x:Name="GraphicsComboBox" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                    <ComboBoxItem IsSelected="True" Content="Выбрать все"/>
+                                    <ComboBoxItem Content="Есть"/>
+                                    <ComboBoxItem Content="Нет"/>
+                                </ComboBox>
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Тип памяти"/>
+                                <ComboBox x:Name="ProcRAMTypesComboBox" DisplayMemberPath="Name" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                </ComboBox>
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Базовая частота процессора (ГГц)"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <local:NumericTextBox x:Name="MinProcFrequencyNumeric" Margin="5" Height="35"/>
+                                    <local:NumericTextBox x:Name="MaxProcFrequencyNumeric" Margin="5" Height="35" Grid.Column="1"/>
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel x:Name="MotherBoardFiltersStackPanel" Visibility="Collapsed">
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Сокет"/>
+                                <ComboBox x:Name="MotherBoardSocketComboBox" DisplayMemberPath="Name" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                </ComboBox>
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Чипсет"/>
+                                <ComboBox x:Name="ChipsetComboBox" DisplayMemberPath="Name" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                </ComboBox>
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Количество слотов памяти"/>
+                                <ComboBox x:Name="MotherBoardRAMQuantityComboBox" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                    <ComboBoxItem IsSelected="True" Content="Выбрать все">
+                                    </ComboBoxItem>
+                                </ComboBox>
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Тип поддерживаемой памяти"/>
+                                <ComboBox x:Name="MotherBoardRAMTypeComboBox" DisplayMemberPath="Name" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                </ComboBox>
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Форм-фактор поддерживаемой памяти"/>
+                                <ComboBox x:Name="MotherBoardRAMFormFactorComboBox" DisplayMemberPath="Name" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                </ComboBox>
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Форм-фактор"/>
+                                <ComboBox x:Name="MotherBoardFormFactorComboBox" DisplayMemberPath="Name" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel x:Name="CaseFiltersStackPanel" Visibility="Collapsed">
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Форм-фактор совместимых плат"/>
+                                <ComboBox x:Name="CaseSupportedMotherBoardFormFactorComboBox" DisplayMemberPath="Name" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                </ComboBox>
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Типоразмер корпуса"/>
+                                <ComboBox x:Name="CaseSizeComboBox" DisplayMemberPath="Name" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                </ComboBox>
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Основной цвет"/>
+                                <ComboBox x:Name="CaseColorComboBox" DisplayMemberPath="Name" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel x:Name="VideoCardFiltersStackPanel" Visibility="Collapsed">
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Графический процессор"/>
+                                <ComboBox x:Name="GraphicProcessorComboBox" DisplayMemberPath="Name" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                </ComboBox>
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Объем видеопамяти (ГБ)"/>
+                                <ComboBox x:Name="VideoMemorySizeComboBox" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                    <ComboBoxItem IsSelected="True" Content="Выбрать все"/>
+                                </ComboBox>
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Тип памяти"/>
+                                <ComboBox x:Name="VideoMemoryTypeComboBox" DisplayMemberPath="Name" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel x:Name="CoolerFiltersStackPanel" Visibility="Collapsed">
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Тип охлаждения"/>
+                                <ComboBox x:Name="CoolerTypeComboBox" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                    <ComboBoxItem IsSelected="True" Content="Выбрать все"/>
+                                    <ComboBoxItem Content="Кулер"/>
+                                    <ComboBoxItem Content="Жидкостное охлаждение"/>
+                                </ComboBox>
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Сокет"/>
+                                <ComboBox x:Name="CoolerSocketComboBox" DisplayMemberPath="Name" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel x:Name="RAMFiltersStackPanel" Visibility="Collapsed">
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Форм-фактор"/>
+                                <ComboBox x:Name="RAMFormFactorComboBox" DisplayMemberPath="Name" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                </ComboBox>
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Тип памяти"/>
+                                <ComboBox x:Name="RAMTypeComboBox" DisplayMemberPath="Name" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                </ComboBox>
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Объем памяти (ГБ)"/>
+                                <ComboBox x:Name="RAMSizeComboBox" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                    <ComboBoxItem IsSelected="True" Content="Выбрать все">
+                                    </ComboBoxItem>
+                                </ComboBox>
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Тактовая частота (МГц)"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <local:NumericTextBox x:Name="MinRAMFrequencyNumeric" Margin="5" Height="35"/>
+                                    <local:NumericTextBox x:Name="MaxRAMFrequencyNumeric" Margin="5" Height="35" Grid.Column="1"/>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource BorderDefault}" VerticalAlignment="Top" Margin="5" Background="#f5f5f5">
+                        <StackPanel>
+                            <ListView x:Name="ComponentsList" ScrollViewer.CanContentScroll="False" BorderThickness="0" HorizontalContentAlignment="Stretch" Background="Transparent"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionMode="Single" PreviewMouseWheel="ComponentsList_PreviewMouseWheel">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border MinHeight="160" Style="{StaticResource BorderDefault}" Margin="5">
+                                            <DockPanel>
+                                                <Image Height="150" Width="150" Margin="5" Source="{Binding Image}" Stretch="Uniform" DockPanel.Dock="Left"/>
+                                                <Button x:Name="AddComponentButton" Click="AddComponentButton_Click" Content="Добавить" Margin="15,0,15,0" HorizontalAlignment="Center" Background="#FF00B3FF" Foreground="White" DockPanel.Dock="Right" VerticalAlignment="Center">
+                                                    <Button.Resources>
+                                                        <Style TargetType="Border">
+                                                            <Setter Property="CornerRadius" Value="5 5 5 5"/>
+                                                        </Style>
+                                                    </Button.Resources>
+                                                </Button>
+                                                <TextBlock Text="{Binding Price, StringFormat={}{0} руб.}" FontWeight="DemiBold" HorizontalAlignment="Center" DockPanel.Dock="Right" VerticalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Name}" TextWrapping="WrapWithOverflow" DockPanel.Dock="Right" VerticalAlignment="Center"/>
+                                            </DockPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListViewItem}">
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                    <ContentPresenter />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                            <TextBlock x:Name="EmptyTextBlock" Visibility="Collapsed" Text="Не найдено ни одного совместимого товара" Margin="15,10,5,5" FontSize="18" FontWeight="DemiBold"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </ScrollViewer>
+        </Border>
+    </StackPanel>
+</UserControl>

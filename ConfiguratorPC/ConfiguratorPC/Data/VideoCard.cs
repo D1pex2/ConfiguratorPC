@@ -14,10 +14,46 @@ namespace ConfiguratorPC.Data
     
     public partial class VideoCard
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public VideoCard()
+        {
+            this.VideoOutputs = new HashSet<VideoOutput>();
+        }
+    
         public int IdComponent { get; set; }
-        public int Length { get; set; }
-        public bool ExtraPowerSupply { get; set; }
+        public short Length { get; set; }
+        public int IdGraphicProcessor { get; set; }
+        public int IdMicroarchitecture { get; set; }
+        public byte TechProcess { get; set; }
+        public byte VideoMemorySize { get; set; }
+        public int IdVideoMemoryType { get; set; }
+        public short MemoryBusBitRate { get; set; }
+        public decimal MaxMemoryBandwidth { get; set; }
+        public short EffectiveMemoryFrequency { get; set; }
+        public short VideoChipFrequency { get; set; }
+        public byte ALUQuantity { get; set; }
+        public byte TextureBlockQuantity { get; set; }
+        public byte RasterizationBlockQuantity { get; set; }
+        public bool RayTracingSupport { get; set; }
+        public byte MaxMonitorQuantity { get; set; }
+        public int IdPCIEController { get; set; }
+        public short PowerSupply { get; set; }
+        public string CoolerType { get; set; }
+        public string FanType { get; set; }
+        public Nullable<byte> FanQuantity { get; set; }
+        public byte ExpansionSlotSize { get; set; }
+        public short Width { get; set; }
+        public short Thickness { get; set; }
+        public short Mass { get; set; }
+        public Nullable<int> IdVideoCardPowerPlug { get; set; }
     
         public virtual Component Component { get; set; }
+        public virtual GraphicProcessor GraphicProcessor { get; set; }
+        public virtual Microarchitecture Microarchitecture { get; set; }
+        public virtual PCIEController PCIEController { get; set; }
+        public virtual VideoCardPowerPlug VideoCardPowerPlug { get; set; }
+        public virtual VideoMemoryType VideoMemoryType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VideoOutput> VideoOutputs { get; set; }
     }
 }

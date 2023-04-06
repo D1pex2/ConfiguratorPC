@@ -16,6 +16,11 @@ namespace ConfiguratorPC.Data
     {
         public int IdComponent { get; set; }
         public short MemorySize { get; set; }
+        public decimal Width { get; set; }
+        public short Length { get; set; }
+        public decimal Thickness { get; set; }
+        public short Mass { get; set; }
+        public decimal EnergyUse { get; set; }
     
         public virtual Component Component { get; set; }
         public virtual HDD HDD { get; set; }

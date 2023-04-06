@@ -14,16 +14,19 @@ namespace ConfiguratorPC.Data
     
     public partial class PowerSupply
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PowerSupply()
+        {
+            this.PowerSupplyMotherBoardConnectors = new HashSet<PowerSupplyMotherBoardConnector>();
+            this.PowerSupplyProcessorPowerConnectors = new HashSet<PowerSupplyProcessorPowerConnector>();
+            this.PowerSupplyVideoPowerConnectors = new HashSet<PowerSupplyVideoPowerConnector>();
+        }
+    
         public int IdComponent { get; set; }
         public int IdPowerSupplyFormFactor { get; set; }
         public short Power { get; set; }
-        public byte VideoCardSupplyQuantity { get; set; }
-        public byte ProcessorSupplyQuantity { get; set; }
-        public byte SATASupplyQuantity { get; set; }
+        public byte SATAConnectorQuantity { get; set; }
         public int IdColor { get; set; }
-        public string MainPowerConnector { get; set; }
-        public string ProcessorConnector { get; set; }
-        public string VideocartConnector { get; set; }
         public string CoolerSystem { get; set; }
         public short Length { get; set; }
         public short Width { get; set; }
@@ -32,5 +35,11 @@ namespace ConfiguratorPC.Data
         public virtual Color Color { get; set; }
         public virtual Component Component { get; set; }
         public virtual PowerSupplyFormFactor PowerSupplyFormFactor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PowerSupplyMotherBoardConnector> PowerSupplyMotherBoardConnectors { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PowerSupplyProcessorPowerConnector> PowerSupplyProcessorPowerConnectors { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PowerSupplyVideoPowerConnector> PowerSupplyVideoPowerConnectors { get; set; }
     }
 }

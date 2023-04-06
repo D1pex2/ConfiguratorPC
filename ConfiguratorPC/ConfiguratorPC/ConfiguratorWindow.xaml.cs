@@ -29,20 +29,20 @@ namespace ConfiguratorPC
         public ConfiguratorWindow()
         {
             InitializeComponent();
-            ProcessorButton.Init(configurator, ComponentType.Processor);
-            MotherBoardButton.Init(configurator, ComponentType.MotherBoard);
-            CaseButton.Init(configurator, ComponentType.Case);
-            VideoCardButton.Init(configurator, ComponentType.Videocard);
-            CoolerButton.Init(configurator, ComponentType.Cooler);
-            RAMButton.Init(configurator, ComponentType.RAM);
-            MemoryButton.Init(configurator, ComponentType.DataStorage);
-            PowerSupplyButton.Init(configurator, ComponentType.PowerSupply);
+            ProcessorConfigurator.Init(configurator, ComponentType.Processor);
+            MotherBoardConfigurator.Init(configurator, ComponentType.MotherBoard);
+            CaseConfigurator.Init(configurator, ComponentType.Case);
+            VideoCardConfigurator.Init(configurator, ComponentType.Videocard);
+            CoolerConfigurator.Init(configurator, ComponentType.Cooler);
+            RAMConfigurator.Init(configurator, ComponentType.RAM);
+            MemoryConfigurator.Init(configurator, ComponentType.DataStorage);
+            PowerSupplyConfigurator.Init(configurator, ComponentType.PowerSupply);
         }
 
-        private void ComponentButton_ListOpened(object sender, EventArgs e)
+        private void ComponentConfigurator_ListOpened(object sender, EventArgs e)
         {
-            List<ComponentButton> componentButtons = ConfigStackPanel.Children.OfType<ComponentButton>().ToList();
-            var componentButton = sender as Controls.ComponentButton;
+            List<ComponentConfigurator> componentButtons = ConfigStackPanel.Children.OfType<ComponentConfigurator>().ToList();
+            var componentButton = sender as ComponentConfigurator;
             componentButtons.Remove(componentButton);
             foreach (var item in componentButtons)
             {

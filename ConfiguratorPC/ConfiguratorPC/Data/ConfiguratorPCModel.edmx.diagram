@@ -5,45 +5,66 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="3a81e1589fd846fb8d126080cd7a5d35" Name="Diagram1" ZoomLevel="83">
-        <EntityTypeShape EntityType="ConfiguratorPCModel.Case" Width="1.5" PointX="8.25" PointY="8.875" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.CaseConnector" Width="1.5" PointX="10.5" PointY="8" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.CaseSize" Width="1.5" PointX="6" PointY="8.75" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.Color" Width="1.5" PointX="3" PointY="13.375" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.Component" Width="1.5" PointX="3" PointY="16.75" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.Connector" Width="1.5" PointX="8.25" PointY="6.25" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.Cooler" Width="1.5" PointX="7.5" PointY="36.875" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.Core" Width="1.5" PointX="7.5" PointY="23.75" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.DataStorage" Width="1.5" PointX="5.25" PointY="33.125" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.GraphicsProcessingUnit" Width="1.5" PointX="7.5" PointY="26.5" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.HDD" Width="1.5" PointX="7.5" PointY="32.125" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.LightingType" Width="1.5" PointX="6" PointY="11.125" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.LiquidCooler" Width="1.5" PointX="7.5" PointY="39.25" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.M2FormFactor" Width="1.5" PointX="12.75" PointY="19.875" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.M2Key" Width="1.5" PointX="12.75" PointY="36.375" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.M2SSD" Width="1.5" PointX="9.75" PointY="34.25" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.Manufacturer" Width="1.5" PointX="0.75" PointY="17.625" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.Material" Width="1.5" PointX="6" PointY="13.5" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.MotherBoard" Width="1.5" PointX="12.75" PointY="27.75" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.MotherBoardFormFactor" Width="1.5" PointX="10.5" PointY="11.125" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.MotherBoardM2Key" Width="1.5" PointX="15" PointY="28.875" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.PCIEController" Width="1.5" PointX="7.5" PointY="29.375" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.PowerSupply" Width="1.5" PointX="5.25" PointY="16.375" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.PowerSupplyFormFactor" Width="1.5" PointX="3" PointY="22" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.Processor" Width="1.5" PointX="9.75" PointY="26.5" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.ProcessorCooler" Width="1.5" PointX="5.25" PointY="39.125" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.RAM" Width="1.5" PointX="14.25" PointY="22.875" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.RAMFormFactor" Width="1.5" PointX="12" PointY="24" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.RAMType" Width="1.5" PointX="12" PointY="33" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.Socket" Width="1.5" PointX="7.5" PointY="41.375" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.SSD" Width="1.5" PointX="7.5" PointY="34.5" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.VideoCard" Width="1.5" PointX="5.25" PointY="29.625" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.Case" Width="1.5" PointX="8" PointY="13.25" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.CaseConnector" Width="1.5" PointX="10.25" PointY="15.5" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.CaseSize" Width="1.5" PointX="5.75" PointY="4.375" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.Chipset" Width="1.5" PointX="10.25" PointY="33.375" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.Color" Width="1.5" PointX="5.75" PointY="29.625" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.Component" Width="1.5" PointX="0.75" PointY="10.625" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.Connector" Width="1.5" PointX="8" PointY="10.625" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.Cooler" Width="1.5" PointX="5.25" PointY="14.875" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.Core" Width="1.5" PointX="5.25" PointY="26" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.DataStorage" Width="1.5" PointX="13.25" PointY="7.875" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.GraphicProcessor" Width="1.5" PointX="10.25" PointY="43.375" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.GraphicsProcessingUnit" Width="1.5" PointX="5.25" PointY="23.125" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.HDD" Width="1.5" PointX="15.5" PointY="11.875" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.LightingType" Width="1.5" PointX="5.75" PointY="7" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.LiquidCooler" Width="1.5" PointX="5.25" PointY="9.625" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.M2FormFactor" Width="1.5" PointX="12.5" PointY="11.75" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.M2Key" Width="1.5" PointX="12.5" PointY="31.25" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.M2SSD" Width="1.5" PointX="17.75" PointY="21.375" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.Manufacturer" Width="1.5" PointX="1.5" PointY="7.75" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.Material" Width="1.5" PointX="0.75" PointY="15.25" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.Microarchitecture" Width="1.5" PointX="10.25" PointY="45.75" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.MotherBoard" Width="1.5" PointX="12.5" PointY="15.125" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.MotherBoardConnector" Width="1.5" PointX="14.75" PointY="15.875" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.MotherBoardFormFactor" Width="1.5" PointX="10.25" PointY="18.375" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.MotherBoardM2Key" Width="1.5" PointX="14.75" PointY="21.875" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.MotherBoardPowerConnector" Width="1.5" PointX="8" PointY="35.75" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.MotherBoardPowerPlug" Width="1.5" PointX="10.25" PointY="35.75" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.NetworkAdapterChipset" Width="1.5" PointX="10.25" PointY="4.75" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.PCIEController" Width="1.5" PointX="10.25" PointY="30.625" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.PowerSupply" Width="1.5" PointX="15" PointY="25.375" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.PowerSupplyFormFactor" Width="1.5" PointX="5.75" PointY="32.25" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.PowerSupplyMotherBoardConnector" Width="1.5" PointX="17.25" PointY="30.375" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.PowerSupplyProcessorPowerConnector" Width="1.5" PointX="17.25" PointY="17.625" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.PowerSupplyVideoPowerConnector" Width="1.5" PointX="17.25" PointY="26.375" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.Processor" Width="1.5" PointX="7.5" PointY="21" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.ProcessorCooler" Width="1.5" PointX="3" PointY="14.375" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.ProcessorPowerConnector" Width="1.5" PointX="8" PointY="7.875" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.ProcessorPowerPlug" Width="1.5" PointX="10.25" PointY="7.875" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.RAM" Width="1.5" PointX="12" PointY="25.5" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.RAMFormFactor" Width="1.5" PointX="10.25" PointY="2.125" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.RAMType" Width="1.5" PointX="9.75" PointY="23.5" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.Socket" Width="1.5" PointX="5.25" PointY="19.5" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.SoundAdapterChipset" Width="1.5" PointX="10.25" PointY="11.375" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.SSD" Width="1.5" PointX="15.5" PointY="8" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.VideoCard" Width="1.5" PointX="12.5" PointY="39.25" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.VideoCardPowerPlug" Width="1.5" PointX="10.25" PointY="40.875" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.VideoMemoryType" Width="1.5" PointX="10.25" PointY="38.5" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.VideoOutput" Width="1.5" PointX="14.75" PointY="19" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.VideoPowerConnector" Width="1.5" PointX="15" PointY="30.375" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_Case_CaseSize" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_Case_Color" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_Case_Component" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_Case_FrontPanelMaterial" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_Case_LightingType" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_Case_Material" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_Case_PowerSupplyFormFactor" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_CaseConnector_Case" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_CaseConnector_Connector" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_Chipset" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_PowerSupply_Color" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_Component_Manufacturer" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_DataStorage_Component" />
@@ -53,33 +74,57 @@
         <AssociationConnector Association="ConfiguratorPCModel.FK_ProcessorCooler_Component" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_RAM_Component" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_Component" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoardConnector_Connector" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_Cooler_Material" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_Cooler_ProcessorCooler" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_Processor_Core" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_HDD_DataStorage" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_SSD_DataStorage" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_GraphicProcessor" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_Processor_GraphicsProcessingUnit" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_LiquidCooler_Material" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_LiquidCooler_ProcessorCooler" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_M2SSD_M2FormFactor" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoardM2Key_M2FormFactor" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoardM2Key_M2Key" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_M2SSD_SSD" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_ProcessorCooler_Material" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_Microarchitecture" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_MotherBoardFormFactor" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_MotherBoardPowerPlug" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_NetworkAdapterChipset" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_PCIEController" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_ProcessorPowerPlug" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_RAMFormFactor" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_RAMType" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_Socket" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_SoundAdapterChipset" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoardConnector_MotherBoard" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoardM2Key_MotherBoard" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_PowerSupplyMotherBoardConnector_MotherBoardPowerConnector" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_Processor_PCIEController" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_PCIEController" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_PowerSupply_PowerSupplyFormFactor" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_PowerSupplyMotherBoardConnector_PowerSupply" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_PowerSupplyProcessorPowerConnector_PowerSupply" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_PowerSupplyVideoPowerConnector_PowerSupply" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_PowerSupplyProcessorPowerConnector_ProcessorPowerConnector" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_PowerSupplyVideoPowerConnector_VideoPowerConnector" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_Processor_Socket" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_RAM_RAMFormFactor" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_RAM_RAMType" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_VideoCardPowerPlug" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_VideoMemoryType" />
         <AssociationConnector Association="ConfiguratorPCModel.CaseCompatibleMotherBoardFormFactor" />
         <AssociationConnector Association="ConfiguratorPCModel.CoolerCompatibleSocket" />
         <AssociationConnector Association="ConfiguratorPCModel.M2SSDKey" />
         <AssociationConnector Association="ConfiguratorPCModel.MotherBoardCompatibleCore" />
+        <AssociationConnector Association="ConfiguratorPCModel.MotherBoardConnectorPlug" />
+        <AssociationConnector Association="ConfiguratorPCModel.MotherBoardVideoOutput" />
         <AssociationConnector Association="ConfiguratorPCModel.ProcessorCompatibleMemoryType" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_Case_Component" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_Case_PowerSupplyFormFactor" />
+        <AssociationConnector Association="ConfiguratorPCModel.ProcessorConnectorPlug" />
+        <AssociationConnector Association="ConfiguratorPCModel.VideoCardConnectorPlug" />
+        <AssociationConnector Association="ConfiguratorPCModel.VideoCardOutput" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
