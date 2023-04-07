@@ -27,6 +27,40 @@ namespace ConfiguratorPC.Controls
 
         private Configurator configurator;
 
+        private readonly string searchTextBoxPlaceholder = "Поиск по наименованию...";
+
+        private Component component;
+
+        public Component Component
+        {
+            get => component;
+            set
+            {
+                component = value;
+                if (component == null)
+                {
+                    InteractionButton.Content = "+ Добавить";
+                    ComponentImage.Source = null;
+                    NameTextBlock.Text = "";
+                    PriceTextBlock.Text = "";
+                }
+                else
+                {
+                    InteractionButton.Content = "- Убрать";
+                    ComponentImage.Source = component.FirstImage;
+                    NameTextBlock.Text = component.Name;
+                    PriceTextBlock.Text = $"{component.Price} руб.";
+                }
+            }
+        }
+
+        public ComponentConfigurator()
+        {
+            InitializeComponent();
+        }
+
+        #region Lists of data
+
         private List<Component> CompatibleComponents
         {
             get
@@ -79,6 +113,17 @@ namespace ConfiguratorPC.Controls
             get
             {
                 return DAL.Context.RAMs.Select(r => r.MemorySize).Distinct().ToList();
+            }
+        }
+
+        private List<PowerSupplyFormFactor> PowerSupplyFormFactors
+        {
+            get
+            {
+                var formFactors = new List<PowerSupplyFormFactor>();
+                formFactors.Add(new PowerSupplyFormFactor { Id = -1, Name = "Выбрать все" });
+                formFactors.AddRange(DAL.Context.PowerSupplyFormFactors);
+                return formFactors;
             }
         }
 
@@ -218,161 +263,232 @@ namespace ConfiguratorPC.Controls
             }
         }
 
-        private string searchTextBoxPlaceholder = "Поиск по наименованию...";
+        #endregion
+
+        #region Filters
+
+        private void ProcessorFilter(ref List<Component> processors)
+        {
+            var socket = ProcSocketComboBox.SelectedItem as Socket;
+            if (socket.Id != -1)
+            {
+                processors = processors.Where(f => f.Processor.Socket.Id == socket.Id).ToList();
+            }
+            var procRAMTypes = ProcRAMTypesComboBox.SelectedItem as RAMType;
+            if (procRAMTypes.Id != -1)
+            {
+                processors = processors.Where(f => f.Processor.RAMTypes.Any(rt => rt.Id == procRAMTypes.Id)).ToList();
+            }
+            switch (GraphicsComboBox.SelectedIndex)
+            {
+                case 1:
+                    processors = processors.Where(f => f.Processor.IdGraphicsProcessingUnit != null).ToList();
+                    break;
+                case 2:
+                    processors = processors.Where(f => f.Processor.IdGraphicsProcessingUnit == null).ToList();
+                    break;
+                default:
+                    break;
+            }
+            processors = processors.Where(f => f.Processor.BaseFrequency >= (decimal)MinProcFrequencyNumeric.Value && f.Processor.BaseFrequency <= (decimal)MaxProcFrequencyNumeric.Value).ToList();
+        }
+
+        private void ComponentFilter(ref List<Component> components)
+        {
+            components = components.OrderBy(f => f.Name).ToList();
+            if (SearchTextBox.Text != searchTextBoxPlaceholder)
+            {
+                components = components.Where(f => f.Name.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
+            }
+            switch (SortComboBox.SelectedIndex)
+            {
+                case 1:
+                    components = components.OrderByDescending(f => f.Price).ToList();
+                    break;
+                default:
+                    components = components.OrderBy(f => f.Price).ToList();
+                    break;
+            }
+            components = components.Where(f => f.Price >= (decimal)MinPriceNumeric.Value && f.Price <= (decimal)MaxPriceNumeric.Value).ToList();
+            var manufacturer = ManufacturerComboBox.SelectedItem as Manufacturer;
+            if (manufacturer.Id != -1)
+            {
+                components = components.Where(f => f.IdManufacturer == manufacturer.Id).ToList();
+            }
+        }
+
+        private void MotherboardFilter(ref List<Component> motherboards)
+        {
+            var socket = MotherBoardSocketComboBox.SelectedItem as Socket;
+            if (socket.Id != -1)
+            {
+                motherboards = motherboards.Where(f => f.MotherBoard.IdSocket == socket.Id).ToList();
+            }
+            var chipset = ChipsetComboBox.SelectedItem as Chipset;
+            if (chipset.Id != -1)
+            {
+                motherboards = motherboards.Where(f => f.MotherBoard.IdChipset == chipset.Id).ToList();
+            }
+            if (MotherBoardRAMQuantityComboBox.SelectedIndex != 0)
+            {
+                motherboards = motherboards.Where(f => f.MotherBoard.RAMQuantity == Convert.ToByte(MotherBoardRAMQuantityComboBox.SelectedItem.ToString())).ToList();
+            }
+            var ramType = MotherBoardRAMTypeComboBox.SelectedItem as RAMType;
+            if (ramType.Id != -1)
+            {
+                motherboards = motherboards.Where(f => f.MotherBoard.RAMType.Id == ramType.Id).ToList();
+            }
+            var ramFormFactor = MotherBoardRAMFormFactorComboBox.SelectedItem as RAMFormFactor;
+            if (ramFormFactor.Id != -1)
+            {
+                motherboards = motherboards.Where(f => f.MotherBoard.IdRAMFormFactor == ramFormFactor.Id).ToList();
+            }
+            var motherBoardFormFactor = MotherBoardFormFactorComboBox.SelectedItem as MotherBoardFormFactor;
+            if (motherBoardFormFactor.Id != -1)
+            {
+                motherboards = motherboards.Where(f => f.MotherBoard.IdMotherBoardFormFactor == motherBoardFormFactor.Id).ToList();
+            }
+        }
+
+        private void CaseFilter(ref List<Component> cases)
+        {
+            var motherBoardFormFactor = CaseSupportedMotherBoardFormFactorComboBox.SelectedItem as MotherBoardFormFactor;
+            if (motherBoardFormFactor.Id != -1)
+            {
+                cases = cases.Where(f => f.Case.MotherBoardFormFactors.Any(mf => mf.Id == motherBoardFormFactor.Id)).ToList();
+            }
+            var caseSize = CaseSizeComboBox.SelectedItem as CaseSize;
+            if (caseSize.Id != -1)
+            {
+                cases = cases.Where(f => f.Case.IdCaseSize == caseSize.Id).ToList();
+            }
+            var color = CaseColorComboBox.SelectedItem as Data.Color;
+            if (color.Id != -1)
+            {
+                cases = cases.Where(f => f.Case.IdMainColor == color.Id).ToList();
+            }
+        }
+
+        private void VideocardFilter(ref List<Component> videocards)
+        {
+            var graphicProcessor = GraphicProcessorComboBox.SelectedItem as GraphicProcessor;
+            if (graphicProcessor.Id != -1)
+            {
+                videocards = videocards.Where(f => f.VideoCard.IdGraphicProcessor == graphicProcessor.Id).ToList();
+            }
+            if (VideoMemorySizeComboBox.SelectedIndex != 0)
+            {
+                videocards = videocards.Where(f => f.VideoCard.VideoMemorySize == Convert.ToByte(VideoMemorySizeComboBox.SelectedItem.ToString())).ToList();
+            }
+            var videoMemoryType = VideoMemoryTypeComboBox.SelectedItem as VideoMemoryType;
+            if (videoMemoryType.Id != -1)
+            {
+                videocards = videocards.Where(f => f.VideoCard.IdVideoMemoryType == videoMemoryType.Id).ToList();
+            }
+        }
+
+        private void CoolerFilter(ref List<Component> coolers)
+        {
+            var socket = CoolerSocketComboBox.SelectedItem as Socket;
+            if (socket.Id != -1)
+            {
+                coolers = coolers.Where(f => f.ProcessorCooler.Sockets.Any(s => s.Id == socket.Id)).ToList();
+            }
+            switch (CoolerTypeComboBox.SelectedIndex)
+            {
+                case 1:
+                    coolers = coolers.Where(f => f.ProcessorCooler.Cooler != null).ToList();
+                    break;
+                case 2:
+                    coolers = coolers.Where(f => f.ProcessorCooler.LiquidCooler != null).ToList();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void RAMFilter(ref List<Component> rams)
+        {
+            var ramType = RAMTypeComboBox.SelectedItem as RAMType;
+            if (ramType.Id != -1)
+            {
+                rams = rams.Where(f => f.RAM.IdRAMType == ramType.Id).ToList();
+            }
+            var ramFormFactor = RAMFormFactorComboBox.SelectedItem as RAMFormFactor;
+            if (ramFormFactor.Id != -1)
+            {
+                rams = rams.Where(f => f.RAM.IdRAMFormFactor == ramFormFactor.Id).ToList();
+            }
+            if (RAMSizeComboBox.SelectedIndex != 0)
+            {
+                rams = rams.Where(f => f.RAM.MemorySize == Convert.ToByte(RAMSizeComboBox.SelectedItem.ToString())).ToList();
+            }
+            rams = rams.Where(f => f.RAM.Frequency >= MinRAMFrequencyNumeric.Value && f.RAM.Frequency <= MaxRAMFrequencyNumeric.Value).ToList();
+        }
+
+        private void DataStorageFilter(ref List<Component> dataStorages)
+        {
+            switch (DataStorageTypeComboBox.SelectedIndex)
+            {
+                case 1:
+                    dataStorages = dataStorages.Where(f => f.DataStorage.HDD != null && f.DataStorage.HDD.FormFactor == "3.5\"").ToList();
+                    break;
+                case 2:
+                    dataStorages = dataStorages.Where(f => f.DataStorage.HDD != null && f.DataStorage.HDD.FormFactor == "2.5\"").ToList();
+                    break;
+                case 3:
+                    dataStorages = dataStorages.Where(f => f.DataStorage.SSD != null && f.DataStorage.SSD.M2SSD == null).ToList();
+                    break;
+                case 4:
+                    dataStorages = dataStorages.Where(f => f.DataStorage.SSD != null && f.DataStorage.SSD.M2SSD != null).ToList();
+                    break;
+                default:
+                    break;
+            }
+            dataStorages = dataStorages.Where(f => f.DataStorage.MemorySize >= MinDataSizeNumeric.Value && f.DataStorage.MemorySize <= MaxDataSizeNumeric.Value).ToList();
+        }
+
+        private void PowerSupplyFilter(ref List<Component> powerSupplies)
+        {
+            var powerSupplyFormFactor = PowerSupplyFormFactorComboBox.SelectedItem as PowerSupplyFormFactor;
+            if (powerSupplyFormFactor.Id != -1)
+            {
+                powerSupplies = powerSupplies.Where(f => f.PowerSupply.IdPowerSupplyFormFactor == powerSupplyFormFactor.Id).ToList();
+            }
+            powerSupplies = powerSupplies.Where(f => f.PowerSupply.Power >= MinPowerNumeric.Value && f.PowerSupply.Power <= MaxPowerNumeric.Value).ToList();
+        }
 
         public List<Component> FilteredComponents
         {
             get
             {
                 var filtered = CompatibleComponents;
-                filtered = filtered.OrderBy(f => f.Name).ToList();
-                if (SearchTextBox.Text != searchTextBoxPlaceholder)
-                {
-                    filtered = filtered.Where(f => f.Name.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
-                }
-                switch (SortComboBox.SelectedIndex)
-                {
-                    case 1:
-                        filtered = filtered.OrderByDescending(f => f.Price).ToList();
-                        break;
-                    default:
-                        filtered = filtered.OrderBy(f => f.Price).ToList();
-                        break;
-                }
-                filtered = filtered.Where(f => f.Price >= (decimal)MinPriceNumeric.Value && f.Price <= (decimal)MaxPriceNumeric.Value).ToList();
-                var manufacturer = ManufacturerComboBox.SelectedItem as Manufacturer;
-                if (manufacturer.Id != -1)
-                {
-                    filtered = filtered.Where(f => f.IdManufacturer == manufacturer.Id).ToList();
-                }
+                ComponentFilter(ref filtered);
                 switch (type)
                 {
                     case ComponentType.Processor:
-                        var socket = ProcSocketComboBox.SelectedItem as Socket;
-                        if (socket.Id != -1)
-                        {
-                            filtered = filtered.Where(f => f.Processor.Socket.Id == socket.Id).ToList();
-                        }
-                        var procRAMTypes = ProcRAMTypesComboBox.SelectedItem as RAMType;
-                        if (procRAMTypes.Id != -1)
-                        {
-                            filtered = filtered.Where(f => f.Processor.RAMTypes.Any(rt => rt.Id == procRAMTypes.Id)).ToList();
-                        }
-                        switch (GraphicsComboBox.SelectedIndex)
-                        {
-                            case 1:
-                                filtered = filtered.Where(f => f.Processor.IdGraphicsProcessingUnit != null).ToList();
-                                break;
-                            case 2:
-                                filtered = filtered.Where(f => f.Processor.IdGraphicsProcessingUnit == null).ToList();
-                                break;
-                            default:
-                                break;
-                        }
-                        filtered = filtered.Where(f => f.Processor.BaseFrequency >= (decimal)MinProcFrequencyNumeric.Value && f.Processor.BaseFrequency <= (decimal)MaxProcFrequencyNumeric.Value).ToList();
+                        ProcessorFilter(ref filtered);
                         break;
                     case ComponentType.MotherBoard:
-                        socket = MotherBoardSocketComboBox.SelectedItem as Socket;
-                        if (socket.Id != -1)
-                        {
-                            filtered = filtered.Where(f => f.MotherBoard.IdSocket == socket.Id).ToList();
-                        }
-                        var chipset = ChipsetComboBox.SelectedItem as Chipset;
-                        if (chipset.Id != -1)
-                        {
-                            filtered = filtered.Where(f => f.MotherBoard.IdChipset == chipset.Id).ToList();
-                        }
-                        if (MotherBoardRAMQuantityComboBox.SelectedIndex != 0)
-                        {
-                            filtered = filtered.Where(f => f.MotherBoard.RAMQuantity == Convert.ToByte(MotherBoardRAMQuantityComboBox.SelectedItem.ToString())).ToList();
-                        }
-                        var ramType = MotherBoardRAMTypeComboBox.SelectedItem as RAMType;
-                        if (ramType.Id != -1)
-                        {
-                            filtered = filtered.Where(f => f.MotherBoard.RAMType.Id == ramType.Id).ToList();
-                        }
-                        var ramFormFactor = MotherBoardRAMFormFactorComboBox.SelectedItem as RAMFormFactor;
-                        if (ramFormFactor.Id != -1)
-                        {
-                            filtered = filtered.Where(f => f.MotherBoard.IdRAMFormFactor == ramFormFactor.Id).ToList();
-                        }
-                        var motherBoardFormFactor = MotherBoardFormFactorComboBox.SelectedItem as MotherBoardFormFactor;
-                        if (motherBoardFormFactor.Id != -1)
-                        {
-                            filtered = filtered.Where(f => f.MotherBoard.IdMotherBoardFormFactor == motherBoardFormFactor.Id).ToList();
-                        }
+                        MotherboardFilter(ref filtered);
                         break;
                     case ComponentType.Case:
-                        motherBoardFormFactor = CaseSupportedMotherBoardFormFactorComboBox.SelectedItem as MotherBoardFormFactor;
-                        if (motherBoardFormFactor.Id != -1)
-                        {
-                            filtered = filtered.Where(f => f.Case.MotherBoardFormFactors.Any(mf => mf.Id == motherBoardFormFactor.Id)).ToList();
-                        }
-                        var caseSize = CaseSizeComboBox.SelectedItem as CaseSize;
-                        if (caseSize.Id != -1)
-                        {
-                            filtered = filtered.Where(f => f.Case.IdCaseSize == caseSize.Id).ToList();
-                        }
-                        var color = CaseColorComboBox.SelectedItem as Data.Color;
-                        if (color.Id != -1)
-                        {
-                            filtered = filtered.Where(f => f.Case.IdMainColor == color.Id).ToList();
-                        }
+                        CaseFilter(ref filtered);
                         break;
                     case ComponentType.Videocard:
-                        var graphicProcessor = GraphicProcessorComboBox.SelectedItem as GraphicProcessor;
-                        if (graphicProcessor.Id != -1)
-                        {
-                            filtered = filtered.Where(f => f.VideoCard.IdGraphicProcessor == graphicProcessor.Id).ToList();
-                        }
-                        if (VideoMemorySizeComboBox.SelectedIndex != 0)
-                        {
-                            filtered = filtered.Where(f => f.VideoCard.VideoMemorySize == Convert.ToByte(VideoMemorySizeComboBox.SelectedItem.ToString())).ToList();
-                        }
-                        var videoMemoryType = VideoMemoryTypeComboBox.SelectedItem as VideoMemoryType;
-                        if (videoMemoryType.Id != -1)
-                        {
-                            filtered = filtered.Where(f => f.VideoCard.IdVideoMemoryType == videoMemoryType.Id).ToList();
-                        }
+                        VideocardFilter(ref filtered);
                         break;
                     case ComponentType.Cooler:
-                        socket = CoolerSocketComboBox.SelectedItem as Socket;
-                        if (socket.Id != -1)
-                        {
-                            filtered = filtered.Where(f => f.ProcessorCooler.Sockets.Any(s => s.Id == socket.Id)).ToList();
-                        }
-                        switch (CoolerTypeComboBox.SelectedIndex)
-                        {
-                            case 1:
-                                filtered = filtered.Where(f => f.ProcessorCooler.Cooler != null).ToList();
-                                break;
-                            case 2:
-                                filtered = filtered.Where(f => f.ProcessorCooler.LiquidCooler != null).ToList();
-                                break;
-                            default:
-                                break;
-                        }
+                        CoolerFilter(ref filtered);
                         break;
                     case ComponentType.RAM:
-                        ramType = RAMTypeComboBox.SelectedItem as RAMType;
-                        if (ramType.Id != -1)
-                        {
-                            filtered = filtered.Where(f => f.RAM.IdRAMType == ramType.Id).ToList();
-                        }
-                        ramFormFactor = RAMFormFactorComboBox.SelectedItem as RAMFormFactor;
-                        if (ramFormFactor.Id != -1)
-                        {
-                            filtered = filtered.Where(f => f.RAM.IdRAMFormFactor == ramFormFactor.Id).ToList();
-                        }
-                        if (RAMSizeComboBox.SelectedIndex != 0)
-                        {
-                            filtered = filtered.Where(f => f.RAM.MemorySize == Convert.ToByte(RAMSizeComboBox.SelectedItem.ToString())).ToList();
-                        }
-                        filtered = filtered.Where(f => f.RAM.Frequency >= MinRAMFrequencyNumeric.Value && f.RAM.Frequency <= MaxRAMFrequencyNumeric.Value).ToList();
+                        RAMFilter(ref filtered);
                         break;
                     case ComponentType.DataStorage:
+                        DataStorageFilter(ref filtered);
                         break;
                     case ComponentType.PowerSupply:
+                        PowerSupplyFilter(ref filtered);
                         break;
                     default:
                         break;
@@ -381,35 +497,10 @@ namespace ConfiguratorPC.Controls
             }
         }
 
-        private Component component;
+        #endregion
 
-        public Component Component
-        {
-            get => component;
-            set
-            {
-                component = value;
-                if (component == null)
-                {
-                    InteractionButton.Content = "+ Добавить";
-                    ComponentImage.Source = null;
-                    NameTextBlock.Text = "";
-                    PriceTextBlock.Text = "";
-                }
-                else
-                {
-                    InteractionButton.Content = "- Убрать";
-                    ComponentImage.Source = component.Image;
-                    NameTextBlock.Text = component.Name;
-                    PriceTextBlock.Text = $"{component.Price} руб.";
-                }
-            }
-        }
 
-        public ComponentConfigurator()
-        {
-            InitializeComponent();
-        }
+        #region Initialization
 
         public void Init(Configurator configurator, ComponentType type)
         {
@@ -420,143 +511,38 @@ namespace ConfiguratorPC.Controls
                 switch (type)
                 {
                     case ComponentType.Processor:
-                        TypeTextBlock.Text = "Процессор";
-
-                        ProcSocketComboBox.ItemsSource = Sockets;
-                        ProcSocketComboBox.SelectedIndex = 0;
-                        ProcSocketComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                        GraphicsComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                        ProcRAMTypesComboBox.ItemsSource = RAMTypes;
-                        ProcRAMTypesComboBox.SelectedIndex = 0;
-                        ProcRAMTypesComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                        SetProcFrequencyLimits();
-                        MinProcFrequencyNumeric.ValueChanged += NumericTextBox_ValueChanged;
-                        MaxProcFrequencyNumeric.ValueChanged += NumericTextBox_ValueChanged;
-
-                        ProcessorFiltersStackPanel.Visibility = Visibility.Visible;
+                        ProcessorInit();
                         break;
                     case ComponentType.MotherBoard:
-                        TypeTextBlock.Text = "Материнская плата";
-
-                        MotherBoardSocketComboBox.ItemsSource = Sockets;
-                        MotherBoardSocketComboBox.SelectedIndex = 0;
-                        MotherBoardSocketComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                        ChipsetComboBox.ItemsSource = Chipsets;
-                        ChipsetComboBox.SelectedIndex = 0;
-                        ChipsetComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                        foreach (var item in RAMQuantity)
-                        {
-                            MotherBoardRAMQuantityComboBox.Items.Add(new ComboBoxItem().Content = item.ToString());
-                        }
-                        MotherBoardRAMQuantityComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                        MotherBoardRAMTypeComboBox.ItemsSource = RAMTypes;
-                        MotherBoardRAMTypeComboBox.SelectedIndex = 0;
-                        MotherBoardRAMTypeComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                        MotherBoardRAMFormFactorComboBox.ItemsSource = RAMFormFactors;
-                        MotherBoardRAMFormFactorComboBox.SelectedIndex = 0;
-                        MotherBoardRAMFormFactorComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                        MotherBoardFormFactorComboBox.ItemsSource = MotherBoardFormFactors;
-                        MotherBoardFormFactorComboBox.SelectedIndex = 0;
-                        MotherBoardFormFactorComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                        MotherBoardFiltersStackPanel.Visibility = Visibility.Visible;
+                        MotherboardInit();
                         break;
                     case ComponentType.Case:
-                        TypeTextBlock.Text = "Корпус";
-
-                        CaseSizeComboBox.ItemsSource = CaseSizes;
-                        CaseSizeComboBox.SelectedIndex = 0;
-                        CaseSizeComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                        CaseSupportedMotherBoardFormFactorComboBox.ItemsSource = MotherBoardFormFactors;
-                        CaseSupportedMotherBoardFormFactorComboBox.SelectedIndex = 0;
-                        CaseSupportedMotherBoardFormFactorComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                        CaseColorComboBox.ItemsSource = Colors;
-                        CaseColorComboBox.SelectedIndex = 0;
-                        CaseColorComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                        CaseFiltersStackPanel.Visibility = Visibility.Visible;
+                        CaseInit();
                         break;
                     case ComponentType.Videocard:
-                        TypeTextBlock.Text = "Видеокарта";
-
-                        GraphicProcessorComboBox.ItemsSource = GraphicProcessors;
-                        GraphicProcessorComboBox.SelectedIndex = 0;
-                        GraphicProcessorComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                        VideoMemoryTypeComboBox.ItemsSource = VideoMemoryTypes;
-                        VideoMemoryTypeComboBox.SelectedIndex = 0;
-                        VideoMemoryTypeComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                        foreach (var item in VideoMemorySizes)
-                        {
-                            VideoMemorySizeComboBox.Items.Add(new ComboBoxItem().Content = item.ToString());
-                        }
-                        VideoMemorySizeComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                        VideoCardFiltersStackPanel.Visibility = Visibility.Visible;
+                        VideocardInit();
                         break;
                     case ComponentType.Cooler:
-                        TypeTextBlock.Text = "Охлаждение процессора";
-
-                        CoolerSocketComboBox.ItemsSource = Sockets;
-                        CoolerSocketComboBox.SelectedIndex = 0;
-                        CoolerSocketComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                        CoolerTypeComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                        CoolerFiltersStackPanel.Visibility = Visibility.Visible;
+                        CoolerInit();
                         break;
                     case ComponentType.RAM:
-                        TypeTextBlock.Text = "Оперативная память";
-
-                        NumericRam.ValueChanged += NumericRam_ValueChanged;
-                        configurator.MotherBoardChanged += Configurator_RAMChanged;
-                        configurator.ProcessorChanged += Configurator_RAMChanged;
-                        configurator.RAMChanged += Configurator_RAMChanged;
-
-                        RAMFormFactorComboBox.ItemsSource = RAMFormFactors;
-                        RAMFormFactorComboBox.SelectedIndex = 0;
-                        RAMFormFactorComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                        RAMTypeComboBox.ItemsSource = RAMTypes;
-                        RAMTypeComboBox.SelectedIndex = 0;
-                        RAMTypeComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                        foreach (var item in RAMSizes)
-                        {
-                            RAMSizeComboBox.Items.Add(new ComboBoxItem().Content = item.ToString());
-                        }
-                        RAMSizeComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                        SetRAMFrequencyLimits();
-                        MinRAMFrequencyNumeric.ValueChanged += NumericTextBox_ValueChanged;
-                        MaxRAMFrequencyNumeric.ValueChanged += NumericTextBox_ValueChanged;
-
-                        RAMFiltersStackPanel.Visibility = Visibility.Visible;
+                        RAMInit();
                         break;
                     case ComponentType.DataStorage:
-                        TypeTextBlock.Text = "Хранение данных";
+                        DataStorageInit();
                         break;
                     case ComponentType.PowerSupply:
-                        TypeTextBlock.Text = "Блок питания";
+                        PowerSupplyInit();
                         break;
                     default:
                         break;
                 }
                 SetPriceLimits();
-                ManufacturerComboBox.ItemsSource = Manufacturers;
-                ManufacturerComboBox.SelectedIndex = 0;
-                ManufacturerComboBox.SelectionChanged += ComboBox_SelectionChanged;
+                MinPriceNumeric.MaxCoupleNumericTextBox = MaxPriceNumeric;
+                MinPriceNumeric.ValueChanged += NumericTextBox_ValueChanged;
+                MaxPriceNumeric.ValueChanged += NumericTextBox_ValueChanged;
+
+                SetComboBox(ManufacturerComboBox, Manufacturers);
 
                 SearchTextBox.Text = searchTextBoxPlaceholder;
                 SearchTextBox.TextChanged += SearchTextBox_TextChanged;
@@ -569,6 +555,146 @@ namespace ConfiguratorPC.Controls
             {
                 FeedBack.ShowError(ex);
             }
+        }
+
+        private void PowerSupplyInit()
+        {
+            TypeTextBlock.Text = "Блок питания";
+
+            SetPowerLimits();
+            MinPowerNumeric.MaxCoupleNumericTextBox = MaxPowerNumeric;
+            MinPowerNumeric.ValueChanged += NumericTextBox_ValueChanged;
+            MaxPowerNumeric.ValueChanged += NumericTextBox_ValueChanged;
+
+            SetComboBox(PowerSupplyFormFactorComboBox, PowerSupplyFormFactors);
+
+            PowerSupplyFiltersStackPanel.Visibility = Visibility.Visible;
+        }
+
+        private void DataStorageInit()
+        {
+            TypeTextBlock.Text = "Хранение данных";
+
+            DataStorageTypeComboBox.SelectionChanged += ComboBox_SelectionChanged;
+
+            SetDataSizeLimits();
+            MinDataSizeNumeric.MaxCoupleNumericTextBox = MaxDataSizeNumeric;
+            MinDataSizeNumeric.ValueChanged += NumericTextBox_ValueChanged;
+            MaxDataSizeNumeric.ValueChanged += NumericTextBox_ValueChanged;
+
+            DataStorageFiltersStackPanel.Visibility = Visibility.Visible;
+        }
+
+        private void RAMInit()
+        {
+            TypeTextBlock.Text = "Оперативная память";
+
+            NumericRam.ValueChanged += NumericRam_ValueChanged;
+            configurator.MotherBoardChanged += Configurator_RAMChanged;
+            configurator.ProcessorChanged += Configurator_RAMChanged;
+            configurator.RAMChanged += Configurator_RAMChanged;
+
+            SetComboBox(RAMFormFactorComboBox, RAMFormFactors);
+            SetComboBox(RAMTypeComboBox, RAMTypes);
+
+            foreach (var item in RAMSizes)
+            {
+                RAMSizeComboBox.Items.Add(new ComboBoxItem().Content = item.ToString());
+            }
+            RAMSizeComboBox.SelectionChanged += ComboBox_SelectionChanged;
+
+            SetRAMFrequencyLimits();
+            MinRAMFrequencyNumeric.MaxCoupleNumericTextBox = MaxRAMFrequencyNumeric;
+            MinRAMFrequencyNumeric.ValueChanged += NumericTextBox_ValueChanged;
+            MaxRAMFrequencyNumeric.ValueChanged += NumericTextBox_ValueChanged;
+
+            RAMFiltersStackPanel.Visibility = Visibility.Visible;
+        }
+
+        private void CoolerInit()
+        {
+            TypeTextBlock.Text = "Охлаждение процессора";
+
+            SetComboBox(CoolerSocketComboBox, Sockets);
+
+            CoolerTypeComboBox.SelectionChanged += ComboBox_SelectionChanged;
+
+            CoolerFiltersStackPanel.Visibility = Visibility.Visible;
+        }
+
+        private void ProcessorInit()
+        {
+            TypeTextBlock.Text = "Процессор";
+
+            SetComboBox(ProcSocketComboBox, Sockets);
+            SetComboBox(ProcRAMTypesComboBox, RAMTypes);
+
+            GraphicsComboBox.SelectionChanged += ComboBox_SelectionChanged;
+
+            SetProcFrequencyLimits();
+            MinProcFrequencyNumeric.MaxCoupleNumericTextBox = MaxProcFrequencyNumeric;
+            MinProcFrequencyNumeric.ValueChanged += NumericTextBox_ValueChanged;
+            MaxProcFrequencyNumeric.ValueChanged += NumericTextBox_ValueChanged;
+
+            ProcessorFiltersStackPanel.Visibility = Visibility.Visible;
+        }
+
+        private void MotherboardInit()
+        {
+            TypeTextBlock.Text = "Материнская плата";
+
+            SetComboBox(MotherBoardSocketComboBox, Sockets);
+            SetComboBox(ChipsetComboBox, Chipsets);
+
+            foreach (var item in RAMQuantity)
+            {
+                MotherBoardRAMQuantityComboBox.Items.Add(new ComboBoxItem().Content = item.ToString());
+            }
+            MotherBoardRAMQuantityComboBox.SelectionChanged += ComboBox_SelectionChanged;
+
+            SetComboBox(MotherBoardRAMTypeComboBox, RAMTypes);
+            SetComboBox(MotherBoardRAMFormFactorComboBox, RAMFormFactors);
+            SetComboBox(MotherBoardFormFactorComboBox, MotherBoardFormFactors);
+
+            MotherBoardFiltersStackPanel.Visibility = Visibility.Visible;
+        }
+
+        private void CaseInit()
+        {
+            TypeTextBlock.Text = "Корпус";
+
+            SetComboBox(CaseSizeComboBox, CaseSizes);
+            SetComboBox(CaseSupportedMotherBoardFormFactorComboBox, MotherBoardFormFactors);
+            SetComboBox(CaseColorComboBox, Colors);
+
+            CaseFiltersStackPanel.Visibility = Visibility.Visible;
+        }
+
+        private void VideocardInit()
+        {
+            TypeTextBlock.Text = "Видеокарта";
+
+            SetComboBox(GraphicProcessorComboBox, GraphicProcessors);
+            SetComboBox(VideoMemoryTypeComboBox, VideoMemoryTypes);
+
+            foreach (var item in VideoMemorySizes)
+            {
+                VideoMemorySizeComboBox.Items.Add(new ComboBoxItem().Content = item.ToString());
+            }
+            VideoMemorySizeComboBox.SelectionChanged += ComboBox_SelectionChanged;
+
+            VideoCardFiltersStackPanel.Visibility = Visibility.Visible;
+        }
+
+        #endregion
+
+        #region Set controls settings
+
+        private void SetComboBox<T>(ComboBox comboBox, List<T> itemsSource)
+        {
+            comboBox.ItemsSource = itemsSource;
+            comboBox.SelectedIndex = 0;
+            comboBox.SelectionChanged += ComboBox_SelectionChanged;
         }
 
         private void SetPriceLimits()
@@ -605,8 +731,31 @@ namespace ConfiguratorPC.Controls
             }
             if (components.Count > 0)
             {
-                MinPriceNumeric.MinValue = MaxPriceNumeric.MinValue = MinPriceNumeric.Value = MinPriceNumeric.DefaultValue = Convert.ToDouble(components.Min(c => c.Price));
-                MinPriceNumeric.MaxValue = MaxPriceNumeric.MaxValue = MaxPriceNumeric.Value = MaxPriceNumeric.DefaultValue = Convert.ToDouble(components.Max(c => c.Price));
+                SetNumericLimits(MinPriceNumeric, MaxPriceNumeric, Convert.ToDouble(components.Min(c => c.Price)), Convert.ToDouble(components.Max(c => c.Price)));
+            }
+        }
+
+        private void SetNumericLimits(NumericTextBox minNumericTextBox, NumericTextBox maxNumericTextBox, double minValue, double maxValue)
+        {
+            minNumericTextBox.MinValue = maxNumericTextBox.MinValue = minNumericTextBox.Value = minNumericTextBox.DefaultValue = minValue;
+            minNumericTextBox.MaxValue = maxNumericTextBox.MaxValue = maxNumericTextBox.Value = maxNumericTextBox.DefaultValue =maxValue;
+        }
+
+        private void SetDataSizeLimits()
+        {
+            var dataStorages = DAL.Context.DataStorages.ToList();
+            if (dataStorages.Count > 0)
+            {
+                SetNumericLimits(MinDataSizeNumeric, MaxDataSizeNumeric, Convert.ToDouble(dataStorages.Min(c => c.MemorySize)), Convert.ToDouble(dataStorages.Max(c => c.MemorySize)));
+            }
+        }
+
+        private void SetPowerLimits()
+        {
+            var powerSupplies = DAL.Context.PowerSupplies.ToList();
+            if (powerSupplies.Count > 0)
+            {
+                SetNumericLimits(MinPowerNumeric, MaxPowerNumeric, Convert.ToDouble(powerSupplies.Min(p => p.Power)), Convert.ToDouble(powerSupplies.Max(p => p.Power)));
             }
         }
 
@@ -615,8 +764,7 @@ namespace ConfiguratorPC.Controls
             var processors = DAL.Context.Processors.ToList();
             if (processors.Count > 0)
             {
-                MinProcFrequencyNumeric.MinValue = MaxProcFrequencyNumeric.MinValue = MinProcFrequencyNumeric.Value = MinProcFrequencyNumeric.DefaultValue = Convert.ToDouble(processors.Min(c => c.BaseFrequency));
-                MinProcFrequencyNumeric.MaxValue = MaxProcFrequencyNumeric.MaxValue = MaxProcFrequencyNumeric.Value = MaxProcFrequencyNumeric.DefaultValue = Convert.ToDouble(processors.Max(c => c.BaseFrequency));
+                SetNumericLimits(MinProcFrequencyNumeric, MaxProcFrequencyNumeric, Convert.ToDouble(processors.Min(p => p.BaseFrequency)), Convert.ToDouble(processors.Max(p => p.BaseFrequency)));
             }
         }
 
@@ -625,8 +773,7 @@ namespace ConfiguratorPC.Controls
             var rams = DAL.Context.RAMs.ToList();
             if (rams.Count > 0)
             {
-                MinRAMFrequencyNumeric.MinValue = MaxRAMFrequencyNumeric.MinValue = MinRAMFrequencyNumeric.Value = MinRAMFrequencyNumeric.DefaultValue = Convert.ToDouble(rams.Min(r => r.Frequency));
-                MinRAMFrequencyNumeric.MaxValue = MaxRAMFrequencyNumeric.MaxValue = MaxRAMFrequencyNumeric.Value = MaxRAMFrequencyNumeric.DefaultValue = Convert.ToDouble(rams.Max(r => r.Frequency));
+                SetNumericLimits(MinRAMFrequencyNumeric, MaxRAMFrequencyNumeric, Convert.ToDouble(rams.Min(p => p.Frequency)), Convert.ToDouble(rams.Max(p => p.Frequency)));
             }
         }
 
@@ -653,6 +800,10 @@ namespace ConfiguratorPC.Controls
                 EmptyTextBlock.Visibility = Visibility.Visible;
             }
         }
+
+        #endregion
+
+        #region Events
 
         private void InteractionButton_Click(object sender, RoutedEventArgs e)
         {
@@ -785,24 +936,6 @@ namespace ConfiguratorPC.Controls
 
         private void NumericTextBox_ValueChanged(object sender, EventArgs e)
         {
-            if (MinPriceNumeric.Value > MaxPriceNumeric.Value)
-            {
-                var temp = MinPriceNumeric.Value;
-                MinPriceNumeric.Value = MaxPriceNumeric.Value;
-                MaxPriceNumeric.Value = temp;
-            }
-            else if (MinProcFrequencyNumeric.Value > MaxProcFrequencyNumeric.Value)
-            {
-                var temp = MinProcFrequencyNumeric.Value;
-                MinProcFrequencyNumeric.Value = MaxProcFrequencyNumeric.Value;
-                MaxProcFrequencyNumeric.Value = temp;
-            }
-            else if (MinRAMFrequencyNumeric.Value > MaxRAMFrequencyNumeric.Value)
-            {
-                var temp = MinRAMFrequencyNumeric.Value;
-                MinRAMFrequencyNumeric.Value = MaxRAMFrequencyNumeric.Value;
-                MaxRAMFrequencyNumeric.Value = temp;
-            }
             FillList();
         }
 
@@ -842,5 +975,7 @@ namespace ConfiguratorPC.Controls
             NumericRam.MaxValue = configurator.MaxRAMQuantity;
             NumericRam.Value = 1;
         }
+
+        #endregion
     }
 }

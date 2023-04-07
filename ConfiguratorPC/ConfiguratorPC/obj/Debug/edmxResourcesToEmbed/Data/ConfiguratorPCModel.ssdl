@@ -71,7 +71,14 @@
     <Property Name="IdManufacturer" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="Price" Type="decimal" Precision="9" Scale="2" Nullable="false" />
-    <Property Name="Picture" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="ComponentPicture">
+    <Key>
+      <PropertyRef Name="IdComponent" />
+      <PropertyRef Name="IdPicture" />
+    </Key>
+    <Property Name="IdComponent" Type="int" Nullable="false" />
+    <Property Name="IdPicture" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Connector">
     <Key>
@@ -339,6 +346,13 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <EntityType Name="Picture">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Picture" Type="varbinary(max)" Nullable="false" />
+  </EntityType>
   <EntityType Name="PowerSupply">
     <Key>
       <PropertyRef Name="IdComponent" />
@@ -552,14 +566,6 @@
     <Property Name="Thickness" Type="smallint" Nullable="false" />
     <Property Name="Mass" Type="smallint" Nullable="false" />
     <Property Name="IdVideoCardPowerPlug" Type="int" />
-  </EntityType>
-  <EntityType Name="VideoCardCompatiblePowerConnector">
-    <Key>
-      <PropertyRef Name="IdVideoCard" />
-      <PropertyRef Name="IdVideoCardPowerConnector" />
-    </Key>
-    <Property Name="IdVideoCard" Type="int" Nullable="false" />
-    <Property Name="IdVideoCardPowerConnector" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="VideoCardConnectorPlug">
     <Key>
@@ -794,6 +800,30 @@
       </Principal>
       <Dependent Role="Component">
         <PropertyRef Name="IdManufacturer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ComponentPicture_Component">
+    <End Role="Component" Type="Self.Component" Multiplicity="1" />
+    <End Role="ComponentPicture" Type="Self.ComponentPicture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Component">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ComponentPicture">
+        <PropertyRef Name="IdComponent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ComponentPicture_Picture">
+    <End Role="Picture" Type="Self.Picture" Multiplicity="1" />
+    <End Role="ComponentPicture" Type="Self.ComponentPicture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Picture">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ComponentPicture">
+        <PropertyRef Name="IdPicture" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1517,30 +1547,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_VideoCardCompatiblePowerConnector_VideoCard">
-    <End Role="VideoCard" Type="Self.VideoCard" Multiplicity="1" />
-    <End Role="VideoCardCompatiblePowerConnector" Type="Self.VideoCardCompatiblePowerConnector" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="VideoCard">
-        <PropertyRef Name="IdComponent" />
-      </Principal>
-      <Dependent Role="VideoCardCompatiblePowerConnector">
-        <PropertyRef Name="IdVideoCard" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_VideoCardCompatiblePowerConnector_VideoPowerConnector">
-    <End Role="VideoPowerConnector" Type="Self.VideoPowerConnector" Multiplicity="1" />
-    <End Role="VideoCardCompatiblePowerConnector" Type="Self.VideoCardCompatiblePowerConnector" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="VideoPowerConnector">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="VideoCardCompatiblePowerConnector">
-        <PropertyRef Name="IdVideoCardPowerConnector" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_VideoCardConnectorPlug_VideoCardPowerPlug">
     <End Role="VideoCardPowerPlug" Type="Self.VideoCardPowerPlug" Multiplicity="1" />
     <End Role="VideoCardConnectorPlug" Type="Self.VideoCardConnectorPlug" Multiplicity="*" />
@@ -1597,6 +1603,7 @@
     <EntitySet Name="Chipset" EntityType="Self.Chipset" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Component" EntityType="Self.Component" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ComponentPicture" EntityType="Self.ComponentPicture" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Connector" EntityType="Self.Connector" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Cooler" EntityType="Self.Cooler" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CoolerCompatibleSocket" EntityType="Self.CoolerCompatibleSocket" Schema="dbo" store:Type="Tables" />
@@ -1625,6 +1632,7 @@
     <EntitySet Name="MotherBoardVideoOutput" EntityType="Self.MotherBoardVideoOutput" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NetworkAdapterChipset" EntityType="Self.NetworkAdapterChipset" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PCIEController" EntityType="Self.PCIEController" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PowerSupply" EntityType="Self.PowerSupply" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PowerSupplyFormFactor" EntityType="Self.PowerSupplyFormFactor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PowerSupplyMotherBoardConnector" EntityType="Self.PowerSupplyMotherBoardConnector" Schema="dbo" store:Type="Tables" />
@@ -1643,7 +1651,6 @@
     <EntitySet Name="SoundAdapterChipset" EntityType="Self.SoundAdapterChipset" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SSD" EntityType="Self.SSD" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VideoCard" EntityType="Self.VideoCard" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="VideoCardCompatiblePowerConnector" EntityType="Self.VideoCardCompatiblePowerConnector" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VideoCardConnectorPlug" EntityType="Self.VideoCardConnectorPlug" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VideoCardOutput" EntityType="Self.VideoCardOutput" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VideoCardPowerPlug" EntityType="Self.VideoCardPowerPlug" Schema="dbo" store:Type="Tables" />
@@ -1713,6 +1720,14 @@
     <AssociationSet Name="FK_Component_Manufacturer" Association="Self.FK_Component_Manufacturer">
       <End Role="Manufacturer" EntitySet="Manufacturer" />
       <End Role="Component" EntitySet="Component" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ComponentPicture_Component" Association="Self.FK_ComponentPicture_Component">
+      <End Role="Component" EntitySet="Component" />
+      <End Role="ComponentPicture" EntitySet="ComponentPicture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ComponentPicture_Picture" Association="Self.FK_ComponentPicture_Picture">
+      <End Role="Picture" EntitySet="Picture" />
+      <End Role="ComponentPicture" EntitySet="ComponentPicture" />
     </AssociationSet>
     <AssociationSet Name="FK_Cooler_Material" Association="Self.FK_Cooler_Material">
       <End Role="Material" EntitySet="Material" />
@@ -1953,14 +1968,6 @@
     <AssociationSet Name="FK_VideoCard_VideoMemoryType" Association="Self.FK_VideoCard_VideoMemoryType">
       <End Role="VideoMemoryType" EntitySet="VideoMemoryType" />
       <End Role="VideoCard" EntitySet="VideoCard" />
-    </AssociationSet>
-    <AssociationSet Name="FK_VideoCardCompatiblePowerConnector_VideoCard" Association="Self.FK_VideoCardCompatiblePowerConnector_VideoCard">
-      <End Role="VideoCard" EntitySet="VideoCard" />
-      <End Role="VideoCardCompatiblePowerConnector" EntitySet="VideoCardCompatiblePowerConnector" />
-    </AssociationSet>
-    <AssociationSet Name="FK_VideoCardCompatiblePowerConnector_VideoPowerConnector" Association="Self.FK_VideoCardCompatiblePowerConnector_VideoPowerConnector">
-      <End Role="VideoPowerConnector" EntitySet="VideoPowerConnector" />
-      <End Role="VideoCardCompatiblePowerConnector" EntitySet="VideoCardCompatiblePowerConnector" />
     </AssociationSet>
     <AssociationSet Name="FK_VideoCardConnectorPlug_VideoCardPowerPlug" Association="Self.FK_VideoCardConnectorPlug_VideoCardPowerPlug">
       <End Role="VideoCardPowerPlug" EntitySet="VideoCardPowerPlug" />

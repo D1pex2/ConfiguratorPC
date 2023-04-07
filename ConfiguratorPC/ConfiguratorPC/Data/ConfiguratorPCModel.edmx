@@ -76,7 +76,14 @@
           <Property Name="IdManufacturer" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="9" Scale="2" Nullable="false" />
-          <Property Name="Picture" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="ComponentPicture">
+          <Key>
+            <PropertyRef Name="IdComponent" />
+            <PropertyRef Name="IdPicture" />
+          </Key>
+          <Property Name="IdComponent" Type="int" Nullable="false" />
+          <Property Name="IdPicture" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Connector">
           <Key>
@@ -344,6 +351,13 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Picture" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="PowerSupply">
           <Key>
             <PropertyRef Name="IdComponent" />
@@ -526,16 +540,6 @@
           <Property Name="MaxSpeed" Type="smallint" Nullable="false" />
           <Property Name="TotalBytesWritten" Type="tinyint" Nullable="false" />
           <Property Name="DWPD" Type="decimal" Precision="3" Scale="2" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="VideoCard">
           <Key>
@@ -801,6 +805,30 @@
             </Principal>
             <Dependent Role="Component">
               <PropertyRef Name="IdManufacturer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComponentPicture_Component">
+          <End Role="Component" Type="Self.Component" Multiplicity="1" />
+          <End Role="ComponentPicture" Type="Self.ComponentPicture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Component">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComponentPicture">
+              <PropertyRef Name="IdComponent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComponentPicture_Picture">
+          <End Role="Picture" Type="Self.Picture" Multiplicity="1" />
+          <End Role="ComponentPicture" Type="Self.ComponentPicture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Picture">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComponentPicture">
+              <PropertyRef Name="IdPicture" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1580,6 +1608,7 @@
           <EntitySet Name="Chipset" EntityType="Self.Chipset" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Component" EntityType="Self.Component" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComponentPicture" EntityType="Self.ComponentPicture" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Connector" EntityType="Self.Connector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cooler" EntityType="Self.Cooler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CoolerCompatibleSocket" EntityType="Self.CoolerCompatibleSocket" Schema="dbo" store:Type="Tables" />
@@ -1608,6 +1637,7 @@
           <EntitySet Name="MotherBoardVideoOutput" EntityType="Self.MotherBoardVideoOutput" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NetworkAdapterChipset" EntityType="Self.NetworkAdapterChipset" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PCIEController" EntityType="Self.PCIEController" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PowerSupply" EntityType="Self.PowerSupply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PowerSupplyFormFactor" EntityType="Self.PowerSupplyFormFactor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PowerSupplyMotherBoardConnector" EntityType="Self.PowerSupplyMotherBoardConnector" Schema="dbo" store:Type="Tables" />
@@ -1625,7 +1655,6 @@
           <EntitySet Name="Socket" EntityType="Self.Socket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SoundAdapterChipset" EntityType="Self.SoundAdapterChipset" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SSD" EntityType="Self.SSD" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VideoCard" EntityType="Self.VideoCard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VideoCardConnectorPlug" EntityType="Self.VideoCardConnectorPlug" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VideoCardOutput" EntityType="Self.VideoCardOutput" Schema="dbo" store:Type="Tables" />
@@ -1696,6 +1725,14 @@
           <AssociationSet Name="FK_Component_Manufacturer" Association="Self.FK_Component_Manufacturer">
             <End Role="Manufacturer" EntitySet="Manufacturer" />
             <End Role="Component" EntitySet="Component" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComponentPicture_Component" Association="Self.FK_ComponentPicture_Component">
+            <End Role="Component" EntitySet="Component" />
+            <End Role="ComponentPicture" EntitySet="ComponentPicture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComponentPicture_Picture" Association="Self.FK_ComponentPicture_Picture">
+            <End Role="Picture" EntitySet="Picture" />
+            <End Role="ComponentPicture" EntitySet="ComponentPicture" />
           </AssociationSet>
           <AssociationSet Name="FK_Cooler_Material" Association="Self.FK_Cooler_Material">
             <End Role="Material" EntitySet="Material" />
@@ -1988,6 +2025,7 @@
           <EntitySet Name="MotherBoardPowerPlugs" EntityType="ConfiguratorPCModel.MotherBoardPowerPlug" />
           <EntitySet Name="NetworkAdapterChipsets" EntityType="ConfiguratorPCModel.NetworkAdapterChipset" />
           <EntitySet Name="PCIEControllers" EntityType="ConfiguratorPCModel.PCIEController" />
+          <EntitySet Name="Pictures" EntityType="ConfiguratorPCModel.Picture" />
           <EntitySet Name="PowerSupplies" EntityType="ConfiguratorPCModel.PowerSupply" />
           <EntitySet Name="PowerSupplyFormFactors" EntityType="ConfiguratorPCModel.PowerSupplyFormFactor" />
           <EntitySet Name="PowerSupplyMotherBoardConnectors" EntityType="ConfiguratorPCModel.PowerSupplyMotherBoardConnector" />
@@ -2003,7 +2041,6 @@
           <EntitySet Name="Sockets" EntityType="ConfiguratorPCModel.Socket" />
           <EntitySet Name="SoundAdapterChipsets" EntityType="ConfiguratorPCModel.SoundAdapterChipset" />
           <EntitySet Name="SSDs" EntityType="ConfiguratorPCModel.SSD" />
-          <EntitySet Name="sysdiagrams" EntityType="ConfiguratorPCModel.sysdiagram" />
           <EntitySet Name="VideoCards" EntityType="ConfiguratorPCModel.VideoCard" />
           <EntitySet Name="VideoCardPowerPlugs" EntityType="ConfiguratorPCModel.VideoCardPowerPlug" />
           <EntitySet Name="VideoMemoryTypes" EntityType="ConfiguratorPCModel.VideoMemoryType" />
@@ -2253,6 +2290,10 @@
             <End Role="Case" EntitySet="Cases" />
             <End Role="MotherBoardFormFactor" EntitySet="MotherBoardFormFactors" />
           </AssociationSet>
+          <AssociationSet Name="ComponentPicture" Association="ConfiguratorPCModel.ComponentPicture">
+            <End Role="Component" EntitySet="Components" />
+            <End Role="Picture" EntitySet="Pictures" />
+          </AssociationSet>
           <AssociationSet Name="CoolerCompatibleSocket" Association="ConfiguratorPCModel.CoolerCompatibleSocket">
             <End Role="ProcessorCooler" EntitySet="ProcessorCoolers" />
             <End Role="Socket" EntitySet="Sockets" />
@@ -2368,7 +2409,6 @@
           <Property Name="IdManufacturer" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
-          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Case" Relationship="ConfiguratorPCModel.FK_Case_Component" FromRole="Component" ToRole="Case" />
           <NavigationProperty Name="Manufacturer" Relationship="ConfiguratorPCModel.FK_Component_Manufacturer" FromRole="Component" ToRole="Manufacturer" />
           <NavigationProperty Name="DataStorage" Relationship="ConfiguratorPCModel.FK_DataStorage_Component" FromRole="Component" ToRole="DataStorage" />
@@ -2378,6 +2418,7 @@
           <NavigationProperty Name="ProcessorCooler" Relationship="ConfiguratorPCModel.FK_ProcessorCooler_Component" FromRole="Component" ToRole="ProcessorCooler" />
           <NavigationProperty Name="RAM" Relationship="ConfiguratorPCModel.FK_RAM_Component" FromRole="Component" ToRole="RAM" />
           <NavigationProperty Name="VideoCard" Relationship="ConfiguratorPCModel.FK_VideoCard_Component" FromRole="Component" ToRole="VideoCard" />
+          <NavigationProperty Name="Pictures" Relationship="ConfiguratorPCModel.ComponentPicture" FromRole="Component" ToRole="Picture" />
         </EntityType>
         <EntityType Name="Connector">
           <Key>
@@ -2664,6 +2705,14 @@
           <NavigationProperty Name="Processors" Relationship="ConfiguratorPCModel.FK_Processor_PCIEController" FromRole="PCIEController" ToRole="Processor" />
           <NavigationProperty Name="VideoCards" Relationship="ConfiguratorPCModel.FK_VideoCard_PCIEController" FromRole="PCIEController" ToRole="VideoCard" />
         </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BytePicture" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Components" Relationship="ConfiguratorPCModel.ComponentPicture" FromRole="Picture" ToRole="Component" />
+        </EntityType>
         <EntityType Name="PowerSupply">
           <Key>
             <PropertyRef Name="IdComponent" />
@@ -2873,16 +2922,6 @@
           <Property Name="DWPD" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
           <NavigationProperty Name="DataStorage" Relationship="ConfiguratorPCModel.FK_SSD_DataStorage" FromRole="SSD" ToRole="DataStorage" />
           <NavigationProperty Name="M2SSD" Relationship="ConfiguratorPCModel.FK_M2SSD_SSD" FromRole="SSD" ToRole="M2SSD" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="VideoCard">
           <Key>
@@ -3681,6 +3720,10 @@
           <End Type="ConfiguratorPCModel.Case" Role="Case" Multiplicity="*" />
           <End Type="ConfiguratorPCModel.MotherBoardFormFactor" Role="MotherBoardFormFactor" Multiplicity="*" />
         </Association>
+        <Association Name="ComponentPicture">
+          <End Type="ConfiguratorPCModel.Component" Role="Component" Multiplicity="*" />
+          <End Type="ConfiguratorPCModel.Picture" Role="Picture" Multiplicity="*" />
+        </Association>
         <Association Name="CoolerCompatibleSocket">
           <End Type="ConfiguratorPCModel.ProcessorCooler" Role="ProcessorCooler" Multiplicity="*" />
           <End Type="ConfiguratorPCModel.Socket" Role="Socket" Multiplicity="*" />
@@ -3785,7 +3828,6 @@
           <EntitySetMapping Name="Components">
             <EntityTypeMapping TypeName="ConfiguratorPCModel.Component">
               <MappingFragment StoreEntitySet="Component">
-                <ScalarProperty Name="Picture" ColumnName="Picture" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IdManufacturer" ColumnName="IdManufacturer" />
@@ -4039,6 +4081,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Pictures">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.Picture">
+              <MappingFragment StoreEntitySet="Picture">
+                <ScalarProperty Name="BytePicture" ColumnName="Picture" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PowerSupplies">
             <EntityTypeMapping TypeName="ConfiguratorPCModel.PowerSupply">
               <MappingFragment StoreEntitySet="PowerSupply">
@@ -4218,17 +4268,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="ConfiguratorPCModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="VideoCards">
             <EntityTypeMapping TypeName="ConfiguratorPCModel.VideoCard">
               <MappingFragment StoreEntitySet="VideoCard">
@@ -4299,6 +4338,14 @@
             </EndProperty>
             <EndProperty Name="Case">
               <ScalarProperty Name="IdComponent" ColumnName="IdCase" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ComponentPicture" TypeName="ConfiguratorPCModel.ComponentPicture" StoreEntitySet="ComponentPicture">
+            <EndProperty Name="Picture">
+              <ScalarProperty Name="Id" ColumnName="IdPicture" />
+            </EndProperty>
+            <EndProperty Name="Component">
+              <ScalarProperty Name="Id" ColumnName="IdComponent" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="CoolerCompatibleSocket" TypeName="ConfiguratorPCModel.CoolerCompatibleSocket" StoreEntitySet="CoolerCompatibleSocket">

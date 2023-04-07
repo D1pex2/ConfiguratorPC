@@ -187,6 +187,9 @@
     <Compile Include="Data\PCIEController.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Picture.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\PowerSupply.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
@@ -249,9 +252,6 @@
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\SSD.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\sysdiagram.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\VideoCard.cs">

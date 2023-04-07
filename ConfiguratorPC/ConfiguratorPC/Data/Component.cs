@@ -14,11 +14,16 @@ namespace ConfiguratorPC.Data
     
     public partial class Component
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Component()
+        {
+            this.Pictures = new HashSet<Picture>();
+        }
+    
         public int Id { get; set; }
         public int IdManufacturer { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
-        public byte[] Picture { get; set; }
     
         public virtual Case Case { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
@@ -29,5 +34,7 @@ namespace ConfiguratorPC.Data
         public virtual ProcessorCooler ProcessorCooler { get; set; }
         public virtual RAM RAM { get; set; }
         public virtual VideoCard VideoCard { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Picture> Pictures { get; set; }
     }
 }

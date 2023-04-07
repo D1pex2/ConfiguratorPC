@@ -63,7 +63,6 @@
     <EntitySetMapping Name="Components">
       <EntityTypeMapping TypeName="ConfiguratorPCModel.Component">
         <MappingFragment StoreEntitySet="Component">
-          <ScalarProperty Name="Picture" ColumnName="Picture" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="IdManufacturer" ColumnName="IdManufacturer" />
@@ -313,6 +312,14 @@
       <EntityTypeMapping TypeName="ConfiguratorPCModel.PCIEController">
         <MappingFragment StoreEntitySet="PCIEController">
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pictures">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.Picture">
+        <MappingFragment StoreEntitySet="Picture">
+          <ScalarProperty Name="BytePicture" ColumnName="Picture" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -568,6 +575,14 @@
         <ScalarProperty Name="IdComponent" ColumnName="IdCase" />
       </EndProperty>
     </AssociationSetMapping>
+    <AssociationSetMapping Name="ComponentPicture" TypeName="ConfiguratorPCModel.ComponentPicture" StoreEntitySet="ComponentPicture">
+      <EndProperty Name="Picture">
+        <ScalarProperty Name="Id" ColumnName="IdPicture" />
+      </EndProperty>
+      <EndProperty Name="Component">
+        <ScalarProperty Name="Id" ColumnName="IdComponent" />
+      </EndProperty>
+    </AssociationSetMapping>
     <AssociationSetMapping Name="CoolerCompatibleSocket" TypeName="ConfiguratorPCModel.CoolerCompatibleSocket" StoreEntitySet="CoolerCompatibleSocket">
       <EndProperty Name="Socket">
         <ScalarProperty Name="Id" ColumnName="IdSocket" />
@@ -622,14 +637,6 @@
       </EndProperty>
       <EndProperty Name="ProcessorPowerConnector">
         <ScalarProperty Name="Id" ColumnName="IdProcessorPowerConnector" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="VideoCardCompatiblePowerConnector" TypeName="ConfiguratorPCModel.VideoCardCompatiblePowerConnector" StoreEntitySet="VideoCardCompatiblePowerConnector">
-      <EndProperty Name="VideoPowerConnector">
-        <ScalarProperty Name="Id" ColumnName="IdVideoCardPowerConnector" />
-      </EndProperty>
-      <EndProperty Name="VideoCard">
-        <ScalarProperty Name="IdComponent" ColumnName="IdVideoCard" />
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="VideoCardConnectorPlug" TypeName="ConfiguratorPCModel.VideoCardConnectorPlug" StoreEntitySet="VideoCardConnectorPlug">

@@ -88,8 +88,8 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <local:NumericTextBox x:Name="MinPriceNumeric" Margin="5" Height="35" ValueChanged="NumericTextBox_ValueChanged"/>
-                                <local:NumericTextBox x:Name="MaxPriceNumeric" Margin="5" Height="35" Grid.Column="1" ValueChanged="NumericTextBox_ValueChanged"/>
+                                <local:NumericTextBox x:Name="MinPriceNumeric" Margin="5" Height="35"/>
+                                <local:NumericTextBox x:Name="MaxPriceNumeric" Margin="5" Height="35" Grid.Column="1"/>
                             </Grid>
                             <TextBlock Style="{StaticResource TitleTextBlock}" Text="Производитель"/>
                             <ComboBox x:Name="ManufacturerComboBox" DisplayMemberPath="Name" Margin="5" BorderThickness="0">
@@ -300,6 +300,49 @@
                                     <local:NumericTextBox x:Name="MaxRAMFrequencyNumeric" Margin="5" Height="35" Grid.Column="1"/>
                                 </Grid>
                             </StackPanel>
+                            <StackPanel x:Name="DataStorageFiltersStackPanel" Visibility="Collapsed">
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Тип накопителя"/>
+                                <ComboBox x:Name="DataStorageTypeComboBox" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                    <ComboBoxItem Content="Выбрать все" IsSelected="True"/>
+                                    <ComboBoxItem Content='Жесткий диск 3,5"'/>
+                                    <ComboBoxItem Content='Жесткий диск 2,5"'/>
+                                    <ComboBoxItem Content="SSD накопитель"/>
+                                    <ComboBoxItem Content="SSD накопитель M.2"/>
+                                </ComboBox>
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Объем памяти (ГБ)"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <local:NumericTextBox x:Name="MinDataSizeNumeric" Margin="5" Height="35"/>
+                                    <local:NumericTextBox x:Name="MaxDataSizeNumeric" Margin="5" Height="35" Grid.Column="1"/>
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel x:Name="PowerSupplyFiltersStackPanel" Visibility="Collapsed">
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Мощность (Вт)"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <local:NumericTextBox x:Name="MinPowerNumeric" Margin="5" Height="35"/>
+                                    <local:NumericTextBox x:Name="MaxPowerNumeric" Margin="5" Height="35" Grid.Column="1"/>
+                                </Grid>
+                                <TextBlock Style="{StaticResource TitleTextBlock}" Text="Форм-фактор"/>
+                                <ComboBox x:Name="PowerSupplyFormFactorComboBox" DisplayMemberPath="Name" Margin="5" BorderThickness="0">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                </ComboBox>
+                            </StackPanel>
                         </StackPanel>
                     </Border>
                     <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource BorderDefault}" VerticalAlignment="Top" Margin="5" Background="#f5f5f5">
@@ -310,7 +353,7 @@
                                     <DataTemplate>
                                         <Border MinHeight="160" Style="{StaticResource BorderDefault}" Margin="5">
                                             <DockPanel>
-                                                <Image Height="150" Width="150" Margin="5" Source="{Binding Image}" Stretch="Uniform" DockPanel.Dock="Left"/>
+                                                <Image Height="150" Width="150" Margin="5" Source="{Binding FirstImage}" Stretch="Uniform" DockPanel.Dock="Left"/>
                                                 <Button x:Name="AddComponentButton" Click="AddComponentButton_Click" Content="Добавить" Margin="15,0,15,0" HorizontalAlignment="Center" Background="#FF00B3FF" Foreground="White" DockPanel.Dock="Right" VerticalAlignment="Center">
                                                     <Button.Resources>
                                                         <Style TargetType="Border">

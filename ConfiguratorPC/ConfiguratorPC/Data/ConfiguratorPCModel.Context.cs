@@ -54,6 +54,7 @@ namespace ConfiguratorPC.Data
         public virtual DbSet<MotherBoardPowerPlug> MotherBoardPowerPlugs { get; set; }
         public virtual DbSet<NetworkAdapterChipset> NetworkAdapterChipsets { get; set; }
         public virtual DbSet<PCIEController> PCIEControllers { get; set; }
+        public virtual DbSet<Picture> Pictures { get; set; }
         public virtual DbSet<PowerSupply> PowerSupplies { get; set; }
         public virtual DbSet<PowerSupplyFormFactor> PowerSupplyFormFactors { get; set; }
         public virtual DbSet<PowerSupplyMotherBoardConnector> PowerSupplyMotherBoardConnectors { get; set; }
@@ -69,7 +70,6 @@ namespace ConfiguratorPC.Data
         public virtual DbSet<Socket> Sockets { get; set; }
         public virtual DbSet<SoundAdapterChipset> SoundAdapterChipsets { get; set; }
         public virtual DbSet<SSD> SSDs { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<VideoCard> VideoCards { get; set; }
         public virtual DbSet<VideoCardPowerPlug> VideoCardPowerPlugs { get; set; }
         public virtual DbSet<VideoMemoryType> VideoMemoryTypes { get; set; }

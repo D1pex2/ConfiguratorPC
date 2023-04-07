@@ -30,6 +30,7 @@
     <EntitySet Name="MotherBoardPowerPlugs" EntityType="ConfiguratorPCModel.MotherBoardPowerPlug" />
     <EntitySet Name="NetworkAdapterChipsets" EntityType="ConfiguratorPCModel.NetworkAdapterChipset" />
     <EntitySet Name="PCIEControllers" EntityType="ConfiguratorPCModel.PCIEController" />
+    <EntitySet Name="Pictures" EntityType="ConfiguratorPCModel.Picture" />
     <EntitySet Name="PowerSupplies" EntityType="ConfiguratorPCModel.PowerSupply" />
     <EntitySet Name="PowerSupplyFormFactors" EntityType="ConfiguratorPCModel.PowerSupplyFormFactor" />
     <EntitySet Name="PowerSupplyMotherBoardConnectors" EntityType="ConfiguratorPCModel.PowerSupplyMotherBoardConnector" />
@@ -294,6 +295,10 @@
       <End Role="Case" EntitySet="Cases" />
       <End Role="MotherBoardFormFactor" EntitySet="MotherBoardFormFactors" />
     </AssociationSet>
+    <AssociationSet Name="ComponentPicture" Association="ConfiguratorPCModel.ComponentPicture">
+      <End Role="Component" EntitySet="Components" />
+      <End Role="Picture" EntitySet="Pictures" />
+    </AssociationSet>
     <AssociationSet Name="CoolerCompatibleSocket" Association="ConfiguratorPCModel.CoolerCompatibleSocket">
       <End Role="ProcessorCooler" EntitySet="ProcessorCoolers" />
       <End Role="Socket" EntitySet="Sockets" />
@@ -321,10 +326,6 @@
     <AssociationSet Name="ProcessorConnectorPlug" Association="ConfiguratorPCModel.ProcessorConnectorPlug">
       <End Role="ProcessorPowerConnector" EntitySet="ProcessorPowerConnectors" />
       <End Role="ProcessorPowerPlug" EntitySet="ProcessorPowerPlugs" />
-    </AssociationSet>
-    <AssociationSet Name="VideoCardCompatiblePowerConnector" Association="ConfiguratorPCModel.VideoCardCompatiblePowerConnector">
-      <End Role="VideoCard" EntitySet="VideoCards" />
-      <End Role="VideoPowerConnector" EntitySet="VideoPowerConnectors" />
     </AssociationSet>
     <AssociationSet Name="VideoCardConnectorPlug" Association="ConfiguratorPCModel.VideoCardConnectorPlug">
       <End Role="VideoCardPowerPlug" EntitySet="VideoCardPowerPlugs" />
@@ -413,7 +414,6 @@
     <Property Name="IdManufacturer" Type="Int32" Nullable="false" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="Price" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
-    <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="Case" Relationship="ConfiguratorPCModel.FK_Case_Component" FromRole="Component" ToRole="Case" />
     <NavigationProperty Name="Manufacturer" Relationship="ConfiguratorPCModel.FK_Component_Manufacturer" FromRole="Component" ToRole="Manufacturer" />
     <NavigationProperty Name="DataStorage" Relationship="ConfiguratorPCModel.FK_DataStorage_Component" FromRole="Component" ToRole="DataStorage" />
@@ -423,6 +423,7 @@
     <NavigationProperty Name="ProcessorCooler" Relationship="ConfiguratorPCModel.FK_ProcessorCooler_Component" FromRole="Component" ToRole="ProcessorCooler" />
     <NavigationProperty Name="RAM" Relationship="ConfiguratorPCModel.FK_RAM_Component" FromRole="Component" ToRole="RAM" />
     <NavigationProperty Name="VideoCard" Relationship="ConfiguratorPCModel.FK_VideoCard_Component" FromRole="Component" ToRole="VideoCard" />
+    <NavigationProperty Name="Pictures" Relationship="ConfiguratorPCModel.ComponentPicture" FromRole="Component" ToRole="Picture" />
   </EntityType>
   <EntityType Name="Connector">
     <Key>
@@ -709,6 +710,14 @@
     <NavigationProperty Name="Processors" Relationship="ConfiguratorPCModel.FK_Processor_PCIEController" FromRole="PCIEController" ToRole="Processor" />
     <NavigationProperty Name="VideoCards" Relationship="ConfiguratorPCModel.FK_VideoCard_PCIEController" FromRole="PCIEController" ToRole="VideoCard" />
   </EntityType>
+  <EntityType Name="Picture">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BytePicture" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Components" Relationship="ConfiguratorPCModel.ComponentPicture" FromRole="Picture" ToRole="Component" />
+  </EntityType>
   <EntityType Name="PowerSupply">
     <Key>
       <PropertyRef Name="IdComponent" />
@@ -955,7 +964,6 @@
     <NavigationProperty Name="PCIEController" Relationship="ConfiguratorPCModel.FK_VideoCard_PCIEController" FromRole="VideoCard" ToRole="PCIEController" />
     <NavigationProperty Name="VideoCardPowerPlug" Relationship="ConfiguratorPCModel.FK_VideoCard_VideoCardPowerPlug" FromRole="VideoCard" ToRole="VideoCardPowerPlug" />
     <NavigationProperty Name="VideoMemoryType" Relationship="ConfiguratorPCModel.FK_VideoCard_VideoMemoryType" FromRole="VideoCard" ToRole="VideoMemoryType" />
-    <NavigationProperty Name="VideoPowerConnectors" Relationship="ConfiguratorPCModel.VideoCardCompatiblePowerConnector" FromRole="VideoCard" ToRole="VideoPowerConnector" />
     <NavigationProperty Name="VideoOutputs" Relationship="ConfiguratorPCModel.VideoCardOutput" FromRole="VideoCard" ToRole="VideoOutput" />
   </EntityType>
   <EntityType Name="VideoCardPowerPlug">
@@ -991,7 +999,6 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="PowerSupplyVideoPowerConnectors" Relationship="ConfiguratorPCModel.FK_PowerSupplyVideoPowerConnector_VideoPowerConnector" FromRole="VideoPowerConnector" ToRole="PowerSupplyVideoPowerConnector" />
-    <NavigationProperty Name="VideoCards" Relationship="ConfiguratorPCModel.VideoCardCompatiblePowerConnector" FromRole="VideoPowerConnector" ToRole="VideoCard" />
     <NavigationProperty Name="VideoCardPowerPlugs" Relationship="ConfiguratorPCModel.VideoCardConnectorPlug" FromRole="VideoPowerConnector" ToRole="VideoCardPowerPlug" />
   </EntityType>
   <Association Name="FK_Case_CaseSize">
@@ -1718,6 +1725,10 @@
     <End Type="ConfiguratorPCModel.Case" Role="Case" Multiplicity="*" />
     <End Type="ConfiguratorPCModel.MotherBoardFormFactor" Role="MotherBoardFormFactor" Multiplicity="*" />
   </Association>
+  <Association Name="ComponentPicture">
+    <End Type="ConfiguratorPCModel.Component" Role="Component" Multiplicity="*" />
+    <End Type="ConfiguratorPCModel.Picture" Role="Picture" Multiplicity="*" />
+  </Association>
   <Association Name="CoolerCompatibleSocket">
     <End Type="ConfiguratorPCModel.ProcessorCooler" Role="ProcessorCooler" Multiplicity="*" />
     <End Type="ConfiguratorPCModel.Socket" Role="Socket" Multiplicity="*" />
@@ -1745,10 +1756,6 @@
   <Association Name="ProcessorConnectorPlug">
     <End Type="ConfiguratorPCModel.ProcessorPowerConnector" Role="ProcessorPowerConnector" Multiplicity="*" />
     <End Type="ConfiguratorPCModel.ProcessorPowerPlug" Role="ProcessorPowerPlug" Multiplicity="*" />
-  </Association>
-  <Association Name="VideoCardCompatiblePowerConnector">
-    <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="*" />
-    <End Type="ConfiguratorPCModel.VideoPowerConnector" Role="VideoPowerConnector" Multiplicity="*" />
   </Association>
   <Association Name="VideoCardConnectorPlug">
     <End Type="ConfiguratorPCModel.VideoCardPowerPlug" Role="VideoCardPowerPlug" Multiplicity="*" />

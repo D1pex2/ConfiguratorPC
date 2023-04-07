@@ -20,21 +20,13 @@ namespace ConfiguratorPC.Controls
     /// </summary>
     public partial class NumericTextBox : UserControl
     {
-        private double minValue = 0;
-
-        public double DefaultValue { get; set; } = 0;
-
-        public double MinValue { get => minValue; set => minValue = value; }
-
-        private double maxValue = double.MaxValue;
-
-        public double MaxValue { get => maxValue; set => maxValue = value; }
+        public event EventHandler ValueChanged;
 
         private double value = 0;
 
         public double Value
-        { 
-            get => value; 
+        {
+            get => value;
             set
             {
                 this.value = value;
@@ -42,9 +34,36 @@ namespace ConfiguratorPC.Controls
             }
         }
 
-        public event EventHandler ValueChanged;
+        public double DefaultValue { get; set; } = 0;
 
-        public event EventHandler ResetValueButtonClick;
+        private double minValue = 0;
+
+        public double MinValue { get => minValue; set => minValue = value; }
+
+        private double maxValue = double.MaxValue;
+
+        public double MaxValue { get => maxValue; set => maxValue = value; }
+
+        private NumericTextBox maxCoupleNumericTextBox;
+
+        public NumericTextBox MaxCoupleNumericTextBox
+        {
+            get => maxCoupleNumericTextBox;
+            set
+            {
+                if (maxCoupleNumericTextBox != null)
+                {
+                    maxCoupleNumericTextBox.ValueChanged -= CoupleNumericTextBox_ValueChanged;
+                    ValueChanged -= CoupleNumericTextBox_ValueChanged;
+                }
+                maxCoupleNumericTextBox = value;
+                if (maxCoupleNumericTextBox != null)
+                {
+                    maxCoupleNumericTextBox.ValueChanged += CoupleNumericTextBox_ValueChanged;
+                    ValueChanged += CoupleNumericTextBox_ValueChanged;
+                }
+            }
+        }
 
         public NumericTextBox()
         {
@@ -52,11 +71,17 @@ namespace ConfiguratorPC.Controls
             Value = MinValue;
         }
 
-        private void NumericTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void SetCoupleValue()
         {
-            if (!double.TryParse(NumTextBox.Text, out value))
+            if (MaxCoupleNumericTextBox == null)
             {
-                NumTextBox.Text = String.Format("{0:F2}", value);
+                return;
+            }
+            if (Value > MaxCoupleNumericTextBox.Value)
+            {
+                var temp = Value;
+                Value = MaxCoupleNumericTextBox.Value;
+                MaxCoupleNumericTextBox.Value = temp;
             }
         }
 
@@ -71,6 +96,19 @@ namespace ConfiguratorPC.Controls
                 Value = MaxValue;
             }
             ValueChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void CoupleNumericTextBox_ValueChanged(object sender, EventArgs e)
+        {
+            SetCoupleValue();
+        }
+
+        private void NumericTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!double.TryParse(NumTextBox.Text, out value))
+            {
+                NumTextBox.Text = String.Format("{0:F2}", value);
+            }
         }
 
         private void NumericTextBox_LostFocus(object sender, RoutedEventArgs e)

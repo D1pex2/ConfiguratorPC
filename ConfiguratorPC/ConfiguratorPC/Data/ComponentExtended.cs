@@ -13,13 +13,14 @@ namespace ConfiguratorPC.Data
 {
     public partial class Component
     {
-        public BitmapImage Image
+        public BitmapImage FirstImage
         {
             get
             {
                 try
                 {
-                    MemoryStream byteStream = new MemoryStream(Picture);
+                    var pic = Pictures.First().BytePicture;
+                    MemoryStream byteStream = new MemoryStream(pic);
                     BitmapImage image = new BitmapImage();
                     image.BeginInit();
                     image.StreamSource = byteStream;
