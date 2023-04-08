@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\App.xaml
-4-1198524828
+6-1079954568
 2-1569694249
-661080903034
+70-397149228
 19779364229
-ConfiguratorWindow.xaml;Controls\ComponentConfigurator.xaml;Controls\NumericTextBox.xaml;Controls\NumericUpDown.xaml;
+MainWindow.xaml;Controls\ComponentConfigurator.xaml;Controls\NumericTextBox.xaml;Controls\NumericUpDown.xaml;Pages\ComponentPage.xaml;Pages\ConfiguratorPage.xaml;
 
 False
 

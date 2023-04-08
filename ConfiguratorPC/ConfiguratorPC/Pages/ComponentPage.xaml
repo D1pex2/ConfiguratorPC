@@ -1,0 +1,107 @@
+﻿<Page x:Class="ConfiguratorPC.Pages.ComponentPage" x:Name="CompPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ConfiguratorPC.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1200"
+      Title="ComponentPage">
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+    </Page.Resources>
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition/>
+                <RowDefinition Height="75"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border Style="{StaticResource BorderDefault}"  Grid.Row="1" Grid.Column="1" MaxWidth="1300">
+                <StackPanel Margin="15">
+                    <DockPanel>
+                        <Button x:Name="CloseButton" Style="{StaticResource WindowButton}" Margin="5,10,5,5" Width="25" Height="25" HorizontalAlignment="Left" Click="CloseButton_Click">
+                            <Image Source="/Resources/close_black.png"/>
+                        </Button>
+                        <TextBlock x:Name="NameTextBlock" FontWeight="SemiBold" FontSize="32" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"/>
+                    </DockPanel>
+                    <DockPanel Margin="0,20,0,0">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" DockPanel.Dock="Left">
+                            <Border BorderBrush="#b3b1b1" BorderThickness="1" CornerRadius="10 0 0 10">
+                                <ListView x:Name="PictureList" Margin="5" ScrollViewer.CanContentScroll="False" BorderThickness="0" MaxHeight="500" SelectionMode="Single">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding Image}" Margin="5" Stretch="Uniform" Width="100" Height="100" PreviewMouseLeftButtonDown="Image_PreviewMouseLeftButtonDown"/>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListViewItem}">
+                                            <Setter Property="Background" Value="Transparent" />
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                        <ContentPresenter/>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                </ListView>
+                            </Border>
+                            <Border BorderBrush="#b3b1b1" BorderThickness="1" CornerRadius="0 10 10 0" Margin="-1,0,0,0">
+                                <Image x:Name="SelectedImage" Stretch="Uniform" Margin="5" Height="500" Width="500"/>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Margin="10" MaxWidth="600">
+                            <TextBlock Text="Общая информация:" FontWeight="SemiBold"/>
+                            <TextBlock x:Name="CommonInfoTextBlock"/>
+                            <TextBlock Text="Тип:" FontWeight="SemiBold"/>
+                            <TextBlock x:Name="ComponentTypeTextBlock"/>
+                            <TextBlock Text="Производитель:" FontWeight="SemiBold"/>
+                            <TextBlock x:Name="ManufacturerTextBlock"/>
+                            <TextBlock Text="Стоимость:" FontWeight="SemiBold"/>
+                            <TextBlock x:Name="PriceTextBlock" FontWeight="DemiBold"/>
+                            <Button x:Name="AddButton" Width="120" Height="40" FontWeight="DemiBold" Content="Добавить" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="AddButton_Click" Visibility="Collapsed">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="5 5 5 5"/>
+                                    </Style>
+                                </Button.Resources>
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border Background="{TemplateBinding Background}" BorderBrush="#c9c9c9" BorderThickness="1">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#FF00B3FF"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Page>

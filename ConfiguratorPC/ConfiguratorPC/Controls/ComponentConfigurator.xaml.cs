@@ -1,4 +1,5 @@
 ﻿using ConfiguratorPC.Data;
+using ConfiguratorPC.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -499,7 +500,6 @@ namespace ConfiguratorPC.Controls
 
         #endregion
 
-
         #region Initialization
 
         public void Init(Configurator configurator, ComponentType type)
@@ -857,38 +857,44 @@ namespace ConfiguratorPC.Controls
             var item = (sender as Button).DataContext;
             if (item != null)
             {
-                Component = item as Component;
-                switch (type)
-                {
-                    case ComponentType.Processor:
-                        configurator.Processor = component.Processor;
-                        break;
-                    case ComponentType.MotherBoard:
-                        configurator.MotherBoard = component.MotherBoard;
-                        break;
-                    case ComponentType.Case:
-                        configurator.Case = component.Case;
-                        break;
-                    case ComponentType.Videocard:
-                        configurator.VideoCard = component.VideoCard;
-                        break;
-                    case ComponentType.Cooler:
-                        configurator.ProcessorCooler = component.ProcessorCooler;
-                        break;
-                    case ComponentType.RAM:
-                        configurator.RAM = component.RAM;
-                        break;
-                    case ComponentType.DataStorage:
-                        configurator.DataStorage = component.DataStorage;
-                        break;
-                    case ComponentType.PowerSupply:
-                        configurator.PowerSupply = component.PowerSupply;
-                        break;
-                    default:
-                        break;
-                }
-                ComponentsBorder.Visibility = Visibility.Collapsed;
+                SelectComponent(item as Component);
             }
+        }
+
+        private void SelectComponent(Component component)
+        {
+            Component = component;
+            switch (type)
+            {
+                case ComponentType.Processor:
+                    configurator.Processor = component.Processor;
+                    break;
+                case ComponentType.MotherBoard:
+                    configurator.MotherBoard = component.MotherBoard;
+                    break;
+                case ComponentType.Case:
+                    configurator.Case = component.Case;
+                    break;
+                case ComponentType.Videocard:
+                    configurator.VideoCard = component.VideoCard;
+                    break;
+                case ComponentType.Cooler:
+                    configurator.ProcessorCooler = component.ProcessorCooler;
+                    break;
+                case ComponentType.RAM:
+                    configurator.RAM = component.RAM;
+                    break;
+                case ComponentType.DataStorage:
+                    configurator.DataStorage = component.DataStorage;
+                    break;
+                case ComponentType.PowerSupply:
+                    configurator.PowerSupply = component.PowerSupply;
+                    break;
+                default:
+                    break;
+            }
+            ComponentsBorder.Visibility = Visibility.Collapsed;
+            SetComponentsBorder();
         }
 
         private void ComponentsList_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
@@ -899,7 +905,6 @@ namespace ConfiguratorPC.Controls
                 ComponentsScrollViewer.LineDown();
                 ComponentsScrollViewer.LineDown();
             }
-
             else
             {
                 ComponentsScrollViewer.LineUp();
@@ -939,7 +944,7 @@ namespace ConfiguratorPC.Controls
             FillList();
         }
 
-        private void ComponentsBorder_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void SetComponentsBorder()
         {
             if (ComponentsBorder.Visibility == Visibility.Visible)
             {
@@ -955,6 +960,11 @@ namespace ConfiguratorPC.Controls
                     InteractionButton.Content = "+ Добавить";
                 }
             }
+        }
+
+        private void ComponentsBorder_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            SetComponentsBorder();
         }
 
         private void NumericRam_ValueChanged(object sender, EventArgs e)
@@ -974,6 +984,26 @@ namespace ConfiguratorPC.Controls
             }
             NumericRam.MaxValue = configurator.MaxRAMQuantity;
             NumericRam.Value = 1;
+        }
+
+        private void ComponentTitle_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var component = (sender as TextBlock).DataContext as Component;
+            if (component != null)
+            {
+                var page = new ComponentPage(component, type);
+                page.AddComponent += SelectComponent;
+                page.EnableAddComponent = true;
+                Navigator.Frame.Navigate(page);
+            }
+        }
+
+        private void CurrentComponentTitle_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (component != null)
+            {
+                Navigator.Frame.Navigate(new ComponentPage(component, type));
+            }
         }
 
         #endregion

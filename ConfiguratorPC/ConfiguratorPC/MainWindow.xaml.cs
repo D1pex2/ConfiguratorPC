@@ -1,5 +1,6 @@
 ﻿using ConfiguratorPC.Controls;
 using ConfiguratorPC.Data;
+using ConfiguratorPC.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,36 +19,16 @@ using System.Windows.Shapes;
 namespace ConfiguratorPC
 {
     /// <summary>
-    /// Логика взаимодействия для ConfiguratorWindow.xaml
+    /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class ConfiguratorWindow : Window
+    public partial class MainWindow : Window
     {
-        private Configurator configurator = new Configurator();
 
-        public Configurator Configurator { get => configurator; set => configurator = value; }
-
-        public ConfiguratorWindow()
+        public MainWindow()
         {
             InitializeComponent();
-            ProcessorConfigurator.Init(configurator, ComponentType.Processor);
-            MotherBoardConfigurator.Init(configurator, ComponentType.MotherBoard);
-            CaseConfigurator.Init(configurator, ComponentType.Case);
-            VideoCardConfigurator.Init(configurator, ComponentType.Videocard);
-            CoolerConfigurator.Init(configurator, ComponentType.Cooler);
-            RAMConfigurator.Init(configurator, ComponentType.RAM);
-            MemoryConfigurator.Init(configurator, ComponentType.DataStorage);
-            PowerSupplyConfigurator.Init(configurator, ComponentType.PowerSupply);
-        }
-
-        private void ComponentConfigurator_ListOpened(object sender, EventArgs e)
-        {
-            List<ComponentConfigurator> componentButtons = ConfigStackPanel.Children.OfType<ComponentConfigurator>().ToList();
-            var componentButton = sender as ComponentConfigurator;
-            componentButtons.Remove(componentButton);
-            foreach (var item in componentButtons)
-            {
-                item.CollapseList();
-            }
+            Navigator.Frame = MainFrame;
+            MainFrame.Navigate(new ConfiguratorPage());
         }
 
         private void TitleBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -84,13 +65,13 @@ namespace ConfiguratorPC
                 MaxMinButtonImage.Source = new BitmapImage(new Uri("Resources/minimize.png", UriKind.Relative));
                 TitleBorder.Height = 35;
                 TitleDockPanel.Margin = new Thickness(5, 5, 5, 0);
-                WindowScrollViewer.Margin = new Thickness(0, 0, 4, 0);
+                MainFrame.Margin = new Thickness(5, 0, 5, 0);
             }
             else if(WindowState == WindowState.Normal)
             {
                 MaxMinButtonImage.Source = new BitmapImage(new Uri("Resources/maximize.png", UriKind.Relative));
-                TitleBorder.Height =30;
-                TitleDockPanel.Margin = WindowScrollViewer.Margin = new Thickness(0, 0, 0, 0);
+                TitleBorder.Height = 30;
+                TitleDockPanel.Margin = MainFrame.Margin = new Thickness(0, 0, 0, 0);
             }
         }
     }

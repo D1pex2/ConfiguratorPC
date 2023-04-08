@@ -12,26 +12,18 @@ namespace ConfiguratorUploadImage
     using System;
     using System.Collections.Generic;
     
-    public partial class Case
+    public partial class Picture
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Case()
+        public Picture()
         {
-            this.MotherBoardFormFactors = new HashSet<MotherBoardFormFactor>();
+            this.Components = new HashSet<Component>();
         }
     
-        public int IdComponent { get; set; }
-        public int IdPowerSupplyFormFactor { get; set; }
-        public byte ExpansionSlotsQuantity { get; set; }
-        public int MaxVideoCardLength { get; set; }
-        public int MaxCoolerHeigth { get; set; }
-        public bool LiquidCoolerCompatible { get; set; }
-        public byte Storage35Quantity { get; set; }
-        public byte Storage25Quantity { get; set; }
+        public int Id { get; set; }
+        public byte[] Picture1 { get; set; }
     
-        public virtual Component Component { get; set; }
-        public virtual PowerSupplyFormFactor PowerSupplyFormFactor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MotherBoardFormFactor> MotherBoardFormFactors { get; set; }
+        public virtual ICollection<Component> Components { get; set; }
     }
 }

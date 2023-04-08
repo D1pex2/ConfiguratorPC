@@ -42,9 +42,24 @@ namespace ConfiguratorUploadImage
             try
             {
                 var component = componentsComboBox.SelectedItem as Component;
-                component.Picture = File.ReadAllBytes(pathTextBox.Text);
+                component.Pictures.Add(new Picture { Picture1 = File.ReadAllBytes(pathTextBox.Text) });
                 configuratorPCEntities.SaveChanges();
                 MessageBox.Show("Загружено");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void DeleteAllButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var component = componentsComboBox.SelectedItem as Component;
+                configuratorPCEntities.Pictures.RemoveRange(component.Pictures);
+                configuratorPCEntities.SaveChanges();
+                MessageBox.Show("Удалено");
             }
             catch (Exception ex)
             {

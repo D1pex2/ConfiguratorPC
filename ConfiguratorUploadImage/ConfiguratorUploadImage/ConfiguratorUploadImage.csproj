@@ -55,9 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Case.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Component.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
@@ -76,80 +73,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ConfiguratorPCModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Cooler.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Core.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataStorage.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsProcessingUnit.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HDD.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LiquidCooler.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="M2FormFactor.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="M2Key.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="M2SSD.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MotherBoard.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MotherBoardFormFactor.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MotherBoardM2Key.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PowerSupply.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PowerSupplyFormFactor.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Processor.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProcessorCooler.cs">
+    <Compile Include="Picture.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RAM.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RAMFormFactor.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RAMType.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Socket.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SSD.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VideoCard.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

@@ -32,6 +32,7 @@
             this.browseButton = new System.Windows.Forms.Button();
             this.componentsComboBox = new System.Windows.Forms.ComboBox();
             this.uploadButton = new System.Windows.Forms.Button();
+            this.DeleteAllButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // pathTextBox
@@ -70,11 +71,22 @@
             this.uploadButton.UseVisualStyleBackColor = true;
             this.uploadButton.Click += new System.EventHandler(this.UploadButton_Click);
             // 
+            // DeleteAllButton
+            // 
+            this.DeleteAllButton.Location = new System.Drawing.Point(379, 65);
+            this.DeleteAllButton.Name = "DeleteAllButton";
+            this.DeleteAllButton.Size = new System.Drawing.Size(89, 23);
+            this.DeleteAllButton.TabIndex = 4;
+            this.DeleteAllButton.Text = "Удалить все";
+            this.DeleteAllButton.UseVisualStyleBackColor = true;
+            this.DeleteAllButton.Click += new System.EventHandler(this.DeleteAllButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(480, 97);
+            this.Controls.Add(this.DeleteAllButton);
             this.Controls.Add(this.uploadButton);
             this.Controls.Add(this.componentsComboBox);
             this.Controls.Add(this.browseButton);
@@ -92,6 +104,7 @@
         private System.Windows.Forms.Button browseButton;
         private System.Windows.Forms.ComboBox componentsComboBox;
         private System.Windows.Forms.Button uploadButton;
+        private System.Windows.Forms.Button DeleteAllButton;
     }
 }
 

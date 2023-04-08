@@ -5,63 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="bd0c7bedad764b6888acd586d25fb9ad" Name="Diagram1" ZoomLevel="88">
-        <EntityTypeShape EntityType="ConfiguratorPCModel.Case" Width="1.5" PointX="3" PointY="16.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.Component" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.Cooler" Width="1.5" PointX="5.25" PointY="24.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.Core" Width="1.5" PointX="5.25" PointY="32.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.DataStorage" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.GraphicsProcessingUnit" Width="1.5" PointX="5.25" PointY="34.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.HDD" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.LiquidCooler" Width="1.5" PointX="5.25" PointY="26.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.M2FormFactor" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.M2Key" Width="1.5" PointX="5.25" PointY="21" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.M2SSD" Width="1.5" PointX="7.5" PointY="14.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.MotherBoard" Width="1.5" PointX="12" PointY="20" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.MotherBoardFormFactor" Width="1.5" PointX="5.25" PointY="17.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.MotherBoardM2Key" Width="1.5" PointX="14.25" PointY="21.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.PowerSupply" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.PowerSupplyFormFactor" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.Processor" Width="1.5" PointX="7.5" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.ProcessorCooler" Width="1.5" PointX="3" PointY="26.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.RAM" Width="1.5" PointX="12" PointY="16.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.RAMFormFactor" Width="1.5" PointX="9.75" PointY="17.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.RAMType" Width="1.5" PointX="9.75" PointY="21.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.Socket" Width="1.5" PointX="5.25" PointY="28.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.SSD" Width="1.5" PointX="5.25" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.VideoCard" Width="1.5" PointX="3" PointY="31.5" IsExpanded="true" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_Case_Component" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_Case_PowerSupplyFormFactor" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_DataStorage_Component" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_Component" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_PowerSupply_Component" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_Processor_Component" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_ProcessorCooler_Component" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_RAM_Component" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_Component" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_Cooler_ProcessorCooler" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_Processor_Core" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_HDD_DataStorage" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_SSD_DataStorage" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_Processor_GraphicsProcessingUnit" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_LiquidCooler_ProcessorCooler" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_M2SSD_M2FormFactor" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoardM2Key_M2FormFactor" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoardM2Key_M2Key" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_M2SSD_SSD" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_MotherBoardFormFactor" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_RAMFormFactor" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_RAMType" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_Socket" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoardM2Key_MotherBoard" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_PowerSupply_PowerSupplyFormFactor" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_Processor_Socket" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_RAM_RAMFormFactor" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_RAM_RAMType" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.CaseCompatibleMotherBoardFormFactor" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.CoolerCompatibleSocket" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.M2SSDKey" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.MotherBoardCompatibleCore" ManuallyRouted="false" />
-        <AssociationConnector Association="ConfiguratorPCModel.ProcessorCompatibleMemoryType" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.Component" Width="1.5" PointX="0.75" PointY="0.875" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.Picture" Width="1.5" PointX="3" PointY="1.125" />
+        <AssociationConnector Association="ConfiguratorPCModel.ComponentPicture" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ConfiguratorPC.Controls"
              mc:Ignorable="d" 
-             MinHeight="70" Width="Auto">
+             Width="Auto">
     <UserControl.Resources>
         <Style TargetType="TextBlock" x:Key="TitleTextBlock">
             <Setter Property="Margin" Value="15,5,5,5"/>
@@ -13,13 +13,22 @@
             <Setter Property="FontSize"  Value="16"/>
             <Setter Property="TextWrapping"  Value="Wrap"/>
         </Style>
+        <Style TargetType="TextBlock" x:Key="ComponentTitleTextBlock">
+            <Style.Triggers>
+                <Trigger Property ="IsMouseOver" Value="True">
+                    <Setter Property= "Foreground" Value="#FF00B3FF"/>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
     </UserControl.Resources>
     <StackPanel>
-        <Border x:Name="ButtonBorder" Style="{StaticResource BorderDefault}" MinHeight="75">
+        <Border x:Name="ButtonBorder" Style="{StaticResource BorderDefault}" MinHeight="100">
             <DockPanel Margin="15,0,15,0">
                 <TextBlock x:Name="TypeTextBlock" Text="Тип компонента" MinWidth="150"  VerticalAlignment="Center"/>
-                <Image x:Name="ComponentImage" Height="60" Width="60" Stretch="Uniform"/>
-                <Button x:Name="InteractionButton" Width="100" Content="+ Добавить" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right"
+                <Image x:Name="ComponentImage" Height="80" Width="80" Stretch="Uniform"/>
+                <Button x:Name="InteractionButton" Width="120" Height="40" Content="+ Добавить" FontWeight="DemiBold" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right"
                         Click="InteractionButton_Click">
                     <Button.Resources>
                         <Style TargetType="Border">
@@ -49,7 +58,7 @@
                 </Button>
                 <TextBlock x:Name="PriceTextBlock" FontWeight="DemiBold" VerticalAlignment="Center"  HorizontalAlignment="Right" DockPanel.Dock="Right"/>
                 <local:NumericUpDown MinValue="1" MaxValue="1" x:Name="NumericRam" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
-                <TextBlock x:Name="NameTextBlock" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                <TextBlock x:Name="NameTextBlock" Style="{StaticResource ComponentTitleTextBlock}" VerticalAlignment="Center" TextWrapping="Wrap" PreviewMouseLeftButtonDown="CurrentComponentTitle_PreviewMouseLeftButtonDown"/>
             </DockPanel>
         </Border>
         <Border CornerRadius="0 0 10 10" Background="#dbdbdb" Style="{StaticResource BorderDefault}" x:Name="ComponentsBorder" IsVisibleChanged="ComponentsBorder_IsVisibleChanged" Visibility="Collapsed" MaxHeight="500">
@@ -354,7 +363,7 @@
                                         <Border MinHeight="160" Style="{StaticResource BorderDefault}" Margin="5">
                                             <DockPanel>
                                                 <Image Height="150" Width="150" Margin="5" Source="{Binding FirstImage}" Stretch="Uniform" DockPanel.Dock="Left"/>
-                                                <Button x:Name="AddComponentButton" Click="AddComponentButton_Click" Content="Добавить" Margin="15,0,15,0" HorizontalAlignment="Center" Background="#FF00B3FF" Foreground="White" DockPanel.Dock="Right" VerticalAlignment="Center">
+                                                <Button x:Name="AddComponentButton" FontWeight="DemiBold" Click="AddComponentButton_Click" Content="Добавить" Margin="15,0,15,0" HorizontalAlignment="Center" Background="#FF00B3FF" Foreground="White" DockPanel.Dock="Right" VerticalAlignment="Center">
                                                     <Button.Resources>
                                                         <Style TargetType="Border">
                                                             <Setter Property="CornerRadius" Value="5 5 5 5"/>
@@ -362,7 +371,7 @@
                                                     </Button.Resources>
                                                 </Button>
                                                 <TextBlock Text="{Binding Price, StringFormat={}{0} руб.}" FontWeight="DemiBold" HorizontalAlignment="Center" DockPanel.Dock="Right" VerticalAlignment="Center"/>
-                                                <TextBlock Text="{Binding Name}" TextWrapping="WrapWithOverflow" DockPanel.Dock="Right" VerticalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Name}" Style="{StaticResource ComponentTitleTextBlock}" TextWrapping="WrapWithOverflow" DockPanel.Dock="Right" VerticalAlignment="Center" PreviewMouseLeftButtonDown="ComponentTitle_PreviewMouseLeftButtonDown"/>
                                             </DockPanel>
                                         </Border>
                                     </DataTemplate>

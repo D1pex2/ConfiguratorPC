@@ -65,7 +65,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="ConfiguratorWindow.xaml">
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -190,6 +190,7 @@
     <Compile Include="Data\Picture.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\PictureExtended.cs" />
     <Compile Include="Data\PowerSupply.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
@@ -229,8 +230,8 @@
     <Compile Include="Data\Socket.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ConfiguratorWindow.xaml.cs">
-      <DependentUpon>ConfiguratorWindow.xaml</DependentUpon>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Controls\ComponentConfigurator.xaml">
@@ -242,6 +243,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\NumericUpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ComponentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ConfiguratorPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -270,6 +279,13 @@
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="FeedBack.cs" />
+    <Compile Include="Pages\ComponentPage.xaml.cs">
+      <DependentUpon>ComponentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ConfiguratorPage.xaml.cs">
+      <DependentUpon>ConfiguratorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Navigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -317,6 +333,7 @@
       <DependentUpon>ConfiguratorPCModel.edmx</DependentUpon>
       <LastGenOutput>ConfiguratorPCModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\close_black.png" />
     <Resource Include="Resources\up.png" />
     <Resource Include="Resources\down.png" />
     <Resource Include="Resources\search.png" />
@@ -324,7 +341,7 @@
     <Resource Include="Resources\minimize.png" />
     <Resource Include="Resources\maximize.png" />
     <Resource Include="Resources\hide.png" />
-    <Resource Include="Resources\close.png" />
+    <Resource Include="Resources\close_white.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
