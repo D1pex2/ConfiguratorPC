@@ -14,6 +14,11 @@
             <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
+        <Style TargetType="TextBlock" x:Key="TitleTextBlock">
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="5,30,5,10"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
     </Page.Resources>
     <ScrollViewer>
         <Grid>
@@ -100,6 +105,195 @@
                             </Button>
                         </StackPanel>
                     </DockPanel>
+                    <TextBlock Text="Подробная информация" FontWeight="SemiBold" FontSize="24" Margin="5,15,5,5"/>
+                    <Grid x:Name="MotherboardGrid" Visibility="Hidden">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.75*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Форм-фактор и размеры" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Форм-фактор" Grid.Row="1"/>
+                        <TextBlock x:Name="MotherboardFormFactorTextBlock" Grid.Row="1" Grid.Column="1"/>
+                        <Separator Grid.Row="2"/>
+                        <TextBlock Text="Высота" Grid.Row="3"/>
+                        <TextBlock x:Name="MotherboardHeigthTextBlock" Grid.Row="3" Grid.Column="1"/>
+                        <Separator Grid.Row="4"/>
+                        <TextBlock Text="Ширина" Grid.Row="5"/>
+                        <TextBlock x:Name="MotherboardWidthTextBlock" Grid.Row="5" Grid.Column="1"/>
+                        <Separator Grid.Row="6"/>
+                        <TextBlock Text="Процессор и чипсет" Style="{StaticResource TitleTextBlock}" Grid.Row="7"/>
+                        <TextBlock Text="Сокет" Grid.Row="8"/>
+                        <TextBlock x:Name="MotherboardSocketTextBlock" Grid.Row="8" Grid.Column="1"/>
+                        <Separator Grid.Row="9"/>
+                        <TextBlock Text="Чипсет" Grid.Row="10"/>
+                        <TextBlock x:Name="MotherboardChipsetTextBlock" Grid.Row="10" Grid.Column="1"/>
+                        <Separator Grid.Row="11"/>
+                        <TextBlock Text="Совместимые ядра процессоров" Grid.Row="12"/>
+                        <TextBlock x:Name="MotherboardCoresTextBlock" Grid.Row="12" Grid.Column="1"/>
+                        <Separator Grid.Row="13"/>
+                        <TextBlock Text="Память" Style="{StaticResource TitleTextBlock}" Grid.Row="14"/>
+                        <TextBlock Text="Количество слотов памяти" Grid.Row="15"/>
+                        <TextBlock x:Name="MotherboardRAMQuantityTextBlock" Grid.Row="15" Grid.Column="1"/>
+                        <Separator Grid.Row="16"/>
+                        <TextBlock Text="Форм-фактор поддерживаемой памяти" Grid.Row="17"/>
+                        <TextBlock x:Name="MotherboardRAMFormFactorTextBlock" Grid.Row="17" Grid.Column="1"/>
+                        <Separator Grid.Row="18"/>
+                        <TextBlock Text="Тип поддерживаемой памяти" Grid.Row="19"/>
+                        <TextBlock x:Name="MotherboardRAMTypeTextBlock" Grid.Row="19" Grid.Column="1"/>
+                        <Separator Grid.Row="20"/>
+                        <TextBlock Text="Максимальный объем памяти" Grid.Row="21"/>
+                        <TextBlock x:Name="MotherboardMaxRAMSizeTextBlock" Grid.Row="21" Grid.Column="1"/>
+                        <Separator Grid.Row="22"/>
+                        <TextBlock Text="Максимальная частота памяти" Grid.Row="23"/>
+                        <TextBlock x:Name="MotherboardMaxRAMFrequencyTextBlock" Grid.Row="23" Grid.Column="1"/>
+                        <Separator Grid.Row="24"/>
+                        <TextBlock Text="Контроллеры накопителей" Style="{StaticResource TitleTextBlock}" Grid.Row="25"/>
+                        <TextBlock Text="Количество разъемов M.2" Grid.Row="26"/>
+                        <TextBlock x:Name="MotherboardM2QuantityTextBlock" Grid.Row="26" Grid.Column="1"/>
+                        <Separator Grid.Row="27"/>
+                        <TextBlock Text="Разъемы M.2" Grid.Row="28"/>
+                        <TextBlock x:Name="MotherboardM2SlotsTextBlock" Grid.Row="28" Grid.Column="1"/>
+                        <Separator Grid.Row="29"/>
+                        <TextBlock Text="Количество портов SATA" Grid.Row="30"/>
+                        <TextBlock x:Name="MotherboardSATAQuantityTextBlock" Grid.Row="30" Grid.Column="1"/>
+                        <Separator Grid.Row="31"/>
+                        <TextBlock Text="Слоты расширения" Style="{StaticResource TitleTextBlock}" Grid.Row="32"/>
+                        <TextBlock Text="Версия PCI-Express" Grid.Row="33"/>
+                        <TextBlock x:Name="MotherboardPCIEVersionTextBlock" Grid.Row="33" Grid.Column="1"/>
+                        <Separator Grid.Row="34"/>
+                        <TextBlock Text="Количество слотов PCI-Express x16" Grid.Row="35"/>
+                        <TextBlock x:Name="MotherboardPCIEx16QuantityTextBlock" Grid.Row="35" Grid.Column="1"/>
+                        <Separator Grid.Row="36"/>
+                        <TextBlock Text="Задняя панель" Style="{StaticResource TitleTextBlock}" Grid.Row="37"/>
+                        <TextBlock Text="Количество и тип USB на задней панели" Grid.Row="38"/>
+                        <TextBlock x:Name="MotherboardUsbTextBlock" Grid.Row="38" Grid.Column="1"/>
+                        <Separator Grid.Row="39"/>
+                        <TextBlock Text="Видеовыходы" Grid.Row="40"/>
+                        <TextBlock x:Name="MotherboardVideoOutputTextBlock" Grid.Row="40" Grid.Column="1"/>
+                        <Separator Grid.Row="41"/>
+                        <TextBlock Text="Количество сетевых портов (RJ-45)" Grid.Row="42"/>
+                        <TextBlock x:Name="MotherboardNetworkSlotsQuantityTextBlock" Grid.Row="42" Grid.Column="1"/>
+                        <Separator Grid.Row="43"/>
+                        <TextBlock Text="Количество аналоговых аудиоразъемов" Grid.Row="44"/>
+                        <TextBlock x:Name="MotherboardAudioSlotsQuantityTextBlock" Grid.Row="44" Grid.Column="1"/>
+                        <Separator Grid.Row="45"/>
+                        <TextBlock Text="Внутренние коннекторы" Style="{StaticResource TitleTextBlock}" Grid.Row="46"/>
+                        <TextBlock Text="Разъем питания процессорного кулера" Grid.Row="47"/>
+                        <TextBlock x:Name="MotherboardCoolerPowerPlugTextBlock" Grid.Row="47" Grid.Column="1"/>
+                        <Separator Grid.Row="48"/>
+                        <TextBlock Text="M.2 Ключ E" Grid.Row="49"/>
+                        <TextBlock x:Name="MotherboardM2KeyETextBlock" Grid.Row="49" Grid.Column="1"/>
+                        <Separator Grid.Row="50"/>
+                        <TextBlock Text="Интерфейс LPT" Grid.Row="51"/>
+                        <TextBlock x:Name="MotherboardLPTTextBlock" Grid.Row="51" Grid.Column="1"/>
+                        <Separator Grid.Row="52"/>
+                        <TextBlock Text="Аудио" Style="{StaticResource TitleTextBlock}" Grid.Row="53"/>
+                        <TextBlock Text="Звуковая схема" Grid.Row="54"/>
+                        <TextBlock x:Name="MotherboardAudioSchemeTextBlock" Grid.Row="54" Grid.Column="1"/>
+                        <Separator Grid.Row="55"/>
+                        <TextBlock Text="Чипсет звукового адаптера" Grid.Row="56"/>
+                        <TextBlock x:Name="MotherboardAudioChipsetTextBlock" Grid.Row="56" Grid.Column="1"/>
+                        <Separator Grid.Row="57"/>
+                        <TextBlock Text="Сеть" Style="{StaticResource TitleTextBlock}" Grid.Row="58"/>
+                        <TextBlock Text="Скорость сетевого адаптера" Grid.Row="59"/>
+                        <TextBlock x:Name="MotherboardNetworkSpeedTextBlock" Grid.Row="59" Grid.Column="1"/>
+                        <Separator Grid.Row="60"/>
+                        <TextBlock Text="Чипсет сетевого адаптера" Grid.Row="61"/>
+                        <TextBlock x:Name="MotherboardNetworkChipsetTextBlock" Grid.Row="61" Grid.Column="1"/>
+                        <Separator Grid.Row="62"/>
+                        <TextBlock Text="Встроенный адаптер Wi-Fi" Grid.Row="63"/>
+                        <TextBlock x:Name="MotherboardWifiAdapterTextBlock" Grid.Row="63" Grid.Column="1"/>
+                        <Separator Grid.Row="64"/>
+                        <TextBlock Text="Bluetooth" Grid.Row="65"/>
+                        <TextBlock x:Name="MotherboardBluetoothTextBlock" Grid.Row="65" Grid.Column="1"/>
+                        <Separator Grid.Row="66"/>
+                        <TextBlock Text="Питание" Style="{StaticResource TitleTextBlock}" Grid.Row="67"/>
+                        <TextBlock Text="Основной разъем питания" Grid.Row="68"/>
+                        <TextBlock x:Name="MotherboardPowerPlugTextBlock" Grid.Row="68" Grid.Column="1"/>
+                        <Separator Grid.Row="69"/>
+                        <TextBlock Text="Разъем питания процессора" Grid.Row="70"/>
+                        <TextBlock x:Name="ProcessorPowerPlugTextBlock" Grid.Row="70" Grid.Column="1"/>
+                        <Separator Grid.Row="71"/>
+                        <TextBlock Text="Количество фаз питания" Grid.Row="72"/>
+                        <TextBlock x:Name="MotherboardPowerPhaseTextBlock" Grid.Row="72" Grid.Column="1"/>
+                        <Separator Grid.Row="73"/>
+                    </Grid>
                 </StackPanel>
             </Border>
         </Grid>
