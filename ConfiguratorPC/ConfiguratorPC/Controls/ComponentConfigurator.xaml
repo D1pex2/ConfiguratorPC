@@ -26,7 +26,7 @@
     <StackPanel>
         <Border x:Name="ButtonBorder" Style="{StaticResource BorderDefault}" MinHeight="100">
             <DockPanel Margin="15,0,15,0">
-                <TextBlock x:Name="TypeTextBlock" Cursor="Hand" Text="Тип компонента" MinWidth="200"  VerticalAlignment="Center"/>
+                <TextBlock x:Name="TypeTextBlock" Text="Тип компонента" MinWidth="200"  VerticalAlignment="Center"/>
                 <Image x:Name="ComponentImage" Height="80" Width="80" Stretch="Uniform"/>
                 <Button x:Name="InteractionButton" Width="120" Height="40" Content="+ Добавить" FontWeight="DemiBold" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right"
                         Click="InteractionButton_Click">
@@ -58,7 +58,7 @@
                 </Button>
                 <TextBlock x:Name="PriceTextBlock" FontWeight="DemiBold" VerticalAlignment="Center"  HorizontalAlignment="Right" DockPanel.Dock="Right"/>
                 <local:NumericUpDown MinValue="1" MaxValue="1" x:Name="NumericRam" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
-                <TextBlock x:Name="NameTextBlock" Style="{StaticResource ComponentTitleTextBlock}" VerticalAlignment="Center" TextWrapping="Wrap" PreviewMouseLeftButtonDown="CurrentComponentTitle_PreviewMouseLeftButtonDown"/>
+                <TextBlock x:Name="NameTextBlock" Cursor="Hand" Style="{StaticResource ComponentTitleTextBlock}" VerticalAlignment="Center" TextWrapping="Wrap" PreviewMouseLeftButtonDown="CurrentComponentTitle_PreviewMouseLeftButtonDown"/>
             </DockPanel>
         </Border>
         <Border CornerRadius="0 0 10 10" Background="#dbdbdb" Style="{StaticResource BorderDefault}" x:Name="ComponentsBorder" IsVisibleChanged="ComponentsBorder_IsVisibleChanged" Visibility="Collapsed" MaxHeight="500">
