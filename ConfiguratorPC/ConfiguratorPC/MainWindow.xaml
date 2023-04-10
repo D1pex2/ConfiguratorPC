@@ -15,13 +15,13 @@
         <Border x:Name="TitleBorder" Height="30" MouseLeftButtonDown="TitleBorder_MouseLeftButtonDown" Background="#FF00B3FF">
             <DockPanel x:Name="TitleDockPanel" HorizontalAlignment="Stretch">
                 <TextBlock Text="{Binding ElementName=ConfigWindow, Path=Title}" Foreground="White"/>
-                <Button x:Name="CloseButton" Click="CloseButton_Click" Style="{StaticResource WindowButton}" DockPanel.Dock="Right">
+                <Button x:Name="CloseButton" Cursor="Hand" Click="CloseButton_Click" Style="{StaticResource WindowButton}" DockPanel.Dock="Right">
                     <Image Source="/Resources/close_white.png"/>
                 </Button>
-                <Button x:Name="MaxMinButton" Click="MaxMinButton_Click" Style="{StaticResource WindowButton}" DockPanel.Dock="Right">
+                <Button x:Name="MaxMinButton" Cursor="Hand" Click="MaxMinButton_Click" Style="{StaticResource WindowButton}" DockPanel.Dock="Right">
                     <Image x:Name="MaxMinButtonImage" Source="/Resources/maximize.png"/>
                 </Button>
-                <Button x:Name="HideButton" Click="HideButton_Click" Style="{StaticResource WindowButton}" DockPanel.Dock="Right" HorizontalAlignment="Right">
+                <Button x:Name="HideButton" Cursor="Hand" Click="HideButton_Click" Style="{StaticResource WindowButton}" DockPanel.Dock="Right" HorizontalAlignment="Right">
                     <Image Source="/Resources/hide.png"/>
                 </Button>
             </DockPanel>

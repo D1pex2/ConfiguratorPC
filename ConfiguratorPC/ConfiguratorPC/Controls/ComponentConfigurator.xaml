@@ -61,7 +61,7 @@
                 <TextBlock x:Name="NameTextBlock" Cursor="Hand" Style="{StaticResource ComponentTitleTextBlock}" VerticalAlignment="Center" TextWrapping="Wrap" PreviewMouseLeftButtonDown="CurrentComponentTitle_PreviewMouseLeftButtonDown"/>
             </DockPanel>
         </Border>
-        <Border CornerRadius="0 0 10 10" Background="#dbdbdb" Style="{StaticResource BorderDefault}" x:Name="ComponentsBorder" IsVisibleChanged="ComponentsBorder_IsVisibleChanged" Visibility="Collapsed" MaxHeight="500">
+        <Border CornerRadius="0 0 10 10" Background="#dbdbdb" Style="{StaticResource BorderDefault}" x:Name="ComponentsBorder" IsVisibleChanged="ComponentsBorder_IsVisibleChanged" Visibility="Collapsed" MaxHeight="700">
             <ScrollViewer x:Name="ComponentsScrollViewer">
                 <Grid>
                     <Grid.RowDefinitions>
