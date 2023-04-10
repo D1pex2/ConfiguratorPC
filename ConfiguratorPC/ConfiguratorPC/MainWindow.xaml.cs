@@ -27,6 +27,7 @@ namespace ConfiguratorPC
         public MainWindow()
         {
             InitializeComponent();
+            MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             Navigator.Frame = MainFrame;
             MainFrame.Navigate(new ConfiguratorPage());
         }

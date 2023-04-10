@@ -13,7 +13,7 @@
             </Grid.ColumnDefinitions>
             <TextBox x:Name="NumTextBox" HorizontalAlignment="Stretch" LostFocus="NumericTextBox_LostFocus" TextChanged="NumericTextBox_TextChanged" Background="Transparent"
                  VerticalContentAlignment="Center" FontSize="14" BorderThickness="0" Margin="8,0,0,0" PreviewKeyDown="NumericTextBox_PreviewKeyDown" />
-            <TextBlock HorizontalAlignment="Right" Text="⨉" Grid.Column="1" VerticalAlignment="Center" FontSize="14" PreviewMouseLeftButtonDown="TextBlock_PreviewMouseLeftButtonDown"/>
+            <TextBlock HorizontalAlignment="Right" Cursor="Hand" Text="⨉" Grid.Column="1" VerticalAlignment="Center" FontSize="14" PreviewMouseLeftButtonDown="TextBlock_PreviewMouseLeftButtonDown"/>
         </Grid>
     </Border>
 </UserControl>

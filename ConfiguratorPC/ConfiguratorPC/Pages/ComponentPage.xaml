@@ -35,7 +35,7 @@
             <Border Style="{StaticResource BorderDefault}"  Grid.Row="1" Grid.Column="1" MaxWidth="1300">
                 <StackPanel Margin="15">
                     <DockPanel>
-                        <Button x:Name="CloseButton" Style="{StaticResource WindowButton}" Margin="5,10,5,5" Width="25" Height="25" HorizontalAlignment="Left" Click="CloseButton_Click">
+                        <Button x:Name="CloseButton" Cursor="Hand" Style="{StaticResource WindowButton}" Margin="5,10,5,5" Width="25" Height="25" HorizontalAlignment="Left" Click="CloseButton_Click">
                             <Image Source="/Resources/close_black.png"/>
                         </Button>
                         <TextBlock x:Name="NameTextBlock" FontWeight="SemiBold" FontSize="32" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"/>
@@ -46,7 +46,7 @@
                                 <ListView x:Name="PictureList" Margin="5" ScrollViewer.CanContentScroll="False" BorderThickness="0" MaxHeight="500" SelectionMode="Single">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
-                                            <Image Source="{Binding Image}" Margin="5" Stretch="Uniform" Width="100" Height="100" PreviewMouseLeftButtonDown="Image_PreviewMouseLeftButtonDown"/>
+                                            <Image Source="{Binding Image}" Cursor="Hand" Margin="5" Stretch="Uniform" Width="100" Height="100" PreviewMouseLeftButtonDown="Image_PreviewMouseLeftButtonDown"/>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                     <ListView.ItemContainerStyle>
