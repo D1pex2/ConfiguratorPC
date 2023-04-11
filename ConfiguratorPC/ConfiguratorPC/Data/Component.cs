@@ -30,11 +30,11 @@ namespace ConfiguratorPC.Data
         public virtual DataStorage DataStorage { get; set; }
         public virtual MotherBoard MotherBoard { get; set; }
         public virtual PowerSupply PowerSupply { get; set; }
-        public virtual Processor Processor { get; set; }
         public virtual ProcessorCooler ProcessorCooler { get; set; }
         public virtual RAM RAM { get; set; }
         public virtual VideoCard VideoCard { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Picture> Pictures { get; set; }
+        public virtual Processor Processor { get; set; }
     }
 }

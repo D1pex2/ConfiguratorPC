@@ -258,7 +258,7 @@
     <Property Name="CoolerPowerSupply" Type="varchar" MaxLength="5" Nullable="false" />
     <Property Name="M2KeyE" Type="bit" Nullable="false" />
     <Property Name="InterfaceLPT" Type="bit" Nullable="false" />
-    <Property Name="SoundSchema" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="SoundSchema" Type="varchar" MaxLength="3" />
     <Property Name="IdSoundAdapterChipset" Type="int" />
     <Property Name="IdNetworkAdapterChipset" Type="int" />
     <Property Name="NetworkAdapterSpeed" Type="tinyint" />
@@ -267,6 +267,7 @@
     <Property Name="PowerPhaseQuantity" Type="tinyint" Nullable="false" />
     <Property Name="IdMotherBoardPowerPlug" Type="int" Nullable="false" />
     <Property Name="IdProcessorPowerPlug" Type="int" Nullable="false" />
+    <Property Name="StreamRAMQuantity" Type="tinyint" Nullable="false" />
   </EntityType>
   <EntityType Name="MotherBoardCompatibleCore">
     <Key>
@@ -416,20 +417,20 @@
     <Property Name="ProductiveCoreQuantity" Type="tinyint" Nullable="false" />
     <Property Name="EnergyEfficientCoreQuantity" Type="tinyint" />
     <Property Name="CacheL2Size" Type="decimal" Precision="3" Scale="1" Nullable="false" />
-    <Property Name="CacheL3Size" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+    <Property Name="CacheL3Size" Type="decimal" Precision="3" Scale="1" />
     <Property Name="TechProcess" Type="tinyint" Nullable="false" />
     <Property Name="BaseFrequency" Type="decimal" Precision="3" Scale="1" Nullable="false" />
     <Property Name="MaxFrequency" Type="decimal" Precision="3" Scale="1" />
     <Property Name="BaseFrequencyEnergyEfficientCore" Type="decimal" Precision="3" Scale="1" />
     <Property Name="MaxFrequencyEnergyEfficientCore" Type="decimal" Precision="3" Scale="1" />
     <Property Name="FreeMultiplier" Type="bit" Nullable="false" />
-    <Property Name="ChannelQuantity" Type="tinyint" Nullable="false" />
     <Property Name="MaxRAMFrequency" Type="smallint" Nullable="false" />
     <Property Name="HasECC" Type="bit" Nullable="false" />
     <Property Name="TDP" Type="tinyint" Nullable="false" />
     <Property Name="MaxTemperature" Type="tinyint" Nullable="false" />
-    <Property Name="IdPCIEController" Type="int" />
+    <Property Name="IdPCIEController" Type="int" Nullable="false" />
     <Property Name="PCIEQuantity" Type="tinyint" Nullable="false" />
+    <Property Name="StreamRAMQuantity" Type="tinyint" Nullable="false" />
   </EntityType>
   <EntityType Name="ProcessorCompatibleMemoryType">
     <Key>
@@ -1356,7 +1357,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Processor_PCIEController">
-    <End Role="PCIEController" Type="Self.PCIEController" Multiplicity="0..1" />
+    <End Role="PCIEController" Type="Self.PCIEController" Multiplicity="1" />
     <End Role="Processor" Type="Self.Processor" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PCIEController">

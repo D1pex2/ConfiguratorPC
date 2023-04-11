@@ -371,7 +371,7 @@
                                                     </Button.Resources>
                                                 </Button>
                                                 <TextBlock Text="{Binding Price, StringFormat={}{0} руб.}" FontWeight="DemiBold" HorizontalAlignment="Center" DockPanel.Dock="Right" VerticalAlignment="Center"/>
-                                                <TextBlock Text="{Binding Name}" Style="{StaticResource ComponentTitleTextBlock}" TextWrapping="WrapWithOverflow" DockPanel.Dock="Right" VerticalAlignment="Center" PreviewMouseLeftButtonDown="ComponentTitle_PreviewMouseLeftButtonDown"/>
+                                                <TextBlock Text="{Binding Name}" Style="{StaticResource ComponentTitleTextBlock}" Cursor="Hand" TextWrapping="WrapWithOverflow" DockPanel.Dock="Right" VerticalAlignment="Center" PreviewMouseLeftButtonDown="ComponentTitle_PreviewMouseLeftButtonDown"/>
                                             </DockPanel>
                                         </Border>
                                     </DataTemplate>

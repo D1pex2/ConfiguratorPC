@@ -60,7 +60,6 @@ namespace ConfiguratorPC.Data
         public virtual DbSet<PowerSupplyMotherBoardConnector> PowerSupplyMotherBoardConnectors { get; set; }
         public virtual DbSet<PowerSupplyProcessorPowerConnector> PowerSupplyProcessorPowerConnectors { get; set; }
         public virtual DbSet<PowerSupplyVideoPowerConnector> PowerSupplyVideoPowerConnectors { get; set; }
-        public virtual DbSet<Processor> Processors { get; set; }
         public virtual DbSet<ProcessorCooler> ProcessorCoolers { get; set; }
         public virtual DbSet<ProcessorPowerConnector> ProcessorPowerConnectors { get; set; }
         public virtual DbSet<ProcessorPowerPlug> ProcessorPowerPlugs { get; set; }
@@ -75,5 +74,6 @@ namespace ConfiguratorPC.Data
         public virtual DbSet<VideoMemoryType> VideoMemoryTypes { get; set; }
         public virtual DbSet<VideoOutput> VideoOutputs { get; set; }
         public virtual DbSet<VideoPowerConnector> VideoPowerConnectors { get; set; }
+        public virtual DbSet<Processor> Processors { get; set; }
     }
 }

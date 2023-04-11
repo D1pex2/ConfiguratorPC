@@ -31,20 +31,20 @@ namespace ConfiguratorPC.Data
         public byte ProductiveCoreQuantity { get; set; }
         public Nullable<byte> EnergyEfficientCoreQuantity { get; set; }
         public decimal CacheL2Size { get; set; }
-        public decimal CacheL3Size { get; set; }
+        public Nullable<decimal> CacheL3Size { get; set; }
         public byte TechProcess { get; set; }
         public decimal BaseFrequency { get; set; }
         public Nullable<decimal> MaxFrequency { get; set; }
         public Nullable<decimal> BaseFrequencyEnergyEfficientCore { get; set; }
         public Nullable<decimal> MaxFrequencyEnergyEfficientCore { get; set; }
         public bool FreeMultiplier { get; set; }
-        public byte ChannelQuantity { get; set; }
         public short MaxRAMFrequency { get; set; }
         public bool HasECC { get; set; }
         public byte TDP { get; set; }
         public byte MaxTemperature { get; set; }
-        public Nullable<int> IdPCIEController { get; set; }
+        public int IdPCIEController { get; set; }
         public byte PCIEQuantity { get; set; }
+        public byte StreamRAMQuantity { get; set; }
     
         public virtual Component Component { get; set; }
         public virtual Core Core { get; set; }

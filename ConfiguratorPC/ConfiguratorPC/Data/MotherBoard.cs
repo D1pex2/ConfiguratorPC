@@ -52,6 +52,7 @@ namespace ConfiguratorPC.Data
         public byte PowerPhaseQuantity { get; set; }
         public int IdMotherBoardPowerPlug { get; set; }
         public int IdProcessorPowerPlug { get; set; }
+        public byte StreamRAMQuantity { get; set; }
     
         public virtual Chipset Chipset { get; set; }
         public virtual Component Component { get; set; }

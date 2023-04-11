@@ -226,6 +226,7 @@
     <EntitySetMapping Name="MotherBoards">
       <EntityTypeMapping TypeName="ConfiguratorPCModel.MotherBoard">
         <MappingFragment StoreEntitySet="MotherBoard">
+          <ScalarProperty Name="StreamRAMQuantity" ColumnName="StreamRAMQuantity" />
           <ScalarProperty Name="IdProcessorPowerPlug" ColumnName="IdProcessorPowerPlug" />
           <ScalarProperty Name="IdMotherBoardPowerPlug" ColumnName="IdMotherBoardPowerPlug" />
           <ScalarProperty Name="PowerPhaseQuantity" ColumnName="PowerPhaseQuantity" />
@@ -371,37 +372,6 @@
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="IdVideoPowerConnector" ColumnName="IdVideoPowerConnector" />
           <ScalarProperty Name="IdPowerSupply" ColumnName="IdPowerSupply" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Processors">
-      <EntityTypeMapping TypeName="ConfiguratorPCModel.Processor">
-        <MappingFragment StoreEntitySet="Processor">
-          <ScalarProperty Name="PCIEQuantity" ColumnName="PCIEQuantity" />
-          <ScalarProperty Name="IdPCIEController" ColumnName="IdPCIEController" />
-          <ScalarProperty Name="MaxTemperature" ColumnName="MaxTemperature" />
-          <ScalarProperty Name="TDP" ColumnName="TDP" />
-          <ScalarProperty Name="HasECC" ColumnName="HasECC" />
-          <ScalarProperty Name="MaxRAMFrequency" ColumnName="MaxRAMFrequency" />
-          <ScalarProperty Name="ChannelQuantity" ColumnName="ChannelQuantity" />
-          <ScalarProperty Name="FreeMultiplier" ColumnName="FreeMultiplier" />
-          <ScalarProperty Name="MaxFrequencyEnergyEfficientCore" ColumnName="MaxFrequencyEnergyEfficientCore" />
-          <ScalarProperty Name="BaseFrequencyEnergyEfficientCore" ColumnName="BaseFrequencyEnergyEfficientCore" />
-          <ScalarProperty Name="MaxFrequency" ColumnName="MaxFrequency" />
-          <ScalarProperty Name="BaseFrequency" ColumnName="BaseFrequency" />
-          <ScalarProperty Name="TechProcess" ColumnName="TechProcess" />
-          <ScalarProperty Name="CacheL3Size" ColumnName="CacheL3Size" />
-          <ScalarProperty Name="CacheL2Size" ColumnName="CacheL2Size" />
-          <ScalarProperty Name="EnergyEfficientCoreQuantity" ColumnName="EnergyEfficientCoreQuantity" />
-          <ScalarProperty Name="ProductiveCoreQuantity" ColumnName="ProductiveCoreQuantity" />
-          <ScalarProperty Name="MaxThreadQuantity" ColumnName="MaxThreadQuantity" />
-          <ScalarProperty Name="CoreQuantity" ColumnName="CoreQuantity" />
-          <ScalarProperty Name="HasCooler" ColumnName="HasCooler" />
-          <ScalarProperty Name="MaxMemorySize" ColumnName="MaxMemorySize" />
-          <ScalarProperty Name="IdCore" ColumnName="IdCore" />
-          <ScalarProperty Name="IdGraphicsProcessingUnit" ColumnName="IdGraphicsProcessingUnit" />
-          <ScalarProperty Name="IdSocket" ColumnName="IdSocket" />
-          <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -623,14 +593,6 @@
         <ScalarProperty Name="IdComponent" ColumnName="IdMotherBoard" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="ProcessorCompatibleMemoryType" TypeName="ConfiguratorPCModel.ProcessorCompatibleMemoryType" StoreEntitySet="ProcessorCompatibleMemoryType">
-      <EndProperty Name="RAMType">
-        <ScalarProperty Name="Id" ColumnName="IdRAMType" />
-      </EndProperty>
-      <EndProperty Name="Processor">
-        <ScalarProperty Name="IdComponent" ColumnName="IdProcessor" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="ProcessorConnectorPlug" TypeName="ConfiguratorPCModel.ProcessorConnectorPlug" StoreEntitySet="ProcessorConnectorPlug">
       <EndProperty Name="ProcessorPowerPlug">
         <ScalarProperty Name="Id" ColumnName="IdProcessorPowerPlug" />
@@ -653,6 +615,45 @@
       </EndProperty>
       <EndProperty Name="VideoCard">
         <ScalarProperty Name="IdComponent" ColumnName="IdVideoCard" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Processors">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.Processor">
+        <MappingFragment StoreEntitySet="Processor">
+          <ScalarProperty Name="StreamRAMQuantity" ColumnName="StreamRAMQuantity" />
+          <ScalarProperty Name="PCIEQuantity" ColumnName="PCIEQuantity" />
+          <ScalarProperty Name="IdPCIEController" ColumnName="IdPCIEController" />
+          <ScalarProperty Name="MaxTemperature" ColumnName="MaxTemperature" />
+          <ScalarProperty Name="TDP" ColumnName="TDP" />
+          <ScalarProperty Name="HasECC" ColumnName="HasECC" />
+          <ScalarProperty Name="MaxRAMFrequency" ColumnName="MaxRAMFrequency" />
+          <ScalarProperty Name="FreeMultiplier" ColumnName="FreeMultiplier" />
+          <ScalarProperty Name="MaxFrequencyEnergyEfficientCore" ColumnName="MaxFrequencyEnergyEfficientCore" />
+          <ScalarProperty Name="BaseFrequencyEnergyEfficientCore" ColumnName="BaseFrequencyEnergyEfficientCore" />
+          <ScalarProperty Name="MaxFrequency" ColumnName="MaxFrequency" />
+          <ScalarProperty Name="BaseFrequency" ColumnName="BaseFrequency" />
+          <ScalarProperty Name="TechProcess" ColumnName="TechProcess" />
+          <ScalarProperty Name="CacheL3Size" ColumnName="CacheL3Size" />
+          <ScalarProperty Name="CacheL2Size" ColumnName="CacheL2Size" />
+          <ScalarProperty Name="EnergyEfficientCoreQuantity" ColumnName="EnergyEfficientCoreQuantity" />
+          <ScalarProperty Name="ProductiveCoreQuantity" ColumnName="ProductiveCoreQuantity" />
+          <ScalarProperty Name="MaxThreadQuantity" ColumnName="MaxThreadQuantity" />
+          <ScalarProperty Name="CoreQuantity" ColumnName="CoreQuantity" />
+          <ScalarProperty Name="HasCooler" ColumnName="HasCooler" />
+          <ScalarProperty Name="MaxMemorySize" ColumnName="MaxMemorySize" />
+          <ScalarProperty Name="IdCore" ColumnName="IdCore" />
+          <ScalarProperty Name="IdGraphicsProcessingUnit" ColumnName="IdGraphicsProcessingUnit" />
+          <ScalarProperty Name="IdSocket" ColumnName="IdSocket" />
+          <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ProcessorCompatibleMemoryType" TypeName="ConfiguratorPCModel.ProcessorCompatibleMemoryType" StoreEntitySet="ProcessorCompatibleMemoryType">
+      <EndProperty Name="RAMType">
+        <ScalarProperty Name="Id" ColumnName="IdRAMType" />
+      </EndProperty>
+      <EndProperty Name="Processor">
+        <ScalarProperty Name="IdComponent" ColumnName="IdProcessor" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
