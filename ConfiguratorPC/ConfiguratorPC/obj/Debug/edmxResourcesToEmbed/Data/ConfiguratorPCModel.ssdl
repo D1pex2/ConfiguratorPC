@@ -110,7 +110,7 @@
     <Property Name="DissipationPower" Type="smallint" Nullable="false" />
     <Property Name="ConstructionType" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="IdBaseMaterial" Type="int" Nullable="false" />
-    <Property Name="TermPipeQiantity" Type="tinyint" />
+    <Property Name="TermPipeQuantity" Type="tinyint" />
     <Property Name="TermPipeDiameter" Type="tinyint" />
     <Property Name="NickelCoating" Type="nvarchar" MaxLength="100" />
     <Property Name="Width" Type="smallint" Nullable="false" />
@@ -140,8 +140,6 @@
     <Property Name="Width" Type="decimal" Precision="5" Scale="2" Nullable="false" />
     <Property Name="Length" Type="smallint" Nullable="false" />
     <Property Name="Thickness" Type="decimal" Precision="3" Scale="1" Nullable="false" />
-    <Property Name="Mass" Type="smallint" Nullable="false" />
-    <Property Name="EnergyUse" Type="decimal" Precision="4" Scale="2" Nullable="false" />
   </EntityType>
   <EntityType Name="GraphicProcessor">
     <Key>
@@ -172,6 +170,7 @@
     <Property Name="ActiveNoiseLevel" Type="tinyint" Nullable="false" />
     <Property Name="PassiveNoiseLevel" Type="tinyint" Nullable="false" />
     <Property Name="PassiveEnergyUse" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+    <Property Name="MaxEnergyUse" Type="decimal" Precision="4" Scale="2" Nullable="false" />
     <Property Name="MaxTemp" Type="tinyint" Nullable="false" />
   </EntityType>
   <EntityType Name="LightingType">
@@ -546,8 +545,8 @@
     <Property Name="IdDataStorage" Type="int" Nullable="false" />
     <Property Name="BitQuantityOnCell" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="MemoryStructure" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="MinSpeed" Type="smallint" Nullable="false" />
-    <Property Name="MaxSpeed" Type="smallint" Nullable="false" />
+    <Property Name="WriteSpeed" Type="smallint" Nullable="false" />
+    <Property Name="ReadSpeed" Type="smallint" Nullable="false" />
     <Property Name="TotalBytesWritten" Type="tinyint" Nullable="false" />
     <Property Name="DWPD" Type="decimal" Precision="3" Scale="2" Nullable="false" />
   </EntityType>

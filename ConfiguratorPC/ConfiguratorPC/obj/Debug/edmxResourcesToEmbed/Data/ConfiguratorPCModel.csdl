@@ -7,12 +7,9 @@
     <EntitySet Name="Colors" EntityType="ConfiguratorPCModel.Color" />
     <EntitySet Name="Components" EntityType="ConfiguratorPCModel.Component" />
     <EntitySet Name="Connectors" EntityType="ConfiguratorPCModel.Connector" />
-    <EntitySet Name="Coolers" EntityType="ConfiguratorPCModel.Cooler" />
     <EntitySet Name="Cores" EntityType="ConfiguratorPCModel.Core" />
-    <EntitySet Name="DataStorages" EntityType="ConfiguratorPCModel.DataStorage" />
     <EntitySet Name="GraphicProcessors" EntityType="ConfiguratorPCModel.GraphicProcessor" />
     <EntitySet Name="GraphicsProcessingUnits" EntityType="ConfiguratorPCModel.GraphicsProcessingUnit" />
-    <EntitySet Name="HDDs" EntityType="ConfiguratorPCModel.HDD" />
     <EntitySet Name="LightingTypes" EntityType="ConfiguratorPCModel.LightingType" />
     <EntitySet Name="LiquidCoolers" EntityType="ConfiguratorPCModel.LiquidCooler" />
     <EntitySet Name="M2FormFactor" EntityType="ConfiguratorPCModel.M2FormFactor" />
@@ -43,7 +40,6 @@
     <EntitySet Name="RAMTypes" EntityType="ConfiguratorPCModel.RAMType" />
     <EntitySet Name="Sockets" EntityType="ConfiguratorPCModel.Socket" />
     <EntitySet Name="SoundAdapterChipsets" EntityType="ConfiguratorPCModel.SoundAdapterChipset" />
-    <EntitySet Name="SSDs" EntityType="ConfiguratorPCModel.SSD" />
     <EntitySet Name="VideoCardPowerPlugs" EntityType="ConfiguratorPCModel.VideoCardPowerPlug" />
     <EntitySet Name="VideoMemoryTypes" EntityType="ConfiguratorPCModel.VideoMemoryType" />
     <EntitySet Name="VideoOutputs" EntityType="ConfiguratorPCModel.VideoOutput" />
@@ -63,10 +59,6 @@
     <AssociationSet Name="FK_Component_Manufacturer" Association="ConfiguratorPCModel.FK_Component_Manufacturer">
       <End Role="Manufacturer" EntitySet="Manufacturers" />
       <End Role="Component" EntitySet="Components" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DataStorage_Component" Association="ConfiguratorPCModel.FK_DataStorage_Component">
-      <End Role="Component" EntitySet="Components" />
-      <End Role="DataStorage" EntitySet="DataStorages" />
     </AssociationSet>
     <AssociationSet Name="FK_MotherBoard_Component" Association="ConfiguratorPCModel.FK_MotherBoard_Component">
       <End Role="Component" EntitySet="Components" />
@@ -88,22 +80,6 @@
       <End Role="Connector" EntitySet="Connectors" />
       <End Role="MotherBoardConnector" EntitySet="MotherBoardConnectors" />
     </AssociationSet>
-    <AssociationSet Name="FK_Cooler_Material" Association="ConfiguratorPCModel.FK_Cooler_Material">
-      <End Role="Material" EntitySet="Materials" />
-      <End Role="Cooler" EntitySet="Coolers" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Cooler_ProcessorCooler" Association="ConfiguratorPCModel.FK_Cooler_ProcessorCooler">
-      <End Role="ProcessorCooler" EntitySet="ProcessorCoolers" />
-      <End Role="Cooler" EntitySet="Coolers" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HDD_DataStorage" Association="ConfiguratorPCModel.FK_HDD_DataStorage">
-      <End Role="DataStorage" EntitySet="DataStorages" />
-      <End Role="HDD" EntitySet="HDDs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SSD_DataStorage" Association="ConfiguratorPCModel.FK_SSD_DataStorage">
-      <End Role="DataStorage" EntitySet="DataStorages" />
-      <End Role="SSD" EntitySet="SSDs" />
-    </AssociationSet>
     <AssociationSet Name="FK_LiquidCooler_Material" Association="ConfiguratorPCModel.FK_LiquidCooler_Material">
       <End Role="Material" EntitySet="Materials" />
       <End Role="LiquidCooler" EntitySet="LiquidCoolers" />
@@ -123,10 +99,6 @@
     <AssociationSet Name="FK_MotherBoardM2Key_M2Key" Association="ConfiguratorPCModel.FK_MotherBoardM2Key_M2Key">
       <End Role="M2Key" EntitySet="M2Key" />
       <End Role="MotherBoardM2Key" EntitySet="MotherBoardM2Key" />
-    </AssociationSet>
-    <AssociationSet Name="FK_M2SSD_SSD" Association="ConfiguratorPCModel.FK_M2SSD_SSD">
-      <End Role="SSD" EntitySet="SSDs" />
-      <End Role="M2SSD" EntitySet="M2SSD" />
     </AssociationSet>
     <AssociationSet Name="FK_ProcessorCooler_Material" Association="ConfiguratorPCModel.FK_ProcessorCooler_Material">
       <End Role="Material" EntitySet="Materials" />
@@ -335,6 +307,34 @@
       <End Role="VideoCard" EntitySet="VideoCards" />
       <End Role="VideoOutput" EntitySet="VideoOutputs" />
     </AssociationSet>
+    <EntitySet Name="Coolers" EntityType="ConfiguratorPCModel.Cooler" />
+    <AssociationSet Name="FK_Cooler_Material" Association="ConfiguratorPCModel.FK_Cooler_Material">
+      <End Role="Material" EntitySet="Materials" />
+      <End Role="Cooler" EntitySet="Coolers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cooler_ProcessorCooler" Association="ConfiguratorPCModel.FK_Cooler_ProcessorCooler">
+      <End Role="ProcessorCooler" EntitySet="ProcessorCoolers" />
+      <End Role="Cooler" EntitySet="Coolers" />
+    </AssociationSet>
+    <EntitySet Name="DataStorages" EntityType="ConfiguratorPCModel.DataStorage" />
+    <EntitySet Name="HDDs" EntityType="ConfiguratorPCModel.HDD" />
+    <AssociationSet Name="FK_DataStorage_Component" Association="ConfiguratorPCModel.FK_DataStorage_Component">
+      <End Role="Component" EntitySet="Components" />
+      <End Role="DataStorage" EntitySet="DataStorages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HDD_DataStorage" Association="ConfiguratorPCModel.FK_HDD_DataStorage">
+      <End Role="DataStorage" EntitySet="DataStorages" />
+      <End Role="HDD" EntitySet="HDDs" />
+    </AssociationSet>
+    <EntitySet Name="SSDs" EntityType="ConfiguratorPCModel.SSD" />
+    <AssociationSet Name="FK_SSD_DataStorage" Association="ConfiguratorPCModel.FK_SSD_DataStorage">
+      <End Role="DataStorage" EntitySet="DataStorages" />
+      <End Role="SSD" EntitySet="SSDs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_M2SSD_SSD" Association="ConfiguratorPCModel.FK_M2SSD_SSD">
+      <End Role="SSD" EntitySet="SSDs" />
+      <End Role="M2SSD" EntitySet="M2SSD" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="CaseConnector">
     <Key>
@@ -381,7 +381,6 @@
     <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="Price" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
     <NavigationProperty Name="Manufacturer" Relationship="ConfiguratorPCModel.FK_Component_Manufacturer" FromRole="Component" ToRole="Manufacturer" />
-    <NavigationProperty Name="DataStorage" Relationship="ConfiguratorPCModel.FK_DataStorage_Component" FromRole="Component" ToRole="DataStorage" />
     <NavigationProperty Name="MotherBoard" Relationship="ConfiguratorPCModel.FK_MotherBoard_Component" FromRole="Component" ToRole="MotherBoard" />
     <NavigationProperty Name="PowerSupply" Relationship="ConfiguratorPCModel.FK_PowerSupply_Component" FromRole="Component" ToRole="PowerSupply" />
     <NavigationProperty Name="ProcessorCooler" Relationship="ConfiguratorPCModel.FK_ProcessorCooler_Component" FromRole="Component" ToRole="ProcessorCooler" />
@@ -390,6 +389,7 @@
     <NavigationProperty Name="Processor" Relationship="ConfiguratorPCModel.FK_Processor_Component" FromRole="Component" ToRole="Processor" />
     <NavigationProperty Name="Case" Relationship="ConfiguratorPCModel.FK_Case_Component" FromRole="Component" ToRole="Case" />
     <NavigationProperty Name="VideoCard" Relationship="ConfiguratorPCModel.FK_VideoCard_Component" FromRole="Component" ToRole="VideoCard" />
+    <NavigationProperty Name="DataStorage" Relationship="ConfiguratorPCModel.FK_DataStorage_Component" FromRole="Component" ToRole="DataStorage" />
   </EntityType>
   <EntityType Name="Connector">
     <Key>
@@ -400,23 +400,6 @@
     <NavigationProperty Name="CaseConnectors" Relationship="ConfiguratorPCModel.FK_CaseConnector_Connector" FromRole="Connector" ToRole="CaseConnector" />
     <NavigationProperty Name="MotherBoardConnectors" Relationship="ConfiguratorPCModel.FK_MotherBoardConnector_Connector" FromRole="Connector" ToRole="MotherBoardConnector" />
   </EntityType>
-  <EntityType Name="Cooler">
-    <Key>
-      <PropertyRef Name="IdProcessorCooler" />
-    </Key>
-    <Property Name="IdProcessorCooler" Type="Int32" Nullable="false" />
-    <Property Name="Heigth" Type="Int16" Nullable="false" />
-    <Property Name="DissipationPower" Type="Int16" Nullable="false" />
-    <Property Name="ConstructionType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="IdBaseMaterial" Type="Int32" Nullable="false" />
-    <Property Name="TermPipeQiantity" Type="Byte" />
-    <Property Name="TermPipeDiameter" Type="Byte" />
-    <Property Name="NickelCoating" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Width" Type="Int16" Nullable="false" />
-    <Property Name="Length" Type="Int16" Nullable="false" />
-    <NavigationProperty Name="Material" Relationship="ConfiguratorPCModel.FK_Cooler_Material" FromRole="Cooler" ToRole="Material" />
-    <NavigationProperty Name="ProcessorCooler" Relationship="ConfiguratorPCModel.FK_Cooler_ProcessorCooler" FromRole="Cooler" ToRole="ProcessorCooler" />
-  </EntityType>
   <EntityType Name="Core">
     <Key>
       <PropertyRef Name="Id" />
@@ -425,21 +408,6 @@
     <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="MotherBoards" Relationship="ConfiguratorPCModel.MotherBoardCompatibleCore" FromRole="Core" ToRole="MotherBoard" />
     <NavigationProperty Name="Processors" Relationship="ConfiguratorPCModel.FK_Processor_Core" FromRole="Core" ToRole="Processor" />
-  </EntityType>
-  <EntityType Name="DataStorage">
-    <Key>
-      <PropertyRef Name="IdComponent" />
-    </Key>
-    <Property Name="IdComponent" Type="Int32" Nullable="false" />
-    <Property Name="MemorySize" Type="Int16" Nullable="false" />
-    <Property Name="Width" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
-    <Property Name="Length" Type="Int16" Nullable="false" />
-    <Property Name="Thickness" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
-    <Property Name="Mass" Type="Int16" Nullable="false" />
-    <Property Name="EnergyUse" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
-    <NavigationProperty Name="Component" Relationship="ConfiguratorPCModel.FK_DataStorage_Component" FromRole="DataStorage" ToRole="Component" />
-    <NavigationProperty Name="HDD" Relationship="ConfiguratorPCModel.FK_HDD_DataStorage" FromRole="DataStorage" ToRole="HDD" />
-    <NavigationProperty Name="SSD" Relationship="ConfiguratorPCModel.FK_SSD_DataStorage" FromRole="DataStorage" ToRole="SSD" />
   </EntityType>
   <EntityType Name="GraphicProcessor">
     <Key>
@@ -459,21 +427,6 @@
     <Property Name="ExecutiveUnitQuantity" Type="Byte" Nullable="false" />
     <Property Name="ShadingUnitsQuantity" Type="Byte" Nullable="false" />
     <NavigationProperty Name="Processors" Relationship="ConfiguratorPCModel.FK_Processor_GraphicsProcessingUnit" FromRole="GraphicsProcessingUnit" ToRole="Processor" />
-  </EntityType>
-  <EntityType Name="HDD">
-    <Key>
-      <PropertyRef Name="IdDataStorage" />
-    </Key>
-    <Property Name="IdDataStorage" Type="Int32" Nullable="false" />
-    <Property Name="FormFactor" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
-    <Property Name="CacheSize" Type="Int16" Nullable="false" />
-    <Property Name="RotationSpeed" Type="Int16" Nullable="false" />
-    <Property Name="WriteTech" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
-    <Property Name="ActiveNoiseLevel" Type="Byte" Nullable="false" />
-    <Property Name="PassiveNoiseLevel" Type="Byte" Nullable="false" />
-    <Property Name="PassiveEnergyUse" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
-    <Property Name="MaxTemp" Type="Byte" Nullable="false" />
-    <NavigationProperty Name="DataStorage" Relationship="ConfiguratorPCModel.FK_HDD_DataStorage" FromRole="HDD" ToRole="DataStorage" />
   </EntityType>
   <EntityType Name="LightingType">
     <Key>
@@ -527,8 +480,8 @@
     <Property Name="IdSSD" Type="Int32" Nullable="false" />
     <Property Name="IdFormFactor" Type="Int32" />
     <NavigationProperty Name="M2FormFactor" Relationship="ConfiguratorPCModel.FK_M2SSD_M2FormFactor" FromRole="M2SSD" ToRole="M2FormFactor" />
-    <NavigationProperty Name="SSD" Relationship="ConfiguratorPCModel.FK_M2SSD_SSD" FromRole="M2SSD" ToRole="SSD" />
     <NavigationProperty Name="M2Key" Relationship="ConfiguratorPCModel.M2SSDKey" FromRole="M2SSD" ToRole="M2Key" />
+    <NavigationProperty Name="SSD" Relationship="ConfiguratorPCModel.FK_M2SSD_SSD" FromRole="M2SSD" ToRole="SSD" />
   </EntityType>
   <EntityType Name="Manufacturer">
     <Key>
@@ -544,11 +497,11 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Coolers" Relationship="ConfiguratorPCModel.FK_Cooler_Material" FromRole="Material" ToRole="Cooler" />
     <NavigationProperty Name="LiquidCoolers" Relationship="ConfiguratorPCModel.FK_LiquidCooler_Material" FromRole="Material" ToRole="LiquidCooler" />
     <NavigationProperty Name="ProcessorCoolers" Relationship="ConfiguratorPCModel.FK_ProcessorCooler_Material" FromRole="Material" ToRole="ProcessorCooler" />
     <NavigationProperty Name="CasesFrontPanelMaterials" Relationship="ConfiguratorPCModel.CaseFrontPanelMaterial" FromRole="Material" ToRole="Case" />
     <NavigationProperty Name="CasesMaterials" Relationship="ConfiguratorPCModel.CaseMaterial" FromRole="Material" ToRole="Case" />
+    <NavigationProperty Name="Coolers" Relationship="ConfiguratorPCModel.FK_Cooler_Material" FromRole="Material" ToRole="Cooler" />
   </EntityType>
   <EntityType Name="Microarchitecture">
     <Key>
@@ -764,10 +717,10 @@
     <Property Name="MaxStaticPressure" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
     <Property Name="BearingType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Component" Relationship="ConfiguratorPCModel.FK_ProcessorCooler_Component" FromRole="ProcessorCooler" ToRole="Component" />
-    <NavigationProperty Name="Cooler" Relationship="ConfiguratorPCModel.FK_Cooler_ProcessorCooler" FromRole="ProcessorCooler" ToRole="Cooler" />
     <NavigationProperty Name="LiquidCooler" Relationship="ConfiguratorPCModel.FK_LiquidCooler_ProcessorCooler" FromRole="ProcessorCooler" ToRole="LiquidCooler" />
     <NavigationProperty Name="Material" Relationship="ConfiguratorPCModel.FK_ProcessorCooler_Material" FromRole="ProcessorCooler" ToRole="Material" />
     <NavigationProperty Name="Sockets" Relationship="ConfiguratorPCModel.CoolerCompatibleSocket" FromRole="ProcessorCooler" ToRole="Socket" />
+    <NavigationProperty Name="Cooler" Relationship="ConfiguratorPCModel.FK_Cooler_ProcessorCooler" FromRole="ProcessorCooler" ToRole="Cooler" />
   </EntityType>
   <EntityType Name="ProcessorPowerConnector">
     <Key>
@@ -844,20 +797,6 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="MotherBoards" Relationship="ConfiguratorPCModel.FK_MotherBoard_SoundAdapterChipset" FromRole="SoundAdapterChipset" ToRole="MotherBoard" />
-  </EntityType>
-  <EntityType Name="SSD">
-    <Key>
-      <PropertyRef Name="IdDataStorage" />
-    </Key>
-    <Property Name="IdDataStorage" Type="Int32" Nullable="false" />
-    <Property Name="BitQuantityOnCell" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="MemoryStructure" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="MinSpeed" Type="Int16" Nullable="false" />
-    <Property Name="MaxSpeed" Type="Int16" Nullable="false" />
-    <Property Name="TotalBytesWritten" Type="Byte" Nullable="false" />
-    <Property Name="DWPD" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
-    <NavigationProperty Name="DataStorage" Relationship="ConfiguratorPCModel.FK_SSD_DataStorage" FromRole="SSD" ToRole="DataStorage" />
-    <NavigationProperty Name="M2SSD" Relationship="ConfiguratorPCModel.FK_M2SSD_SSD" FromRole="SSD" ToRole="M2SSD" />
   </EntityType>
   <EntityType Name="VideoCardPowerPlug">
     <Key>
@@ -942,18 +881,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_DataStorage_Component">
-    <End Type="ConfiguratorPCModel.Component" Role="Component" Multiplicity="1" />
-    <End Type="ConfiguratorPCModel.DataStorage" Role="DataStorage" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Component">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="DataStorage">
-        <PropertyRef Name="IdComponent" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_MotherBoard_Component">
     <End Type="ConfiguratorPCModel.Component" Role="Component" Multiplicity="1" />
     <End Type="ConfiguratorPCModel.MotherBoard" Role="MotherBoard" Multiplicity="0..1" />
@@ -1014,54 +941,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Cooler_Material">
-    <End Type="ConfiguratorPCModel.Material" Role="Material" Multiplicity="1" />
-    <End Type="ConfiguratorPCModel.Cooler" Role="Cooler" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Material">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Cooler">
-        <PropertyRef Name="IdBaseMaterial" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Cooler_ProcessorCooler">
-    <End Type="ConfiguratorPCModel.ProcessorCooler" Role="ProcessorCooler" Multiplicity="1" />
-    <End Type="ConfiguratorPCModel.Cooler" Role="Cooler" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="ProcessorCooler">
-        <PropertyRef Name="IdComponent" />
-      </Principal>
-      <Dependent Role="Cooler">
-        <PropertyRef Name="IdProcessorCooler" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_HDD_DataStorage">
-    <End Type="ConfiguratorPCModel.DataStorage" Role="DataStorage" Multiplicity="1" />
-    <End Type="ConfiguratorPCModel.HDD" Role="HDD" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="DataStorage">
-        <PropertyRef Name="IdComponent" />
-      </Principal>
-      <Dependent Role="HDD">
-        <PropertyRef Name="IdDataStorage" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SSD_DataStorage">
-    <End Type="ConfiguratorPCModel.DataStorage" Role="DataStorage" Multiplicity="1" />
-    <End Type="ConfiguratorPCModel.SSD" Role="SSD" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="DataStorage">
-        <PropertyRef Name="IdComponent" />
-      </Principal>
-      <Dependent Role="SSD">
-        <PropertyRef Name="IdDataStorage" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_LiquidCooler_Material">
     <End Type="ConfiguratorPCModel.Material" Role="Material" Multiplicity="1" />
     <End Type="ConfiguratorPCModel.LiquidCooler" Role="LiquidCooler" Multiplicity="*" />
@@ -1119,18 +998,6 @@
       </Principal>
       <Dependent Role="MotherBoardM2Key">
         <PropertyRef Name="IdKey" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_M2SSD_SSD">
-    <End Type="ConfiguratorPCModel.SSD" Role="SSD" Multiplicity="1" />
-    <End Type="ConfiguratorPCModel.M2SSD" Role="M2SSD" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="SSD">
-        <PropertyRef Name="IdDataStorage" />
-      </Principal>
-      <Dependent Role="M2SSD">
-        <PropertyRef Name="IdSSD" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1746,5 +1613,137 @@
   <Association Name="VideoCardOutput">
     <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="*" />
     <End Type="ConfiguratorPCModel.VideoOutput" Role="VideoOutput" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Cooler">
+    <Key>
+      <PropertyRef Name="IdProcessorCooler" />
+    </Key>
+    <Property Name="IdProcessorCooler" Type="Int32" Nullable="false" />
+    <Property Name="Heigth" Type="Int16" Nullable="false" />
+    <Property Name="DissipationPower" Type="Int16" Nullable="false" />
+    <Property Name="ConstructionType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IdBaseMaterial" Type="Int32" Nullable="false" />
+    <Property Name="TermPipeQuantity" Type="Byte" />
+    <Property Name="TermPipeDiameter" Type="Byte" />
+    <Property Name="NickelCoating" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Width" Type="Int16" Nullable="false" />
+    <Property Name="Length" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="Material" Relationship="ConfiguratorPCModel.FK_Cooler_Material" FromRole="Cooler" ToRole="Material" />
+    <NavigationProperty Name="ProcessorCooler" Relationship="ConfiguratorPCModel.FK_Cooler_ProcessorCooler" FromRole="Cooler" ToRole="ProcessorCooler" />
+  </EntityType>
+  <Association Name="FK_Cooler_Material">
+    <End Type="ConfiguratorPCModel.Material" Role="Material" Multiplicity="1" />
+    <End Type="ConfiguratorPCModel.Cooler" Role="Cooler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Material">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cooler">
+        <PropertyRef Name="IdBaseMaterial" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cooler_ProcessorCooler">
+    <End Type="ConfiguratorPCModel.ProcessorCooler" Role="ProcessorCooler" Multiplicity="1" />
+    <End Type="ConfiguratorPCModel.Cooler" Role="Cooler" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ProcessorCooler">
+        <PropertyRef Name="IdComponent" />
+      </Principal>
+      <Dependent Role="Cooler">
+        <PropertyRef Name="IdProcessorCooler" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DataStorage">
+    <Key>
+      <PropertyRef Name="IdComponent" />
+    </Key>
+    <Property Name="IdComponent" Type="Int32" Nullable="false" />
+    <Property Name="MemorySize" Type="Int16" Nullable="false" />
+    <Property Name="Width" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+    <Property Name="Length" Type="Int16" Nullable="false" />
+    <Property Name="Thickness" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
+    <NavigationProperty Name="Component" Relationship="ConfiguratorPCModel.FK_DataStorage_Component" FromRole="DataStorage" ToRole="Component" />
+    <NavigationProperty Name="HDD" Relationship="ConfiguratorPCModel.FK_HDD_DataStorage" FromRole="DataStorage" ToRole="HDD" />
+    <NavigationProperty Name="SSD" Relationship="ConfiguratorPCModel.FK_SSD_DataStorage" FromRole="DataStorage" ToRole="SSD" />
+  </EntityType>
+  <EntityType Name="HDD">
+    <Key>
+      <PropertyRef Name="IdDataStorage" />
+    </Key>
+    <Property Name="IdDataStorage" Type="Int32" Nullable="false" />
+    <Property Name="FormFactor" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="CacheSize" Type="Int16" Nullable="false" />
+    <Property Name="RotationSpeed" Type="Int16" Nullable="false" />
+    <Property Name="WriteTech" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="ActiveNoiseLevel" Type="Byte" Nullable="false" />
+    <Property Name="PassiveNoiseLevel" Type="Byte" Nullable="false" />
+    <Property Name="PassiveEnergyUse" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+    <Property Name="MaxEnergyUse" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+    <Property Name="MaxTemp" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="DataStorage" Relationship="ConfiguratorPCModel.FK_HDD_DataStorage" FromRole="HDD" ToRole="DataStorage" />
+  </EntityType>
+  <Association Name="FK_DataStorage_Component">
+    <End Type="ConfiguratorPCModel.Component" Role="Component" Multiplicity="1" />
+    <End Type="ConfiguratorPCModel.DataStorage" Role="DataStorage" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Component">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DataStorage">
+        <PropertyRef Name="IdComponent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HDD_DataStorage">
+    <End Type="ConfiguratorPCModel.DataStorage" Role="DataStorage" Multiplicity="1" />
+    <End Type="ConfiguratorPCModel.HDD" Role="HDD" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="DataStorage">
+        <PropertyRef Name="IdComponent" />
+      </Principal>
+      <Dependent Role="HDD">
+        <PropertyRef Name="IdDataStorage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SSD">
+    <Key>
+      <PropertyRef Name="IdDataStorage" />
+    </Key>
+    <Property Name="IdDataStorage" Type="Int32" Nullable="false" />
+    <Property Name="BitQuantityOnCell" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MemoryStructure" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WriteSpeed" Type="Int16" Nullable="false" />
+    <Property Name="ReadSpeed" Type="Int16" Nullable="false" />
+    <Property Name="TotalBytesWritten" Type="Byte" Nullable="false" />
+    <Property Name="DWPD" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+    <NavigationProperty Name="DataStorage" Relationship="ConfiguratorPCModel.FK_SSD_DataStorage" FromRole="SSD" ToRole="DataStorage" />
+    <NavigationProperty Name="M2SSD" Relationship="ConfiguratorPCModel.FK_M2SSD_SSD" FromRole="SSD" ToRole="M2SSD" />
+  </EntityType>
+  <Association Name="FK_SSD_DataStorage">
+    <End Type="ConfiguratorPCModel.DataStorage" Role="DataStorage" Multiplicity="1" />
+    <End Type="ConfiguratorPCModel.SSD" Role="SSD" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="DataStorage">
+        <PropertyRef Name="IdComponent" />
+      </Principal>
+      <Dependent Role="SSD">
+        <PropertyRef Name="IdDataStorage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_M2SSD_SSD">
+    <End Type="ConfiguratorPCModel.SSD" Role="SSD" Multiplicity="1" />
+    <End Type="ConfiguratorPCModel.M2SSD" Role="M2SSD" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="SSD">
+        <PropertyRef Name="IdDataStorage" />
+      </Principal>
+      <Dependent Role="M2SSD">
+        <PropertyRef Name="IdSSD" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

@@ -24,8 +24,8 @@ namespace ConfiguratorPC.Data
         public Nullable<int> IdFormFactor { get; set; }
     
         public virtual M2FormFactor M2FormFactor { get; set; }
-        public virtual SSD SSD { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M2Key> M2Key { get; set; }
+        public virtual SSD SSD { get; set; }
     }
 }

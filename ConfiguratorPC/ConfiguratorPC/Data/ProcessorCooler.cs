@@ -34,10 +34,10 @@ namespace ConfiguratorPC.Data
         public string BearingType { get; set; }
     
         public virtual Component Component { get; set; }
-        public virtual Cooler Cooler { get; set; }
         public virtual LiquidCooler LiquidCooler { get; set; }
         public virtual Material Material { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Socket> Sockets { get; set; }
+        public virtual Cooler Cooler { get; set; }
     }
 }

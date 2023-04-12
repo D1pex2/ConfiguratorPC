@@ -17,8 +17,8 @@ namespace ConfiguratorPC.Data
         public int IdDataStorage { get; set; }
         public string BitQuantityOnCell { get; set; }
         public string MemoryStructure { get; set; }
-        public short MinSpeed { get; set; }
-        public short MaxSpeed { get; set; }
+        public short WriteSpeed { get; set; }
+        public short ReadSpeed { get; set; }
         public byte TotalBytesWritten { get; set; }
         public decimal DWPD { get; set; }
     

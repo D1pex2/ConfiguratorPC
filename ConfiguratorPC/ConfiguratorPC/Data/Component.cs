@@ -26,7 +26,6 @@ namespace ConfiguratorPC.Data
         public decimal Price { get; set; }
     
         public virtual Manufacturer Manufacturer { get; set; }
-        public virtual DataStorage DataStorage { get; set; }
         public virtual MotherBoard MotherBoard { get; set; }
         public virtual PowerSupply PowerSupply { get; set; }
         public virtual ProcessorCooler ProcessorCooler { get; set; }
@@ -36,5 +35,6 @@ namespace ConfiguratorPC.Data
         public virtual Processor Processor { get; set; }
         public virtual Case Case { get; set; }
         public virtual VideoCard VideoCard { get; set; }
+        public virtual DataStorage DataStorage { get; set; }
     }
 }

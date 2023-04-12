@@ -22,6 +22,7 @@ namespace ConfiguratorPC.Data
         public byte ActiveNoiseLevel { get; set; }
         public byte PassiveNoiseLevel { get; set; }
         public decimal PassiveEnergyUse { get; set; }
+        public decimal MaxEnergyUse { get; set; }
         public byte MaxTemp { get; set; }
     
         public virtual DataStorage DataStorage { get; set; }

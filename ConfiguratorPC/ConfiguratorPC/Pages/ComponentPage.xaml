@@ -852,6 +852,384 @@
                         <TextBlock x:Name="VideocardMassTextBlock" Grid.Row="53" Grid.Column="1"/>
                         <Separator Grid.Row="54"/>
                     </Grid>
+                    <Grid x:Name="CoolerGrid" Visibility="Collapsed">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.75*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Общие параметры" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Сокет" Grid.Row="1"/>
+                        <TextBlock x:Name="CoolerSocketTextBlock" Grid.Row="1" Grid.Column="1"/>
+                        <Separator Grid.Row="2"/>
+                        <TextBlock Text="Рассеиваемая мощность" Grid.Row="3"/>
+                        <TextBlock x:Name="CoolerPowerTextBlock" Grid.Row="3" Grid.Column="1"/>
+                        <Separator Grid.Row="4"/>
+                        <TextBlock Text="Тип конструкции " Grid.Row="5"/>
+                        <TextBlock x:Name="CoolerConstructionTypeTextBlock" Grid.Row="5" Grid.Column="1"/>
+                        <Separator Grid.Row="6"/>
+                        <TextBlock Text="Радиатор" Grid.Row="7" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Материал основания" Grid.Row="8"/>
+                        <TextBlock x:Name="CoolerBaseMaterialTextBlock" Grid.Row="8" Grid.Column="1"/>
+                        <Separator Grid.Row="9"/>
+                        <TextBlock Text="Материал радиатора" Grid.Row="10"/>
+                        <TextBlock x:Name="CoolerRadiatorMaterialTextBlock" Grid.Row="10" Grid.Column="1"/>
+                        <Separator Grid.Row="11"/>
+                        <TextBlock Text="Количество тепловых трубок" Grid.Row="12"/>
+                        <TextBlock x:Name="CoolerPipeQuantityTextBlock" Grid.Row="12" Grid.Column="1"/>
+                        <Separator Grid.Row="13"/>
+                        <TextBlock Text="Диаметр тепловых трубок" Grid.Row="14"/>
+                        <TextBlock x:Name="CoolerPipeDiameterTextBlock" Grid.Row="14" Grid.Column="1"/>
+                        <Separator Grid.Row="15"/>
+                        <TextBlock Text="Никелированное покрытие" Grid.Row="16"/>
+                        <TextBlock x:Name="CoolerNickelTextBlock" Grid.Row="16" Grid.Column="1"/>
+                        <Separator Grid.Row="17"/>
+                    </Grid>
+                    <Grid x:Name="LiquidCoolerGrid" Visibility="Collapsed">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.75*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Водоблок" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Обслуживаемая СЖО" Grid.Row="1"/>
+                        <TextBlock x:Name="LiquidServicedTextBlock" Grid.Row="1" Grid.Column="1"/>
+                        <Separator Grid.Row="2"/>
+                        <TextBlock Text="Сокет" Grid.Row="3"/>
+                        <TextBlock x:Name="LiquidCoolerSocketTextBlock" Grid.Row="3" Grid.Column="1"/>
+                        <Separator Grid.Row="4"/>
+                        <TextBlock Text="Материал водоблока" Grid.Row="5"/>
+                        <TextBlock x:Name="LiquidBlockMaterialTextBlock" Grid.Row="5" Grid.Column="1"/>
+                        <Separator Grid.Row="6"/>
+                        <TextBlock Text="Размеры водоблока" Grid.Row="7"/>
+                        <TextBlock x:Name="LiquidBlockSizeTextBlock" Grid.Row="7" Grid.Column="1"/>
+                        <Separator Grid.Row="8"/>
+                        <TextBlock Text="Радиатор" Grid.Row="9" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Монтажный размер радиатора" Grid.Row="10"/>
+                        <TextBlock x:Name="LiquidRadiatorSizeTextBlock" Grid.Row="10" Grid.Column="1"/>
+                        <Separator Grid.Row="11"/>
+                        <TextBlock Text="Длина радиатора" Grid.Row="12"/>
+                        <TextBlock x:Name="LiquidRadiatorLengthTextBlock" Grid.Row="12" Grid.Column="1"/>
+                        <Separator Grid.Row="13"/>
+                        <TextBlock Text="Ширина радиатора" Grid.Row="14"/>
+                        <TextBlock x:Name="LiquidRadiatorWidthTextBlock" Grid.Row="14" Grid.Column="1"/>
+                        <Separator Grid.Row="15"/>
+                        <TextBlock Text="Толщина радиатора" Grid.Row="16"/>
+                        <TextBlock x:Name="LiquidRadiatorThicknessTextBlock" Grid.Row="16" Grid.Column="1"/>
+                        <Separator Grid.Row="17"/>
+                        <TextBlock Text="Материал радиатора" Grid.Row="18"/>
+                        <TextBlock x:Name="LiquidRadiatorMaterialTextBlock" Grid.Row="18" Grid.Column="1"/>
+                        <Separator Grid.Row="19"/>
+                        <TextBlock Text="Помпа" Grid.Row="20" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Скорость вращения помпы" Grid.Row="21"/>
+                        <TextBlock x:Name="LiquidPumpRotationSpeedTextBlock" Grid.Row="21" Grid.Column="1"/>
+                        <Separator Grid.Row="22"/>
+                        <TextBlock Text="Разъем подключения помпы" Grid.Row="23"/>
+                        <TextBlock x:Name="LiquidPumpConnectorTextBlock" Grid.Row="23" Grid.Column="1"/>
+                        <Separator Grid.Row="24"/>
+                        <TextBlock Text="Трубки" Grid.Row="25" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Длина трубок" Grid.Row="26"/>
+                        <TextBlock x:Name="LiquidPipeLengthTextBlock" Grid.Row="26" Grid.Column="1"/>
+                        <Separator Grid.Row="27"/>
+                        <TextBlock Text="Прозрачные трубки" Grid.Row="28"/>
+                        <TextBlock x:Name="LiquidTransparentLengthTextBlock" Grid.Row="28" Grid.Column="1"/>
+                        <Separator Grid.Row="29"/>
+                    </Grid>
+                    <Grid x:Name="CoolerFanGrid" Visibility="Collapsed">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.75*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Вентиляторы" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Количество вентиляторов в комплекте" Grid.Row="1"/>
+                        <TextBlock x:Name="CoolerFanQuantityTextBlock" Grid.Row="1" Grid.Column="1"/>
+                        <Separator Grid.Row="2"/>
+                        <TextBlock Text="Размеры вентиляторов" Grid.Row="3"/>
+                        <TextBlock x:Name="CoolerFanSizeTextBlock" Grid.Row="3" Grid.Column="1"/>
+                        <Separator Grid.Row="4"/>
+                        <TextBlock Text="Тип подшипника вентилятора" Grid.Row="5"/>
+                        <TextBlock x:Name="CoolerBearingTypeTextBlock" Grid.Row="5" Grid.Column="1"/>
+                        <Separator Grid.Row="6"/>
+                        <TextBlock Text="Минимальная скорость вращения" Grid.Row="7"/>
+                        <TextBlock x:Name="CoolerFanMinSpeedTextBlock" Grid.Row="7" Grid.Column="1"/>
+                        <Separator Grid.Row="8"/>
+                        <TextBlock Text="Максимальная скорость вращения" Grid.Row="9"/>
+                        <TextBlock x:Name="CoolerFanMaxSpeedTextBlock" Grid.Row="9" Grid.Column="1"/>
+                        <Separator Grid.Row="10"/>
+                        <TextBlock Text="Регулировка скорости вращения вентилятора" Grid.Row="11"/>
+                        <TextBlock x:Name="CoolerAdjustmentRotationSpeedTextBlock" Grid.Row="11" Grid.Column="1"/>
+                        <Separator Grid.Row="12"/>
+                        <TextBlock Text="Максимальный уровень шума" Grid.Row="13"/>
+                        <TextBlock x:Name="CoolerMaxNoiseLevelTextBlock" Grid.Row="13" Grid.Column="1"/>
+                        <Separator Grid.Row="14"/>
+                        <TextBlock Text="Максимальный воздушный поток" Grid.Row="15"/>
+                        <TextBlock x:Name="CoolerAirFlowTextBlock" Grid.Row="15" Grid.Column="1"/>
+                        <Separator Grid.Row="16"/>
+                        <TextBlock Text="Максимальное статическое давление" Grid.Row="17"/>
+                        <TextBlock x:Name="CoolerMaxStaticPressureTextBlock" Grid.Row="17" Grid.Column="1"/>
+                        <Separator Grid.Row="18"/>
+                        <TextBlock Text="Разъем подключения вентиляторов" Grid.Row="19"/>
+                        <TextBlock x:Name="CoolerFanConnectorTextBlock" Grid.Row="19" Grid.Column="1"/>
+                        <Separator Grid.Row="20"/>
+                    </Grid>
+                    <Grid x:Name="CoolerSizeGrid" Visibility="Collapsed">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.75*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Габариты" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Высота" Grid.Row="1"/>
+                        <TextBlock x:Name="CoolerHeigthTextBlock" Grid.Row="1" Grid.Column="1"/>
+                        <Separator Grid.Row="2"/>
+                        <TextBlock Text="Ширина" Grid.Row="3"/>
+                        <TextBlock x:Name="CoolerWidthTextBlock" Grid.Row="3" Grid.Column="1"/>
+                        <Separator Grid.Row="4"/>
+                        <TextBlock Text="Длина" Grid.Row="5"/>
+                        <TextBlock x:Name="CoolerLengthTextBlock" Grid.Row="5" Grid.Column="1"/>
+                        <Separator Grid.Row="6"/>
+                    </Grid>
+                    <Grid x:Name="HDDGrid" Visibility="Collapsed">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.75*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Накопитель" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Форм-фактор" Grid.Row="1"/>
+                        <TextBlock x:Name="HDDFormFactorTextBlock" Grid.Row="1" Grid.Column="1"/>
+                        <Separator Grid.Row="2"/>
+                        <TextBlock Text="Объем HDD" Grid.Row="3"/>
+                        <TextBlock x:Name="HDDSizeTextBlock" Grid.Row="3" Grid.Column="1"/>
+                        <Separator Grid.Row="4"/>
+                        <TextBlock Text="Объем буфера" Grid.Row="5"/>
+                        <TextBlock x:Name="HDDBufferSizeTextBlock" Grid.Row="5" Grid.Column="1"/>
+                        <Separator Grid.Row="6"/>
+                        <TextBlock Text="Скорость вращения шпинделя" Grid.Row="7"/>
+                        <TextBlock x:Name="HDDRotationSpeedTextBlock" Grid.Row="7" Grid.Column="1"/>
+                        <Separator Grid.Row="8"/>
+                        <TextBlock Text="Механика и надежность" Grid.Row="9" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Технология записи" Grid.Row="10"/>
+                        <TextBlock x:Name="HDDWriteTechTextBlock" Grid.Row="11" Grid.Column="1"/>
+                        <Separator Grid.Row="12"/>
+                        <TextBlock Text="Уровень шума во время работы" Grid.Row="13"/>
+                        <TextBlock x:Name="HDDActiveNoiseTextBlock" Grid.Row="13" Grid.Column="1"/>
+                        <Separator Grid.Row="14"/>
+                        <TextBlock Text="Уровень шума в простое" Grid.Row="15"/>
+                        <TextBlock x:Name="HDDPassiveNoiseTextBlock" Grid.Row="15" Grid.Column="1"/>
+                        <Separator Grid.Row="16"/>
+                        <TextBlock Text="Дополнительно" Grid.Row="17" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Максимальное энергопотребление" Grid.Row="18"/>
+                        <TextBlock x:Name="HDDActiveEnergyUseTextBlock" Grid.Row="18" Grid.Column="1"/>
+                        <Separator Grid.Row="19"/>
+                        <TextBlock Text="Энергопотребление в режиме ожидания" Grid.Row="20"/>
+                        <TextBlock x:Name="HDDPassiveEnergyUseTextBlock" Grid.Row="20" Grid.Column="1"/>
+                        <Separator Grid.Row="21"/>
+                        <TextBlock Text="Максимальная рабочая температура" Grid.Row="22"/>
+                        <TextBlock x:Name="HDDMaxTempTextBlock" Grid.Row="22" Grid.Column="1"/>
+                        <Separator Grid.Row="23"/>
+                    </Grid>
+                    <Grid x:Name="M2Grid" Visibility="Collapsed">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.75*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Форм-фактор" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Форм-фактор" Grid.Row="1"/>
+                        <TextBlock x:Name="M2FormFactorTextBlock" Grid.Row="1" Grid.Column="1"/>
+                        <Separator Grid.Row="2"/>
+                        <TextBlock Text="Ключ M.2 разъема" Grid.Row="3"/>
+                        <TextBlock x:Name="M2KeyTextBlock" Grid.Row="3" Grid.Column="1"/>
+                        <Separator Grid.Row="4"/>
+                    </Grid>
+                    <Grid x:Name="SSDGrid" Visibility="Collapsed">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.75*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Конфигурация накопителя" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Объем накопителя" Grid.Row="1"/>
+                        <TextBlock x:Name="SSDSizeTextBlock" Grid.Row="1" Grid.Column="1"/>
+                        <Separator Grid.Row="2"/>
+                        <TextBlock Text="Количество бит на ячейку" Grid.Row="3"/>
+                        <TextBlock x:Name="SSDBitOnCellTextBlock" Grid.Row="3" Grid.Column="1"/>
+                        <Separator Grid.Row="4"/>
+                        <TextBlock Text="Структура памяти" Grid.Row="5"/>
+                        <TextBlock x:Name="SSDMemoryStructureTextBlock" Grid.Row="5" Grid.Column="1"/>
+                        <Separator Grid.Row="6"/>
+                        <TextBlock Text="Показатели производительности" Grid.Row="7" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Максимальная скорость последовательного чтения" Grid.Row="8"/>
+                        <TextBlock x:Name="SSDReadSpeedTextBlock" Grid.Row="8" Grid.Column="1"/>
+                        <Separator Grid.Row="9"/>
+                        <TextBlock Text="Максимальная скорость последовательной записи" Grid.Row="10"/>
+                        <TextBlock x:Name="SSDWriteSpeedTextBlock" Grid.Row="10" Grid.Column="1"/>
+                        <Separator Grid.Row="11"/>
+                        <TextBlock Text="Надежность" Grid.Row="12" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Максимальный ресурс записи (TBW)" Grid.Row="13"/>
+                        <TextBlock x:Name="SSDWriteResourceTextBlock" Grid.Row="13" Grid.Column="1"/>
+                        <Separator Grid.Row="14"/>
+                        <TextBlock Text="DWPD" Grid.Row="15"/>
+                        <TextBlock x:Name="SSDDWPDTextBlock" Grid.Row="15" Grid.Column="1"/>
+                        <Separator Grid.Row="16"/>
+                    </Grid>
+                    <Grid x:Name="DataStorageSizeGrid" Visibility="Collapsed">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.75*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Габариты" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Ширина" Grid.Row="1"/>
+                        <TextBlock x:Name="DataStorageWidthTextBlock" Grid.Row="1" Grid.Column="1"/>
+                        <Separator Grid.Row="2"/>
+                        <TextBlock Text="Длина" Grid.Row="3"/>
+                        <TextBlock x:Name="DataStorageLengthTextBlock" Grid.Row="3" Grid.Column="1"/>
+                        <Separator Grid.Row="4"/>
+                        <TextBlock Text="Толщина" Grid.Row="5"/>
+                        <TextBlock x:Name="DataStorageThicknessTextBlock" Grid.Row="5" Grid.Column="1"/>
+                        <Separator Grid.Row="6"/>
+                    </Grid>
                 </StackPanel>
             </Border>
         </Grid>

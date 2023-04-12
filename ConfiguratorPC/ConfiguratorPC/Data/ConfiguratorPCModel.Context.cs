@@ -31,12 +31,9 @@ namespace ConfiguratorPC.Data
         public virtual DbSet<Color> Colors { get; set; }
         public virtual DbSet<Component> Components { get; set; }
         public virtual DbSet<Connector> Connectors { get; set; }
-        public virtual DbSet<Cooler> Coolers { get; set; }
         public virtual DbSet<Core> Cores { get; set; }
-        public virtual DbSet<DataStorage> DataStorages { get; set; }
         public virtual DbSet<GraphicProcessor> GraphicProcessors { get; set; }
         public virtual DbSet<GraphicsProcessingUnit> GraphicsProcessingUnits { get; set; }
-        public virtual DbSet<HDD> HDDs { get; set; }
         public virtual DbSet<LightingType> LightingTypes { get; set; }
         public virtual DbSet<LiquidCooler> LiquidCoolers { get; set; }
         public virtual DbSet<M2FormFactor> M2FormFactor { get; set; }
@@ -67,7 +64,6 @@ namespace ConfiguratorPC.Data
         public virtual DbSet<RAMType> RAMTypes { get; set; }
         public virtual DbSet<Socket> Sockets { get; set; }
         public virtual DbSet<SoundAdapterChipset> SoundAdapterChipsets { get; set; }
-        public virtual DbSet<SSD> SSDs { get; set; }
         public virtual DbSet<VideoCardPowerPlug> VideoCardPowerPlugs { get; set; }
         public virtual DbSet<VideoMemoryType> VideoMemoryTypes { get; set; }
         public virtual DbSet<VideoOutput> VideoOutputs { get; set; }
@@ -75,5 +71,9 @@ namespace ConfiguratorPC.Data
         public virtual DbSet<Processor> Processors { get; set; }
         public virtual DbSet<Case> Cases { get; set; }
         public virtual DbSet<VideoCard> VideoCards { get; set; }
+        public virtual DbSet<Cooler> Coolers { get; set; }
+        public virtual DbSet<DataStorage> DataStorages { get; set; }
+        public virtual DbSet<HDD> HDDs { get; set; }
+        public virtual DbSet<SSD> SSDs { get; set; }
     }
 }

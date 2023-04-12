@@ -17,18 +17,16 @@ namespace ConfiguratorPC.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Material()
         {
-            this.Coolers = new HashSet<Cooler>();
             this.LiquidCoolers = new HashSet<LiquidCooler>();
             this.ProcessorCoolers = new HashSet<ProcessorCooler>();
             this.CasesFrontPanelMaterials = new HashSet<Case>();
             this.CasesMaterials = new HashSet<Case>();
+            this.Coolers = new HashSet<Cooler>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cooler> Coolers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LiquidCooler> LiquidCoolers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -37,5 +35,7 @@ namespace ConfiguratorPC.Data
         public virtual ICollection<Case> CasesFrontPanelMaterials { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Case> CasesMaterials { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cooler> Coolers { get; set; }
     }
 }

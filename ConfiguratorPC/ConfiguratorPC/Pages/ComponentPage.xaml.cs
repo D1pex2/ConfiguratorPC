@@ -80,11 +80,13 @@ namespace ConfiguratorPC.Pages
                     VideocardInit();
                     break;
                 case ComponentType.Cooler:
+                    ProcessorCoolerInit();
                     break;
                 case ComponentType.RAM:
                     InitRAM();
                     break;
                 case ComponentType.DataStorage:
+                    DataStorageInit();
                     break;
                 case ComponentType.PowerSupply:
                     PowerSupplyInit();
@@ -313,6 +315,129 @@ namespace ConfiguratorPC.Pages
             VideocardMassTextBlock.Text = $"{component.VideoCard.Mass} г";
 
             VideocardGrid.Visibility = Visibility.Visible;
+        }
+
+        private void ProcessorCoolerInit()
+        {
+            var radiatorMaterial = component.ProcessorCooler.Material.Name;
+            var fanPin = component.ProcessorCooler.FanConnector;
+            var sokets = component.ProcessorCooler.Sockets.Select(s => s.Name).Aggregate((first, second) => $"{first}, {second}");
+
+            if (component.ProcessorCooler.Cooler != null)
+            {
+                ComponentTypeTextBlock.Text = "Кулер для процессора";
+                CommonInfoTextBlock.Text = $"Основание - {component.ProcessorCooler.Cooler.Material.Name}, радиатор - {radiatorMaterial}, {fanPin}, {component.ProcessorCooler.Cooler.DissipationPower} Вт";
+
+                CoolerSocketTextBlock.Text = sokets;
+                CoolerPowerTextBlock.Text = $"{component.ProcessorCooler.Cooler.DissipationPower} Вт";
+                CoolerConstructionTypeTextBlock.Text = component.ProcessorCooler.Cooler.ConstructionType;
+
+                CoolerBaseMaterialTextBlock.Text = component.ProcessorCooler.Cooler.Material.Name;
+                CoolerRadiatorMaterialTextBlock.Text = radiatorMaterial;
+                CoolerPipeQuantityTextBlock.Text = component.ProcessorCooler.Cooler.TermPipeQuantity == null ? "нет" : component.ProcessorCooler.Cooler.TermPipeQuantity.ToString();
+                CoolerPipeDiameterTextBlock.Text = component.ProcessorCooler.Cooler.TermPipeDiameter == null ? "нет" : $"{component.ProcessorCooler.Cooler.TermPipeDiameter} мм";
+                CoolerNickelTextBlock.Text = component.ProcessorCooler.Cooler.NickelCoating == null ? "нет" : component.ProcessorCooler.Cooler.NickelCoating;
+
+                CoolerGrid.Visibility = Visibility.Visible;
+
+                CoolerHeigthTextBlock.Text = $"{component.ProcessorCooler.Cooler.Heigth} мм";
+                CoolerWidthTextBlock.Text = $"{component.ProcessorCooler.Cooler.Width} мм";
+                CoolerLengthTextBlock.Text = $"{component.ProcessorCooler.Cooler.Length} мм";
+
+                CoolerSizeGrid.Visibility = Visibility.Visible;
+            }
+            if (component.ProcessorCooler.LiquidCooler != null)
+            {
+                ComponentTypeTextBlock.Text = "Система жидкостного охлаждения";
+                CommonInfoTextBlock.Text = $"Водоблок - {component.ProcessorCooler.LiquidCooler.Material.Name}, радиатор - {radiatorMaterial}, {fanPin}, {component.ProcessorCooler.LiquidCooler.RadiatorMountingSize}";
+
+                LiquidServicedTextBlock.Text = component.ProcessorCooler.LiquidCooler.Serviced ? "да" : "нет";
+                LiquidCoolerSocketTextBlock.Text = sokets;
+                LiquidBlockMaterialTextBlock.Text = component.ProcessorCooler.LiquidCooler.Material.Name;
+                LiquidBlockSizeTextBlock.Text = component.ProcessorCooler.LiquidCooler.WaterblockSize;
+
+                LiquidRadiatorMaterialTextBlock.Text = radiatorMaterial;
+                LiquidRadiatorLengthTextBlock.Text = $"{component.ProcessorCooler.LiquidCooler.RadiatorLength} мм";
+                LiquidRadiatorWidthTextBlock.Text = $"{component.ProcessorCooler.LiquidCooler.RadiatorWidth} мм";
+                LiquidRadiatorThicknessTextBlock.Text = $"{component.ProcessorCooler.LiquidCooler.RadiatorThickness} мм";
+                LiquidRadiatorSizeTextBlock.Text = component.ProcessorCooler.LiquidCooler.RadiatorMountingSize;
+
+                LiquidPumpRotationSpeedTextBlock.Text = $"{component.ProcessorCooler.LiquidCooler.PumpRotationSpeed} об/мин";
+                LiquidPumpConnectorTextBlock.Text = component.ProcessorCooler.LiquidCooler.PumpConnector;
+
+                LiquidPipeLengthTextBlock.Text = $"{component.ProcessorCooler.LiquidCooler.PipeLength} мм";
+                LiquidTransparentLengthTextBlock.Text = component.ProcessorCooler.LiquidCooler.TransparentPipe ? "да" : "нет";
+
+                LiquidCoolerGrid.Visibility = Visibility.Visible;
+            }
+
+            CoolerFanQuantityTextBlock.Text = component.ProcessorCooler.FanQuantity.ToString();
+            CoolerFanSizeTextBlock.Text = $"{component.ProcessorCooler.FanSize} мм";
+            CoolerBearingTypeTextBlock.Text = component.ProcessorCooler.BearingType;
+            CoolerFanMinSpeedTextBlock.Text = $"{component.ProcessorCooler.MinRotationSpeed} об/мин";
+            CoolerFanMaxSpeedTextBlock.Text = $"{component.ProcessorCooler.MaxRotationSpeed} об/мин";
+            CoolerAdjustmentRotationSpeedTextBlock.Text = component.ProcessorCooler.AdjustmentRotationSpeed == null ? "нет" : component.ProcessorCooler.AdjustmentRotationSpeed;
+            CoolerMaxNoiseLevelTextBlock.Text = $"{component.ProcessorCooler.MaxNoiseLevel} дБ";
+            CoolerAirFlowTextBlock.Text = $"{component.ProcessorCooler.MaxAirflow} CFM";
+            CoolerMaxStaticPressureTextBlock.Text = $"{component.ProcessorCooler.MaxStaticPressure} Па";
+            CoolerFanConnectorTextBlock.Text = component.ProcessorCooler.FanConnector;
+
+            CoolerFanGrid.Visibility = Visibility.Visible;
+        }
+
+        private void DataStorageInit()
+        {
+            if (component.DataStorage.HDD != null)
+            {
+                ComponentTypeTextBlock.Text = "Жесткий диск";
+                CommonInfoTextBlock.Text = $"{component.DataStorage.HDD.FormFactor}, {component.DataStorage.HDD.RotationSpeed} rpm, кэш память - {component.DataStorage.HDD.CacheSize} МБ";
+
+                HDDFormFactorTextBlock.Text = component.DataStorage.HDD.FormFactor;
+                HDDSizeTextBlock.Text = $"{component.DataStorage.MemorySize} ГБ";
+                HDDBufferSizeTextBlock.Text = $"{component.DataStorage.HDD.CacheSize} МБ";
+                HDDRotationSpeedTextBlock.Text = $"{component.DataStorage.HDD.RotationSpeed} rpm";
+
+                HDDWriteTechTextBlock.Text = component.DataStorage.HDD.WriteTech;
+                HDDActiveNoiseTextBlock.Text = $"{component.DataStorage.HDD.ActiveNoiseLevel} дБ";
+                HDDPassiveNoiseTextBlock.Text = $"{component.DataStorage.HDD.PassiveNoiseLevel} дБ";
+
+                HDDActiveEnergyUseTextBlock.Text = $"{component.DataStorage.HDD.MaxEnergyUse} Вт";
+                HDDPassiveEnergyUseTextBlock.Text = $"{component.DataStorage.HDD.PassiveEnergyUse} Вт";
+                HDDMaxTempTextBlock.Text = $"{component.DataStorage.HDD.MaxTemp} °C";
+
+                HDDGrid.Visibility = Visibility.Visible;
+            }
+            if (component.DataStorage.SSD != null)
+            {
+                ComponentTypeTextBlock.Text = "Твердотельный накопитель";
+                CommonInfoTextBlock.Text = $"Чтение - {component.DataStorage.SSD.ReadSpeed} Мбайт/c, запись - {component.DataStorage.SSD.WriteSpeed} Мбайт/c, {component.DataStorage.SSD.BitQuantityOnCell}, {component.DataStorage.SSD.MemoryStructure}";
+
+                if (component.DataStorage.SSD.M2SSD != null)
+                {
+                    M2FormFactorTextBlock.Text = component.DataStorage.SSD.M2SSD.M2FormFactor.Name;
+                    M2KeyTextBlock.Text = component.DataStorage.SSD.M2SSD.M2Key.Select(k => k.Name).Aggregate((first, second) => $"{first}&{second}");
+
+                    M2Grid.Visibility = Visibility.Visible;
+                }
+
+                SSDSizeTextBlock.Text = $"{component.DataStorage.MemorySize} ГБ";
+                SSDBitOnCellTextBlock.Text = component.DataStorage.SSD.BitQuantityOnCell;
+                SSDMemoryStructureTextBlock.Text = component.DataStorage.SSD.MemoryStructure;
+
+                SSDReadSpeedTextBlock.Text = $"{component.DataStorage.SSD.ReadSpeed} Мбит/с";
+                SSDWriteSpeedTextBlock.Text = $"{component.DataStorage.SSD.WriteSpeed} Мбит/с";
+
+                SSDWriteResourceTextBlock.Text = $"{component.DataStorage.SSD.TotalBytesWritten} ТБ";
+                SSDDWPDTextBlock.Text = component.DataStorage.SSD.DWPD.ToString();
+
+                SSDGrid.Visibility = Visibility.Visible;
+            }
+
+            DataStorageLengthTextBlock.Text = $"{component.DataStorage.Length} мм";
+            DataStorageWidthTextBlock.Text = $"{component.DataStorage.Width} мм";
+            DataStorageThicknessTextBlock.Text = $"{component.DataStorage.Thickness} мм";
+
+            DataStorageSizeGrid.Visibility = Visibility.Visible;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

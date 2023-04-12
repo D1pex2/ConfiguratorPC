@@ -19,7 +19,7 @@ namespace ConfiguratorPC.Data
         public short DissipationPower { get; set; }
         public string ConstructionType { get; set; }
         public int IdBaseMaterial { get; set; }
-        public Nullable<byte> TermPipeQiantity { get; set; }
+        public Nullable<byte> TermPipeQuantity { get; set; }
         public Nullable<byte> TermPipeDiameter { get; set; }
         public string NickelCoating { get; set; }
         public short Width { get; set; }

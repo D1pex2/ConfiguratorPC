@@ -52,40 +52,11 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Coolers">
-      <EntityTypeMapping TypeName="ConfiguratorPCModel.Cooler">
-        <MappingFragment StoreEntitySet="Cooler">
-          <ScalarProperty Name="Length" ColumnName="Length" />
-          <ScalarProperty Name="Width" ColumnName="Width" />
-          <ScalarProperty Name="NickelCoating" ColumnName="NickelCoating" />
-          <ScalarProperty Name="TermPipeDiameter" ColumnName="TermPipeDiameter" />
-          <ScalarProperty Name="TermPipeQiantity" ColumnName="TermPipeQiantity" />
-          <ScalarProperty Name="IdBaseMaterial" ColumnName="IdBaseMaterial" />
-          <ScalarProperty Name="ConstructionType" ColumnName="ConstructionType" />
-          <ScalarProperty Name="DissipationPower" ColumnName="DissipationPower" />
-          <ScalarProperty Name="Heigth" ColumnName="Heigth" />
-          <ScalarProperty Name="IdProcessorCooler" ColumnName="IdProcessorCooler" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Cores">
       <EntityTypeMapping TypeName="ConfiguratorPCModel.Core">
         <MappingFragment StoreEntitySet="Core">
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="DataStorages">
-      <EntityTypeMapping TypeName="ConfiguratorPCModel.DataStorage">
-        <MappingFragment StoreEntitySet="DataStorage">
-          <ScalarProperty Name="EnergyUse" ColumnName="EnergyUse" />
-          <ScalarProperty Name="Mass" ColumnName="Mass" />
-          <ScalarProperty Name="Thickness" ColumnName="Thickness" />
-          <ScalarProperty Name="Length" ColumnName="Length" />
-          <ScalarProperty Name="Width" ColumnName="Width" />
-          <ScalarProperty Name="MemorySize" ColumnName="MemorySize" />
-          <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -105,21 +76,6 @@
           <ScalarProperty Name="MaxFrequency" ColumnName="MaxFrequency" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="HDDs">
-      <EntityTypeMapping TypeName="ConfiguratorPCModel.HDD">
-        <MappingFragment StoreEntitySet="HDD">
-          <ScalarProperty Name="MaxTemp" ColumnName="MaxTemp" />
-          <ScalarProperty Name="PassiveEnergyUse" ColumnName="PassiveEnergyUse" />
-          <ScalarProperty Name="PassiveNoiseLevel" ColumnName="PassiveNoiseLevel" />
-          <ScalarProperty Name="ActiveNoiseLevel" ColumnName="ActiveNoiseLevel" />
-          <ScalarProperty Name="WriteTech" ColumnName="WriteTech" />
-          <ScalarProperty Name="RotationSpeed" ColumnName="RotationSpeed" />
-          <ScalarProperty Name="CacheSize" ColumnName="CacheSize" />
-          <ScalarProperty Name="FormFactor" ColumnName="FormFactor" />
-          <ScalarProperty Name="IdDataStorage" ColumnName="IdDataStorage" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -434,19 +390,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SSDs">
-      <EntityTypeMapping TypeName="ConfiguratorPCModel.SSD">
-        <MappingFragment StoreEntitySet="SSD">
-          <ScalarProperty Name="DWPD" ColumnName="DWPD" />
-          <ScalarProperty Name="TotalBytesWritten" ColumnName="TotalBytesWritten" />
-          <ScalarProperty Name="MaxSpeed" ColumnName="MaxSpeed" />
-          <ScalarProperty Name="MinSpeed" ColumnName="MinSpeed" />
-          <ScalarProperty Name="MemoryStructure" ColumnName="MemoryStructure" />
-          <ScalarProperty Name="BitQuantityOnCell" ColumnName="BitQuantityOnCell" />
-          <ScalarProperty Name="IdDataStorage" ColumnName="IdDataStorage" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="VideoCardPowerPlugs">
       <EntityTypeMapping TypeName="ConfiguratorPCModel.VideoCardPowerPlug">
         <MappingFragment StoreEntitySet="VideoCardPowerPlug">
@@ -669,5 +612,61 @@
         <ScalarProperty Name="IdComponent" ColumnName="IdVideoCard" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Coolers">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.Cooler">
+        <MappingFragment StoreEntitySet="Cooler">
+          <ScalarProperty Name="Length" ColumnName="Length" />
+          <ScalarProperty Name="Width" ColumnName="Width" />
+          <ScalarProperty Name="NickelCoating" ColumnName="NickelCoating" />
+          <ScalarProperty Name="TermPipeDiameter" ColumnName="TermPipeDiameter" />
+          <ScalarProperty Name="TermPipeQuantity" ColumnName="TermPipeQuantity" />
+          <ScalarProperty Name="IdBaseMaterial" ColumnName="IdBaseMaterial" />
+          <ScalarProperty Name="ConstructionType" ColumnName="ConstructionType" />
+          <ScalarProperty Name="DissipationPower" ColumnName="DissipationPower" />
+          <ScalarProperty Name="Heigth" ColumnName="Heigth" />
+          <ScalarProperty Name="IdProcessorCooler" ColumnName="IdProcessorCooler" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DataStorages">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.DataStorage">
+        <MappingFragment StoreEntitySet="DataStorage">
+          <ScalarProperty Name="Thickness" ColumnName="Thickness" />
+          <ScalarProperty Name="Length" ColumnName="Length" />
+          <ScalarProperty Name="Width" ColumnName="Width" />
+          <ScalarProperty Name="MemorySize" ColumnName="MemorySize" />
+          <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HDDs">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.HDD">
+        <MappingFragment StoreEntitySet="HDD">
+          <ScalarProperty Name="MaxTemp" ColumnName="MaxTemp" />
+          <ScalarProperty Name="MaxEnergyUse" ColumnName="MaxEnergyUse" />
+          <ScalarProperty Name="PassiveEnergyUse" ColumnName="PassiveEnergyUse" />
+          <ScalarProperty Name="PassiveNoiseLevel" ColumnName="PassiveNoiseLevel" />
+          <ScalarProperty Name="ActiveNoiseLevel" ColumnName="ActiveNoiseLevel" />
+          <ScalarProperty Name="WriteTech" ColumnName="WriteTech" />
+          <ScalarProperty Name="RotationSpeed" ColumnName="RotationSpeed" />
+          <ScalarProperty Name="CacheSize" ColumnName="CacheSize" />
+          <ScalarProperty Name="FormFactor" ColumnName="FormFactor" />
+          <ScalarProperty Name="IdDataStorage" ColumnName="IdDataStorage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SSDs">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.SSD">
+        <MappingFragment StoreEntitySet="SSD">
+          <ScalarProperty Name="DWPD" ColumnName="DWPD" />
+          <ScalarProperty Name="TotalBytesWritten" ColumnName="TotalBytesWritten" />
+          <ScalarProperty Name="ReadSpeed" ColumnName="ReadSpeed" />
+          <ScalarProperty Name="WriteSpeed" ColumnName="WriteSpeed" />
+          <ScalarProperty Name="MemoryStructure" ColumnName="MemoryStructure" />
+          <ScalarProperty Name="BitQuantityOnCell" ColumnName="BitQuantityOnCell" />
+          <ScalarProperty Name="IdDataStorage" ColumnName="IdDataStorage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
