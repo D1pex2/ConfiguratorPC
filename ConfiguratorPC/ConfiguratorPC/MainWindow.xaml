@@ -14,6 +14,7 @@
         </Grid.RowDefinitions>
         <Border x:Name="TitleBorder" Height="30" MouseLeftButtonDown="TitleBorder_MouseLeftButtonDown" Background="#FF00B3FF">
             <DockPanel x:Name="TitleDockPanel" HorizontalAlignment="Stretch">
+                <Image Source="/Resources/pc_white.png" Margin="2"/>
                 <TextBlock Text="{Binding ElementName=ConfigWindow, Path=Title}" Foreground="White"/>
                 <Button x:Name="CloseButton" Cursor="Hand" Click="CloseButton_Click" Style="{StaticResource WindowButton}" DockPanel.Dock="Right">
                     <Image Source="/Resources/close_white.png"/>

@@ -74,8 +74,10 @@ namespace ConfiguratorPC.Pages
                     InitMotherBoard();
                     break;
                 case ComponentType.Case:
+                    CaseInit();
                     break;
                 case ComponentType.Videocard:
+                    VideocardInit();
                     break;
                 case ComponentType.Cooler:
                     break;
@@ -236,6 +238,81 @@ namespace ConfiguratorPC.Pages
             PowerSupplyHeigthTextBlock.Text = $"{component.PowerSupply.Heigth} мм";
 
             PowerSupplyGrid.Visibility = Visibility.Visible;
+        }
+
+        private void CaseInit()
+        {
+            CommonInfoTextBlock.Text = component.Case.MotherBoardFormFactors.Select(m => m.Name).Aggregate((first, second) => $"{first}, {second}");
+            ComponentTypeTextBlock.Text = "Корпус";
+
+            CaseTypeTextBlock.Text = component.Case.CaseSize.Name;
+            CaseMotherboardOrientationTextBlock.Text = component.Case.MotherBoardOrientation;
+            CaseLengthTextBlock.Text = $"{component.Case.Length} мм";
+            CaseWidthTextBlock.Text = $"{component.Case.Width} мм";
+            CaseHeigthTextBlock.Text = $"{component.Case.Height} мм";
+
+            CaseColorTextBlock.Text = component.Case.Color.Name;
+            CaseMaterialTextBlock.Text = component.Case.Materials.Count == 0 ? "нет" : component.Case.Materials.Select(m => m.Name).Aggregate((first, second) => $"{first}, {second}");
+            CaseWindowTextBlock.Text = component.Case.HasWindow ? "есть" : "нет";
+            CaseFrontPanelMaterialTextBlock.Text = component.Case.FrontPanelMaterials.Count == 0 ? "нет" : component.Case.FrontPanelMaterials.Select(m => m.Name).Aggregate((first, second) => $"{first}, {second}");
+            CaseLigthingTextBlock.Text = component.Case.LightingType == null ? "нет" : component.Case.LightingType.Name;
+
+            CaseMotherboardFormFactorTextBlock.Text = component.Case.MotherBoardFormFactors.Count == 0 ? "нет" : component.Case.MotherBoardFormFactors.Select(m => m.Name).Aggregate((first, second) => $"{first}, {second}"); ;
+            CasePowerSupplyFormFactorTextBlock.Text = component.Case.PowerSupplyFormFactor.Name;
+            CasePowerSupplyOrientationTextBlock.Text = component.Case.PowerSupplyOrientation;
+
+            CaseExpansionSlotsTextBlock.Text = component.Case.ExpansionSlotsQuantity.ToString();
+            CaseMaxCoolerHeigthTextBlock.Text = $"{component.Case.MaxCoolerHeigth} мм";
+            CaseMaxVideocardLengthTextBlock.Text = $"{component.Case.MaxVideoCardLength} мм";
+            CaseLiquidCoolerComptibleTextBlock.Text = component.Case.LiquidCoolerCompatible ? "есть" : "нет";
+            Case25QuantityTextBlock.Text = component.Case.Storage25Quantity == 0 ? "нет" : component.Case.Storage25Quantity.ToString();
+            Case35QuantityTextBlock.Text = component.Case.Storage35Quantity == 0 ? "нет" : component.Case.Storage35Quantity.ToString();
+
+            CaseConnectorsTextBlock.Text = component.Case.CaseConnectors.Count == 0 ? "нет" : component.Case.CaseConnectors.Select(c => $"{c.Connector.Name} x{c.Quantity}").Aggregate((first, second) => $"{first}, {second}");
+            CaseCardReaderTextBlock.Text = component.Case.HasCardReader ? "есть" : "нет";
+
+            CaseGrid.Visibility = Visibility.Visible;
+        }
+
+        private void VideocardInit()
+        {
+            var videoOutputs = component.VideoCard.VideoOutputs.Count == 0 ? "" : $"{component.VideoCard.VideoOutputs.Select(v => v.Name).Aggregate((first, second) => $"{first}, {second}")}, ";
+            CommonInfoTextBlock.Text = $"{component.VideoCard.PCIEController.Name}, {component.VideoCard.VideoMemorySize} ГБ {component.VideoCard.VideoMemoryType.Name}, {component.VideoCard.MemoryBusBitRate} бит, " +
+                videoOutputs + $"{component.VideoCard.VideoChipFrequency} МГц";
+            ComponentTypeTextBlock.Text = "Видеокарта";
+
+            VideocardGraphicProcessorTextBlock.Text = component.VideoCard.GraphicProcessor.Name;
+            VideocardMicroarchitectureTextBlock.Text = component.VideoCard.Microarchitecture.Name;
+            VideocardTechProcessTextBlock.Text = $"{component.VideoCard.TechProcess} нм";
+
+            VideocardMemorySizeTextBlock.Text = $"{component.VideoCard.VideoMemorySize} ГБ";
+            VideocardMemoryTypeTextBlock.Text = component.VideoCard.VideoMemoryType.Name;
+            VideocardMemoryFrequencyTextBlock.Text = $"{component.VideoCard.EffectiveMemoryFrequency} МГц";
+            VideocardBitRateTextBlock.Text = $"{component.VideoCard.MemoryBusBitRate} бит";
+            VideocardBandwidthTextBlock.Text = $"{component.VideoCard.MaxMemoryBandwidth} Гбайт/с";
+
+            VideocardFrequencyTextBlock.Text = $"{component.VideoCard.VideoChipFrequency} МГц";
+            VideocardALUTextBlock.Text = component.VideoCard.ALUQuantity.ToString();
+            VideocardTextureBlocksTextBlock.Text = component.VideoCard.TextureBlockQuantity.ToString();
+            VideocardRasterizationBlocksTextBlock.Text = component.VideoCard.RasterizationBlockQuantity.ToString();
+            VideocardRayTracingTextBlock.Text = component.VideoCard.RayTracingSupport ? "есть" : "нет";
+
+            VideocardOutputsTextBlock.Text = component.VideoCard.VideoOutputs.Count == 0 ? "нет" : component.VideoCard.VideoOutputs.Select(o => o.Name).Aggregate((first, second) => $"{first}, {second}");
+            VideocardMaxMonitorsTextBlock.Text = component.VideoCard.MaxMonitorQuantity.ToString();
+
+            VideocardPCIVersionTextBlock.Text = component.VideoCard.PCIEController.Name;
+            VideocardPowerPlugsTextBlock.Text = component.VideoCard.VideoCardPowerPlug == null ? "нет" : component.VideoCard.VideoCardPowerPlug.Name;
+            VideocardPowerTextBlock.Text = $"{component.VideoCard.PowerSupply} Вт";
+
+            VideocardColerTypeTextBlock.Text = component.VideoCard.CoolerType;
+            VideocardFansTextBlock.Text = component.VideoCard.FanQuantity != null && component.VideoCard.FanType != null ? $"{component.VideoCard.FanQuantity} {component.VideoCard.FanType}" : "нет";
+
+            VideocardExpansionSlotsTextBlock.Text = component.VideoCard.ExpansionSlotSize.ToString();
+            VideocardLengthTextBlock.Text = $"{component.VideoCard.Length} мм";
+            VideocardThicknessTextBlock.Text = $"{component.VideoCard.Thickness} мм";
+            VideocardMassTextBlock.Text = $"{component.VideoCard.Mass} г";
+
+            VideocardGrid.Visibility = Visibility.Visible;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

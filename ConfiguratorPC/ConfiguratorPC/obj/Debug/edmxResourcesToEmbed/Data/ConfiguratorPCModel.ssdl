@@ -18,9 +18,7 @@
     <Property Name="Width" Type="smallint" Nullable="false" />
     <Property Name="Height" Type="smallint" Nullable="false" />
     <Property Name="IdMainColor" Type="int" Nullable="false" />
-    <Property Name="IdMaterial" Type="int" Nullable="false" />
     <Property Name="HasWindow" Type="bit" Nullable="false" />
-    <Property Name="IdFrontPanelMaterial" Type="int" />
     <Property Name="IdLigthingType" Type="int" />
     <Property Name="PowerSupplyOrientation" Type="nvarchar" MaxLength="7" Nullable="false" />
     <Property Name="HasCardReader" Type="bit" Nullable="false" />
@@ -41,6 +39,22 @@
     <Property Name="IdCase" Type="int" Nullable="false" />
     <Property Name="IdConnector" Type="int" Nullable="false" />
     <Property Name="Quantity" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CaseFrontPanelMaterial">
+    <Key>
+      <PropertyRef Name="IdCase" />
+      <PropertyRef Name="IdMaterial" />
+    </Key>
+    <Property Name="IdCase" Type="int" Nullable="false" />
+    <Property Name="IdMaterial" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CaseMaterial">
+    <Key>
+      <PropertyRef Name="IdCase" />
+      <PropertyRef Name="IdMaterial" />
+    </Key>
+    <Property Name="IdCase" Type="int" Nullable="false" />
+    <Property Name="IdMaterial" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CaseSize">
     <Key>
@@ -563,7 +577,6 @@
     <Property Name="FanType" Type="nvarchar" MaxLength="20" />
     <Property Name="FanQuantity" Type="tinyint" />
     <Property Name="ExpansionSlotSize" Type="tinyint" Nullable="false" />
-    <Property Name="Width" Type="smallint" Nullable="false" />
     <Property Name="Thickness" Type="smallint" Nullable="false" />
     <Property Name="Mass" Type="smallint" Nullable="false" />
     <Property Name="IdVideoCardPowerPlug" Type="int" />
@@ -648,18 +661,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Case_FrontPanelMaterial">
-    <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
-    <End Role="Case" Type="Self.Case" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Material">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Case">
-        <PropertyRef Name="IdFrontPanelMaterial" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Case_LightingType">
     <End Role="LightingType" Type="Self.LightingType" Multiplicity="0..1" />
     <End Role="Case" Type="Self.Case" Multiplicity="*" />
@@ -669,18 +670,6 @@
       </Principal>
       <Dependent Role="Case">
         <PropertyRef Name="IdLigthingType" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Case_Material">
-    <End Role="Material" Type="Self.Material" Multiplicity="1" />
-    <End Role="Case" Type="Self.Case" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Material">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Case">
-        <PropertyRef Name="IdMaterial" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -717,6 +706,54 @@
       </Principal>
       <Dependent Role="CaseConnector">
         <PropertyRef Name="IdConnector" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CaseFrontPanelMaterial_Case">
+    <End Role="Case" Type="Self.Case" Multiplicity="1" />
+    <End Role="CaseFrontPanelMaterial" Type="Self.CaseFrontPanelMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Case">
+        <PropertyRef Name="IdComponent" />
+      </Principal>
+      <Dependent Role="CaseFrontPanelMaterial">
+        <PropertyRef Name="IdCase" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CaseFrontPanelMaterial_Material">
+    <End Role="Material" Type="Self.Material" Multiplicity="1" />
+    <End Role="CaseFrontPanelMaterial" Type="Self.CaseFrontPanelMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Material">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CaseFrontPanelMaterial">
+        <PropertyRef Name="IdMaterial" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CaseMaterial_Case">
+    <End Role="Case" Type="Self.Case" Multiplicity="1" />
+    <End Role="CaseMaterial" Type="Self.CaseMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Case">
+        <PropertyRef Name="IdComponent" />
+      </Principal>
+      <Dependent Role="CaseMaterial">
+        <PropertyRef Name="IdCase" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CaseMaterial_Material">
+    <End Role="Material" Type="Self.Material" Multiplicity="1" />
+    <End Role="CaseMaterial" Type="Self.CaseMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Material">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CaseMaterial">
+        <PropertyRef Name="IdMaterial" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1600,6 +1637,8 @@
     <EntitySet Name="Case" EntityType="Self.Case" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CaseCompatibleMotherBoardFormFactor" EntityType="Self.CaseCompatibleMotherBoardFormFactor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CaseConnector" EntityType="Self.CaseConnector" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CaseFrontPanelMaterial" EntityType="Self.CaseFrontPanelMaterial" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CaseMaterial" EntityType="Self.CaseMaterial" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CaseSize" EntityType="Self.CaseSize" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Chipset" EntityType="Self.Chipset" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
@@ -1670,16 +1709,8 @@
       <End Role="Component" EntitySet="Component" />
       <End Role="Case" EntitySet="Case" />
     </AssociationSet>
-    <AssociationSet Name="FK_Case_FrontPanelMaterial" Association="Self.FK_Case_FrontPanelMaterial">
-      <End Role="Material" EntitySet="Material" />
-      <End Role="Case" EntitySet="Case" />
-    </AssociationSet>
     <AssociationSet Name="FK_Case_LightingType" Association="Self.FK_Case_LightingType">
       <End Role="LightingType" EntitySet="LightingType" />
-      <End Role="Case" EntitySet="Case" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Case_Material" Association="Self.FK_Case_Material">
-      <End Role="Material" EntitySet="Material" />
       <End Role="Case" EntitySet="Case" />
     </AssociationSet>
     <AssociationSet Name="FK_Case_PowerSupplyFormFactor" Association="Self.FK_Case_PowerSupplyFormFactor">
@@ -1693,6 +1724,22 @@
     <AssociationSet Name="FK_CaseConnector_Connector" Association="Self.FK_CaseConnector_Connector">
       <End Role="Connector" EntitySet="Connector" />
       <End Role="CaseConnector" EntitySet="CaseConnector" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CaseFrontPanelMaterial_Case" Association="Self.FK_CaseFrontPanelMaterial_Case">
+      <End Role="Case" EntitySet="Case" />
+      <End Role="CaseFrontPanelMaterial" EntitySet="CaseFrontPanelMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CaseFrontPanelMaterial_Material" Association="Self.FK_CaseFrontPanelMaterial_Material">
+      <End Role="Material" EntitySet="Material" />
+      <End Role="CaseFrontPanelMaterial" EntitySet="CaseFrontPanelMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CaseMaterial_Case" Association="Self.FK_CaseMaterial_Case">
+      <End Role="Case" EntitySet="Case" />
+      <End Role="CaseMaterial" EntitySet="CaseMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CaseMaterial_Material" Association="Self.FK_CaseMaterial_Material">
+      <End Role="Material" EntitySet="Material" />
+      <End Role="CaseMaterial" EntitySet="CaseMaterial" />
     </AssociationSet>
     <AssociationSet Name="FK_CompatibleCaseMotherBoardFormFactor_Case" Association="Self.FK_CompatibleCaseMotherBoardFormFactor_Case">
       <End Role="Case" EntitySet="Case" />

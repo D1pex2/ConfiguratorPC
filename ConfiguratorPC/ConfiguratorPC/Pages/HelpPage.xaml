@@ -1,0 +1,114 @@
+﻿<Page x:Class="ConfiguratorPC.Pages.HelpPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ConfiguratorPC.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="HelpPage">
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="Image">
+            <Setter Property="Stretch" Value="Uniform"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
+    <ScrollViewer x:Name="PageScrollViewer">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition/>
+                <RowDefinition Height="75"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border Style="{StaticResource BorderDefault}" Grid.Row="1" Grid.Column="1" MaxWidth="1300">
+                <StackPanel Margin="15">
+                    <DockPanel>
+                        <Button x:Name="CloseButton" Cursor="Hand" Style="{StaticResource WindowButton}" VerticalAlignment="Top" Margin="5" Width="25" Height="25" HorizontalAlignment="Left" Click="CloseButton_Click">
+                            <Image Source="/Resources/close_black.png"/>
+                        </Button>
+                        <TextBlock FontWeight="SemiBold" FontSize="32" Text="Добро пожаловать в справку по конфигуратору сборки ПК" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"/>
+                    </DockPanel>
+                    <FlowDocumentScrollViewer PreviewMouseWheel="FlowDocumentScrollViewer_PreviewMouseWheel">
+                        <FlowDocument FontFamily="Segoe UI" FontSize="16" IsHyphenationEnabled="True" IsOptimalParagraphEnabled="True">
+                            <Section>
+                                <Paragraph TextIndent="20" FontWeight="DemiBold" FontSize="20">
+                                    Начало работы
+                                </Paragraph>
+                                <Paragraph TextIndent="20">
+                                    Конфигурация компонентов ПК производится автоматически при выборе одного из комплектующих и при выборе следующего будут отображены только совместимые комплектующие. 
+                                    Для начала работы с конфигуратором нажмите кнопку "+ Добавить" у любой ячейки комплектующего.
+                                    <Floater>
+                                        <BlockUIContainer>
+                                            <Image MaxHeight="100" Source="/Resources/help_image1.png"/>
+                                        </BlockUIContainer>
+                                    </Floater>
+                                </Paragraph>
+                                <Paragraph TextIndent="20" FontWeight="DemiBold" FontSize="20">
+                                    Редактирование комплектующих
+                                </Paragraph>
+                                <Paragraph TextIndent="20">
+                                    После нажатия кнопки "+ Добавить" на ячейки комплектующего раскроется список со всеми совместимыми комплектуюищими. Чтобы добавить комплектующее нажмите кнопку "Добавить"
+                                    у выбранного комплектующего. После этого комплектующее займет ячейку и будет отображаться в ней, а кнопка "+ Добавить" поменяется на кнопку "- Убрать".
+                                    <Floater>
+                                        <BlockUIContainer>
+                                            <Image MaxHeight="150" Source="/Resources/help_image2.png"/>
+                                        </BlockUIContainer>
+                                    </Floater>
+                                </Paragraph>
+                                <Paragraph TextIndent="20">
+                                    Для того чтобы убрать комплектующее из ячейки нажмите на кнопку "- Убрать" и тогда ячейка освободится.
+                                    <Floater>
+                                        <BlockUIContainer>
+                                            <Image MaxHeight="100" Source="/Resources/help_image3.png"/>
+                                        </BlockUIContainer>
+                                    </Floater>
+                                </Paragraph>
+                                <Paragraph TextIndent="20">
+                                    Также выбрав материнскую плату, процессор и оперативную память, появится возможность выбрать количество модулей оперативной памяти, которое ограничено характеристиками выбранных комплектующих.
+                                    <Floater>
+                                        <BlockUIContainer>
+                                            <Image MaxHeight="100" Source="/Resources/help_image4.png"/>
+                                        </BlockUIContainer>
+                                    </Floater>
+                                </Paragraph>
+                                <Paragraph TextIndent="20" FontWeight="DemiBold" FontSize="20">
+                                    Просмотр характеристик комплектующих
+                                </Paragraph>
+                                <Paragraph TextIndent="20">
+                                    Для того чтобы просмотреть подробные характеристики комплектующего нужно нажать по его наименованию, после чего откроется страница со всеми его характеристиками и изображениями.
+                                    Также если ячейка соответствующего комплектующего свободна будет доступна кнопка "Добавить".
+                                    <Floater>
+                                        <BlockUIContainer>
+                                            <Image MaxHeight="800" Source="/Resources/help_image5.png"/>
+                                        </BlockUIContainer>
+                                    </Floater>
+                                </Paragraph>
+                                <Paragraph TextIndent="20" FontWeight="DemiBold" FontSize="20">
+                                    Фильтр и сортировка комплектующих
+                                </Paragraph>
+                                <Paragraph TextIndent="20">
+                                    Для упрощения выбора и поиска нужных комплектующих доступны функции фильтрации и сортировки комплектующих. Для поиска по наименованию воспользуйтесь поисковой строкой, а 
+                                    для использования сортировки или различных фильтров используйте боковое меню с соответствующими функциями.
+                                    <Floater>
+                                        <BlockUIContainer>
+                                            <Image MaxHeight="600" Source="/Resources/help_image6.png"/>
+                                        </BlockUIContainer>
+                                    </Floater>
+                                </Paragraph>
+                            </Section>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Page>

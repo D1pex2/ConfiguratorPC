@@ -49,5 +49,10 @@ namespace ConfiguratorPC.Pages
                 item.CollapseList();
             }
         }
+
+        private void HelpButton_Click(object sender, RoutedEventArgs e)
+        {
+            Navigator.Frame.Navigate(new HelpPage());
+        }
     }
 }

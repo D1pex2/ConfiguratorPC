@@ -96,7 +96,7 @@ namespace ConfiguratorPC.Controls
             {
                 var sockets = new List<Socket>();
                 sockets.Add(new Socket { Id = -1, Name = "Выбрать все" });
-                sockets.AddRange(DAL.Context.Sockets);
+                sockets.AddRange(DAL.Context.Sockets.AsNoTracking());
                 return sockets;
             }
         }
@@ -105,7 +105,7 @@ namespace ConfiguratorPC.Controls
         {
             get
             {
-                return DAL.Context.VideoCards.Select(v => v.VideoMemorySize).Distinct().ToList();
+                return DAL.Context.VideoCards.AsNoTracking().Select(v => v.VideoMemorySize).Distinct().ToList();
             }
         }
 
@@ -113,7 +113,7 @@ namespace ConfiguratorPC.Controls
         {
             get
             {
-                return DAL.Context.RAMs.Select(r => r.MemorySize).Distinct().ToList();
+                return DAL.Context.RAMs.AsNoTracking().Select(r => r.MemorySize).Distinct().ToList();
             }
         }
 
@@ -123,7 +123,7 @@ namespace ConfiguratorPC.Controls
             {
                 var formFactors = new List<PowerSupplyFormFactor>();
                 formFactors.Add(new PowerSupplyFormFactor { Id = -1, Name = "Выбрать все" });
-                formFactors.AddRange(DAL.Context.PowerSupplyFormFactors);
+                formFactors.AddRange(DAL.Context.PowerSupplyFormFactors.AsNoTracking());
                 return formFactors;
             }
         }
@@ -134,7 +134,7 @@ namespace ConfiguratorPC.Controls
             {
                 var videoMemoryTypes = new List<VideoMemoryType>();
                 videoMemoryTypes.Add(new VideoMemoryType { Id = -1, Name = "Выбрать все" });
-                videoMemoryTypes.AddRange(DAL.Context.VideoMemoryTypes);
+                videoMemoryTypes.AddRange(DAL.Context.VideoMemoryTypes.AsNoTracking());
                 return videoMemoryTypes;
             }
         }
@@ -145,7 +145,7 @@ namespace ConfiguratorPC.Controls
             {
                 var graphicProcessors = new List<GraphicProcessor>();
                 graphicProcessors.Add(new GraphicProcessor { Id = -1, Name = "Выбрать все" });
-                graphicProcessors.AddRange(DAL.Context.GraphicProcessors);
+                graphicProcessors.AddRange(DAL.Context.GraphicProcessors.AsNoTracking());
                 return graphicProcessors;
             }
         }
@@ -156,7 +156,7 @@ namespace ConfiguratorPC.Controls
             {
                 var caseSizes = new List<CaseSize>();
                 caseSizes.Add(new CaseSize { Id = -1, Name = "Выбрать все" });
-                caseSizes.AddRange(DAL.Context.CaseSizes);
+                caseSizes.AddRange(DAL.Context.CaseSizes.AsNoTracking());
                 return caseSizes;
             }
         }
@@ -167,7 +167,7 @@ namespace ConfiguratorPC.Controls
             {
                 var colors = new List<Data.Color>();
                 colors.Add(new Data.Color { Id = -1, Name = "Выбрать все" });
-                colors.AddRange(DAL.Context.Colors);
+                colors.AddRange(DAL.Context.Colors.AsNoTracking());
                 return colors;
             }
         }
@@ -178,7 +178,7 @@ namespace ConfiguratorPC.Controls
             {
                 var motherBoardFormFactors = new List<MotherBoardFormFactor>();
                 motherBoardFormFactors.Add(new MotherBoardFormFactor { Id = -1, Name = "Выбрать все" });
-                motherBoardFormFactors.AddRange(DAL.Context.MotherBoardFormFactors);
+                motherBoardFormFactors.AddRange(DAL.Context.MotherBoardFormFactors.AsNoTracking());
                 return motherBoardFormFactors;
             }
         }
@@ -189,7 +189,7 @@ namespace ConfiguratorPC.Controls
             {
                 var chipsets = new List<Chipset>();
                 chipsets.Add(new Chipset { Id = -1, Name = "Выбрать все" });
-                chipsets.AddRange(DAL.Context.Chipsets);
+                chipsets.AddRange(DAL.Context.Chipsets.AsNoTracking());
                 return chipsets;
             }
         }
@@ -198,7 +198,7 @@ namespace ConfiguratorPC.Controls
         {
             get
             {
-                return DAL.Context.MotherBoards.Select(m => m.RAMQuantity).Distinct().ToList();
+                return DAL.Context.MotherBoards.AsNoTracking().Select(m => m.RAMQuantity).Distinct().ToList();
             }
         }
 
@@ -208,7 +208,7 @@ namespace ConfiguratorPC.Controls
             {
                 var ramTypes = new List<RAMType>();
                 ramTypes.Add(new RAMType { Id = -1, Name = "Выбрать все" });
-                ramTypes.AddRange(DAL.Context.RAMTypes);
+                ramTypes.AddRange(DAL.Context.RAMTypes.AsNoTracking());
                 return ramTypes;
             }
         }
@@ -220,7 +220,7 @@ namespace ConfiguratorPC.Controls
             {
                 var ramFormFactors = new List<RAMFormFactor>();
                 ramFormFactors.Add(new RAMFormFactor { Id = -1, Name = "Выбрать все" });
-                ramFormFactors.AddRange(DAL.Context.RAMFormFactors);
+                ramFormFactors.AddRange(DAL.Context.RAMFormFactors.AsNoTracking());
                 return ramFormFactors;
             }
         }
@@ -234,28 +234,28 @@ namespace ConfiguratorPC.Controls
                 switch (type)
                 {
                     case ComponentType.Processor:
-                        manufacturers.AddRange(DAL.Context.Processors.Select(p => p.Component.Manufacturer).Distinct().ToList());
+                        manufacturers.AddRange(DAL.Context.Processors.AsNoTracking().Select(p => p.Component.Manufacturer).Distinct().ToList());
                         break;
                     case ComponentType.MotherBoard:
-                        manufacturers.AddRange(DAL.Context.MotherBoards.Select(p => p.Component.Manufacturer).Distinct().ToList());
+                        manufacturers.AddRange(DAL.Context.MotherBoards.AsNoTracking().Select(p => p.Component.Manufacturer).Distinct().ToList());
                         break;
                     case ComponentType.Case:
-                        manufacturers.AddRange(DAL.Context.Cases.Select(p => p.Component.Manufacturer).Distinct().ToList());
+                        manufacturers.AddRange(DAL.Context.Cases.AsNoTracking().Select(p => p.Component.Manufacturer).Distinct().ToList());
                         break;
                     case ComponentType.Videocard:
-                        manufacturers.AddRange(DAL.Context.VideoCards.Select(p => p.Component.Manufacturer).Distinct().ToList());
+                        manufacturers.AddRange(DAL.Context.VideoCards.AsNoTracking().Select(p => p.Component.Manufacturer).Distinct().ToList());
                         break;
                     case ComponentType.Cooler:
-                        manufacturers.AddRange(DAL.Context.ProcessorCoolers.Select(p => p.Component.Manufacturer).Distinct().ToList());
+                        manufacturers.AddRange(DAL.Context.ProcessorCoolers.AsNoTracking().Select(p => p.Component.Manufacturer).Distinct().ToList());
                         break;
                     case ComponentType.RAM:
-                        manufacturers.AddRange(DAL.Context.RAMs.Select(p => p.Component.Manufacturer).Distinct().ToList());
+                        manufacturers.AddRange(DAL.Context.RAMs.AsNoTracking().Select(p => p.Component.Manufacturer).Distinct().ToList());
                         break;
                     case ComponentType.DataStorage:
-                        manufacturers.AddRange(DAL.Context.DataStorages.Select(p => p.Component.Manufacturer).Distinct().ToList());
+                        manufacturers.AddRange(DAL.Context.DataStorages.AsNoTracking().Select(p => p.Component.Manufacturer).Distinct().ToList());
                         break;
                     case ComponentType.PowerSupply:
-                        manufacturers.AddRange(DAL.Context.PowerSupplies.Select(p => p.Component.Manufacturer).Distinct().ToList());
+                        manufacturers.AddRange(DAL.Context.PowerSupplies.AsNoTracking().Select(p => p.Component.Manufacturer).Distinct().ToList());
                         break;
                     default:
                         break;
@@ -506,8 +506,8 @@ namespace ConfiguratorPC.Controls
         {
             this.configurator = configurator;
             this.type = type;
-            try
-            {
+            //try
+            //{
                 switch (type)
                 {
                     case ComponentType.Processor:
@@ -550,11 +550,11 @@ namespace ConfiguratorPC.Controls
                 SortComboBox.SelectionChanged += ComboBox_SelectionChanged;
 
                 FillList();
-            }
-            catch (Exception ex)
-            {
-                FeedBack.ShowError(ex);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    FeedBack.ShowError(ex);
+            //}
         }
 
         private void PowerSupplyInit()
@@ -703,28 +703,28 @@ namespace ConfiguratorPC.Controls
             switch (type)
             {
                 case ComponentType.Processor:
-                    components.AddRange(DAL.Context.Processors.Select(p => p.Component));
+                    components.AddRange(DAL.Context.Processors.AsNoTracking().Select(p => p.Component));
                     break;
                 case ComponentType.MotherBoard:
-                    components.AddRange(DAL.Context.MotherBoards.Select(p => p.Component));
+                    components.AddRange(DAL.Context.MotherBoards.AsNoTracking().Select(p => p.Component));
                     break;
                 case ComponentType.Case:
-                    components.AddRange(DAL.Context.Cases.Select(p => p.Component));
+                    components.AddRange(DAL.Context.Cases.AsNoTracking().Select(p => p.Component));
                     break;
                 case ComponentType.Videocard:
-                    components.AddRange(DAL.Context.VideoCards.Select(p => p.Component));
+                    components.AddRange(DAL.Context.VideoCards.AsNoTracking().Select(p => p.Component));
                     break;
                 case ComponentType.Cooler:
-                    components.AddRange(DAL.Context.ProcessorCoolers.Select(p => p.Component));
+                    components.AddRange(DAL.Context.ProcessorCoolers.AsNoTracking().Select(p => p.Component));
                     break;
                 case ComponentType.RAM:
-                    components.AddRange(DAL.Context.RAMs.Select(p => p.Component));
+                    components.AddRange(DAL.Context.RAMs.AsNoTracking().Select(p => p.Component));
                     break;
                 case ComponentType.DataStorage:
-                    components.AddRange(DAL.Context.DataStorages.Select(p => p.Component));
+                    components.AddRange(DAL.Context.DataStorages.AsNoTracking().Select(p => p.Component));
                     break;
                 case ComponentType.PowerSupply:
-                    components.AddRange(DAL.Context.PowerSupplies.Select(p => p.Component));
+                    components.AddRange(DAL.Context.PowerSupplies.AsNoTracking().Select(p => p.Component));
                     break;
                 default:
                     break;
@@ -743,7 +743,7 @@ namespace ConfiguratorPC.Controls
 
         private void SetDataSizeLimits()
         {
-            var dataStorages = DAL.Context.DataStorages.ToList();
+            var dataStorages = DAL.Context.DataStorages.AsNoTracking().ToList();
             if (dataStorages.Count > 0)
             {
                 SetNumericLimits(MinDataSizeNumeric, MaxDataSizeNumeric, Convert.ToDouble(dataStorages.Min(c => c.MemorySize)), Convert.ToDouble(dataStorages.Max(c => c.MemorySize)));
@@ -752,7 +752,7 @@ namespace ConfiguratorPC.Controls
 
         private void SetPowerLimits()
         {
-            var powerSupplies = DAL.Context.PowerSupplies.ToList();
+            var powerSupplies = DAL.Context.PowerSupplies.AsNoTracking().ToList();
             if (powerSupplies.Count > 0)
             {
                 SetNumericLimits(MinPowerNumeric, MaxPowerNumeric, Convert.ToDouble(powerSupplies.Min(p => p.Power)), Convert.ToDouble(powerSupplies.Max(p => p.Power)));
@@ -761,7 +761,7 @@ namespace ConfiguratorPC.Controls
 
         private void SetProcFrequencyLimits()
         {
-            var processors = DAL.Context.Processors.ToList();
+            var processors = DAL.Context.Processors.AsNoTracking().ToList();
             if (processors.Count > 0)
             {
                 SetNumericLimits(MinProcFrequencyNumeric, MaxProcFrequencyNumeric, Convert.ToDouble(processors.Min(p => p.BaseFrequency)), Convert.ToDouble(processors.Max(p => p.BaseFrequency)));
@@ -770,7 +770,7 @@ namespace ConfiguratorPC.Controls
 
         private void SetRAMFrequencyLimits()
         {
-            var rams = DAL.Context.RAMs.ToList();
+            var rams = DAL.Context.RAMs.AsNoTracking().ToList();
             if (rams.Count > 0)
             {
                 SetNumericLimits(MinRAMFrequencyNumeric, MaxRAMFrequencyNumeric, Convert.ToDouble(rams.Min(p => p.Frequency)), Convert.ToDouble(rams.Max(p => p.Frequency)));
@@ -784,9 +784,9 @@ namespace ConfiguratorPC.Controls
 
         private void FillList()
         {
+            ComponentsList.Items.Clear();
             if (FilteredComponents.Count > 0)
             {
-                ComponentsList.Items.Clear();
                 foreach (var item in FilteredComponents)
                 {
                     ComponentsList.Items.Add(item);

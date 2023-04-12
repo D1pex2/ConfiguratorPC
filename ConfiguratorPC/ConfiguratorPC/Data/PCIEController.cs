@@ -18,8 +18,8 @@ namespace ConfiguratorPC.Data
         public PCIEController()
         {
             this.MotherBoards = new HashSet<MotherBoard>();
-            this.VideoCards = new HashSet<VideoCard>();
             this.Processors = new HashSet<Processor>();
+            this.VideoCards = new HashSet<VideoCard>();
         }
     
         public int Id { get; set; }
@@ -28,8 +28,8 @@ namespace ConfiguratorPC.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MotherBoard> MotherBoards { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VideoCard> VideoCards { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Processor> Processors { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VideoCard> VideoCards { get; set; }
     }
 }

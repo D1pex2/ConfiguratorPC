@@ -42,7 +42,6 @@ namespace ConfiguratorPC.Data
         public string FanType { get; set; }
         public Nullable<byte> FanQuantity { get; set; }
         public byte ExpansionSlotSize { get; set; }
-        public short Width { get; set; }
         public short Thickness { get; set; }
         public short Mass { get; set; }
         public Nullable<int> IdVideoCardPowerPlug { get; set; }

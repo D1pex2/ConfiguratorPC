@@ -19,6 +19,8 @@ namespace ConfiguratorPC.Data
         {
             this.CaseConnectors = new HashSet<CaseConnector>();
             this.MotherBoardFormFactors = new HashSet<MotherBoardFormFactor>();
+            this.FrontPanelMaterials = new HashSet<Material>();
+            this.Materials = new HashSet<Material>();
         }
     
         public int IdComponent { get; set; }
@@ -35,9 +37,7 @@ namespace ConfiguratorPC.Data
         public short Width { get; set; }
         public short Height { get; set; }
         public int IdMainColor { get; set; }
-        public int IdMaterial { get; set; }
         public bool HasWindow { get; set; }
-        public Nullable<int> IdFrontPanelMaterial { get; set; }
         public Nullable<int> IdLigthingType { get; set; }
         public string PowerSupplyOrientation { get; set; }
         public bool HasCardReader { get; set; }
@@ -45,13 +45,15 @@ namespace ConfiguratorPC.Data
         public virtual CaseSize CaseSize { get; set; }
         public virtual Color Color { get; set; }
         public virtual Component Component { get; set; }
-        public virtual Material Material { get; set; }
         public virtual LightingType LightingType { get; set; }
-        public virtual Material Material1 { get; set; }
         public virtual PowerSupplyFormFactor PowerSupplyFormFactor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CaseConnector> CaseConnectors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MotherBoardFormFactor> MotherBoardFormFactors { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Material> FrontPanelMaterials { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Material> Materials { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,13 +20,33 @@ namespace ConfiguratorPC.Data
             {
                 try
                 {
-                    var pic = Pictures.First().BytePicture;
-                    MemoryStream byteStream = new MemoryStream(pic);
-                    BitmapImage image = new BitmapImage();
-                    image.BeginInit();
-                    image.StreamSource = byteStream;
-                    image.EndInit();
-                    return image;
+                    if (Pictures.Count != 0)
+                    {
+                        var pic = Pictures.First().BytePicture;
+                        MemoryStream byteStream = new MemoryStream(pic);
+                        BitmapImage image = new BitmapImage();
+                        image.BeginInit();
+                        image.StreamSource = byteStream;
+                        image.EndInit();
+                        return image;
+                    }
+                    else
+                    {
+                        using (var memory = new MemoryStream())
+                        {
+                            Properties.Resources.placeholder.Save(memory, ImageFormat.Png);
+                            memory.Position = 0;
+
+                            var bitmapImage = new BitmapImage();
+                            bitmapImage.BeginInit();
+                            bitmapImage.StreamSource = memory;
+                            bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                            bitmapImage.EndInit();
+                            bitmapImage.Freeze();
+
+                            return bitmapImage;
+                        }
+                    }
                 }
                 catch (Exception)
                 {

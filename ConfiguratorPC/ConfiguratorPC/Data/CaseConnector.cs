@@ -18,7 +18,7 @@ namespace ConfiguratorPC.Data
         public int IdConnector { get; set; }
         public byte Quantity { get; set; }
     
-        public virtual Case Case { get; set; }
         public virtual Connector Connector { get; set; }
+        public virtual Case Case { get; set; }
     }
 }

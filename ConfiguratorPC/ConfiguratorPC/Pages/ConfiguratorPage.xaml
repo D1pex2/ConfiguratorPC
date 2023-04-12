@@ -9,7 +9,7 @@
       Title="ConfiguratorPage">
     <Page.Resources>
         <Style TargetType="controls:ComponentConfigurator">
-            <Setter Property="Margin" Value="0,0,0, 5"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
         </Style>
     </Page.Resources>
     <ScrollViewer x:Name="WindowScrollViewer">
@@ -26,6 +26,19 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Column="1" Grid.Row="1"  MaxWidth="1300">
                 <StackPanel x:Name="ConfigStackPanel" Margin="2">
+                    <Border Style="{StaticResource BorderDefault}" Height="75" Margin="0,0,0,15">
+                        <DockPanel>
+                            <Image Source="/Resources/pc.png" Margin="10"/>
+                            <TextBlock Text="Конфигуратор сборки ПК" VerticalAlignment="Center"/>
+                            <Button x:Name="HelpButton" FontWeight="DemiBold" Click="HelpButton_Click" Content="Справка" Margin="15,0,15,0" HorizontalAlignment="Right" Background="#FF00B3FF" Foreground="White" DockPanel.Dock="Right" VerticalAlignment="Center">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="5 5 5 5"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                        </DockPanel>
+                    </Border>
                     <controls:ComponentConfigurator x:Name="ProcessorConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
                     <controls:ComponentConfigurator x:Name="MotherBoardConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
                     <controls:ComponentConfigurator x:Name="CaseConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>

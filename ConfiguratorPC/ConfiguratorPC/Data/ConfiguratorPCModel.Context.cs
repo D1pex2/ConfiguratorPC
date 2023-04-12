@@ -25,7 +25,6 @@ namespace ConfiguratorPC.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Case> Cases { get; set; }
         public virtual DbSet<CaseConnector> CaseConnectors { get; set; }
         public virtual DbSet<CaseSize> CaseSizes { get; set; }
         public virtual DbSet<Chipset> Chipsets { get; set; }
@@ -69,11 +68,12 @@ namespace ConfiguratorPC.Data
         public virtual DbSet<Socket> Sockets { get; set; }
         public virtual DbSet<SoundAdapterChipset> SoundAdapterChipsets { get; set; }
         public virtual DbSet<SSD> SSDs { get; set; }
-        public virtual DbSet<VideoCard> VideoCards { get; set; }
         public virtual DbSet<VideoCardPowerPlug> VideoCardPowerPlugs { get; set; }
         public virtual DbSet<VideoMemoryType> VideoMemoryTypes { get; set; }
         public virtual DbSet<VideoOutput> VideoOutputs { get; set; }
         public virtual DbSet<VideoPowerConnector> VideoPowerConnectors { get; set; }
         public virtual DbSet<Processor> Processors { get; set; }
+        public virtual DbSet<Case> Cases { get; set; }
+        public virtual DbSet<VideoCard> VideoCards { get; set; }
     }
 }

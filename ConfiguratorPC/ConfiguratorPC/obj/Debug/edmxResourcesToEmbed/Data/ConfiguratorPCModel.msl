@@ -1,32 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Хранилище ConfiguratorPCModelContainer" CdmEntityContainer="ConfiguratorPCEntities">
-    <EntitySetMapping Name="Cases">
-      <EntityTypeMapping TypeName="ConfiguratorPCModel.Case">
-        <MappingFragment StoreEntitySet="Case">
-          <ScalarProperty Name="HasCardReader" ColumnName="HasCardReader" />
-          <ScalarProperty Name="PowerSupplyOrientation" ColumnName="PowerSupplyOrientation" />
-          <ScalarProperty Name="IdLigthingType" ColumnName="IdLigthingType" />
-          <ScalarProperty Name="IdFrontPanelMaterial" ColumnName="IdFrontPanelMaterial" />
-          <ScalarProperty Name="HasWindow" ColumnName="HasWindow" />
-          <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
-          <ScalarProperty Name="IdMainColor" ColumnName="IdMainColor" />
-          <ScalarProperty Name="Height" ColumnName="Height" />
-          <ScalarProperty Name="Width" ColumnName="Width" />
-          <ScalarProperty Name="Length" ColumnName="Length" />
-          <ScalarProperty Name="MotherBoardOrientation" ColumnName="MotherBoardOrientation" />
-          <ScalarProperty Name="Storage25Quantity" ColumnName="Storage25Quantity" />
-          <ScalarProperty Name="Storage35Quantity" ColumnName="Storage35Quantity" />
-          <ScalarProperty Name="LiquidCoolerCompatible" ColumnName="LiquidCoolerCompatible" />
-          <ScalarProperty Name="MaxCoolerHeigth" ColumnName="MaxCoolerHeigth" />
-          <ScalarProperty Name="MaxVideoCardLength" ColumnName="MaxVideoCardLength" />
-          <ScalarProperty Name="ExpansionSlotsQuantity" ColumnName="ExpansionSlotsQuantity" />
-          <ScalarProperty Name="IdPowerSupplyFormFactor" ColumnName="IdPowerSupplyFormFactor" />
-          <ScalarProperty Name="IdCaseSize" ColumnName="IdCaseSize" />
-          <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="CaseConnectors">
       <EntityTypeMapping TypeName="ConfiguratorPCModel.CaseConnector">
         <MappingFragment StoreEntitySet="CaseConnector">
@@ -473,38 +447,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="VideoCards">
-      <EntityTypeMapping TypeName="ConfiguratorPCModel.VideoCard">
-        <MappingFragment StoreEntitySet="VideoCard">
-          <ScalarProperty Name="IdVideoCardPowerPlug" ColumnName="IdVideoCardPowerPlug" />
-          <ScalarProperty Name="Mass" ColumnName="Mass" />
-          <ScalarProperty Name="Thickness" ColumnName="Thickness" />
-          <ScalarProperty Name="Width" ColumnName="Width" />
-          <ScalarProperty Name="ExpansionSlotSize" ColumnName="ExpansionSlotSize" />
-          <ScalarProperty Name="FanQuantity" ColumnName="FanQuantity" />
-          <ScalarProperty Name="FanType" ColumnName="FanType" />
-          <ScalarProperty Name="CoolerType" ColumnName="CoolerType" />
-          <ScalarProperty Name="PowerSupply" ColumnName="PowerSupply" />
-          <ScalarProperty Name="IdPCIEController" ColumnName="IdPCIEController" />
-          <ScalarProperty Name="MaxMonitorQuantity" ColumnName="MaxMonitorQuantity" />
-          <ScalarProperty Name="RayTracingSupport" ColumnName="RayTracingSupport" />
-          <ScalarProperty Name="RasterizationBlockQuantity" ColumnName="RasterizationBlockQuantity" />
-          <ScalarProperty Name="TextureBlockQuantity" ColumnName="TextureBlockQuantity" />
-          <ScalarProperty Name="ALUQuantity" ColumnName="ALUQuantity" />
-          <ScalarProperty Name="VideoChipFrequency" ColumnName="VideoChipFrequency" />
-          <ScalarProperty Name="EffectiveMemoryFrequency" ColumnName="EffectiveMemoryFrequency" />
-          <ScalarProperty Name="MaxMemoryBandwidth" ColumnName="MaxMemoryBandwidth" />
-          <ScalarProperty Name="MemoryBusBitRate" ColumnName="MemoryBusBitRate" />
-          <ScalarProperty Name="IdVideoMemoryType" ColumnName="IdVideoMemoryType" />
-          <ScalarProperty Name="VideoMemorySize" ColumnName="VideoMemorySize" />
-          <ScalarProperty Name="TechProcess" ColumnName="TechProcess" />
-          <ScalarProperty Name="IdMicroarchitecture" ColumnName="IdMicroarchitecture" />
-          <ScalarProperty Name="IdGraphicProcessor" ColumnName="IdGraphicProcessor" />
-          <ScalarProperty Name="Length" ColumnName="Length" />
-          <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="VideoCardPowerPlugs">
       <EntityTypeMapping TypeName="ConfiguratorPCModel.VideoCardPowerPlug">
         <MappingFragment StoreEntitySet="VideoCardPowerPlug">
@@ -537,14 +479,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="CaseCompatibleMotherBoardFormFactor" TypeName="ConfiguratorPCModel.CaseCompatibleMotherBoardFormFactor" StoreEntitySet="CaseCompatibleMotherBoardFormFactor">
-      <EndProperty Name="MotherBoardFormFactor">
-        <ScalarProperty Name="Id" ColumnName="IdMotherBoardFormFactor" />
-      </EndProperty>
-      <EndProperty Name="Case">
-        <ScalarProperty Name="IdComponent" ColumnName="IdCase" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="ComponentPicture" TypeName="ConfiguratorPCModel.ComponentPicture" StoreEntitySet="ComponentPicture">
       <EndProperty Name="Picture">
         <ScalarProperty Name="Id" ColumnName="IdPicture" />
@@ -609,14 +543,6 @@
         <ScalarProperty Name="Id" ColumnName="IdVideoCardPowerPlug" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="VideoCardOutput" TypeName="ConfiguratorPCModel.VideoCardOutput" StoreEntitySet="VideoCardOutput">
-      <EndProperty Name="VideoOutput">
-        <ScalarProperty Name="Id" ColumnName="IdVideoOutput" />
-      </EndProperty>
-      <EndProperty Name="VideoCard">
-        <ScalarProperty Name="IdComponent" ColumnName="IdVideoCard" />
-      </EndProperty>
-    </AssociationSetMapping>
     <EntitySetMapping Name="Processors">
       <EntityTypeMapping TypeName="ConfiguratorPCModel.Processor">
         <MappingFragment StoreEntitySet="Processor">
@@ -654,6 +580,93 @@
       </EndProperty>
       <EndProperty Name="Processor">
         <ScalarProperty Name="IdComponent" ColumnName="IdProcessor" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Cases">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.Case">
+        <MappingFragment StoreEntitySet="Case">
+          <ScalarProperty Name="HasCardReader" ColumnName="HasCardReader" />
+          <ScalarProperty Name="PowerSupplyOrientation" ColumnName="PowerSupplyOrientation" />
+          <ScalarProperty Name="IdLigthingType" ColumnName="IdLigthingType" />
+          <ScalarProperty Name="HasWindow" ColumnName="HasWindow" />
+          <ScalarProperty Name="IdMainColor" ColumnName="IdMainColor" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+          <ScalarProperty Name="Width" ColumnName="Width" />
+          <ScalarProperty Name="Length" ColumnName="Length" />
+          <ScalarProperty Name="MotherBoardOrientation" ColumnName="MotherBoardOrientation" />
+          <ScalarProperty Name="Storage25Quantity" ColumnName="Storage25Quantity" />
+          <ScalarProperty Name="Storage35Quantity" ColumnName="Storage35Quantity" />
+          <ScalarProperty Name="LiquidCoolerCompatible" ColumnName="LiquidCoolerCompatible" />
+          <ScalarProperty Name="MaxCoolerHeigth" ColumnName="MaxCoolerHeigth" />
+          <ScalarProperty Name="MaxVideoCardLength" ColumnName="MaxVideoCardLength" />
+          <ScalarProperty Name="ExpansionSlotsQuantity" ColumnName="ExpansionSlotsQuantity" />
+          <ScalarProperty Name="IdPowerSupplyFormFactor" ColumnName="IdPowerSupplyFormFactor" />
+          <ScalarProperty Name="IdCaseSize" ColumnName="IdCaseSize" />
+          <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CaseCompatibleMotherBoardFormFactor" TypeName="ConfiguratorPCModel.CaseCompatibleMotherBoardFormFactor" StoreEntitySet="CaseCompatibleMotherBoardFormFactor">
+      <EndProperty Name="MotherBoardFormFactor">
+        <ScalarProperty Name="Id" ColumnName="IdMotherBoardFormFactor" />
+      </EndProperty>
+      <EndProperty Name="Case">
+        <ScalarProperty Name="IdComponent" ColumnName="IdCase" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CaseFrontPanelMaterial" TypeName="ConfiguratorPCModel.CaseFrontPanelMaterial" StoreEntitySet="CaseFrontPanelMaterial">
+      <EndProperty Name="Material">
+        <ScalarProperty Name="Id" ColumnName="IdMaterial" />
+      </EndProperty>
+      <EndProperty Name="Case">
+        <ScalarProperty Name="IdComponent" ColumnName="IdCase" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CaseMaterial" TypeName="ConfiguratorPCModel.CaseMaterial" StoreEntitySet="CaseMaterial">
+      <EndProperty Name="Material">
+        <ScalarProperty Name="Id" ColumnName="IdMaterial" />
+      </EndProperty>
+      <EndProperty Name="Case">
+        <ScalarProperty Name="IdComponent" ColumnName="IdCase" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="VideoCards">
+      <EntityTypeMapping TypeName="ConfiguratorPCModel.VideoCard">
+        <MappingFragment StoreEntitySet="VideoCard">
+          <ScalarProperty Name="IdVideoCardPowerPlug" ColumnName="IdVideoCardPowerPlug" />
+          <ScalarProperty Name="Mass" ColumnName="Mass" />
+          <ScalarProperty Name="Thickness" ColumnName="Thickness" />
+          <ScalarProperty Name="ExpansionSlotSize" ColumnName="ExpansionSlotSize" />
+          <ScalarProperty Name="FanQuantity" ColumnName="FanQuantity" />
+          <ScalarProperty Name="FanType" ColumnName="FanType" />
+          <ScalarProperty Name="CoolerType" ColumnName="CoolerType" />
+          <ScalarProperty Name="PowerSupply" ColumnName="PowerSupply" />
+          <ScalarProperty Name="IdPCIEController" ColumnName="IdPCIEController" />
+          <ScalarProperty Name="MaxMonitorQuantity" ColumnName="MaxMonitorQuantity" />
+          <ScalarProperty Name="RayTracingSupport" ColumnName="RayTracingSupport" />
+          <ScalarProperty Name="RasterizationBlockQuantity" ColumnName="RasterizationBlockQuantity" />
+          <ScalarProperty Name="TextureBlockQuantity" ColumnName="TextureBlockQuantity" />
+          <ScalarProperty Name="ALUQuantity" ColumnName="ALUQuantity" />
+          <ScalarProperty Name="VideoChipFrequency" ColumnName="VideoChipFrequency" />
+          <ScalarProperty Name="EffectiveMemoryFrequency" ColumnName="EffectiveMemoryFrequency" />
+          <ScalarProperty Name="MaxMemoryBandwidth" ColumnName="MaxMemoryBandwidth" />
+          <ScalarProperty Name="MemoryBusBitRate" ColumnName="MemoryBusBitRate" />
+          <ScalarProperty Name="IdVideoMemoryType" ColumnName="IdVideoMemoryType" />
+          <ScalarProperty Name="VideoMemorySize" ColumnName="VideoMemorySize" />
+          <ScalarProperty Name="TechProcess" ColumnName="TechProcess" />
+          <ScalarProperty Name="IdMicroarchitecture" ColumnName="IdMicroarchitecture" />
+          <ScalarProperty Name="IdGraphicProcessor" ColumnName="IdGraphicProcessor" />
+          <ScalarProperty Name="Length" ColumnName="Length" />
+          <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="VideoCardOutput" TypeName="ConfiguratorPCModel.VideoCardOutput" StoreEntitySet="VideoCardOutput">
+      <EndProperty Name="VideoOutput">
+        <ScalarProperty Name="Id" ColumnName="IdVideoOutput" />
+      </EndProperty>
+      <EndProperty Name="VideoCard">
+        <ScalarProperty Name="IdComponent" ColumnName="IdVideoCard" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

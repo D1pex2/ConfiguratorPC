@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -254,6 +257,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\HelpPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Configurator.cs" />
@@ -284,6 +291,9 @@
     </Compile>
     <Compile Include="Pages\ConfiguratorPage.xaml.cs">
       <DependentUpon>ConfiguratorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\HelpPage.xaml.cs">
+      <DependentUpon>HelpPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Navigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -333,6 +343,16 @@
       <DependentUpon>ConfiguratorPCModel.edmx</DependentUpon>
       <LastGenOutput>ConfiguratorPCModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\placeholder.png" />
+    <Resource Include="Resources\pc_white.png" />
+    <Resource Include="icon.ico" />
+    <Resource Include="Resources\help_image6.png" />
+    <Resource Include="Resources\help_image5.png" />
+    <Resource Include="Resources\help_image4.png" />
+    <Resource Include="Resources\help_image3.png" />
+    <Resource Include="Resources\help_image2.png" />
+    <Resource Include="Resources\help_image1.png" />
+    <Resource Include="Resources\pc.png" />
     <Resource Include="Resources\close_black.png" />
     <Resource Include="Resources\up.png" />
     <Resource Include="Resources\down.png" />
