@@ -506,8 +506,8 @@ namespace ConfiguratorPC.Controls
         {
             this.configurator = configurator;
             this.type = type;
-            //try
-            //{
+            try
+            {
                 switch (type)
                 {
                     case ComponentType.Processor:
@@ -550,11 +550,11 @@ namespace ConfiguratorPC.Controls
                 SortComboBox.SelectionChanged += ComboBox_SelectionChanged;
 
                 FillList();
-            //}
-            //catch (Exception ex)
-            //{
-            //    FeedBack.ShowError(ex);
-            //}
+            }
+            catch (Exception ex)
+            {
+                FeedBack.ShowError(ex);
+            }
         }
 
         private void PowerSupplyInit()

@@ -9,14 +9,18 @@ namespace ConfiguratorPC
 {
     public class Configurator
     {
+        //Событие изменения свойства материнской платы
         public event EventHandler MotherBoardChanged;
 
+        //Событие изменения свойства процессора
         public event EventHandler ProcessorChanged;
 
+        //Событие изменения свойства оперативной памяти
         public event EventHandler RAMChanged;
 
         private Processor processor;
 
+        //Свойство для доступа к полю процессора
         public Processor Processor 
         { 
             get => processor;
@@ -29,6 +33,7 @@ namespace ConfiguratorPC
 
         private MotherBoard motherBoard;
 
+        //Свойство для доступа к полю материнской платы
         public MotherBoard MotherBoard 
         { 
             get => motherBoard;
@@ -254,6 +259,7 @@ namespace ConfiguratorPC
             }
         }
 
+        //Список соответствующей оперативной памяти
         public List<RAM> CompatibleRAMs
         {
             get
