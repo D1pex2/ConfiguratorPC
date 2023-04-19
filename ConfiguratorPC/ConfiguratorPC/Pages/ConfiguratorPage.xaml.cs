@@ -42,6 +42,7 @@ namespace ConfiguratorPC.Pages
         private void ComponentConfigurator_ListOpened(object sender, EventArgs e)
         {
             List<ComponentConfigurator> componentButtons = ConfigStackPanel.Children.OfType<ComponentConfigurator>().ToList();
+            componentButtons.AddRange(DataStorageStackPanel.Children.OfType<ComponentConfigurator>());
             var componentButton = sender as ComponentConfigurator;
             componentButtons.Remove(componentButton);
             foreach (var item in componentButtons)
@@ -53,6 +54,28 @@ namespace ConfiguratorPC.Pages
         private void HelpButton_Click(object sender, RoutedEventArgs e)
         {
             Navigator.Frame.Navigate(new HelpPage());
+        }
+
+        private void MemoryConfigurator_AddDataStorageConfigurator(object sender, EventArgs e)
+        {
+            if (configurator.CompatibleDataStorage.Count > 0 || DataStorageStackPanel.Children.Count < 2)
+            {
+                var dataStorageConfigurator = new ComponentConfigurator();
+                dataStorageConfigurator.ListOpened += ComponentConfigurator_ListOpened;
+                dataStorageConfigurator.AddDataStorageConfigurator += MemoryConfigurator_AddDataStorageConfigurator;
+                dataStorageConfigurator.RemoveDataStorageConfigurator += MemoryConfigurator_RemoveDataStorageConfigurator;
+                dataStorageConfigurator.Init(configurator, ComponentType.DataStorage);
+                DataStorageStackPanel.Children.Add(dataStorageConfigurator);
+            }
+        }
+
+        private void MemoryConfigurator_RemoveDataStorageConfigurator(object sender, EventArgs e)
+        {
+            List<ComponentConfigurator> dataStorageConfigurators = DataStorageStackPanel.Children.OfType<ComponentConfigurator>().ToList();
+            if (dataStorageConfigurators.Where(c => c.Component == null).Count() > 0)
+            {
+                DataStorageStackPanel.Children.Remove(sender as ComponentConfigurator);
+            }
         }
     }
 }

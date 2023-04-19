@@ -234,6 +234,7 @@ namespace ConfiguratorPC.Pages
             PowerSupplyMainConnectorTextBlock.Text = component.PowerSupply.PowerSupplyMotherBoardConnectors.Count == 0 ? "нет" : component.PowerSupply.PowerSupplyMotherBoardConnectors.Select(c => $"{c.MotherBoardPowerConnector.Name} x{c.Quantity}").Aggregate((first, second) => $"{first}, {second}");
             PowerSupplyProcConnectorTextBlock.Text = component.PowerSupply.PowerSupplyProcessorPowerConnectors.Count == 0 ? "нет" : component.PowerSupply.PowerSupplyProcessorPowerConnectors.Select(c => $"{c.ProcessorPowerConnector.Name} x{c.Quantity}").Aggregate((first, second) => $"{first}, {second}");
             PowerSupplyVideoConnectorTextBlock.Text = component.PowerSupply.PowerSupplyVideoPowerConnectors.Count == 0 ? "нет" : component.PowerSupply.PowerSupplyVideoPowerConnectors.Select(c => $"{c.VideoPowerConnector.Name} x{c.Quantity}").Aggregate((first, second) => $"{first}, {second}");
+            PowerSupplySATAQuantityTextBlock.Text = component.PowerSupply.SATAConnectorQuantity == 0 ? "нет" : component.PowerSupply.SATAConnectorQuantity.ToString();
 
             PowerSupplyLengthTextBlock.Text = $"{component.PowerSupply.Length} мм";
             PowerSupplyWidthTextBlock.Text = $"{component.PowerSupply.Width} мм";

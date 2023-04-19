@@ -104,9 +104,15 @@ namespace ConfiguratorPC
 
         public PowerSupply PowerSupply { get => powerSupply; set => powerSupply = value; }
 
-        private DataStorage dataStorage;
+        private List<DataStorage> dataStorages = new List<DataStorage>();
 
-        public DataStorage DataStorage { get => dataStorage; set => dataStorage = value; }
+        public List<DataStorage> DataStorages { get => dataStorages; set => dataStorages = value; }
+
+        public int DataStorageM2Quantity { get => DataStorages.Where(d => d.SSD != null && d.SSD.M2SSD != null).Count(); }
+
+        public int DataStorage25Quantity { get => DataStorages.Where(d => (d.SSD != null && d.SSD.M2SSD == null) || (d.HDD != null && d.HDD.FormFactor == "2.5\"")).Count(); }
+
+        public int DataStorage35Quantity { get => DataStorages.Where(d => d.HDD != null && d.HDD.FormFactor == "3.5\"").Count(); }
 
         public List<Processor> CompatibleProcessors
         {
@@ -159,10 +165,14 @@ namespace ConfiguratorPC
                     motherBoards = motherBoards.Where(m => m.MotherBoardPowerPlug.MotherBoardPowerConnectors.Any(c => PowerSupply.PowerSupplyMotherBoardConnectors.Any(mc => mc.IdMotherBoardPowerConnector == c.Id)))
                         .Where(m => m.ProcessorPowerPlug.ProcessorPowerConnectors.Any(c => PowerSupply.PowerSupplyProcessorPowerConnectors.Any(pc => pc.IdProcessorPowerConnector == c.Id))).ToList();
                 }
-                if (DataStorage != null && DataStorage.SSD != null && DataStorage.SSD.M2SSD != null)
+                foreach (var dataStorage in DataStorages)
                 {
-                    motherBoards = motherBoards.Where(m => m.M2Quantity > 0 && m.MotherBoardM2Key.Any(k => k.IdFormFactor == DataStorage.SSD.M2SSD.IdFormFactor && DataStorage.SSD.M2SSD.M2Key.Any(mk => mk.Id == k.IdKey))).ToList();
+                    if (dataStorage.SSD != null && dataStorage.SSD.M2SSD != null)
+                    {
+                        motherBoards = motherBoards.Where(m => m.M2Quantity > 0 && m.MotherBoardM2Key.Any(k => k.IdFormFactor == dataStorage.SSD.M2SSD.IdFormFactor && dataStorage.SSD.M2SSD.M2Key.Any(mk => mk.Id == k.IdKey))).ToList();
+                    }
                 }
+                motherBoards = motherBoards.Where(m => m.M2Quantity >= DataStorageM2Quantity && m.SATAQuantity >= DataStorage25Quantity + DataStorage35Quantity).ToList();
                 return motherBoards;
             }
         }
@@ -195,6 +205,7 @@ namespace ConfiguratorPC
                 {
                     cases = cases.Where(c => c.IdPowerSupplyFormFactor == PowerSupply.IdPowerSupplyFormFactor).ToList();
                 }
+                cases = cases.Where(c => c.Storage25Quantity >= DataStorage25Quantity && c.Storage35Quantity >= DataStorage35Quantity).ToList();
                 return cases;
             }
         }
@@ -298,6 +309,7 @@ namespace ConfiguratorPC
                         powerSupplies = powerSupplies.Where(ps => ps.PowerSupplyVideoPowerConnectors.Any(c => VideoCard.VideoCardPowerPlug.VideoPowerConnectors.Any(vc => vc.Id == c.IdVideoPowerConnector))).ToList();
                     }
                 }
+                powerSupplies = powerSupplies.Where(ps => ps.SATAConnectorQuantity >= DataStorage25Quantity + DataStorage35Quantity).ToList();
                 return powerSupplies;
             }
         }
@@ -309,16 +321,13 @@ namespace ConfiguratorPC
                 List<DataStorage> dataStorages = DAL.Context.DataStorages.AsNoTracking().ToList();
                 if (MotherBoard != null)
                 {
-                    if (MotherBoard.M2Quantity == 0)
+                    if (MotherBoard.SATAQuantity <= DataStorage25Quantity + DataStorage35Quantity)
                     {
-                        var temp = dataStorages.ToList();
-                        foreach (var item in temp)
-                        {
-                            if (item.SSD != null && item.SSD.M2SSD != null)
-                            {
-                                dataStorages.Remove(item);
-                            }
-                        }
+                        dataStorages = dataStorages.Where(d => d.SSD != null && d.SSD.M2SSD != null).ToList();
+                    }
+                    if (MotherBoard.M2Quantity <= DataStorageM2Quantity)
+                    {
+                        dataStorages = dataStorages.Where(d => d.HDD != null || (d.SSD != null && d.SSD.M2SSD == null)).ToList();
                     }
                     else
                     {
@@ -335,8 +344,23 @@ namespace ConfiguratorPC
                         }
                     }
                 }
+                if (PowerSupply != null && PowerSupply.SATAConnectorQuantity <= DataStorage25Quantity + DataStorage35Quantity)
+                {
+                    dataStorages = dataStorages.Where(d => d.SSD != null && d.SSD.M2SSD != null).ToList();
+                }
+                if (Case != null)
+                {
+                    if (Case.Storage25Quantity <= DataStorage25Quantity)
+                    {
+                        dataStorages = dataStorages.Where(d => (d.SSD != null && d.SSD.M2SSD != null) || (d.HDD != null && d.HDD.FormFactor == "3.5\"")).ToList();
+                    }
+                    if (Case.Storage35Quantity <= DataStorage35Quantity)
+                    {
+                        dataStorages = dataStorages.Where(d => d.SSD != null || (d.HDD != null && d.HDD.FormFactor == "2.5\"")).ToList();
+                    }
+                }
                 return dataStorages;
             }
         }
-     }
+    }
 }

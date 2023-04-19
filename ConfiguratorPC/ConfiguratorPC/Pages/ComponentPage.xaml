@@ -554,6 +554,8 @@
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Общие параметры" Style="{StaticResource TitleTextBlock}"/>
                         <TextBlock Text="Мощность (номинал)" Grid.Row="1"/>
@@ -578,16 +580,19 @@
                         <TextBlock Text="Разъемы для питания видеокарты (PCI-E)" Grid.Row="14"/>
                         <TextBlock x:Name="PowerSupplyVideoConnectorTextBlock" Grid.Row="14" Grid.Column="1"/>
                         <Separator Grid.Row="15"/>
-                        <TextBlock Text="Габариты" Grid.Row="16" Style="{StaticResource TitleTextBlock}"/>
-                        <TextBlock Text="Длина" Grid.Row="17"/>
-                        <TextBlock x:Name="PowerSupplyLengthTextBlock" Grid.Row="17" Grid.Column="1"/>
-                        <Separator Grid.Row="18"/>
-                        <TextBlock Text="Ширина" Grid.Row="19"/>
-                        <TextBlock x:Name="PowerSupplyWidthTextBlock" Grid.Row="19" Grid.Column="1"/>
+                        <TextBlock Text="Количество разъемов SATA" Grid.Row="16"/>
+                        <TextBlock x:Name="PowerSupplySATAQuantityTextBlock" Grid.Row="16" Grid.Column="1"/>
+                        <Separator Grid.Row="17"/>
+                        <TextBlock Text="Габариты" Grid.Row="18" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Длина" Grid.Row="19"/>
+                        <TextBlock x:Name="PowerSupplyLengthTextBlock" Grid.Row="19" Grid.Column="1"/>
                         <Separator Grid.Row="20"/>
-                        <TextBlock Text="Высота" Grid.Row="21"/>
-                        <TextBlock x:Name="PowerSupplyHeigthTextBlock" Grid.Row="21" Grid.Column="1"/>
+                        <TextBlock Text="Ширина" Grid.Row="21"/>
+                        <TextBlock x:Name="PowerSupplyWidthTextBlock" Grid.Row="21" Grid.Column="1"/>
                         <Separator Grid.Row="22"/>
+                        <TextBlock Text="Высота" Grid.Row="23"/>
+                        <TextBlock x:Name="PowerSupplyHeigthTextBlock" Grid.Row="23" Grid.Column="1"/>
+                        <Separator Grid.Row="24"/>
                     </Grid>
                     <Grid x:Name="CaseGrid" Visibility="Collapsed">
                         <Grid.ColumnDefinitions>

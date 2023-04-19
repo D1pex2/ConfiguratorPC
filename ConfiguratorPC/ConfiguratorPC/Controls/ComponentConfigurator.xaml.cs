@@ -24,6 +24,10 @@ namespace ConfiguratorPC.Controls
     {
         public event EventHandler ListOpened;
 
+        public event EventHandler AddDataStorageConfigurator;
+
+        public event EventHandler RemoveDataStorageConfigurator;
+
         private ComponentType type;
 
         private Configurator configurator;
@@ -548,8 +552,6 @@ namespace ConfiguratorPC.Controls
                 SearchTextBox.TextChanged += SearchTextBox_TextChanged;
 
                 SortComboBox.SelectionChanged += ComboBox_SelectionChanged;
-
-                FillList();
             }
             catch (Exception ex)
             {
@@ -573,7 +575,7 @@ namespace ConfiguratorPC.Controls
 
         private void DataStorageInit()
         {
-            TypeTextBlock.Text = "Хранение данных";
+            TypeTextBlock.Text = "Хранилище данных";
 
             DataStorageTypeComboBox.SelectionChanged += ComboBox_SelectionChanged;
 
@@ -839,7 +841,8 @@ namespace ConfiguratorPC.Controls
                         configurator.RAM = null;
                         break;
                     case ComponentType.DataStorage:
-                        configurator.DataStorage = null;
+                        configurator.DataStorages.Remove(component.DataStorage);
+                        RemoveDataStorageConfigurator?.Invoke(this, EventArgs.Empty);
                         break;
                     case ComponentType.PowerSupply:
                         configurator.PowerSupply = null;
@@ -885,7 +888,8 @@ namespace ConfiguratorPC.Controls
                     configurator.RAM = component.RAM;
                     break;
                 case ComponentType.DataStorage:
-                    configurator.DataStorage = component.DataStorage;
+                    configurator.DataStorages.Add(component.DataStorage);
+                    AddDataStorageConfigurator?.Invoke(this, EventArgs.Empty);
                     break;
                 case ComponentType.PowerSupply:
                     configurator.PowerSupply = component.PowerSupply;

@@ -45,7 +45,10 @@
                     <controls:ComponentConfigurator x:Name="VideoCardConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
                     <controls:ComponentConfigurator x:Name="CoolerConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
                     <controls:ComponentConfigurator x:Name="RAMConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
-                    <controls:ComponentConfigurator x:Name="MemoryConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
+                    <StackPanel x:Name="DataStorageStackPanel">
+                        <controls:ComponentConfigurator x:Name="MemoryConfigurator" ListOpened="ComponentConfigurator_ListOpened" 
+                            AddDataStorageConfigurator="MemoryConfigurator_AddDataStorageConfigurator" RemoveDataStorageConfigurator="MemoryConfigurator_RemoveDataStorageConfigurator"/>
+                    </StackPanel>
                     <controls:ComponentConfigurator x:Name="PowerSupplyConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
                 </StackPanel>
             </Border>
