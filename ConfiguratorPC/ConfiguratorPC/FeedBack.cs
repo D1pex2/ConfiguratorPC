@@ -13,5 +13,10 @@ namespace ConfiguratorPC
         {
             MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
+        public static void ShowMessage(string message)
+        {
+            MessageBox.Show(message, "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }

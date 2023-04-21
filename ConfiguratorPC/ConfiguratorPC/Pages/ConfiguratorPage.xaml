@@ -37,6 +37,13 @@
                                     </Style>
                                 </Button.Resources>
                             </Button>
+                            <Button x:Name="ExportButton" FontWeight="DemiBold" Click="ExportButton_Click" Content="Экспорт" HorizontalAlignment="Right" Background="#FF00B3FF" Foreground="White" DockPanel.Dock="Right" VerticalAlignment="Center">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="5 5 5 5"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
                         </DockPanel>
                     </Border>
                     <controls:ComponentConfigurator x:Name="ProcessorConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>

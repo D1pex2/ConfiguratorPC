@@ -18,6 +18,60 @@ namespace ConfiguratorPC
         //Событие изменения свойства оперативной памяти
         public event EventHandler RAMChanged;
 
+        public decimal CommonPrice
+        {
+            get
+            {
+                decimal commonPrice = 0;
+                if (Processor != null)
+                    commonPrice += Processor.Component.Price;
+                if (MotherBoard != null)
+                    commonPrice += MotherBoard.Component.Price;
+                if (Case != null)
+                    commonPrice += Case.Component.Price;
+                if (VideoCard != null)
+                    commonPrice += VideoCard.Component.Price;
+                if (RAM != null)
+                    commonPrice += RAM.Component.Price * RAMQuantity;
+                if (ProcessorCooler != null)
+                    commonPrice += ProcessorCooler.Component.Price;
+                if (PowerSupply != null)
+                    commonPrice += PowerSupply.Component.Price;
+                foreach (var dataStorage in DataStorages)
+                {
+                    commonPrice += dataStorage.Component.Price;
+                }
+                return commonPrice;
+            }
+        }
+
+        public List<Component> Components
+        {
+            get
+            {
+                List<Component> components = new List<Component>();
+                if (Processor != null)
+                    components.Add(Processor.Component);
+                if (MotherBoard != null)
+                    components.Add(MotherBoard.Component);
+                if (Case != null)
+                    components.Add(Case.Component);
+                if (VideoCard != null)
+                    components.Add(VideoCard.Component);
+                if (RAM != null)
+                    components.Add(RAM.Component);
+                if (ProcessorCooler != null)
+                    components.Add(ProcessorCooler.Component);
+                if (PowerSupply != null)
+                    components.Add(PowerSupply.Component);
+                foreach (var dataStorage in DataStorages)
+                {
+                    components.Add(dataStorage.Component);
+                }
+                return components;
+            }
+        }
+
         private Processor processor;
 
         //Свойство для доступа к полю процессора
