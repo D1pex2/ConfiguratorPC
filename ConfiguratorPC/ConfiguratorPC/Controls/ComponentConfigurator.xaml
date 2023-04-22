@@ -362,7 +362,11 @@
                                     <DataTemplate>
                                         <Border MinHeight="160" Style="{StaticResource BorderDefault}" Margin="5">
                                             <DockPanel>
-                                                <Image Height="150" Width="150" Margin="5" Source="{Binding FirstImage}" Stretch="Uniform" DockPanel.Dock="Left"/>
+                                                <Image Height="150" Width="150" Margin="5" Stretch="Uniform" DockPanel.Dock="Left">
+                                                    <Image.Source>
+                                                        <BitmapImage UriSource="{Binding FirstImageUri}" CacheOption="OnLoad" DecodePixelHeight="150"/>
+                                                    </Image.Source>
+                                                </Image>
                                                 <Button x:Name="AddComponentButton" FontWeight="DemiBold" Click="AddComponentButton_Click" Content="Добавить" Margin="15,0,15,0" HorizontalAlignment="Center" Background="#FF00B3FF" Foreground="White" DockPanel.Dock="Right" VerticalAlignment="Center">
                                                     <Button.Resources>
                                                         <Style TargetType="Border">

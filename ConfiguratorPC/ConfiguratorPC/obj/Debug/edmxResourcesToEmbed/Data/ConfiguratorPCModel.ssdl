@@ -156,7 +156,7 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="MaxFrequency" Type="smallint" Nullable="false" />
     <Property Name="ExecutiveUnitQuantity" Type="tinyint" Nullable="false" />
-    <Property Name="ShadingUnitsQuantity" Type="tinyint" Nullable="false" />
+    <Property Name="ShadingUnitsQuantity" Type="smallint" Nullable="false" />
   </EntityType>
   <EntityType Name="HDD">
     <Key>
@@ -365,7 +365,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Picture" Type="varbinary(max)" Nullable="false" />
+    <Property Name="Path" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="PowerSupply">
     <Key>
@@ -438,12 +438,12 @@
     <Property Name="MaxFrequencyEnergyEfficientCore" Type="decimal" Precision="3" Scale="1" />
     <Property Name="FreeMultiplier" Type="bit" Nullable="false" />
     <Property Name="MaxRAMFrequency" Type="smallint" Nullable="false" />
+    <Property Name="StreamRAMQuantity" Type="tinyint" Nullable="false" />
     <Property Name="HasECC" Type="bit" Nullable="false" />
     <Property Name="TDP" Type="tinyint" Nullable="false" />
     <Property Name="MaxTemperature" Type="tinyint" Nullable="false" />
-    <Property Name="IdPCIEController" Type="int" Nullable="false" />
-    <Property Name="PCIEQuantity" Type="tinyint" Nullable="false" />
-    <Property Name="StreamRAMQuantity" Type="tinyint" Nullable="false" />
+    <Property Name="IdPCIEController" Type="int" />
+    <Property Name="PCIEQuantity" Type="tinyint" />
   </EntityType>
   <EntityType Name="ProcessorCompatibleMemoryType">
     <Key>
@@ -1393,7 +1393,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Processor_PCIEController">
-    <End Role="PCIEController" Type="Self.PCIEController" Multiplicity="1" />
+    <End Role="PCIEController" Type="Self.PCIEController" Multiplicity="0..1" />
     <End Role="Processor" Type="Self.Processor" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PCIEController">

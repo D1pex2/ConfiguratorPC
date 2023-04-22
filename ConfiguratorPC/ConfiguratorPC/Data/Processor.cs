@@ -39,12 +39,12 @@ namespace ConfiguratorPC.Data
         public Nullable<decimal> MaxFrequencyEnergyEfficientCore { get; set; }
         public bool FreeMultiplier { get; set; }
         public short MaxRAMFrequency { get; set; }
+        public byte StreamRAMQuantity { get; set; }
         public bool HasECC { get; set; }
         public byte TDP { get; set; }
         public byte MaxTemperature { get; set; }
-        public int IdPCIEController { get; set; }
-        public byte PCIEQuantity { get; set; }
-        public byte StreamRAMQuantity { get; set; }
+        public Nullable<int> IdPCIEController { get; set; }
+        public Nullable<byte> PCIEQuantity { get; set; }
     
         public virtual Component Component { get; set; }
         public virtual Core Core { get; set; }

@@ -52,14 +52,14 @@ namespace ConfiguratorPC.Pages
 
         private void Init()
         {
-            if (component.Pictures.Count <= 1)
+            if (component.ExistsPicture.Count <= 1)
             {
                 ImageListBorder.Visibility = Visibility.Hidden;
                 ImageBorder.CornerRadius = new CornerRadius(10, 10, 10, 10);
             }
             else
             {
-                PictureList.ItemsSource = component.Pictures;
+                PictureList.ItemsSource = component.ExistsPicture;
             }
             SelectedImage.Source = component.FirstImage;
             NameTextBlock.Text = $"Характеристики {component.Name}";
@@ -187,8 +187,8 @@ namespace ConfiguratorPC.Pages
 
             ProcessorGraphicsTextBlock.Text = component.Processor.GraphicsProcessingUnit == null ? "нет" : component.Processor.GraphicsProcessingUnit.Name;
 
-            ProcessorPCIControllerTextBlock.Text = component.Processor.PCIEController.Name;
-            ProcessorPCIQuantityTextBlock.Text = component.Processor.PCIEQuantity.ToString();
+            ProcessorPCIControllerTextBlock.Text = component.Processor.PCIEController == null ? "нет" : component.Processor.PCIEController.Name;
+            ProcessorPCIQuantityTextBlock.Text = component.Processor.PCIEQuantity == null ? "нет" : component.Processor.PCIEQuantity.ToString();
 
             ProcessorGrid.Visibility = Visibility.Visible;
         }
@@ -446,19 +446,19 @@ namespace ConfiguratorPC.Pages
             Navigator.Frame.GoBack();
         }
 
-        private void Image_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            var pic = (sender as Image).Source;
-            if (pic != null)
-            {
-                SelectedImage.Source = pic;
-            }
-        }
-
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             AddComponent?.Invoke(component);
             Navigator.Frame.GoBack();
+        }
+
+        private void PictureList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = PictureList.SelectedItem;
+            if (item != null)
+            {
+                SelectedImage.Source = new BitmapImage((item as Picture).ImageUri);
+            }
         }
     }
 }

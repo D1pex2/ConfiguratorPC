@@ -21,7 +21,7 @@ namespace ConfiguratorPC.Data
         }
     
         public int Id { get; set; }
-        public byte[] BytePicture { get; set; }
+        public string Path { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Component> Components { get; set; }

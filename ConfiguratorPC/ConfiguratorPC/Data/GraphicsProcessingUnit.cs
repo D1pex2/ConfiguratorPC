@@ -24,7 +24,7 @@ namespace ConfiguratorPC.Data
         public string Name { get; set; }
         public short MaxFrequency { get; set; }
         public byte ExecutiveUnitQuantity { get; set; }
-        public byte ShadingUnitsQuantity { get; set; }
+        public short ShadingUnitsQuantity { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Processor> Processors { get; set; }

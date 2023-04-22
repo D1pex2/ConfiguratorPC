@@ -14,44 +14,42 @@ namespace ConfiguratorPC.Data
 {
     public partial class Component
     {
+        private string dir = $"{Environment.CurrentDirectory}/Pictures";
+
         public BitmapImage FirstImage
         {
             get
             {
-                try
+                return new BitmapImage(FirstImageUri);
+            }
+        }
+
+        public Uri FirstImageUri
+        {
+            get
+            {
+                var path = $"{dir}/{Pictures.First().Path}";
+                if (Pictures.Count == 0 || !File.Exists(path))
                 {
-                    if (Pictures.Count != 0)
-                    {
-                        var pic = Pictures.First().BytePicture;
-                        MemoryStream byteStream = new MemoryStream(pic);
-                        BitmapImage image = new BitmapImage();
-                        image.BeginInit();
-                        image.StreamSource = byteStream;
-                        image.EndInit();
-                        return image;
-                    }
-                    else
-                    {
-                        using (var memory = new MemoryStream())
-                        {
-                            Properties.Resources.placeholder.Save(memory, ImageFormat.Png);
-                            memory.Position = 0;
+                    return new Uri($"{dir}/placeholder.png");
+                }
+                return new Uri(path);
+            }
+        }
 
-                            var bitmapImage = new BitmapImage();
-                            bitmapImage.BeginInit();
-                            bitmapImage.StreamSource = memory;
-                            bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                            bitmapImage.EndInit();
-                            bitmapImage.Freeze();
-
-                            return bitmapImage;
-                        }
+        public List<Picture> ExistsPicture
+        {
+            get
+            {
+                List<Picture> pictureList = new List<Picture>();
+                foreach (var pic in Pictures)
+                {
+                    if (File.Exists($"{dir}/{pic.Path}"))
+                    {
+                        pictureList.Add(pic);
                     }
                 }
-                catch (Exception)
-                {
-                    return null;
-                }
+                return pictureList;
             }
         }
     }

@@ -33,6 +33,7 @@
             this.componentsComboBox = new System.Windows.Forms.ComboBox();
             this.uploadButton = new System.Windows.Forms.Button();
             this.DeleteAllButton = new System.Windows.Forms.Button();
+            this.CompressButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // pathTextBox
@@ -81,11 +82,22 @@
             this.DeleteAllButton.UseVisualStyleBackColor = true;
             this.DeleteAllButton.Click += new System.EventHandler(this.DeleteAllButton_Click);
             // 
+            // CompressButton
+            // 
+            this.CompressButton.Location = new System.Drawing.Point(107, 65);
+            this.CompressButton.Name = "CompressButton";
+            this.CompressButton.Size = new System.Drawing.Size(89, 23);
+            this.CompressButton.TabIndex = 5;
+            this.CompressButton.Text = "Сжать";
+            this.CompressButton.UseVisualStyleBackColor = true;
+            this.CompressButton.Click += new System.EventHandler(this.CompressButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(480, 97);
+            this.Controls.Add(this.CompressButton);
             this.Controls.Add(this.DeleteAllButton);
             this.Controls.Add(this.uploadButton);
             this.Controls.Add(this.componentsComboBox);
@@ -105,6 +117,7 @@
         private System.Windows.Forms.ComboBox componentsComboBox;
         private System.Windows.Forms.Button uploadButton;
         private System.Windows.Forms.Button DeleteAllButton;
+        private System.Windows.Forms.Button CompressButton;
     }
 }
 

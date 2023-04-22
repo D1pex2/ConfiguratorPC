@@ -44,10 +44,14 @@
                     <DockPanel Margin="0,20,0,0">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" DockPanel.Dock="Left">
                             <Border x:Name="ImageListBorder" BorderBrush="#b3b1b1" BorderThickness="1" CornerRadius="10 0 0 10">
-                                <ListView x:Name="PictureList" Margin="5" ScrollViewer.CanContentScroll="False" BorderThickness="0" MaxHeight="500" SelectionMode="Single">
+                                <ListView x:Name="PictureList" Margin="5" ScrollViewer.CanContentScroll="False" BorderThickness="0" MaxHeight="500" SelectionMode="Single" SelectionChanged="PictureList_SelectionChanged">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
-                                            <Image Source="{Binding Image}" Cursor="Hand" Margin="5" Stretch="Uniform" Width="100" Height="100" PreviewMouseLeftButtonDown="Image_PreviewMouseLeftButtonDown"/>
+                                            <Image Cursor="Hand" Margin="5" Stretch="Uniform" Width="100" Height="100">
+                                                <Image.Source>
+                                                    <BitmapImage UriSource="{Binding ImageUri}" CacheOption="OnLoad" DecodePixelHeight="100"/>
+                                                </Image.Source>
+                                            </Image>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                     <ListView.ItemContainerStyle>

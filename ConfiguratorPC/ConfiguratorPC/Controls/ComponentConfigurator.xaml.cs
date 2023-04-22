@@ -52,7 +52,10 @@ namespace ConfiguratorPC.Controls
                 else
                 {
                     InteractionButton.Content = "- Убрать";
-                    ComponentImage.Source = component.FirstImage;
+                    var img = component.FirstImage;
+                    img.CacheOption = BitmapCacheOption.OnLoad;
+                    img.DecodePixelHeight = 80;
+                    ComponentImage.Source = img;
                     NameTextBlock.Text = component.Name;
                     PriceTextBlock.Text = $"{component.Price} руб.";
                 }

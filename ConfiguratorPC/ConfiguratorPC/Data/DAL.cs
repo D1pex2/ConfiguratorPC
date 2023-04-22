@@ -23,6 +23,7 @@ namespace ConfiguratorPC.Data
                 if (context == null)
                 {
                     context = new ConfiguratorPCEntities();
+                    context.Configuration.AutoDetectChangesEnabled = false;
                 }
                 return context;
             }
