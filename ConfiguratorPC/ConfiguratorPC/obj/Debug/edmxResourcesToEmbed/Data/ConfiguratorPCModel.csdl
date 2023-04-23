@@ -331,7 +331,7 @@
       <End Role="RAMType" EntitySet="RAMTypes" />
     </AssociationSet>
     <EntitySet Name="Pictures" EntityType="ConfiguratorPCModel.Picture" />
-    <AssociationSet Name="ComponentPicture" Association="ConfiguratorPCModel.ComponentPicture">
+    <AssociationSet Name="FK_Picture_Component" Association="ConfiguratorPCModel.FK_Picture_Component">
       <End Role="Component" EntitySet="Components" />
       <End Role="Picture" EntitySet="Pictures" />
     </AssociationSet>
@@ -389,7 +389,7 @@
     <NavigationProperty Name="VideoCard" Relationship="ConfiguratorPCModel.FK_VideoCard_Component" FromRole="Component" ToRole="VideoCard" />
     <NavigationProperty Name="DataStorage" Relationship="ConfiguratorPCModel.FK_DataStorage_Component" FromRole="Component" ToRole="DataStorage" />
     <NavigationProperty Name="Processor" Relationship="ConfiguratorPCModel.FK_Processor_Component" FromRole="Component" ToRole="Processor" />
-    <NavigationProperty Name="Pictures" Relationship="ConfiguratorPCModel.ComponentPicture" FromRole="Component" ToRole="Picture" />
+    <NavigationProperty Name="Pictures" Relationship="ConfiguratorPCModel.FK_Picture_Component" FromRole="Component" ToRole="Picture" />
   </EntityType>
   <EntityType Name="Connector">
     <Key>
@@ -1739,11 +1739,20 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Components" Relationship="ConfiguratorPCModel.ComponentPicture" FromRole="Picture" ToRole="Component" />
+    <Property Name="IdComponent" Type="Int32" Nullable="false" />
+    <Property Name="Path" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Component" Relationship="ConfiguratorPCModel.FK_Picture_Component" FromRole="Picture" ToRole="Component" />
   </EntityType>
-  <Association Name="ComponentPicture">
-    <End Type="ConfiguratorPCModel.Component" Role="Component" Multiplicity="*" />
+  <Association Name="FK_Picture_Component">
+    <End Type="ConfiguratorPCModel.Component" Role="Component" Multiplicity="1" />
     <End Type="ConfiguratorPCModel.Picture" Role="Picture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Component">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Picture">
+        <PropertyRef Name="IdComponent" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

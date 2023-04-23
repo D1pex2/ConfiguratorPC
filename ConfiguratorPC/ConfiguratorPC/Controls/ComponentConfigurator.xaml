@@ -394,6 +394,15 @@
                                 </ListView.ItemContainerStyle>
                             </ListView>
                             <TextBlock x:Name="EmptyTextBlock" Visibility="Collapsed" Text="Не найдено ни одного совместимого товара" Margin="15,10,5,5" FontSize="18" FontWeight="DemiBold"/>
+                            <Border Style="{StaticResource BorderDefault}" Margin="5">
+                                <DockPanel HorizontalAlignment="Center">
+                                    <Button x:Name="FirstPageButton" Click="FirstPageButton_Click" Cursor="Hand" Content="&lt;&lt;" Style="{StaticResource WindowButton}"/>
+                                    <Button x:Name="PreviousPageButton" Click="PreviousPageButton_Click" Cursor="Hand" Content="&lt;" Style="{StaticResource WindowButton}"/>
+                                    <TextBlock x:Name="PageTextBlock" Text="1 из 1" VerticalAlignment="Center"/>
+                                    <Button x:Name="NextPageButton" Click="NextPageButton_Click" Cursor="Hand" Content=">" Style="{StaticResource WindowButton}"/>
+                                    <Button x:Name="LastPageButton" Click="LastPageButton_Click" Cursor="Hand" Content=">>" Style="{StaticResource WindowButton}"/>
+                                </DockPanel>
+                            </Border>
                         </StackPanel>
                     </Border>
                 </Grid>

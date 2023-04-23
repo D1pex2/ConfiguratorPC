@@ -91,14 +91,6 @@
           <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="9" Scale="2" Nullable="false" />
         </EntityType>
-        <EntityType Name="ComponentPicture">
-          <Key>
-            <PropertyRef Name="IdComponent" />
-            <PropertyRef Name="IdPicture" />
-          </Key>
-          <Property Name="IdComponent" Type="int" Nullable="false" />
-          <Property Name="IdPicture" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Connector">
           <Key>
             <PropertyRef Name="Id" />
@@ -370,7 +362,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Path" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdComponent" Type="int" Nullable="false" />
+          <Property Name="Path" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="PowerSupply">
           <Key>
@@ -845,30 +838,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ComponentPicture_Component">
-          <End Role="Component" Type="Self.Component" Multiplicity="1" />
-          <End Role="ComponentPicture" Type="Self.ComponentPicture" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Component">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ComponentPicture">
-              <PropertyRef Name="IdComponent" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ComponentPicture_Picture">
-          <End Role="Picture" Type="Self.Picture" Multiplicity="1" />
-          <End Role="ComponentPicture" Type="Self.ComponentPicture" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Picture">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ComponentPicture">
-              <PropertyRef Name="IdPicture" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Cooler_Material">
           <End Role="Material" Type="Self.Material" Multiplicity="1" />
           <End Role="Cooler" Type="Self.Cooler" Multiplicity="*" />
@@ -1250,6 +1219,18 @@
             </Principal>
             <Dependent Role="MotherBoardVideoOutput">
               <PropertyRef Name="IdVideoOutput" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Picture_Component">
+          <End Role="Component" Type="Self.Component" Multiplicity="1" />
+          <End Role="Picture" Type="Self.Picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Component">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Picture">
+              <PropertyRef Name="IdComponent" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1647,7 +1628,6 @@
           <EntitySet Name="Chipset" EntityType="Self.Chipset" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Component" EntityType="Self.Component" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ComponentPicture" EntityType="Self.ComponentPicture" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Connector" EntityType="Self.Connector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cooler" EntityType="Self.Cooler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CoolerCompatibleSocket" EntityType="Self.CoolerCompatibleSocket" Schema="dbo" store:Type="Tables" />
@@ -1772,14 +1752,6 @@
           <AssociationSet Name="FK_Component_Manufacturer" Association="Self.FK_Component_Manufacturer">
             <End Role="Manufacturer" EntitySet="Manufacturer" />
             <End Role="Component" EntitySet="Component" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ComponentPicture_Component" Association="Self.FK_ComponentPicture_Component">
-            <End Role="Component" EntitySet="Component" />
-            <End Role="ComponentPicture" EntitySet="ComponentPicture" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ComponentPicture_Picture" Association="Self.FK_ComponentPicture_Picture">
-            <End Role="Picture" EntitySet="Picture" />
-            <End Role="ComponentPicture" EntitySet="ComponentPicture" />
           </AssociationSet>
           <AssociationSet Name="FK_Cooler_Material" Association="Self.FK_Cooler_Material">
             <End Role="Material" EntitySet="Material" />
@@ -1908,6 +1880,10 @@
           <AssociationSet Name="FK_MotherBoardVideoOutput_VideoOutput" Association="Self.FK_MotherBoardVideoOutput_VideoOutput">
             <End Role="VideoOutput" EntitySet="VideoOutput" />
             <End Role="MotherBoardVideoOutput" EntitySet="MotherBoardVideoOutput" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Picture_Component" Association="Self.FK_Picture_Component">
+            <End Role="Component" EntitySet="Component" />
+            <End Role="Picture" EntitySet="Picture" />
           </AssociationSet>
           <AssociationSet Name="FK_PowerSupply_Color" Association="Self.FK_PowerSupply_Color">
             <End Role="Color" EntitySet="Color" />
@@ -2373,7 +2349,7 @@
             <End Role="RAMType" EntitySet="RAMTypes" />
           </AssociationSet>
           <EntitySet Name="Pictures" EntityType="ConfiguratorPCModel.Picture" />
-          <AssociationSet Name="ComponentPicture" Association="ConfiguratorPCModel.ComponentPicture">
+          <AssociationSet Name="FK_Picture_Component" Association="ConfiguratorPCModel.FK_Picture_Component">
             <End Role="Component" EntitySet="Components" />
             <End Role="Picture" EntitySet="Pictures" />
           </AssociationSet>
@@ -2431,7 +2407,7 @@
           <NavigationProperty Name="VideoCard" Relationship="ConfiguratorPCModel.FK_VideoCard_Component" FromRole="Component" ToRole="VideoCard" />
           <NavigationProperty Name="DataStorage" Relationship="ConfiguratorPCModel.FK_DataStorage_Component" FromRole="Component" ToRole="DataStorage" />
           <NavigationProperty Name="Processor" Relationship="ConfiguratorPCModel.FK_Processor_Component" FromRole="Component" ToRole="Processor" />
-          <NavigationProperty Name="Pictures" Relationship="ConfiguratorPCModel.ComponentPicture" FromRole="Component" ToRole="Picture" />
+          <NavigationProperty Name="Pictures" Relationship="ConfiguratorPCModel.FK_Picture_Component" FromRole="Component" ToRole="Picture" />
         </EntityType>
         <EntityType Name="Connector">
           <Key>
@@ -3781,12 +3757,21 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Components" Relationship="ConfiguratorPCModel.ComponentPicture" FromRole="Picture" ToRole="Component" />
+          <Property Name="IdComponent" Type="Int32" Nullable="false" />
+          <Property Name="Path" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Component" Relationship="ConfiguratorPCModel.FK_Picture_Component" FromRole="Picture" ToRole="Component" />
         </EntityType>
-        <Association Name="ComponentPicture">
-          <End Type="ConfiguratorPCModel.Component" Role="Component" Multiplicity="*" />
+        <Association Name="FK_Picture_Component">
+          <End Type="ConfiguratorPCModel.Component" Role="Component" Multiplicity="1" />
           <End Type="ConfiguratorPCModel.Picture" Role="Picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Component">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Picture">
+              <PropertyRef Name="IdComponent" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -4449,19 +4434,12 @@
             <EntityTypeMapping TypeName="ConfiguratorPCModel.Picture">
               <MappingFragment StoreEntitySet="Picture">
                 <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="ComponentPicture" TypeName="ConfiguratorPCModel.ComponentPicture" StoreEntitySet="ComponentPicture">
-            <EndProperty Name="Picture">
-              <ScalarProperty Name="Id" ColumnName="IdPicture" />
-            </EndProperty>
-            <EndProperty Name="Component">
-              <ScalarProperty Name="Id" ColumnName="IdComponent" />
-            </EndProperty>
-          </AssociationSetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

@@ -62,6 +62,29 @@ namespace ConfiguratorPC.Controls
             }
         }
 
+        private int pageNumber = 1;
+
+        private int PageNumber
+        {
+            get => pageNumber;
+            set
+            {
+                if (value > 0 && value <= TotalPages)
+                {
+                    pageNumber = value;
+                }
+            }
+        }
+
+        private int PageSize { get; set; } = 5; // кол-во объектов на странице
+
+        private int TotalItems { get => FilteredComponents.Count; } // всего объектов
+
+        private int TotalPages  // всего страниц
+        {
+            get { return (int)Math.Ceiling((decimal)TotalItems / PageSize); }
+        }
+
         public ComponentConfigurator()
         {
             InitializeComponent();
@@ -505,6 +528,14 @@ namespace ConfiguratorPC.Controls
             }
         }
 
+        public List<Component> ComponentsPage
+        {
+            get
+            {
+                return FilteredComponents.Skip((PageNumber - 1) * PageSize).Take(PageSize).ToList();
+            }
+        }
+
         #endregion
 
         #region Initialization
@@ -792,7 +823,7 @@ namespace ConfiguratorPC.Controls
             ComponentsList.Items.Clear();
             if (FilteredComponents.Count > 0)
             {
-                foreach (var item in FilteredComponents)
+                foreach (var item in ComponentsPage)
                 {
                     ComponentsList.Items.Add(item);
                 }
@@ -804,6 +835,8 @@ namespace ConfiguratorPC.Controls
                 ComponentsList.Visibility = Visibility.Collapsed;
                 EmptyTextBlock.Visibility = Visibility.Visible;
             }
+            var totalPages = TotalPages == 0 ? 1 : TotalPages;
+            PageTextBlock.Text = $"{PageNumber} из {totalPages}";
         }
 
         #endregion
@@ -820,6 +853,7 @@ namespace ConfiguratorPC.Controls
             {
                 ComponentsBorder.Visibility = Visibility.Visible;
                 FillList();
+                ComponentsScrollViewer.PageUp();
             }
             else
             {
@@ -936,19 +970,26 @@ namespace ConfiguratorPC.Controls
             }
         }
 
+        private void FilterList()
+        {
+            pageNumber = 1;
+            FillList();
+            ComponentsScrollViewer.PageUp();
+        }
+
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            FillList();
+            FilterList();
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            FillList();
+            FilterList();
         }
 
         private void NumericTextBox_ValueChanged(object sender, EventArgs e)
         {
-            FillList();
+            FilterList();
         }
 
         private void SetComponentsBorder()
@@ -1011,6 +1052,30 @@ namespace ConfiguratorPC.Controls
             {
                 Navigator.Frame.Navigate(new ComponentPage(component, type));
             }
+        }
+
+        private void FirstPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            PageNumber = 1;
+            FillList();
+        }
+
+        private void PreviousPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            PageNumber--;
+            FillList();
+        }
+
+        private void NextPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            PageNumber++;
+            FillList();
+        }
+
+        private void LastPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            PageNumber = TotalPages;
+            FillList();
         }
 
         #endregion
