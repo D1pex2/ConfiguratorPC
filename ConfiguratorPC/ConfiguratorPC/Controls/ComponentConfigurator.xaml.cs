@@ -2,6 +2,7 @@
 using ConfiguratorPC.Pages;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -542,10 +543,10 @@ namespace ConfiguratorPC.Controls
 
         public void Init(Configurator configurator, ComponentType type)
         {
-            this.configurator = configurator;
-            this.type = type;
             try
             {
+                this.configurator = configurator;
+                this.type = type;
                 switch (type)
                 {
                     case ComponentType.Processor:
@@ -586,6 +587,11 @@ namespace ConfiguratorPC.Controls
                 SearchTextBox.TextChanged += SearchTextBox_TextChanged;
 
                 SortComboBox.SelectionChanged += ComboBox_SelectionChanged;
+            }
+            catch (Exception ex) when (ex is EntityException)
+            {
+                FeedBack.ShowError("Ошибка подключение к базе данных. Обратитесь к системному администратору.");
+                Application.Current.Shutdown();
             }
             catch (Exception ex)
             {
@@ -820,23 +826,35 @@ namespace ConfiguratorPC.Controls
 
         private void FillList()
         {
-            ComponentsList.Items.Clear();
-            if (FilteredComponents.Count > 0)
+            try
             {
-                foreach (var item in ComponentsPage)
+                ComponentsList.Items.Clear();
+                if (FilteredComponents.Count > 0)
                 {
-                    ComponentsList.Items.Add(item);
+                    foreach (var item in ComponentsPage)
+                    {
+                        ComponentsList.Items.Add(item);
+                    }
+                    ComponentsList.Visibility = Visibility.Visible;
+                    EmptyTextBlock.Visibility = Visibility.Collapsed;
                 }
-                ComponentsList.Visibility = Visibility.Visible;
-                EmptyTextBlock.Visibility = Visibility.Collapsed;
+                else
+                {
+                    ComponentsList.Visibility = Visibility.Collapsed;
+                    EmptyTextBlock.Visibility = Visibility.Visible;
+                }
+                var totalPages = TotalPages == 0 ? 1 : TotalPages;
+                PageTextBlock.Text = $"{PageNumber} из {totalPages}";
             }
-            else
+            catch (Exception ex) when (ex is EntityException)
             {
-                ComponentsList.Visibility = Visibility.Collapsed;
-                EmptyTextBlock.Visibility = Visibility.Visible;
+                FeedBack.ShowError("Ошибка подключение к базе данных. Обратитесь к системному администратору.");
+                Application.Current.Shutdown();
             }
-            var totalPages = TotalPages == 0 ? 1 : TotalPages;
-            PageTextBlock.Text = $"{PageNumber} из {totalPages}";
+            catch (Exception ex)
+            {
+                FeedBack.ShowError(ex);
+            }
         }
 
         #endregion

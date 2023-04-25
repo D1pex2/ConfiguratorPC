@@ -30,7 +30,7 @@
                         <DockPanel>
                             <Image Source="/Resources/pc.png" Margin="10"/>
                             <TextBlock Text="Конфигуратор сборки ПК" VerticalAlignment="Center"/>
-                            <Button x:Name="HelpButton" FontWeight="DemiBold" Click="HelpButton_Click" Content="Справка" Margin="15,0,15,0" HorizontalAlignment="Right" Background="#FF00B3FF" Foreground="White" DockPanel.Dock="Right" VerticalAlignment="Center">
+                            <Button x:Name="HelpButton" FontWeight="DemiBold" Click="HelpButton_Click" Content="Справка" Margin="5,0,15,0" HorizontalAlignment="Right" Background="#FF00B3FF" Foreground="White" DockPanel.Dock="Right" VerticalAlignment="Center">
                                 <Button.Resources>
                                     <Style TargetType="Border">
                                         <Setter Property="CornerRadius" Value="5 5 5 5"/>
@@ -52,11 +52,11 @@
                     <controls:ComponentConfigurator x:Name="VideoCardConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
                     <controls:ComponentConfigurator x:Name="CoolerConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
                     <controls:ComponentConfigurator x:Name="RAMConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
+                    <controls:ComponentConfigurator x:Name="PowerSupplyConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
                     <StackPanel x:Name="DataStorageStackPanel">
                         <controls:ComponentConfigurator x:Name="MemoryConfigurator" ListOpened="ComponentConfigurator_ListOpened" 
                             AddDataStorageConfigurator="MemoryConfigurator_AddDataStorageConfigurator" RemoveDataStorageConfigurator="MemoryConfigurator_RemoveDataStorageConfigurator"/>
                     </StackPanel>
-                    <controls:ComponentConfigurator x:Name="PowerSupplyConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
                 </StackPanel>
             </Border>
         </Grid>

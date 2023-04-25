@@ -172,7 +172,7 @@ namespace ConfiguratorPC
         {
             get
             {
-                List<Processor> processors = DAL.Context.Processors.AsNoTracking().ToList();
+                var processors = DAL.Context.Processors.AsNoTracking().ToList();
                 if (MotherBoard != null)
                 {
                     processors = processors.Where(p => p.RAMTypes.Any(rt => rt.Id == MotherBoard.IdRAMType) && p.IdSocket == MotherBoard.IdSocket && MotherBoard.Cores.Any(c => c.Id == p.IdCore)).ToList();
@@ -193,7 +193,7 @@ namespace ConfiguratorPC
         {
             get
             {
-                List<MotherBoard> motherBoards = DAL.Context.MotherBoards.AsNoTracking().ToList();
+                var motherBoards = DAL.Context.MotherBoards.AsNoTracking().ToList();
                 if (Processor != null)
                 {
                     motherBoards = motherBoards.Where(m => m.IdSocket == Processor.IdSocket && Processor.RAMTypes.Any(rt => rt.Id == m.IdRAMType) && m.Cores.Any(c => c.Id == Processor.IdCore)).ToList();
@@ -235,7 +235,7 @@ namespace ConfiguratorPC
         {
             get
             {
-                List<Case> cases = DAL.Context.Cases.AsNoTracking().ToList();
+                var cases = DAL.Context.Cases.AsNoTracking().ToList();
                 if (MotherBoard != null)
                 {
                     cases = cases.Where(c => c.MotherBoardFormFactors.Any(f => f.Id == MotherBoard.IdMotherBoardFormFactor)).ToList();
@@ -268,7 +268,7 @@ namespace ConfiguratorPC
         {
             get
             {
-                List<VideoCard> videoCards = DAL.Context.VideoCards.AsNoTracking().ToList();
+                var videoCards = DAL.Context.VideoCards.AsNoTracking().ToList();
                 if (MotherBoard != null)
                 {
                     videoCards = MotherBoard.PCIEx16Quantity >= 1 ? videoCards : new List<VideoCard>();
@@ -289,7 +289,7 @@ namespace ConfiguratorPC
         {
             get
             {
-                List<ProcessorCooler> processorCoolers = DAL.Context.ProcessorCoolers.AsNoTracking().ToList();
+                var processorCoolers = DAL.Context.ProcessorCoolers.AsNoTracking().ToList();
                 if (Processor != null)
                 {
                     processorCoolers = processorCoolers.Where(pc => pc.Sockets.Any(s => s.Id == Processor.IdSocket)).ToList();
@@ -329,7 +329,7 @@ namespace ConfiguratorPC
         {
             get
             {
-                List<RAM> rams = DAL.Context.RAMs.AsNoTracking().ToList();
+                var rams = DAL.Context.RAMs.AsNoTracking().ToList();
                 if (Processor != null)
                 {
                     rams = rams.Where(r => Processor.RAMTypes.Any(rt => rt.Id == r.IdRAMType) && r.MemorySize <= Processor.MaxMemorySize).ToList();
@@ -346,7 +346,7 @@ namespace ConfiguratorPC
         {
             get
             {
-                List<PowerSupply> powerSupplies = DAL.Context.PowerSupplies.AsNoTracking().ToList();
+                var powerSupplies = DAL.Context.PowerSupplies.AsNoTracking().ToList();
                 if (MotherBoard != null)
                 {
                     powerSupplies = powerSupplies.Where(ps => ps.PowerSupplyProcessorPowerConnectors.Any(c => MotherBoard.ProcessorPowerPlug.ProcessorPowerConnectors.Any(pc => pc.Id == c.IdProcessorPowerConnector)))
@@ -372,7 +372,7 @@ namespace ConfiguratorPC
         {
             get
             {
-                List<DataStorage> dataStorages = DAL.Context.DataStorages.AsNoTracking().ToList();
+                var dataStorages = DAL.Context.DataStorages.AsNoTracking().ToList();
                 if (MotherBoard != null)
                 {
                     if (MotherBoard.SATAQuantity <= DataStorage25Quantity + DataStorage35Quantity)

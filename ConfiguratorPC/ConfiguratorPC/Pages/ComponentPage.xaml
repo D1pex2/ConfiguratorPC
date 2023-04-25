@@ -368,6 +368,12 @@
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Общие параметры" Style="{StaticResource TitleTextBlock}"/>
                         <TextBlock Text="Сокет" Grid.Row="1"/>
@@ -444,13 +450,22 @@
                         <TextBlock Text="Интегрированное графическое ядро" Grid.Row="50"/>
                         <TextBlock x:Name="ProcessorGraphicsTextBlock" Grid.Row="50" Grid.Column="1"/>
                         <Separator Grid.Row="51"/>
-                        <TextBlock Text="Шина и контроллеры" Grid.Row="52" Style="{StaticResource TitleTextBlock}"/>
-                        <TextBlock Text="Встроенный контроллер PCI Express" Grid.Row="53"/>
-                        <TextBlock x:Name="ProcessorPCIControllerTextBlock" Grid.Row="53" Grid.Column="1"/>
-                        <Separator Grid.Row="54"/>
-                        <TextBlock Text="Число линий PCI Express" Grid.Row="55"/>
-                        <TextBlock x:Name="ProcessorPCIQuantityTextBlock" Grid.Row="55" Grid.Column="1"/>
-                        <Separator Grid.Row="56"/>
+                        <TextBlock Text="Максимальная частота графического ядра" Grid.Row="52"/>
+                        <TextBlock x:Name="ProcessorGraphicsFrequencyTextBlock" Grid.Row="52" Grid.Column="1"/>
+                        <Separator Grid.Row="53"/>
+                        <TextBlock Text="Исполнительные блоки" Grid.Row="54"/>
+                        <TextBlock x:Name="ExecutiveBlocksTextBlock" Grid.Row="54" Grid.Column="1"/>
+                        <Separator Grid.Row="55"/>
+                        <TextBlock Text="Потоковые процессоры (Shading Units)" Grid.Row="56"/>
+                        <TextBlock x:Name="ShadingUnitsTextBlock" Grid.Row="56" Grid.Column="1"/>
+                        <Separator Grid.Row="57"/>
+                        <TextBlock Text="Шина и контроллеры" Grid.Row="58" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Встроенный контроллер PCI Express" Grid.Row="59"/>
+                        <TextBlock x:Name="ProcessorPCIControllerTextBlock" Grid.Row="59" Grid.Column="1"/>
+                        <Separator Grid.Row="60"/>
+                        <TextBlock Text="Число линий PCI Express" Grid.Row="61"/>
+                        <TextBlock x:Name="ProcessorPCIQuantityTextBlock" Grid.Row="61" Grid.Column="1"/>
+                        <Separator Grid.Row="62"/>
                     </Grid>
                     <Grid x:Name="RAMGrid" Visibility="Collapsed">
                         <Grid.ColumnDefinitions>

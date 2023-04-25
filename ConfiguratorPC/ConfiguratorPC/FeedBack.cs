@@ -11,7 +11,12 @@ namespace ConfiguratorPC
     {
         public static void ShowError(Exception ex)
         {
-            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            ShowError(ex.Message);
+        }
+
+        public static void ShowError(string message)
+        {
+            MessageBox.Show(message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         public static void ShowMessage(string message)

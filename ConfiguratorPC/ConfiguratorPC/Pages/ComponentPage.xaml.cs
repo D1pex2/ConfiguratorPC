@@ -1,6 +1,7 @@
 ﻿using ConfiguratorPC.Data;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,47 +53,59 @@ namespace ConfiguratorPC.Pages
 
         private void Init()
         {
-            if (component.ExistsPicture.Count <= 1)
+            try
             {
-                ImageListBorder.Visibility = Visibility.Hidden;
-                ImageBorder.CornerRadius = new CornerRadius(10, 10, 10, 10);
+                if (component.ExistsPicture.Count <= 1)
+                {
+                    ImageListBorder.Visibility = Visibility.Hidden;
+                    ImageBorder.CornerRadius = new CornerRadius(10, 10, 10, 10);
+                }
+                else
+                {
+                    PictureList.ItemsSource = component.ExistsPicture;
+                }
+                SelectedImage.Source = component.FirstImage;
+                NameTextBlock.Text = $"Характеристики {component.Name}";
+                ManufacturerTextBlock.Text = component.Manufacturer.Name;
+                PriceTextBlock.Text = $"{component.Price} руб.";
+                switch (componentType)
+                {
+                    case ComponentType.Processor:
+                        InitProcessor();
+                        break;
+                    case ComponentType.MotherBoard:
+                        InitMotherBoard();
+                        break;
+                    case ComponentType.Case:
+                        CaseInit();
+                        break;
+                    case ComponentType.Videocard:
+                        VideocardInit();
+                        break;
+                    case ComponentType.Cooler:
+                        ProcessorCoolerInit();
+                        break;
+                    case ComponentType.RAM:
+                        InitRAM();
+                        break;
+                    case ComponentType.DataStorage:
+                        DataStorageInit();
+                        break;
+                    case ComponentType.PowerSupply:
+                        PowerSupplyInit();
+                        break;
+                    default:
+                        break;
+                }
             }
-            else
+            catch (Exception ex) when (ex is EntityException)
             {
-                PictureList.ItemsSource = component.ExistsPicture;
+                FeedBack.ShowError("Ошибка подключение к базе данных. Обратитесь к системному администратору.");
+                Application.Current.Shutdown();
             }
-            SelectedImage.Source = component.FirstImage;
-            NameTextBlock.Text = $"Характеристики {component.Name}";
-            ManufacturerTextBlock.Text = component.Manufacturer.Name;
-            PriceTextBlock.Text = $"{component.Price} руб.";
-            switch (componentType)
+            catch (Exception ex)
             {
-                case ComponentType.Processor:
-                    InitProcessor();
-                    break;
-                case ComponentType.MotherBoard:
-                    InitMotherBoard();
-                    break;
-                case ComponentType.Case:
-                    CaseInit();
-                    break;
-                case ComponentType.Videocard:
-                    VideocardInit();
-                    break;
-                case ComponentType.Cooler:
-                    ProcessorCoolerInit();
-                    break;
-                case ComponentType.RAM:
-                    InitRAM();
-                    break;
-                case ComponentType.DataStorage:
-                    DataStorageInit();
-                    break;
-                case ComponentType.PowerSupply:
-                    PowerSupplyInit();
-                    break;
-                default:
-                    break;
+                FeedBack.ShowError(ex);
             }
         }
 
@@ -186,6 +199,9 @@ namespace ConfiguratorPC.Pages
             ProcessorMaxTempTextBlock.Text = $"{component.Processor.MaxTemperature} °C";
 
             ProcessorGraphicsTextBlock.Text = component.Processor.GraphicsProcessingUnit == null ? "нет" : component.Processor.GraphicsProcessingUnit.Name;
+            ProcessorGraphicsFrequencyTextBlock.Text = component.Processor.GraphicsProcessingUnit == null ? "нет" : $"{component.Processor.GraphicsProcessingUnit.MaxFrequency} Мгц";
+            ExecutiveBlocksTextBlock.Text = component.Processor.GraphicsProcessingUnit == null ? "нет" : component.Processor.GraphicsProcessingUnit.ExecutiveUnitQuantity.ToString();
+            ShadingUnitsTextBlock.Text = component.Processor.GraphicsProcessingUnit == null ? "нет" : component.Processor.GraphicsProcessingUnit.ShadingUnitsQuantity.ToString();
 
             ProcessorPCIControllerTextBlock.Text = component.Processor.PCIEController == null ? "нет" : component.Processor.PCIEController.Name;
             ProcessorPCIQuantityTextBlock.Text = component.Processor.PCIEQuantity == null ? "нет" : component.Processor.PCIEQuantity.ToString();

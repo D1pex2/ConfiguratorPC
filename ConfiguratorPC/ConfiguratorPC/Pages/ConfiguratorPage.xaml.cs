@@ -3,21 +3,12 @@ using ConfiguratorPC.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Word = Microsoft.Office.Interop.Word;
 using Excel = Microsoft.Office.Interop.Excel;
-using System.IO;
+using System.Data.Entity.Core;
 
 namespace ConfiguratorPC.Pages
 {
@@ -26,13 +17,12 @@ namespace ConfiguratorPC.Pages
     /// </summary>
     public partial class ConfiguratorPage : Page
     {
-        private Configurator configurator = new Configurator();
-
-        public Configurator Configurator { get => configurator; set => configurator = value; }
+        private Configurator configurator;
 
         public ConfiguratorPage()
         {
             InitializeComponent();
+            configurator = new Configurator();
             ProcessorConfigurator.Init(configurator, ComponentType.Processor);
             MotherBoardConfigurator.Init(configurator, ComponentType.MotherBoard);
             CaseConfigurator.Init(configurator, ComponentType.Case);
@@ -98,19 +88,36 @@ namespace ConfiguratorPC.Pages
                             var wordApp = new Word.Application();
                             var doc = wordApp.Documents.Add($@"{Environment.CurrentDirectory}\template.docx");
                             doc.Content.Find.Execute(FindText: "%commonPrice%", ReplaceWith: $"{configurator.CommonPrice} руб.", Replace: Word.WdReplace.wdReplaceAll);
+
+                            List<Component> skipList = new List<Component>();
                             foreach (var component in configurator.Components)
                             {
+                                if (skipList.Any(c => c.Id == component.Id))
+                                {
+                                    continue;
+                                }
+
                                 var row = doc.Tables[1].Rows.Add();
                                 row.Cells[1].Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphLeft;
-                                if (component.RAM != null)
+
+                                var sameComponents = configurator.Components.Where(c => c.Id == component.Id).ToList();
+
+                                if(sameComponents.Count > 1)
+                                {
+                                    row.Cells[1].Range.Text = $"{component.Name} {sameComponents.Count} шт.";
+                                    row.Cells[2].Range.Text = (component.Price * sameComponents.Count).ToString();
+                                    skipList.Add(component);
+                                }
+                                else if (component.RAM != null)
                                 {
                                     row.Cells[1].Range.Text = $"{component.Name} {configurator.RAMQuantity} шт.";
+                                    row.Cells[2].Range.Text = (component.Price * configurator.RAMQuantity).ToString();
                                 }
                                 else
                                 {
                                     row.Cells[1].Range.Text = component.Name;
+                                    row.Cells[2].Range.Text = component.Price.ToString();
                                 }
-                                row.Cells[2].Range.Text = component.Price.ToString();
                             }
                             doc.Tables[1].Rows[1].Borders[Word.WdBorderType.wdBorderBottom].LineStyle = Word.WdLineStyle.wdLineStyleDouble;
                             var wordExtension = Word.WdSaveFormat.wdFormatDocumentDefault;
@@ -124,34 +131,57 @@ namespace ConfiguratorPC.Pages
                             var workbook = excelApp.Workbooks.Add();
                             var sheet = workbook.Worksheets[1];
 
-                            sheet.Cells[1][1] = "Cборка ПК";
+                            sheet.Cells[2][1] = "Конфигурация сборки ПК";
+                            sheet.Cells[2][1].Font.Bold = 1;
 
-                            sheet.Cells[1][3] = "Наименование";
-                            sheet.Cells[2][3] = "Стоимость руб.";
-                            var titleColumnsRange = sheet.range[sheet.Cells[1][3], sheet.Cells[2][3]];
+                            sheet.Cells[1][3] = "№";
+                            sheet.Cells[2][3] = "Наименование";
+                            sheet.Cells[3][3] = "Стоимость руб.";
+                            var titleColumnsRange = sheet.range[sheet.Cells[1][3], sheet.Cells[3][3]];
                             titleColumnsRange.Font.Bold = 1;
                             titleColumnsRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
 
+                            skipList = new List<Component>();
                             int i = 0;
+                            int num = 0;
                             for (i = 0; i < configurator.Components.Count; i++)
                             {
                                 var component = configurator.Components[i];
-                                if (component.RAM != null)
+
+                                if (skipList.Any(c => c.Id == component.Id))
                                 {
-                                    sheet.Cells[1][i + 4] = $"{component.Name} {configurator.RAMQuantity} шт.";
+                                    continue;
+                                }
+
+                                sheet.Cells[1][num + 4] = num + 1;
+
+                                var sameComponents = configurator.Components.Where(c => c.Id == component.Id).ToList();
+
+                                if (sameComponents.Count > 1)
+                                {
+                                    sheet.Cells[2][num + 4] = $"{component.Name} {sameComponents.Count} шт.";
+                                    sheet.Cells[3][num + 4] = (component.Price * sameComponents.Count).ToString();
+                                    skipList.Add(component);
+                                }
+                                else if (component.RAM != null)
+                                {
+                                    sheet.Cells[2][num + 4] = $"{component.Name} {configurator.RAMQuantity} шт.";
+                                    sheet.Cells[3][num + 4] = (component.Price * configurator.RAMQuantity).ToString();
                                 }
                                 else
                                 {
-                                    sheet.Cells[1][i + 4] = component.Name;
+                                    sheet.Cells[2][num + 4] = component.Name;
+                                    sheet.Cells[3][num + 4] = component.Price.ToString();
                                 }
-                                sheet.Cells[2][i + 4] = component.Price.ToString();
 
-                                var row = sheet.range[sheet.Cells[1][i + 4], sheet.Cells[2][i + 4]];
+                                var row = sheet.range[sheet.Cells[1][num + 5], sheet.Cells[3][num + 4]];
                                 row.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+
+                                num++;
                             }
 
-                            sheet.Cells[1][i + 5] = "Общая стоимость:";
-                            sheet.Cells[2][i + 5] = $"{configurator.CommonPrice} руб.";
+                            sheet.Cells[2][num + 4] = "Общая стоимость:";
+                            sheet.Cells[3][num + 4] = configurator.CommonPrice.ToString();
 
                             sheet.Columns.Autofit();
 
