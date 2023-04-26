@@ -86,7 +86,7 @@ namespace ConfiguratorPC.Pages
                         case ".docx":
                         case ".pdf":
                             var wordApp = new Word.Application();
-                            var doc = wordApp.Documents.Add($@"{Environment.CurrentDirectory}\template.docx");
+                            var doc = wordApp.Documents.Add($@"{Environment.CurrentDirectory}\\Resources\\template.docx");
                             doc.Content.Find.Execute(FindText: "%commonPrice%", ReplaceWith: $"{configurator.CommonPrice} руб.", Replace: Word.WdReplace.wdReplaceAll);
 
                             List<Component> skipList = new List<Component>();

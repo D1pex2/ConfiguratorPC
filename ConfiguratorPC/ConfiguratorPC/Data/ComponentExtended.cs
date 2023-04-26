@@ -14,7 +14,7 @@ namespace ConfiguratorPC.Data
 {
     public partial class Component
     {
-        private string dir = $"{Environment.CurrentDirectory}/Pictures";
+        private string dir = $@"{Environment.CurrentDirectory}\\Resources\\";
 
         public BitmapImage FirstImage
         {
@@ -28,10 +28,10 @@ namespace ConfiguratorPC.Data
         {
             get
             {
-                var path = $"{dir}/{Pictures.First().Path}";
+                var path = $@"{dir}Pictures\\{Pictures.First().Path}";
                 if (Pictures.Count == 0 || !File.Exists(path))
                 {
-                    return new Uri($"{dir}/placeholder.png");
+                    return new Uri($"{dir}placeholder.png");
                 }
                 return new Uri(path);
             }
@@ -44,7 +44,7 @@ namespace ConfiguratorPC.Data
                 List<Picture> pictureList = new List<Picture>();
                 foreach (var pic in Pictures)
                 {
-                    if (File.Exists($"{dir}/{pic.Path}"))
+                    if (File.Exists($@"{dir}Pictures\\{pic.Path}"))
                     {
                         pictureList.Add(pic);
                     }

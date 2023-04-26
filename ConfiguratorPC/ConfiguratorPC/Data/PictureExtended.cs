@@ -12,7 +12,7 @@ namespace ConfiguratorPC.Data
         {
             get
             {
-                return new Uri($"{Environment.CurrentDirectory}/Pictures/{Path}");
+                return new Uri($@"{Environment.CurrentDirectory}\\Resources\\Pictures\\{Path}");
             }
         }
     }
