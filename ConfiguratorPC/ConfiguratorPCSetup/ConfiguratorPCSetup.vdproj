@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_64324415F77F46C5A0A24B320A107C8D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_86C2D08E38D09DE2390F4F14EBE68CBA"
         "OwnerKey" = "8:_DF9EAA23FA624EE99EDBB439E7CD53F5"
         "MsmSig" = "8:_UNDEFINED"
@@ -29,6 +35,12 @@
         {
         "MsmKey" = "8:_86C2D08E38D09DE2390F4F14EBE68CBA"
         "OwnerKey" = "8:_CE685FC10C273C2212F47BC91CC36519"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A5EC27BF8D2941D79B054E3C2D48F3F5"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -98,6 +110,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -180,6 +200,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_64324415F77F46C5A0A24B320A107C8D"
+            {
+            "SourcePath" = "8:..\\ConfiguratorPC\\Resources\\template.docx"
+            "TargetName" = "8:template.docx"
+            "Tag" = "8:"
+            "Folder" = "8:_B7C1FBAC8F9B40B89635C9E6C18A2503"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_86C2D08E38D09DE2390F4F14EBE68CBA"
             {
             "AssemblyRegister" = "3:1"
@@ -209,6 +249,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A5EC27BF8D2941D79B054E3C2D48F3F5"
+            {
+            "SourcePath" = "8:..\\ConfiguratorPC\\Resources\\placeholder.png"
+            "TargetName" = "8:placeholder.png"
+            "Tag" = "8:"
+            "Folder" = "8:_B7C1FBAC8F9B40B89635C9E6C18A2503"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CE685FC10C273C2212F47BC91CC36519"
@@ -289,6 +349,28 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_B7C1FBAC8F9B40B89635C9E6C18A2503"
+                    {
+                    "Name" = "8:Resources"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_A1344C55B4DE4059B8EDE99F58F8220A"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_94B67BF85A31494ABAF78472880AD633"
+                            {
+                            "Name" = "8:Pictures"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_2C86FFB398F14B3EAF285ED10015B137"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_C080E8D27C754F1CA7B3E20A1ACFD7FF"
@@ -330,7 +412,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Конфигуратор сборки ПК"
         "ProductCode" = "8:{AA4A3A2F-F9CC-4107-9101-99F2F3226FE5}"
-        "PackageCode" = "8:{A8BF7005-3BB8-4BDA-8646-3708634AE80C}"
+        "PackageCode" = "8:{68479D37-3803-4D93-AE9E-20D53C39D4F9}"
         "UpgradeCode" = "8:{F6A4CE89-7FFD-4FDA-B45E-3C95216C7A7B}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -879,7 +961,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_DF9EAA23FA624EE99EDBB439E7CD53F5"
             {
-            "SourcePath" = "8:..\\ConfiguratorPC\\obj\\Release\\ConfiguratorPC.exe"
+            "SourcePath" = "8:..\\ConfiguratorPC\\obj\\Debug\\ConfiguratorPC.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4EBE8A1C1250460E9C872B0E91CC2CA2"
