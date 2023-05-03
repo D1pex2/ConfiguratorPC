@@ -1,4 +1,5 @@
 ﻿using ConfiguratorPC.Data;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,211 @@ using System.Threading.Tasks;
 
 namespace ConfiguratorPC
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class Configurator
     {
+        [JsonProperty]
+        public string Name { get; set; } = "Новая сборка ПК";
+
+        [JsonProperty]
+        public bool IsSelected { get; set; } = false;
+
+        [JsonProperty]
+        public int RAMQuantity { get; set; } = 1;
+
+        [JsonProperty]
+        public int ProcessorId { get; set; } = -1;
+
+        private Processor processor;
+
+        //Свойство для доступа к полю процессора
+        public Processor Processor
+        {
+            get
+            {
+                if (processor == null && ProcessorId != -1)
+                {
+                    processor = DAL.Context.Processors.Find(ProcessorId);
+                }
+                return processor;
+            }
+            set
+            {
+                processor = value;
+                ProcessorId = processor == null ? -1 : processor.IdComponent;
+                ProcessorChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        [JsonProperty]
+        public int MotherboardId { get; set; } = -1;
+
+        private MotherBoard motherBoard;
+
+        //Свойство для доступа к полю материнской платы
+        public MotherBoard MotherBoard
+        {
+            get
+            {
+                if(motherBoard == null && MotherboardId != -1)
+                {
+                    motherBoard = DAL.Context.MotherBoards.Find(MotherboardId);
+                }
+                return motherBoard;
+            }
+            set
+            {
+                motherBoard = value;
+                MotherboardId = motherBoard == null ? -1 : motherBoard.IdComponent;
+                MotherBoardChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        [JsonProperty]
+        public int CaseId { get; set; } = -1;
+
+        private Case pcCase;
+
+        public Case Case
+        {
+            get
+            {
+                if (pcCase == null && CaseId != -1)
+                {
+                    pcCase = DAL.Context.Cases.Find(CaseId);
+                }
+                return pcCase;
+            }
+            set
+            {
+                pcCase = value;
+                CaseId = pcCase == null ? -1 : pcCase.IdComponent;
+            }
+        }
+
+        [JsonProperty]
+        public int VideocardId { get; set; } = -1;
+
+        private VideoCard videoCard;
+
+        public VideoCard VideoCard
+        {
+            get
+            {
+                if (videoCard == null && VideocardId != -1)
+                {
+                    videoCard = DAL.Context.VideoCards.Find(VideocardId);
+                }
+                return videoCard;
+            }
+            set
+            {
+                videoCard = value;
+                VideocardId = videoCard == null ? -1 : videoCard.IdComponent;
+            }
+        }
+
+        [JsonProperty]
+        public int CoolerId { get; set; } = -1;
+
+        private ProcessorCooler processorCooler;
+
+        public ProcessorCooler ProcessorCooler
+        {
+            get
+            {
+                if (processorCooler == null && CoolerId != -1)
+                {
+                    processorCooler = DAL.Context.ProcessorCoolers.Find(CoolerId);
+                }
+                return processorCooler;
+            }
+            set
+            {
+                processorCooler = value;
+                CoolerId = processorCooler == null ? -1 : processorCooler.IdComponent;
+            }
+        }
+
+        [JsonProperty]
+        public int RamId { get; set; } = -1;
+
+        private RAM ram;
+
+        public RAM RAM
+        {
+            get
+            {
+                if (ram == null && RamId != -1)
+                {
+                    ram = DAL.Context.RAMs.Find(RamId);
+                }
+                return ram;
+            }
+            set
+            {
+                ram = value;
+                RamId = ram == null ? -1 : ram.IdComponent;
+                RAMChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        [JsonProperty]
+        public int PowerSupplyId { get; set; } = -1;
+
+        private PowerSupply powerSupply;
+
+        public PowerSupply PowerSupply
+        {
+            get
+            {
+                if (powerSupply == null && PowerSupplyId != -1)
+                {
+                    powerSupply = DAL.Context.PowerSupplies.Find(PowerSupplyId);
+                }
+                return powerSupply;
+            }
+            set
+            {
+                powerSupply = value;
+                PowerSupplyId = powerSupply == null ? -1 : powerSupply.IdComponent;
+            }
+        }
+
+        [JsonProperty]
+        public int[] DataStoragesId { get; set; }
+
+        public void SetDataStoragesId()
+        {
+            if (dataStorages != null)
+            {
+                DataStoragesId = new int[dataStorages.Count];
+                for (int i = 0; i < dataStorages.Count; i++)
+                {
+                    DataStoragesId[i] = dataStorages[i].IdComponent;
+                }
+            }
+        }
+
+
+        private List<DataStorage> dataStorages = new List<DataStorage>();
+
+        public List<DataStorage> DataStorages 
+        { 
+            get
+            {
+                if (dataStorages.Count < 1 && DataStoragesId != null && DataStoragesId.Count() > 0)
+                {
+                    for (int i = 0; i < DataStoragesId.Length; i++)
+                    {
+                        dataStorages.Add(DAL.Context.DataStorages.Find(DataStoragesId[i]));
+                    }
+                }
+                return dataStorages;
+            }
+            set => dataStorages = value; 
+        }
+
         //Событие изменения свойства материнской платы
         public event EventHandler MotherBoardChanged;
 
@@ -72,56 +276,6 @@ namespace ConfiguratorPC
             }
         }
 
-        private Processor processor;
-
-        //Свойство для доступа к полю процессора
-        public Processor Processor 
-        { 
-            get => processor;
-            set
-            {
-                processor = value;
-                ProcessorChanged?.Invoke(this, EventArgs.Empty);
-            }
-        }
-
-        private MotherBoard motherBoard;
-
-        //Свойство для доступа к полю материнской платы
-        public MotherBoard MotherBoard 
-        { 
-            get => motherBoard;
-            set
-            {
-                motherBoard = value;
-                MotherBoardChanged?.Invoke(this, EventArgs.Empty);
-            }
-        }
-
-        private Case pcCase;
-
-        public Case Case { get => pcCase; set => pcCase = value; }
-
-        private VideoCard videoCard;
-
-        public VideoCard VideoCard { get => videoCard; set => videoCard = value; }
-
-        private ProcessorCooler processorCooler;
-
-        public ProcessorCooler ProcessorCooler { get => processorCooler; set => processorCooler = value; }
-
-        private RAM ram;
-
-        public RAM RAM 
-        { 
-            get => ram;
-            set
-            {
-                ram = value;
-                RAMChanged?.Invoke(this, EventArgs.Empty);
-            }
-        }
-
         public int MaxRAMQuantity
         {
             get
@@ -141,8 +295,6 @@ namespace ConfiguratorPC
             }
         }
 
-        public int RAMQuantity { get; set; } = 1;
-
         public int CommonRAMSize
         {
             get
@@ -154,13 +306,6 @@ namespace ConfiguratorPC
                 return 0;
             }
         }
-        private PowerSupply powerSupply;
-
-        public PowerSupply PowerSupply { get => powerSupply; set => powerSupply = value; }
-
-        private List<DataStorage> dataStorages = new List<DataStorage>();
-
-        public List<DataStorage> DataStorages { get => dataStorages; set => dataStorages = value; }
 
         public int DataStorageM2Quantity { get => DataStorages.Where(d => d.SSD != null && d.SSD.M2SSD != null).Count(); }
 

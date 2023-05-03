@@ -29,6 +29,8 @@ namespace ConfiguratorPC.Controls
 
         public event EventHandler RemoveDataStorageConfigurator;
 
+        public event EventHandler ComponentChanged;
+
         private ComponentType type;
 
         private Configurator configurator;
@@ -60,6 +62,7 @@ namespace ConfiguratorPC.Controls
                     NameTextBlock.Text = component.Name;
                     PriceTextBlock.Text = $"{component.Price} руб.";
                 }
+                ComponentChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -921,7 +924,6 @@ namespace ConfiguratorPC.Controls
 
         private void SelectComponent(Component component)
         {
-            Component = component;
             switch (type)
             {
                 case ComponentType.Processor:
@@ -952,6 +954,7 @@ namespace ConfiguratorPC.Controls
                 default:
                     break;
             }
+            Component = component;
             ComponentsBorder.Visibility = Visibility.Collapsed;
             SetComponentsBorder();
         }
@@ -1036,6 +1039,7 @@ namespace ConfiguratorPC.Controls
         private void NumericRam_ValueChanged(object sender, EventArgs e)
         {
             configurator.RAMQuantity = NumericRam.Value;
+            ComponentChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void Configurator_RAMChanged(object sender, EventArgs e)
