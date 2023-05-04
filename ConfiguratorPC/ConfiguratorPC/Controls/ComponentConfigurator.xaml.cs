@@ -29,8 +29,6 @@ namespace ConfiguratorPC.Controls
 
         public event EventHandler RemoveDataStorageConfigurator;
 
-        public event EventHandler ComponentChanged;
-
         private ComponentType type;
 
         private Configurator configurator;
@@ -62,7 +60,6 @@ namespace ConfiguratorPC.Controls
                     NameTextBlock.Text = component.Name;
                     PriceTextBlock.Text = $"{component.Price} руб.";
                 }
-                ComponentChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -737,6 +734,7 @@ namespace ConfiguratorPC.Controls
 
         private void SetComboBox<T>(ComboBox comboBox, List<T> itemsSource)
         {
+            comboBox.SelectionChanged -= ComboBox_SelectionChanged;
             comboBox.ItemsSource = itemsSource;
             comboBox.SelectedIndex = 0;
             comboBox.SelectionChanged += ComboBox_SelectionChanged;
@@ -1039,7 +1037,6 @@ namespace ConfiguratorPC.Controls
         private void NumericRam_ValueChanged(object sender, EventArgs e)
         {
             configurator.RAMQuantity = NumericRam.Value;
-            ComponentChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void Configurator_RAMChanged(object sender, EventArgs e)

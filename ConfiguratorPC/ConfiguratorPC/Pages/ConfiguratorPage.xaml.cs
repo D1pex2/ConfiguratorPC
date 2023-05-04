@@ -30,41 +30,30 @@ namespace ConfiguratorPC.Pages
             InitializeComponent();
             DeserializeConfigurators();
             Init();
+            ConfiguratorsComboBox.SelectedItem = currentConfigurator;
+            UpdateConfiguratorsList();
         }
 
         private void Init()
         {
             try
             {
+                currentConfigurator.ConfiguratorPropertyChanged -= CurrentConfigurator_ConfiguratorPropertyChanged;
+
                 ProcessorConfigurator.Init(currentConfigurator, ComponentType.Processor);
-                if (currentConfigurator.Processor != null)
-                {
-                    ProcessorConfigurator.Component = currentConfigurator.Processor.Component;
-                }
+                ProcessorConfigurator.Component = currentConfigurator.Processor == null ? null : currentConfigurator.Processor.Component;
 
                 MotherBoardConfigurator.Init(currentConfigurator, ComponentType.MotherBoard);
-                if (currentConfigurator.MotherBoard != null)
-                {
-                    MotherBoardConfigurator.Component = currentConfigurator.MotherBoard.Component;
-                }
+                MotherBoardConfigurator.Component = currentConfigurator.MotherBoard == null ? null : currentConfigurator.MotherBoard.Component;
 
                 CaseConfigurator.Init(currentConfigurator, ComponentType.Case);
-                if (currentConfigurator.Case != null)
-                {
-                    CaseConfigurator.Component = currentConfigurator.Case.Component;
-                }
+                CaseConfigurator.Component = currentConfigurator.Case == null ? null : currentConfigurator.Case.Component;
 
                 VideoCardConfigurator.Init(currentConfigurator, ComponentType.Videocard);
-                if (currentConfigurator.VideoCard != null)
-                {
-                    VideoCardConfigurator.Component = currentConfigurator.VideoCard.Component;
-                }
+                VideoCardConfigurator.Component = currentConfigurator.VideoCard == null ? null : currentConfigurator.VideoCard.Component;
 
                 CoolerConfigurator.Init(currentConfigurator, ComponentType.Cooler);
-                if (currentConfigurator.ProcessorCooler != null)
-                {
-                    CoolerConfigurator.Component = currentConfigurator.ProcessorCooler.Component;
-                }
+                CoolerConfigurator.Component = currentConfigurator.ProcessorCooler == null ? null : currentConfigurator.ProcessorCooler.Component;
 
                 RAMConfigurator.Init(currentConfigurator, ComponentType.RAM);
                 if (currentConfigurator.RAM != null)
@@ -74,11 +63,23 @@ namespace ConfiguratorPC.Pages
                     RAMConfigurator.NumericRam.Value = currentConfigurator.RAMQuantity;
                     RAMConfigurator.NumericRam.Visibility = Visibility.Visible;
                 }
+                else
+                {
+                    RAMConfigurator.Component = null;
+                    RAMConfigurator.NumericRam.Visibility = Visibility.Collapsed;
+                }
 
                 PowerSupplyConfigurator.Init(currentConfigurator, ComponentType.PowerSupply);
-                if (currentConfigurator.PowerSupply != null)
+                PowerSupplyConfigurator.Component = currentConfigurator.PowerSupply == null ? null : currentConfigurator.PowerSupply.Component;
+
+                if (DataStorageStackPanel.Children.Count > 1)
                 {
-                    PowerSupplyConfigurator.Component = currentConfigurator.PowerSupply.Component;
+                    List<ComponentConfigurator> componentConfigurators = DataStorageStackPanel.Children.OfType<ComponentConfigurator>().ToList();
+                    componentConfigurators.Remove(MemoryConfigurator);
+                    foreach (var item in componentConfigurators)
+                    {
+                        DataStorageStackPanel.Children.Remove(item);
+                    }
                 }
 
                 MemoryConfigurator.Init(currentConfigurator, ComponentType.DataStorage);
@@ -88,21 +89,20 @@ namespace ConfiguratorPC.Pages
                     for (int i = 1; i < currentConfigurator.DataStorages.Count; i++)
                     {
                         var conf = AddDataStorageConfigurator();
-                        conf.ComponentChanged -= Configurator_ComponentChanged;
                         conf.Component = currentConfigurator.DataStorages[i].Component;
                     }
                 }
-
-                List<ComponentConfigurator> configurators = ConfigStackPanel.Children.OfType<ComponentConfigurator>().ToList();
-                configurators.AddRange(DataStorageStackPanel.Children.OfType<ComponentConfigurator>().ToList());
-                foreach (var config in configurators)
+                else
                 {
-                    config.ComponentChanged += Configurator_ComponentChanged;
+                    MemoryConfigurator.Component = null;
                 }
-                if (currentConfigurator.CompatibleDataStorage.Count > 0)
+
+                if (currentConfigurator.CompatibleDataStorage.Count > 0 && currentConfigurator.DataStorages.Count > 0)
                 {
                     AddDataStorageConfigurator();
                 }
+
+                currentConfigurator.ConfiguratorPropertyChanged += CurrentConfigurator_ConfiguratorPropertyChanged;
             }
             catch (Exception ex) when (ex is EntityException)
             {
@@ -121,12 +121,10 @@ namespace ConfiguratorPC.Pages
             {
                 if (configurators.Count > 0)
                 {
-                    currentConfigurator.SetDataStoragesId();
-
-                    Directory.CreateDirectory(path);
+                    Directory.CreateDirectory(this.path);
                     var settings = new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore, NullValueHandling = NullValueHandling.Ignore };
                     string json = JsonConvert.SerializeObject(currentConfigurator, Formatting.Indented, settings);
-                    File.WriteAllText($"{path}/{currentConfigurator.Name}.json", json);
+                    File.WriteAllText($@"{path}\\{currentConfigurator.Name}.json", json);
                 }
             }
             catch (Exception ex)
@@ -146,22 +144,12 @@ namespace ConfiguratorPC.Pages
                         configurators.Add(JsonConvert.DeserializeObject<Configurator>(File.ReadAllText(item)));
                     }
                     
-                    if (configurators.Where(c => c.IsSelected).Count() > 0)
-                    {
-                        currentConfigurator = configurators.First(c => c.IsSelected);
-                    }
-                    else
-                    {
-                        currentConfigurator = configurators.First();
-                    }
                 }
                 else
                 {
                     configurators.Add(new Configurator());
-                    currentConfigurator = configurators.First();
                 }
-                ConfiguratorsComboBox.ItemsSource = configurators;
-                ConfiguratorsComboBox.SelectedItem = currentConfigurator;
+                currentConfigurator = configurators.FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -169,6 +157,11 @@ namespace ConfiguratorPC.Pages
                 currentConfigurator = configurators.First();
                 FeedBack.ShowError(ex);
             }
+        }
+
+        private void CurrentConfigurator_ConfiguratorPropertyChanged(object sender, EventArgs e)
+        {
+            SerializeConfigurator();
         }
 
         private void ComponentConfigurator_ListOpened(object sender, EventArgs e)
@@ -202,7 +195,6 @@ namespace ConfiguratorPC.Pages
             dataStorageConfigurator.ListOpened += ComponentConfigurator_ListOpened;
             dataStorageConfigurator.AddDataStorageConfigurator += MemoryConfigurator_AddDataStorageConfigurator;
             dataStorageConfigurator.RemoveDataStorageConfigurator += MemoryConfigurator_RemoveDataStorageConfigurator;
-            dataStorageConfigurator.ComponentChanged += Configurator_ComponentChanged;
             dataStorageConfigurator.Init(currentConfigurator, ComponentType.DataStorage);
             DataStorageStackPanel.Children.Add(dataStorageConfigurator);
             return dataStorageConfigurator;
@@ -346,24 +338,78 @@ namespace ConfiguratorPC.Pages
             }
         }
 
+        private void CreateNewConfigurator(string name = null)
+        {
+            Configurator configurator = name == null ? new Configurator() : new Configurator(name);
+            configurators.Add(configurator);
+            UpdateConfiguratorsList();
+            ConfiguratorsComboBox.SelectedItem = configurator;
+            SerializeConfigurator();
+        }
+
+        private void UpdateConfiguratorsList()
+        {
+            ConfiguratorsComboBox.SelectionChanged -= ConfiguratorsComboBox_SelectionChanged;
+            ConfiguratorsComboBox.Items.Clear();
+            foreach (var configurator in configurators)
+            {
+                ConfiguratorsComboBox.Items.Add(configurator);
+            }
+            ConfiguratorsComboBox.SelectionChanged += ConfiguratorsComboBox_SelectionChanged;
+        }
+
         private void AddConfiguratorButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var textDialog = new TextDialogWindow();
+            textDialog.ShowDialog();
+            var name = textDialog.Message;
+            if (textDialog.DialogResult != true)
+                return;
+            if (configurators.Any(c => c.Name == name))
+            {
+                FeedBack.ShowMessage("Имя занято");
+                return;
+            }
+            CreateNewConfigurator(name);
         }
 
         private void EditConfiguratorButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var textDialog = new TextDialogWindow();
+            textDialog.ShowDialog();
+            var name = textDialog.Message;
+            if (textDialog.DialogResult != true)
+                return;
+            if (configurators.Any(c => c.Name == name))
+            {
+                FeedBack.ShowMessage("Имя занято");
+                return;
+            }
+            File.Delete($@"{path}\\{currentConfigurator.Name}.json");
+            currentConfigurator.Name = name;
+            UpdateConfiguratorsList();
+            ConfiguratorsComboBox.SelectedItem = currentConfigurator;
         }
 
         private void DeleteConfiguratorButton_Click(object sender, RoutedEventArgs e)
         {
-
+            configurators.Remove(currentConfigurator);
+            File.Delete($@"{path}\\{currentConfigurator.Name}.json");
+            if (configurators.Count == 0)
+            {
+                CreateNewConfigurator();
+            }
+            else
+            {
+                UpdateConfiguratorsList();
+                ConfiguratorsComboBox.SelectedIndex = 0;
+            }
         }
 
         private void ConfiguratorsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            currentConfigurator = ConfiguratorsComboBox.SelectedItem as Configurator;
+            Init();
         }
 
         private void Configurator_ComponentChanged(object sender, EventArgs e)

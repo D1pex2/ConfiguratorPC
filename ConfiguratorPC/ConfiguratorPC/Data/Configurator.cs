@@ -2,6 +2,8 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,14 +13,38 @@ namespace ConfiguratorPC
     [JsonObject(MemberSerialization.OptIn)]
     public class Configurator
     {
-        [JsonProperty]
-        public string Name { get; set; } = "Новая сборка ПК";
+        public Configurator() { }
+
+        public Configurator(string name)
+        {
+            this.name = name;
+        }
 
         [JsonProperty]
-        public bool IsSelected { get; set; } = false;
+        private string name = "Новая сборка ПК";
+
+        public string Name
+        {
+            get => name;
+            set
+            {
+                name = value;
+                ConfiguratorPropertyChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
 
         [JsonProperty]
-        public int RAMQuantity { get; set; } = 1;
+        private int ramQuantity = 1;
+
+        public int RAMQuantity
+        {
+            get => ramQuantity;
+            set
+            {
+                ramQuantity = value;
+                ConfiguratorPropertyChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
 
         [JsonProperty]
         public int ProcessorId { get; set; } = -1;
@@ -41,6 +67,7 @@ namespace ConfiguratorPC
                 processor = value;
                 ProcessorId = processor == null ? -1 : processor.IdComponent;
                 ProcessorChanged?.Invoke(this, EventArgs.Empty);
+                ConfiguratorPropertyChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -54,7 +81,7 @@ namespace ConfiguratorPC
         {
             get
             {
-                if(motherBoard == null && MotherboardId != -1)
+                if (motherBoard == null && MotherboardId != -1)
                 {
                     motherBoard = DAL.Context.MotherBoards.Find(MotherboardId);
                 }
@@ -65,6 +92,7 @@ namespace ConfiguratorPC
                 motherBoard = value;
                 MotherboardId = motherBoard == null ? -1 : motherBoard.IdComponent;
                 MotherBoardChanged?.Invoke(this, EventArgs.Empty);
+                ConfiguratorPropertyChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -87,6 +115,7 @@ namespace ConfiguratorPC
             {
                 pcCase = value;
                 CaseId = pcCase == null ? -1 : pcCase.IdComponent;
+                ConfiguratorPropertyChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -109,6 +138,7 @@ namespace ConfiguratorPC
             {
                 videoCard = value;
                 VideocardId = videoCard == null ? -1 : videoCard.IdComponent;
+                ConfiguratorPropertyChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -131,6 +161,7 @@ namespace ConfiguratorPC
             {
                 processorCooler = value;
                 CoolerId = processorCooler == null ? -1 : processorCooler.IdComponent;
+                ConfiguratorPropertyChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -154,6 +185,7 @@ namespace ConfiguratorPC
                 ram = value;
                 RamId = ram == null ? -1 : ram.IdComponent;
                 RAMChanged?.Invoke(this, EventArgs.Empty);
+                ConfiguratorPropertyChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -176,28 +208,16 @@ namespace ConfiguratorPC
             {
                 powerSupply = value;
                 PowerSupplyId = powerSupply == null ? -1 : powerSupply.IdComponent;
+                ConfiguratorPropertyChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
         [JsonProperty]
         public int[] DataStoragesId { get; set; }
 
-        public void SetDataStoragesId()
-        {
-            if (dataStorages != null)
-            {
-                DataStoragesId = new int[dataStorages.Count];
-                for (int i = 0; i < dataStorages.Count; i++)
-                {
-                    DataStoragesId[i] = dataStorages[i].IdComponent;
-                }
-            }
-        }
+        private ObservableCollection<DataStorage> dataStorages = new ObservableCollection<DataStorage>();
 
-
-        private List<DataStorage> dataStorages = new List<DataStorage>();
-
-        public List<DataStorage> DataStorages 
+        public ObservableCollection<DataStorage> DataStorages 
         { 
             get
             {
@@ -207,11 +227,27 @@ namespace ConfiguratorPC
                     {
                         dataStorages.Add(DAL.Context.DataStorages.Find(DataStoragesId[i]));
                     }
+                    dataStorages.CollectionChanged += DataStorages_CollectionChanged;
                 }
                 return dataStorages;
             }
             set => dataStorages = value; 
         }
+
+        private void DataStorages_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (dataStorages != null)
+            {
+                DataStoragesId = new int[dataStorages.Count];
+                for (int i = 0; i < dataStorages.Count; i++)
+                {
+                    DataStoragesId[i] = dataStorages[i].IdComponent;
+                }
+            }
+            ConfiguratorPropertyChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        public event EventHandler ConfiguratorPropertyChanged;
 
         //Событие изменения свойства материнской платы
         public event EventHandler MotherBoardChanged;

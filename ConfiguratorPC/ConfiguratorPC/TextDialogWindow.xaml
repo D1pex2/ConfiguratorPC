@@ -1,0 +1,13 @@
+﻿<Window x:Class="ConfiguratorPC.TextDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ConfiguratorPC"
+        mc:Ignorable="d"
+        Title="TextDialogWindow" Height="450" Width="800">
+    <StackPanel>
+        <TextBox x:Name="MessageTextBox" Width="333"/>
+        <Button x:Name="SendButton" Content="ОК" Click="SendButton_Click"/>
+    </StackPanel>
+</Window>
