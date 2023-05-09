@@ -588,11 +588,6 @@ namespace ConfiguratorPC.Controls
 
                 SortComboBox.SelectionChanged += ComboBox_SelectionChanged;
             }
-            catch (Exception ex) when (ex is EntityException)
-            {
-                FeedBack.ShowError("Ошибка подключение к базе данных. Обратитесь к системному администратору.");
-                Application.Current.Shutdown();
-            }
             catch (Exception ex)
             {
                 FeedBack.ShowError(ex);
@@ -846,11 +841,6 @@ namespace ConfiguratorPC.Controls
                 }
                 var totalPages = TotalPages == 0 ? 1 : TotalPages;
                 PageTextBlock.Text = $"{PageNumber} из {totalPages}";
-            }
-            catch (Exception ex) when (ex is EntityException)
-            {
-                FeedBack.ShowError("Ошибка подключение к базе данных. Обратитесь к системному администратору.");
-                Application.Current.Shutdown();
             }
             catch (Exception ex)
             {

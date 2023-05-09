@@ -1,0 +1,11 @@
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPCManager\ConfiguratorPCManager\bin\Debug\ConfiguratorPCManager.exe.config
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPCManager\ConfiguratorPCManager\bin\Debug\ConfiguratorPCManager.exe
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPCManager\ConfiguratorPCManager\bin\Debug\ConfiguratorPCManager.pdb
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPCManager\ConfiguratorPCManager\obj\Debug\ConfiguratorPCManager.csproj.AssemblyReference.cache
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPCManager\ConfiguratorPCManager\obj\Debug\ConfiguratorPCManager.csproj.SuggestedBindingRedirects.cache
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPCManager\ConfiguratorPCManager\obj\Debug\ConfiguratorPCManager.Form1.resources
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPCManager\ConfiguratorPCManager\obj\Debug\ConfiguratorPCManager.Properties.Resources.resources
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPCManager\ConfiguratorPCManager\obj\Debug\ConfiguratorPCManager.csproj.GenerateResource.cache
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPCManager\ConfiguratorPCManager\obj\Debug\ConfiguratorPCManager.csproj.CoreCompileInputs.cache
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPCManager\ConfiguratorPCManager\obj\Debug\ConfiguratorPCManager.exe
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPCManager\ConfiguratorPCManager\obj\Debug\ConfiguratorPCManager.pdb

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,17 +12,25 @@ namespace ConfiguratorPC
     {
         public static void ShowError(Exception ex)
         {
-            ShowError(ex.Message);
+            if (ex is EntityException)
+            {
+                FeedBack.ShowError("Ошибка подключения к базе данных. Обратитесь к системному администратору.");
+                Application.Current.Shutdown();
+            }
+            else
+            {
+                ShowError(ex.Message);
+            }
         }
 
         public static void ShowError(string message)
         {
-            MessageBox.Show(message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            new MessageWindow("Ошибка", message).ShowDialog();
         }
 
         public static void ShowMessage(string message)
         {
-            MessageBox.Show(message, "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+            new MessageWindow("Сообщение", message).ShowDialog();
         }
     }
 }

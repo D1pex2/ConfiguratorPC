@@ -22,15 +22,26 @@ namespace ConfiguratorPC
 
         public string Message { get => MessageTextBox.Text; }
 
-        public TextDialogWindow()
+        public TextDialogWindow(string text)
         {
             InitializeComponent();
+            TextBlock.Text = text;
         }
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
             Close();
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void TitleBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
         }
     }
 }

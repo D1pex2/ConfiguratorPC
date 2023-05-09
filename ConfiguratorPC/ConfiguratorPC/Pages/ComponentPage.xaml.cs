@@ -98,11 +98,6 @@ namespace ConfiguratorPC.Pages
                         break;
                 }
             }
-            catch (Exception ex) when (ex is EntityException)
-            {
-                FeedBack.ShowError("Ошибка подключение к базе данных. Обратитесь к системному администратору.");
-                Application.Current.Shutdown();
-            }
             catch (Exception ex)
             {
                 FeedBack.ShowError(ex);

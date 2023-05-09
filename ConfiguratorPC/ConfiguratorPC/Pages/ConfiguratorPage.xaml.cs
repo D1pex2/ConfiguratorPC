@@ -104,11 +104,6 @@ namespace ConfiguratorPC.Pages
 
                 currentConfigurator.ConfiguratorPropertyChanged += CurrentConfigurator_ConfiguratorPropertyChanged;
             }
-            catch (Exception ex) when (ex is EntityException)
-            {
-                FeedBack.ShowError("Ошибка подключение к базе данных. Обратитесь к системному администратору.");
-                System.Windows.Application.Current.Shutdown();
-            }
             catch (Exception ex)
             {
                 FeedBack.ShowError(ex);
@@ -360,14 +355,19 @@ namespace ConfiguratorPC.Pages
 
         private void AddConfiguratorButton_Click(object sender, RoutedEventArgs e)
         {
-            var textDialog = new TextDialogWindow();
+            var textDialog = new TextDialogWindow("Введите наименование новой конфигурации:");
             textDialog.ShowDialog();
             var name = textDialog.Message;
             if (textDialog.DialogResult != true)
                 return;
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                FeedBack.ShowMessage($"Наименование конфигурации не должно быть пустым");
+                return;
+            }
             if (configurators.Any(c => c.Name == name))
             {
-                FeedBack.ShowMessage("Имя занято");
+                FeedBack.ShowMessage($"Наименование \"{name}\" занято другой конфигурацией");
                 return;
             }
             CreateNewConfigurator(name);
@@ -375,7 +375,7 @@ namespace ConfiguratorPC.Pages
 
         private void EditConfiguratorButton_Click(object sender, RoutedEventArgs e)
         {
-            var textDialog = new TextDialogWindow();
+            var textDialog = new TextDialogWindow($"Переименуйте конфигурацию \"{currentConfigurator.Name}\":");
             textDialog.ShowDialog();
             var name = textDialog.Message;
             if (textDialog.DialogResult != true)
