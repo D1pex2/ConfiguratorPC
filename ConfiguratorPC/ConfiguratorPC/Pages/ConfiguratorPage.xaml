@@ -29,15 +29,24 @@
                     <Border Style="{StaticResource BorderDefault}" Height="75" Margin="0,0,0,15">
                         <DockPanel>
                             <Image Source="/Resources/pc.png" Margin="10"/>
-                            <ComboBox x:Name="ConfiguratorsComboBox" DisplayMemberPath="Name" VerticalAlignment="Center" Width="250"/>
+                            <ComboBox x:Name="ConfiguratorsComboBox" DisplayMemberPath="Name" VerticalAlignment="Center" Width="250" BorderThickness="0"/>
                             <Button x:Name="AddConfiguratorButton" Style="{StaticResource WindowButton}" Cursor="Hand" Width="25" Height="25" Click="AddConfiguratorButton_Click">
                                 <Image Source="/Resources/plus.png"/>
+                                <Button.ToolTip>
+                                    Добавить
+                                </Button.ToolTip>
                             </Button>
                             <Button x:Name="EditConfiguratorButton" Style="{StaticResource WindowButton}" Cursor="Hand" Width="25" Height="25" Click="EditConfiguratorButton_Click">
                                 <Image Source="/Resources/pencil.png"/>
+                                <Button.ToolTip>
+                                    Переименовать
+                                </Button.ToolTip>
                             </Button>
                             <Button x:Name="DeleteConfiguratorButton" Style="{StaticResource WindowButton}" Cursor="Hand" Width="25" Height="25" Click="DeleteConfiguratorButton_Click">
                                 <Image Source="/Resources/trash.png"/>
+                                <Button.ToolTip>
+                                    Удалить
+                                </Button.ToolTip>
                             </Button>
                             <Button x:Name="HelpButton" FontWeight="DemiBold" Click="HelpButton_Click" Content="Справка" Margin="5,0,15,0" HorizontalAlignment="Right" Background="#FF00B3FF" Foreground="White" DockPanel.Dock="Right" VerticalAlignment="Center">
                                 <Button.Resources>

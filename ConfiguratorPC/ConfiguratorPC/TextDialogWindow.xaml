@@ -20,7 +20,7 @@
             </DockPanel>
         </Border>
         <DockPanel Grid.Row="1">
-            <TextBlock x:Name="TextBlock" DockPanel.Dock="Top" Text="Введите наименование конфигурации:" TextWrapping="WrapWithOverflow" FontSize="16" Margin="10,10,10,0" VerticalAlignment="Bottom"/>
+            <TextBlock x:Name="TextBlock" DockPanel.Dock="Top" Text="Введите наименование конфигурации:" TextWrapping="WrapWithOverflow" FontSize="16" Margin="10,10,10,5" VerticalAlignment="Bottom"/>
             <DockPanel Margin="10,0,10,10" LastChildFill="True" VerticalAlignment="Top">
                 <Button x:Name="SendButton" Content="Ок" Click="SendButton_Click" Width="100" DockPanel.Dock="Right"
                     FontWeight="DemiBold" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Background="#FF00B3FF" Foreground="White">
@@ -30,7 +30,9 @@
                         </Style>
                     </Button.Resources>
                 </Button>
-                <TextBox x:Name="MessageTextBox" FontSize="16" MaxLength="50" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="35" DockPanel.Dock="Right"/>
+                <Border Style="{StaticResource BorderDefault}" Height="35">
+                    <TextBox x:Name="MessageTextBox" FontSize="16" MaxLength="50" VerticalContentAlignment="Center" Background="Transparent" Margin="5,0,5,0" VerticalAlignment="Center" Height="35" DockPanel.Dock="Right" BorderThickness="0"/>
+                </Border>
             </DockPanel>
         </DockPanel>
     </Grid>
