@@ -12,9 +12,9 @@ DEBUG;TRACE
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\App.xaml
 91690758862
 2-1569694249
-731315568026
+74-1057621149
 231859218682
 MainWindow.xaml;Controls\ComponentConfigurator.xaml;Controls\NumericTextBox.xaml;Controls\NumericUpDown.xaml;MessageWindow.xaml;Pages\ComponentPage.xaml;Pages\ConfiguratorPage.xaml;Pages\HelpPage.xaml;TextDialogWindow.xaml;
 
-False
+True
 

@@ -471,9 +471,9 @@
           <Property Name="MaxRotationSpeed" Type="smallint" Nullable="false" />
           <Property Name="MinRotationSpeed" Type="smallint" Nullable="false" />
           <Property Name="AdjustmentRotationSpeed" Type="nvarchar" MaxLength="50" />
-          <Property Name="MaxNoiseLevel" Type="tinyint" Nullable="false" />
-          <Property Name="MaxAirflow" Type="decimal" Precision="5" Scale="2" Nullable="false" />
-          <Property Name="MaxStaticPressure" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="MaxNoiseLevel" Type="tinyint" />
+          <Property Name="MaxAirflow" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="MaxStaticPressure" Type="decimal" Precision="5" Scale="2" />
           <Property Name="BearingType" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="ProcessorPowerConnector">
@@ -2711,9 +2711,9 @@
           <Property Name="MaxRotationSpeed" Type="Int16" Nullable="false" />
           <Property Name="MinRotationSpeed" Type="Int16" Nullable="false" />
           <Property Name="AdjustmentRotationSpeed" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MaxNoiseLevel" Type="Byte" Nullable="false" />
-          <Property Name="MaxAirflow" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
-          <Property Name="MaxStaticPressure" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="MaxNoiseLevel" Type="Byte" />
+          <Property Name="MaxAirflow" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="MaxStaticPressure" Type="Decimal" Precision="5" Scale="2" />
           <Property Name="BearingType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Component" Relationship="ConfiguratorPCModel.FK_ProcessorCooler_Component" FromRole="ProcessorCooler" ToRole="Component" />
           <NavigationProperty Name="LiquidCooler" Relationship="ConfiguratorPCModel.FK_LiquidCooler_ProcessorCooler" FromRole="ProcessorCooler" ToRole="LiquidCooler" />

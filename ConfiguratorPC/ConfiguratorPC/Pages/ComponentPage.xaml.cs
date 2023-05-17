@@ -389,9 +389,9 @@ namespace ConfiguratorPC.Pages
             CoolerFanMinSpeedTextBlock.Text = $"{component.ProcessorCooler.MinRotationSpeed} об/мин";
             CoolerFanMaxSpeedTextBlock.Text = $"{component.ProcessorCooler.MaxRotationSpeed} об/мин";
             CoolerAdjustmentRotationSpeedTextBlock.Text = component.ProcessorCooler.AdjustmentRotationSpeed == null ? "нет" : component.ProcessorCooler.AdjustmentRotationSpeed;
-            CoolerMaxNoiseLevelTextBlock.Text = $"{component.ProcessorCooler.MaxNoiseLevel} дБ";
-            CoolerAirFlowTextBlock.Text = $"{component.ProcessorCooler.MaxAirflow} CFM";
-            CoolerMaxStaticPressureTextBlock.Text = $"{component.ProcessorCooler.MaxStaticPressure} Па";
+            CoolerMaxNoiseLevelTextBlock.Text = component.ProcessorCooler.MaxNoiseLevel == null ? "нет" : $"{component.ProcessorCooler.MaxNoiseLevel} дБ";
+            CoolerAirFlowTextBlock.Text = component.ProcessorCooler.MaxAirflow == null ? "нет" : $"{component.ProcessorCooler.MaxAirflow} CFM";
+            CoolerMaxStaticPressureTextBlock.Text = component.ProcessorCooler.MaxStaticPressure == null ? "нет" : $"{component.ProcessorCooler.MaxStaticPressure} Па";
             CoolerFanConnectorTextBlock.Text = component.ProcessorCooler.FanConnector;
 
             CoolerFanGrid.Visibility = Visibility.Visible;

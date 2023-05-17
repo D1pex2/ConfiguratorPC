@@ -28,9 +28,9 @@ namespace ConfiguratorPC.Data
         public short MaxRotationSpeed { get; set; }
         public short MinRotationSpeed { get; set; }
         public string AdjustmentRotationSpeed { get; set; }
-        public byte MaxNoiseLevel { get; set; }
-        public decimal MaxAirflow { get; set; }
-        public decimal MaxStaticPressure { get; set; }
+        public Nullable<byte> MaxNoiseLevel { get; set; }
+        public Nullable<decimal> MaxAirflow { get; set; }
+        public Nullable<decimal> MaxStaticPressure { get; set; }
         public string BearingType { get; set; }
     
         public virtual Component Component { get; set; }
