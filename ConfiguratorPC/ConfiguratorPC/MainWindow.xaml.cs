@@ -3,6 +3,7 @@ using ConfiguratorPC.Data;
 using ConfiguratorPC.Pages;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,12 @@ namespace ConfiguratorPC
 
         public MainWindow()
         {
+            var processes = Process.GetProcesses().Where(p => p.ProcessName == "ConfiguratorPC");
+            if (processes.Count() > 1)
+            {
+                FeedBack.ShowMessage("Программа уже запущена");
+                Application.Current.Shutdown();
+            }
             InitializeComponent();
             MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             Navigator.Frame = MainFrame;
@@ -74,6 +81,11 @@ namespace ConfiguratorPC
                 TitleBorder.Height = 30;
                 TitleDockPanel.Margin = MainFrame.Margin = new Thickness(0, 0, 0, 0);
             }
+        }
+
+        private void AboutProgramButton_Click(object sender, RoutedEventArgs e)
+        {
+            new AboutProgramWindow().ShowDialog();
         }
     }
 }

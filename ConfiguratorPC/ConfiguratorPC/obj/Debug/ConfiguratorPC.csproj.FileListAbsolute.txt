@@ -114,3 +114,5 @@ C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\ob
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\TextDialogWindow.baml
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\MessageWindow.g.cs
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\MessageWindow.baml
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\AboutProgramWindow.g.cs
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\AboutProgramWindow.baml

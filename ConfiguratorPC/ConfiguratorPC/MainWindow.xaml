@@ -25,6 +25,7 @@
                 <Button x:Name="HideButton" Cursor="Hand" Click="HideButton_Click" Style="{StaticResource WindowButton}" DockPanel.Dock="Right" HorizontalAlignment="Right">
                     <Image Source="/Resources/hide.png"/>
                 </Button>
+                <Button x:Name="AboutProgramButton" Click="AboutProgramButton_Click" Content="О программе" Margin="0" Style="{StaticResource WindowButton}" Foreground="White" Cursor="Hand" DockPanel.Dock="Right" HorizontalAlignment="Right"/>
             </DockPanel>
         </Border>
         <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>

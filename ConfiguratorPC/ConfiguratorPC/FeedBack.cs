@@ -25,7 +25,7 @@ namespace ConfiguratorPC
 
         public static void ShowError(string message)
         {
-            new MessageWindow("Ошибка", message).ShowDialog();
+            new MessageWindow("Ошибка", message, true).ShowDialog();
         }
 
         public static void ShowMessage(string message)

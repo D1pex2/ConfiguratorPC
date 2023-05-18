@@ -80,12 +80,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AboutProgramWindow.xaml.cs">
+      <DependentUpon>AboutProgramWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MessageWindow.xaml.cs">
       <DependentUpon>MessageWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="TextDialogWindow.xaml.cs">
       <DependentUpon>TextDialogWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="AboutProgramWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -372,6 +379,8 @@
       <DependentUpon>ConfiguratorPCModel.edmx</DependentUpon>
       <LastGenOutput>ConfiguratorPCModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\info.png" />
+    <Resource Include="Resources\error.png" />
     <Resource Include="Resources\trash.png" />
     <Resource Include="Resources\plus.png" />
     <Resource Include="Resources\pencil.png" />

@@ -15,25 +15,13 @@ using System.Windows.Shapes;
 namespace ConfiguratorPC
 {
     /// <summary>
-    /// Логика взаимодействия для MessageWindow.xaml
+    /// Логика взаимодействия для AboutProgramWindow.xaml
     /// </summary>
-    public partial class MessageWindow : Window
+    public partial class AboutProgramWindow : Window
     {
-        public MessageWindow(string title, string message, bool isError = false)
+        public AboutProgramWindow()
         {
             InitializeComponent();
-            TitleTextBlock.Text = title;
-            MessageTextBlock.Text = message;
-            if (isError)
-            {
-                InfoImage.Visibility = Visibility.Collapsed;
-                ErrorImage.Visibility = Visibility.Visible;
-            }
-        }
-
-        private void OkButton_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
         }
 
         private void TitleBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

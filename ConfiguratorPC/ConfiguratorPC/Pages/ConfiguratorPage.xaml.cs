@@ -101,7 +101,7 @@ namespace ConfiguratorPC.Pages
                 {
                     AddDataStorageConfigurator();
                 }
-
+                SetCommonPrice();
                 currentConfigurator.ConfiguratorPropertyChanged += CurrentConfigurator_ConfiguratorPropertyChanged;
             }
             catch (Exception ex)
@@ -156,7 +156,20 @@ namespace ConfiguratorPC.Pages
 
         private void CurrentConfigurator_ConfiguratorPropertyChanged(object sender, EventArgs e)
         {
+            SetCommonPrice();
             SerializeConfigurator();
+        }
+
+        private void SetCommonPrice()
+        {
+            if (currentConfigurator.CommonPrice == 0)
+            {
+                CommonPriceTextBlock.Text = "";
+            }
+            else
+            {
+                CommonPriceTextBlock.Text = $"Общая стоимость: {currentConfigurator.CommonPrice} руб.";
+            }
         }
 
         private void ComponentConfigurator_ListOpened(object sender, EventArgs e)

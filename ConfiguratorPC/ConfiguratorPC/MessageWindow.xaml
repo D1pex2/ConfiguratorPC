@@ -21,7 +21,11 @@
             </DockPanel>
         </Border>
         <DockPanel Grid.Row="1">
-            <TextBlock x:Name="MessageTextBlock" DockPanel.Dock="Top" Text="Сообщение" TextWrapping="WrapWithOverflow" FontSize="16" Margin="10,10,10,0" VerticalAlignment="Bottom"/>
+            <DockPanel DockPanel.Dock="Top" Margin="10,10,10,0">
+                <Image x:Name="InfoImage" DockPanel.Dock="Left" Width="60" Height="60" VerticalAlignment="Center" Source="/Resources/info.png"/>
+                <Image x:Name="ErrorImage" DockPanel.Dock="Left" Width="50" Height="50" VerticalAlignment="Center" Source="/Resources/error.png" Visibility="Collapsed"/>
+                <TextBlock x:Name="MessageTextBlock" Text="Сообщение" TextWrapping="WrapWithOverflow" FontSize="16" VerticalAlignment="Center"/>
+            </DockPanel>
             <DockPanel Margin="10,0,10,10" LastChildFill="True" VerticalAlignment="Top">
                 <Button x:Name="OkButton" Content="Ок" Click="OkButton_Click"  Width="100" DockPanel.Dock="Right"
                     FontWeight="DemiBold" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Background="#FF00B3FF" Foreground="White">
