@@ -83,33 +83,6 @@
     <Compile Include="AboutProgramWindow.xaml.cs">
       <DependentUpon>AboutProgramWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageWindow.xaml.cs">
-      <DependentUpon>MessageWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="TextDialogWindow.xaml.cs">
-      <DependentUpon>TextDialogWindow.xaml</DependentUpon>
-    </Compile>
-    <Page Include="AboutProgramWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Controls\ComponentConfigurator.xaml.cs">
-      <DependentUpon>ComponentConfigurator.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\NumericTextBox.xaml.cs">
-      <DependentUpon>NumericTextBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\NumericUpDown.xaml.cs">
-      <DependentUpon>NumericUpDown.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Data\Case.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
@@ -125,25 +98,8 @@
     <Compile Include="Data\Color.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\ComponentType.cs" />
     <Compile Include="Data\Component.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\ComponentExtended.cs" />
-    <Compile Include="Data\ConfiguratorPCModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ConfiguratorPCModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\ConfiguratorPCModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\ConfiguratorPCModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ConfiguratorPCModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Data\Connector.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
@@ -154,7 +110,6 @@
     <Compile Include="Data\Core.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\DAL.cs" />
     <Compile Include="Data\DataStorage.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
@@ -218,7 +173,6 @@
     <Compile Include="Data\Picture.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\PictureExtended.cs" />
     <Compile Include="Data\PowerSupply.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
@@ -246,6 +200,9 @@
     <Compile Include="Data\ProcessorPowerPlug.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\RadiatorSize.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\RAM.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
@@ -258,6 +215,73 @@
     <Compile Include="Data\Socket.cs">
       <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\SoundAdapterChipset.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\SSD.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\VideoCard.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\VideoCardPowerPlug.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\VideoMemoryType.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\VideoOutput.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\VideoPowerConnector.cs">
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MessageWindow.xaml.cs">
+      <DependentUpon>MessageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TextDialogWindow.xaml.cs">
+      <DependentUpon>TextDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AboutProgramWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\ComponentConfigurator.xaml.cs">
+      <DependentUpon>ComponentConfigurator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NumericTextBox.xaml.cs">
+      <DependentUpon>NumericTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NumericUpDown.xaml.cs">
+      <DependentUpon>NumericUpDown.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Data\ComponentType.cs" />
+    <Compile Include="Data\ComponentExtended.cs" />
+    <Compile Include="Data\ConfiguratorPCModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConfiguratorPCModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\ConfiguratorPCModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\ConfiguratorPCModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConfiguratorPCModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DAL.cs" />
+    <Compile Include="Data\PictureExtended.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -297,27 +321,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Configurator.cs" />
-    <Compile Include="Data\SoundAdapterChipset.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\SSD.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\VideoCard.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\VideoCardPowerPlug.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\VideoMemoryType.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\VideoOutput.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\VideoPowerConnector.cs">
-      <DependentUpon>ConfiguratorPCModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="FeedBack.cs" />
     <Compile Include="Pages\ComponentPage.xaml.cs">
       <DependentUpon>ComponentPage.xaml</DependentUpon>
@@ -379,6 +382,54 @@
       <DependentUpon>ConfiguratorPCModel.edmx</DependentUpon>
       <LastGenOutput>ConfiguratorPCModel.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\Pictures\57_1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Pictures\58_1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Pictures\58_2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Pictures\58_3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Pictures\58_4.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Pictures\59_1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Pictures\60_1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Pictures\61_1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Pictures\61_2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Pictures\61_3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Pictures\62_1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Pictures\62_2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Pictures\62_3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Pictures\63_1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Pictures\64_1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Pictures\64_2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Resource Include="Resources\info.png" />
     <Resource Include="Resources\error.png" />
     <Resource Include="Resources\trash.png" />

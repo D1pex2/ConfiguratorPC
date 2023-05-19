@@ -434,6 +434,7 @@ namespace ConfiguratorPC
                     if (ProcessorCooler.LiquidCooler != null)
                     {
                         cases = cases.Where(c => c.LiquidCoolerCompatible).ToList();
+                        cases = cases.Where(c => c.RadiatorSizes.Count > 0 && c.RadiatorSizes.Any(s => s.Id == ProcessorCooler.LiquidCooler.IdRadiatorSize)).ToList();
                     }
                 }
                 if (PowerSupply != null)
@@ -495,6 +496,17 @@ namespace ConfiguratorPC
                         foreach (var procCooler in temp)
                         {
                             if (procCooler.LiquidCooler != null)
+                            {
+                                processorCoolers.Remove(procCooler);
+                            }
+                        }
+                    }
+                    if (Case.LiquidCoolerCompatible && Case.RadiatorSizes.Count > 0)
+                    {
+                        temp = processorCoolers.ToList();
+                        foreach (var procCooler in temp)
+                        {
+                            if (procCooler.LiquidCooler != null && !Case.RadiatorSizes.Any(s => s.Id == procCooler.LiquidCooler.IdRadiatorSize))
                             {
                                 processorCoolers.Remove(procCooler);
                             }

@@ -18,7 +18,6 @@ namespace ConfiguratorPC.Data
         public bool Serviced { get; set; }
         public int IdWaterblockMaterial { get; set; }
         public string WaterblockSize { get; set; }
-        public string RadiatorMountingSize { get; set; }
         public short RadiatorLength { get; set; }
         public short RadiatorWidth { get; set; }
         public short RadiatorThickness { get; set; }
@@ -26,8 +25,10 @@ namespace ConfiguratorPC.Data
         public string PumpConnector { get; set; }
         public short PipeLength { get; set; }
         public bool TransparentPipe { get; set; }
+        public int IdRadiatorSize { get; set; }
     
         public virtual Material Material { get; set; }
         public virtual ProcessorCooler ProcessorCooler { get; set; }
+        public virtual RadiatorSize RadiatorSize { get; set; }
     }
 }

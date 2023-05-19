@@ -66,7 +66,6 @@ namespace ConfiguratorPC.Data
         public virtual DbSet<VideoMemoryType> VideoMemoryTypes { get; set; }
         public virtual DbSet<VideoOutput> VideoOutputs { get; set; }
         public virtual DbSet<VideoPowerConnector> VideoPowerConnectors { get; set; }
-        public virtual DbSet<Case> Cases { get; set; }
         public virtual DbSet<VideoCard> VideoCards { get; set; }
         public virtual DbSet<Cooler> Coolers { get; set; }
         public virtual DbSet<DataStorage> DataStorages { get; set; }
@@ -75,5 +74,7 @@ namespace ConfiguratorPC.Data
         public virtual DbSet<GraphicsProcessingUnit> GraphicsProcessingUnits { get; set; }
         public virtual DbSet<Processor> Processors { get; set; }
         public virtual DbSet<Picture> Pictures { get; set; }
+        public virtual DbSet<Case> Cases { get; set; }
+        public virtual DbSet<RadiatorSize> RadiatorSizes { get; set; }
     }
 }

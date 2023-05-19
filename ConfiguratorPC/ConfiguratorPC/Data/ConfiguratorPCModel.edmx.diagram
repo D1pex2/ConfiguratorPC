@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3a81e1589fd846fb8d126080cd7a5d35" Name="Diagram1" ZoomLevel="66">
+      <Diagram DiagramId="3a81e1589fd846fb8d126080cd7a5d35" Name="Diagram1" ZoomLevel="75">
         <EntityTypeShape EntityType="ConfiguratorPCModel.CaseConnector" Width="1.5" PointX="5.25" PointY="8.75" />
         <EntityTypeShape EntityType="ConfiguratorPCModel.CaseSize" Width="1.5" PointX="0.75" PointY="4" />
         <EntityTypeShape EntityType="ConfiguratorPCModel.Chipset" Width="1.5" PointX="8.25" PointY="10.5" />
@@ -88,16 +88,6 @@
         <AssociationConnector Association="ConfiguratorPCModel.MotherBoardVideoOutput" />
         <AssociationConnector Association="ConfiguratorPCModel.ProcessorConnectorPlug" />
         <AssociationConnector Association="ConfiguratorPCModel.VideoCardConnectorPlug" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.Case" Width="1.5" PointX="3" PointY="7.625" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_Case_CaseSize" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_Case_Color" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_Case_Component" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_Case_LightingType" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_Case_PowerSupplyFormFactor" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_CaseConnector_Case" />
-        <AssociationConnector Association="ConfiguratorPCModel.CaseCompatibleMotherBoardFormFactor" />
-        <AssociationConnector Association="ConfiguratorPCModel.CaseFrontPanelMaterial" />
-        <AssociationConnector Association="ConfiguratorPCModel.CaseMaterial" />
         <EntityTypeShape EntityType="ConfiguratorPCModel.VideoCard" Width="1.5" PointX="16.5" PointY="24.375" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_Component" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_GraphicProcessor" />
@@ -126,7 +116,20 @@
         <AssociationConnector Association="ConfiguratorPCModel.ProcessorCompatibleMemoryType" />
         <EntityTypeShape EntityType="ConfiguratorPCModel.Picture" Width="1.5" PointX="3" PointY="27.875" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_Picture_Component" />
-      </Diagram>
+        <EntityTypeShape EntityType="ConfiguratorPCModel.Case" Width="1.5" PointX="3" PointY="7.5" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_Case_CaseSize" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_Case_Color" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_Case_Component" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_Case_LightingType" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_Case_PowerSupplyFormFactor" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_CaseConnector_Case" />
+        <AssociationConnector Association="ConfiguratorPCModel.CaseCompatibleMotherBoardFormFactor" />
+        <AssociationConnector Association="ConfiguratorPCModel.CaseFrontPanelMaterial" />
+        <AssociationConnector Association="ConfiguratorPCModel.CaseMaterial" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.RadiatorSize" Width="1.5" PointX="5.25" PointY="39.75" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_LiquidCooler_RadiatorSize" />
+        <AssociationConnector Association="ConfiguratorPCModel.CaseRadiatorSize" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

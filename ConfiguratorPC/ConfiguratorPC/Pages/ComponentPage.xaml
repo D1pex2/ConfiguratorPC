@@ -665,6 +665,8 @@
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Форм-фактор и габариты" Style="{StaticResource TitleTextBlock}"/>
                         <TextBlock Text="Типоразмер корпуса" Grid.Row="1"/>
@@ -720,19 +722,22 @@
                         <TextBlock Text="Возможность установки системы жидкостного охлаждения" Grid.Row="35"/>
                         <TextBlock x:Name="CaseLiquidCoolerComptibleTextBlock" Grid.Row="35" Grid.Column="1"/>
                         <Separator Grid.Row="36"/>
-                        <TextBlock Text='Количество отсеков 3.5" накопителей' Grid.Row="37"/>
-                        <TextBlock x:Name="Case35QuantityTextBlock" Grid.Row="37" Grid.Column="1"/>
+                        <TextBlock Text="Монтажный размер радиатора СЖО" Grid.Row="37"/>
+                        <TextBlock x:Name="CaseLiquidCoolerRadiatorSizeTextBlock" Grid.Row="37" Grid.Column="1"/>
                         <Separator Grid.Row="38"/>
-                        <TextBlock Text='Количество отсеков 2.5" накопителей' Grid.Row="39"/>
-                        <TextBlock x:Name="Case25QuantityTextBlock" Grid.Row="39" Grid.Column="1"/>
+                        <TextBlock Text='Количество отсеков 3.5" накопителей' Grid.Row="39"/>
+                        <TextBlock x:Name="Case35QuantityTextBlock" Grid.Row="39" Grid.Column="1"/>
                         <Separator Grid.Row="40"/>
-                        <TextBlock Text="Разъемы" Grid.Row="41" Style="{StaticResource TitleTextBlock}"/>
-                        <TextBlock Text="Разъемы" Grid.Row="42"/>
-                        <TextBlock x:Name="CaseConnectorsTextBlock" Grid.Row="42" Grid.Column="1"/>
-                        <Separator Grid.Row="43"/>
-                        <TextBlock Text="Встроенный кард-ридер" Grid.Row="44"/>
-                        <TextBlock x:Name="CaseCardReaderTextBlock" Grid.Row="44" Grid.Column="1"/>
+                        <TextBlock Text='Количество отсеков 2.5" накопителей' Grid.Row="41"/>
+                        <TextBlock x:Name="Case25QuantityTextBlock" Grid.Row="41" Grid.Column="1"/>
+                        <Separator Grid.Row="42"/>
+                        <TextBlock Text="Разъемы" Grid.Row="43" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Разъемы" Grid.Row="44"/>
+                        <TextBlock x:Name="CaseConnectorsTextBlock" Grid.Row="44" Grid.Column="1"/>
                         <Separator Grid.Row="45"/>
+                        <TextBlock Text="Встроенный кард-ридер" Grid.Row="46"/>
+                        <TextBlock x:Name="CaseCardReaderTextBlock" Grid.Row="46" Grid.Column="1"/>
+                        <Separator Grid.Row="47"/>
                     </Grid>
                     <Grid x:Name="VideocardGrid" Visibility="Collapsed">
                         <Grid.ColumnDefinitions>

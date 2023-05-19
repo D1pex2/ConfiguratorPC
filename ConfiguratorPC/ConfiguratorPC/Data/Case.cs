@@ -19,8 +19,9 @@ namespace ConfiguratorPC.Data
         {
             this.CaseConnectors = new HashSet<CaseConnector>();
             this.MotherBoardFormFactors = new HashSet<MotherBoardFormFactor>();
-            this.FrontPanelMaterials = new HashSet<Material>();
             this.Materials = new HashSet<Material>();
+            this.FrontPanelMaterials = new HashSet<Material>();
+            this.RadiatorSizes = new HashSet<RadiatorSize>();
         }
     
         public int IdComponent { get; set; }
@@ -52,8 +53,10 @@ namespace ConfiguratorPC.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MotherBoardFormFactor> MotherBoardFormFactors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Material> Materials { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Material> FrontPanelMaterials { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Material> Materials { get; set; }
+        public virtual ICollection<RadiatorSize> RadiatorSizes { get; set; }
     }
 }

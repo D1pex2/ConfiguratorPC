@@ -279,6 +279,7 @@ namespace ConfiguratorPC.Pages
             CaseMaxCoolerHeigthTextBlock.Text = $"{component.Case.MaxCoolerHeigth} мм";
             CaseMaxVideocardLengthTextBlock.Text = $"{component.Case.MaxVideoCardLength} мм";
             CaseLiquidCoolerComptibleTextBlock.Text = component.Case.LiquidCoolerCompatible ? "есть" : "нет";
+            CaseLiquidCoolerRadiatorSizeTextBlock.Text = component.Case.RadiatorSizes.Count == 0 ? "нет" : component.Case.RadiatorSizes.Select(c => $"{c.Size} мм").Aggregate((first, second) => $"{first}, {second}");
             Case25QuantityTextBlock.Text = component.Case.Storage25Quantity == 0 ? "нет" : component.Case.Storage25Quantity.ToString();
             Case35QuantityTextBlock.Text = component.Case.Storage35Quantity == 0 ? "нет" : component.Case.Storage35Quantity.ToString();
 
@@ -361,7 +362,7 @@ namespace ConfiguratorPC.Pages
             if (component.ProcessorCooler.LiquidCooler != null)
             {
                 ComponentTypeTextBlock.Text = "Система жидкостного охлаждения";
-                CommonInfoTextBlock.Text = $"Водоблок - {component.ProcessorCooler.LiquidCooler.Material.Name}, радиатор - {radiatorMaterial}, {fanPin}, {component.ProcessorCooler.LiquidCooler.RadiatorMountingSize}";
+                CommonInfoTextBlock.Text = $"Водоблок - {component.ProcessorCooler.LiquidCooler.Material.Name}, радиатор - {radiatorMaterial}, {fanPin}, {component.ProcessorCooler.LiquidCooler.RadiatorSize.Size}";
 
                 LiquidServicedTextBlock.Text = component.ProcessorCooler.LiquidCooler.Serviced ? "да" : "нет";
                 LiquidCoolerSocketTextBlock.Text = sokets;
@@ -372,7 +373,7 @@ namespace ConfiguratorPC.Pages
                 LiquidRadiatorLengthTextBlock.Text = $"{component.ProcessorCooler.LiquidCooler.RadiatorLength} мм";
                 LiquidRadiatorWidthTextBlock.Text = $"{component.ProcessorCooler.LiquidCooler.RadiatorWidth} мм";
                 LiquidRadiatorThicknessTextBlock.Text = $"{component.ProcessorCooler.LiquidCooler.RadiatorThickness} мм";
-                LiquidRadiatorSizeTextBlock.Text = component.ProcessorCooler.LiquidCooler.RadiatorMountingSize;
+                LiquidRadiatorSizeTextBlock.Text = $"{component.ProcessorCooler.LiquidCooler.RadiatorSize.Size} мм";
 
                 LiquidPumpRotationSpeedTextBlock.Text = $"{component.ProcessorCooler.LiquidCooler.PumpRotationSpeed} об/мин";
                 LiquidPumpConnectorTextBlock.Text = component.ProcessorCooler.LiquidCooler.PumpConnector;

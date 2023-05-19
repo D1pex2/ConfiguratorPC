@@ -65,7 +65,7 @@ namespace ConfiguratorPC.Controls
 
         private int pageNumber = 1;
 
-        private int PageNumber
+        public int PageNumber
         {
             get => pageNumber;
             set
@@ -861,6 +861,7 @@ namespace ConfiguratorPC.Controls
             else if (Component == null)
             {
                 ComponentsBorder.Visibility = Visibility.Visible;
+                pageNumber = 1;
                 FillList();
                 ComponentsScrollViewer.PageUp();
             }

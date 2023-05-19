@@ -28,18 +28,30 @@ namespace ConfiguratorPC.Data
         {
             get
             {
-                var path = $@"{dir}Pictures\\{Pictures.First().Path}";
-                if (Pictures.Count == 0 || !File.Exists(path))
+                if (Pictures.Count == 0)
                 {
-                    var placeholder = $"{dir}placeholder.png";
-                    if (!File.Exists(placeholder))
-                    {
-                        Directory.CreateDirectory(dir);
-                        Properties.Resources.placeholder.Save(placeholder);
-                    }
-                    return new Uri(placeholder);
+                    return Placeholder;
+                }
+                var path = $@"{dir}Pictures\\{Pictures.First().Path}";
+                if (!File.Exists(path))
+                {
+                    return Placeholder;
                 }
                 return new Uri(path);
+            }
+        }
+
+        public Uri Placeholder
+        {
+            get
+            {
+                var placeholder = $"{dir}placeholder.png";
+                if (!File.Exists(placeholder))
+                {
+                    Directory.CreateDirectory(dir);
+                    Properties.Resources.placeholder.Save(placeholder);
+                }
+                return new Uri(placeholder);
             }
         }
 
