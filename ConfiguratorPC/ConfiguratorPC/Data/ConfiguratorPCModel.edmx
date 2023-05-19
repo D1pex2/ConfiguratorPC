@@ -575,12 +575,12 @@
           <Property Name="VideoMemorySize" Type="tinyint" Nullable="false" />
           <Property Name="IdVideoMemoryType" Type="int" Nullable="false" />
           <Property Name="MemoryBusBitRate" Type="smallint" Nullable="false" />
-          <Property Name="MaxMemoryBandwidth" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="MaxMemoryBandwidth" Type="decimal" Precision="5" Scale="1" Nullable="false" />
           <Property Name="EffectiveMemoryFrequency" Type="smallint" Nullable="false" />
           <Property Name="VideoChipFrequency" Type="smallint" Nullable="false" />
-          <Property Name="ALUQuantity" Type="tinyint" Nullable="false" />
-          <Property Name="TextureBlockQuantity" Type="tinyint" Nullable="false" />
-          <Property Name="RasterizationBlockQuantity" Type="tinyint" Nullable="false" />
+          <Property Name="ALUQuantity" Type="smallint" Nullable="false" />
+          <Property Name="TextureBlockQuantity" Type="smallint" Nullable="false" />
+          <Property Name="RasterizationBlockQuantity" Type="smallint" Nullable="false" />
           <Property Name="RayTracingSupport" Type="bit" Nullable="false" />
           <Property Name="MaxMonitorQuantity" Type="tinyint" Nullable="false" />
           <Property Name="IdPCIEController" Type="int" Nullable="false" />
@@ -590,7 +590,7 @@
           <Property Name="FanQuantity" Type="tinyint" />
           <Property Name="ExpansionSlotSize" Type="tinyint" Nullable="false" />
           <Property Name="Thickness" Type="smallint" Nullable="false" />
-          <Property Name="Mass" Type="smallint" Nullable="false" />
+          <Property Name="Mass" Type="smallint" />
           <Property Name="IdVideoCardPowerPlug" Type="int" />
         </EntityType>
         <EntityType Name="VideoCardConnectorPlug">
@@ -608,6 +608,7 @@
           </Key>
           <Property Name="IdVideoCard" Type="int" Nullable="false" />
           <Property Name="IdVideoOutput" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="VideoCardPowerPlug">
           <Key>
@@ -621,7 +622,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="VideoOutput">
           <Key>
@@ -2293,35 +2294,6 @@
             <End Role="VideoCardPowerPlug" EntitySet="VideoCardPowerPlugs" />
             <End Role="VideoPowerConnector" EntitySet="VideoPowerConnectors" />
           </AssociationSet>
-          <EntitySet Name="VideoCards" EntityType="ConfiguratorPCModel.VideoCard" />
-          <AssociationSet Name="FK_VideoCard_Component" Association="ConfiguratorPCModel.FK_VideoCard_Component">
-            <End Role="Component" EntitySet="Components" />
-            <End Role="VideoCard" EntitySet="VideoCards" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VideoCard_GraphicProcessor" Association="ConfiguratorPCModel.FK_VideoCard_GraphicProcessor">
-            <End Role="GraphicProcessor" EntitySet="GraphicProcessors" />
-            <End Role="VideoCard" EntitySet="VideoCards" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VideoCard_Microarchitecture" Association="ConfiguratorPCModel.FK_VideoCard_Microarchitecture">
-            <End Role="Microarchitecture" EntitySet="Microarchitectures" />
-            <End Role="VideoCard" EntitySet="VideoCards" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VideoCard_PCIEController" Association="ConfiguratorPCModel.FK_VideoCard_PCIEController">
-            <End Role="PCIEController" EntitySet="PCIEControllers" />
-            <End Role="VideoCard" EntitySet="VideoCards" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VideoCard_VideoCardPowerPlug" Association="ConfiguratorPCModel.FK_VideoCard_VideoCardPowerPlug">
-            <End Role="VideoCardPowerPlug" EntitySet="VideoCardPowerPlugs" />
-            <End Role="VideoCard" EntitySet="VideoCards" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VideoCard_VideoMemoryType" Association="ConfiguratorPCModel.FK_VideoCard_VideoMemoryType">
-            <End Role="VideoMemoryType" EntitySet="VideoMemoryTypes" />
-            <End Role="VideoCard" EntitySet="VideoCards" />
-          </AssociationSet>
-          <AssociationSet Name="VideoCardOutput" Association="ConfiguratorPCModel.VideoCardOutput">
-            <End Role="VideoCard" EntitySet="VideoCards" />
-            <End Role="VideoOutput" EntitySet="VideoOutputs" />
-          </AssociationSet>
           <EntitySet Name="Coolers" EntityType="ConfiguratorPCModel.Cooler" />
           <AssociationSet Name="FK_Cooler_Material" Association="ConfiguratorPCModel.FK_Cooler_Material">
             <End Role="Material" EntitySet="Materials" />
@@ -2427,6 +2399,40 @@
             <End Role="Case" EntitySet="Cases" />
             <End Role="RadiatorSize" EntitySet="RadiatorSizes" />
           </AssociationSet>
+          <EntitySet Name="VideoCards" EntityType="ConfiguratorPCModel.VideoCard" />
+          <EntitySet Name="VideoCardOutputs" EntityType="ConfiguratorPCModel.VideoCardOutput" />
+          <AssociationSet Name="FK_VideoCard_Component" Association="ConfiguratorPCModel.FK_VideoCard_Component">
+            <End Role="Component" EntitySet="Components" />
+            <End Role="VideoCard" EntitySet="VideoCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCard_GraphicProcessor" Association="ConfiguratorPCModel.FK_VideoCard_GraphicProcessor">
+            <End Role="GraphicProcessor" EntitySet="GraphicProcessors" />
+            <End Role="VideoCard" EntitySet="VideoCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCard_Microarchitecture" Association="ConfiguratorPCModel.FK_VideoCard_Microarchitecture">
+            <End Role="Microarchitecture" EntitySet="Microarchitectures" />
+            <End Role="VideoCard" EntitySet="VideoCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCard_PCIEController" Association="ConfiguratorPCModel.FK_VideoCard_PCIEController">
+            <End Role="PCIEController" EntitySet="PCIEControllers" />
+            <End Role="VideoCard" EntitySet="VideoCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCard_VideoCardPowerPlug" Association="ConfiguratorPCModel.FK_VideoCard_VideoCardPowerPlug">
+            <End Role="VideoCardPowerPlug" EntitySet="VideoCardPowerPlugs" />
+            <End Role="VideoCard" EntitySet="VideoCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCard_VideoMemoryType" Association="ConfiguratorPCModel.FK_VideoCard_VideoMemoryType">
+            <End Role="VideoMemoryType" EntitySet="VideoMemoryTypes" />
+            <End Role="VideoCard" EntitySet="VideoCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCardOutput_VideoCard" Association="ConfiguratorPCModel.FK_VideoCardOutput_VideoCard">
+            <End Role="VideoCard" EntitySet="VideoCards" />
+            <End Role="VideoCardOutput" EntitySet="VideoCardOutputs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCardOutput_VideoOutput" Association="ConfiguratorPCModel.FK_VideoCardOutput_VideoOutput">
+            <End Role="VideoOutput" EntitySet="VideoOutputs" />
+            <End Role="VideoCardOutput" EntitySet="VideoCardOutputs" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="CaseConnector">
           <Key>
@@ -2477,11 +2483,11 @@
           <NavigationProperty Name="PowerSupply" Relationship="ConfiguratorPCModel.FK_PowerSupply_Component" FromRole="Component" ToRole="PowerSupply" />
           <NavigationProperty Name="ProcessorCooler" Relationship="ConfiguratorPCModel.FK_ProcessorCooler_Component" FromRole="Component" ToRole="ProcessorCooler" />
           <NavigationProperty Name="RAM" Relationship="ConfiguratorPCModel.FK_RAM_Component" FromRole="Component" ToRole="RAM" />
-          <NavigationProperty Name="VideoCard" Relationship="ConfiguratorPCModel.FK_VideoCard_Component" FromRole="Component" ToRole="VideoCard" />
           <NavigationProperty Name="DataStorage" Relationship="ConfiguratorPCModel.FK_DataStorage_Component" FromRole="Component" ToRole="DataStorage" />
           <NavigationProperty Name="Processor" Relationship="ConfiguratorPCModel.FK_Processor_Component" FromRole="Component" ToRole="Processor" />
           <NavigationProperty Name="Pictures" Relationship="ConfiguratorPCModel.FK_Picture_Component" FromRole="Component" ToRole="Picture" />
           <NavigationProperty Name="Case" Relationship="ConfiguratorPCModel.FK_Case_Component" FromRole="Component" ToRole="Case" />
+          <NavigationProperty Name="VideoCard" Relationship="ConfiguratorPCModel.FK_VideoCard_Component" FromRole="Component" ToRole="VideoCard" />
         </EntityType>
         <EntityType Name="Connector">
           <Key>
@@ -2709,8 +2715,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MotherBoards" Relationship="ConfiguratorPCModel.FK_MotherBoard_PCIEController" FromRole="PCIEController" ToRole="MotherBoard" />
-          <NavigationProperty Name="VideoCards" Relationship="ConfiguratorPCModel.FK_VideoCard_PCIEController" FromRole="PCIEController" ToRole="VideoCard" />
           <NavigationProperty Name="Processors" Relationship="ConfiguratorPCModel.FK_Processor_PCIEController" FromRole="PCIEController" ToRole="Processor" />
+          <NavigationProperty Name="VideoCards" Relationship="ConfiguratorPCModel.FK_VideoCard_PCIEController" FromRole="PCIEController" ToRole="VideoCard" />
         </EntityType>
         <EntityType Name="PowerSupply">
           <Key>
@@ -2886,7 +2892,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="VideoCards" Relationship="ConfiguratorPCModel.FK_VideoCard_VideoMemoryType" FromRole="VideoMemoryType" ToRole="VideoCard" />
         </EntityType>
         <EntityType Name="VideoOutput">
@@ -2896,7 +2902,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MotherBoards" Relationship="ConfiguratorPCModel.MotherBoardVideoOutput" FromRole="VideoOutput" ToRole="MotherBoard" />
-          <NavigationProperty Name="VideoCards" Relationship="ConfiguratorPCModel.VideoCardOutput" FromRole="VideoOutput" ToRole="VideoCard" />
+          <NavigationProperty Name="VideoCardOutputs" Relationship="ConfiguratorPCModel.FK_VideoCardOutput_VideoOutput" FromRole="VideoOutput" ToRole="VideoCardOutput" />
         </EntityType>
         <EntityType Name="VideoPowerConnector">
           <Key>
@@ -3355,119 +3361,6 @@
           <End Type="ConfiguratorPCModel.VideoCardPowerPlug" Role="VideoCardPowerPlug" Multiplicity="*" />
           <End Type="ConfiguratorPCModel.VideoPowerConnector" Role="VideoPowerConnector" Multiplicity="*" />
         </Association>
-        <EntityType Name="VideoCard">
-          <Key>
-            <PropertyRef Name="IdComponent" />
-          </Key>
-          <Property Name="IdComponent" Type="Int32" Nullable="false" />
-          <Property Name="Length" Type="Int16" Nullable="false" />
-          <Property Name="IdGraphicProcessor" Type="Int32" Nullable="false" />
-          <Property Name="IdMicroarchitecture" Type="Int32" Nullable="false" />
-          <Property Name="TechProcess" Type="Byte" Nullable="false" />
-          <Property Name="VideoMemorySize" Type="Byte" Nullable="false" />
-          <Property Name="IdVideoMemoryType" Type="Int32" Nullable="false" />
-          <Property Name="MemoryBusBitRate" Type="Int16" Nullable="false" />
-          <Property Name="MaxMemoryBandwidth" Type="Decimal" Nullable="false" Precision="4" Scale="1" />
-          <Property Name="EffectiveMemoryFrequency" Type="Int16" Nullable="false" />
-          <Property Name="VideoChipFrequency" Type="Int16" Nullable="false" />
-          <Property Name="ALUQuantity" Type="Byte" Nullable="false" />
-          <Property Name="TextureBlockQuantity" Type="Byte" Nullable="false" />
-          <Property Name="RasterizationBlockQuantity" Type="Byte" Nullable="false" />
-          <Property Name="RayTracingSupport" Type="Boolean" Nullable="false" />
-          <Property Name="MaxMonitorQuantity" Type="Byte" Nullable="false" />
-          <Property Name="IdPCIEController" Type="Int32" Nullable="false" />
-          <Property Name="PowerSupply" Type="Int16" Nullable="false" />
-          <Property Name="CoolerType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FanType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="FanQuantity" Type="Byte" />
-          <Property Name="ExpansionSlotSize" Type="Byte" Nullable="false" />
-          <Property Name="Thickness" Type="Int16" Nullable="false" />
-          <Property Name="Mass" Type="Int16" Nullable="false" />
-          <Property Name="IdVideoCardPowerPlug" Type="Int32" />
-          <NavigationProperty Name="Component" Relationship="ConfiguratorPCModel.FK_VideoCard_Component" FromRole="VideoCard" ToRole="Component" />
-          <NavigationProperty Name="GraphicProcessor" Relationship="ConfiguratorPCModel.FK_VideoCard_GraphicProcessor" FromRole="VideoCard" ToRole="GraphicProcessor" />
-          <NavigationProperty Name="Microarchitecture" Relationship="ConfiguratorPCModel.FK_VideoCard_Microarchitecture" FromRole="VideoCard" ToRole="Microarchitecture" />
-          <NavigationProperty Name="PCIEController" Relationship="ConfiguratorPCModel.FK_VideoCard_PCIEController" FromRole="VideoCard" ToRole="PCIEController" />
-          <NavigationProperty Name="VideoCardPowerPlug" Relationship="ConfiguratorPCModel.FK_VideoCard_VideoCardPowerPlug" FromRole="VideoCard" ToRole="VideoCardPowerPlug" />
-          <NavigationProperty Name="VideoMemoryType" Relationship="ConfiguratorPCModel.FK_VideoCard_VideoMemoryType" FromRole="VideoCard" ToRole="VideoMemoryType" />
-          <NavigationProperty Name="VideoOutputs" Relationship="ConfiguratorPCModel.VideoCardOutput" FromRole="VideoCard" ToRole="VideoOutput" />
-        </EntityType>
-        <Association Name="FK_VideoCard_Component">
-          <End Type="ConfiguratorPCModel.Component" Role="Component" Multiplicity="1" />
-          <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Component">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="VideoCard">
-              <PropertyRef Name="IdComponent" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VideoCard_GraphicProcessor">
-          <End Type="ConfiguratorPCModel.GraphicProcessor" Role="GraphicProcessor" Multiplicity="1" />
-          <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GraphicProcessor">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="VideoCard">
-              <PropertyRef Name="IdGraphicProcessor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VideoCard_Microarchitecture">
-          <End Type="ConfiguratorPCModel.Microarchitecture" Role="Microarchitecture" Multiplicity="1" />
-          <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Microarchitecture">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="VideoCard">
-              <PropertyRef Name="IdMicroarchitecture" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VideoCard_PCIEController">
-          <End Type="ConfiguratorPCModel.PCIEController" Role="PCIEController" Multiplicity="1" />
-          <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PCIEController">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="VideoCard">
-              <PropertyRef Name="IdPCIEController" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VideoCard_VideoCardPowerPlug">
-          <End Type="ConfiguratorPCModel.VideoCardPowerPlug" Role="VideoCardPowerPlug" Multiplicity="0..1" />
-          <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="VideoCardPowerPlug">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="VideoCard">
-              <PropertyRef Name="IdVideoCardPowerPlug" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VideoCard_VideoMemoryType">
-          <End Type="ConfiguratorPCModel.VideoMemoryType" Role="VideoMemoryType" Multiplicity="1" />
-          <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="VideoMemoryType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="VideoCard">
-              <PropertyRef Name="IdVideoMemoryType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="VideoCardOutput">
-          <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="*" />
-          <End Type="ConfiguratorPCModel.VideoOutput" Role="VideoOutput" Multiplicity="*" />
-        </Association>
         <EntityType Name="Cooler">
           <Key>
             <PropertyRef Name="IdProcessorCooler" />
@@ -3873,6 +3766,150 @@
         <Association Name="CaseRadiatorSize">
           <End Type="ConfiguratorPCModel.Case" Role="Case" Multiplicity="*" />
           <End Type="ConfiguratorPCModel.RadiatorSize" Role="RadiatorSize" Multiplicity="*" />
+        </Association>
+        <EntityType Name="VideoCard">
+          <Key>
+            <PropertyRef Name="IdComponent" />
+          </Key>
+          <Property Name="IdComponent" Type="Int32" Nullable="false" />
+          <Property Name="Length" Type="Int16" Nullable="false" />
+          <Property Name="IdGraphicProcessor" Type="Int32" Nullable="false" />
+          <Property Name="IdMicroarchitecture" Type="Int32" Nullable="false" />
+          <Property Name="TechProcess" Type="Byte" Nullable="false" />
+          <Property Name="VideoMemorySize" Type="Byte" Nullable="false" />
+          <Property Name="IdVideoMemoryType" Type="Int32" Nullable="false" />
+          <Property Name="MemoryBusBitRate" Type="Int16" Nullable="false" />
+          <Property Name="MaxMemoryBandwidth" Type="Decimal" Nullable="false" Precision="5" Scale="1" />
+          <Property Name="EffectiveMemoryFrequency" Type="Int16" Nullable="false" />
+          <Property Name="VideoChipFrequency" Type="Int16" Nullable="false" />
+          <Property Name="ALUQuantity" Type="Int16" Nullable="false" />
+          <Property Name="TextureBlockQuantity" Type="Int16" Nullable="false" />
+          <Property Name="RasterizationBlockQuantity" Type="Int16" Nullable="false" />
+          <Property Name="RayTracingSupport" Type="Boolean" Nullable="false" />
+          <Property Name="MaxMonitorQuantity" Type="Byte" Nullable="false" />
+          <Property Name="IdPCIEController" Type="Int32" Nullable="false" />
+          <Property Name="PowerSupply" Type="Int16" Nullable="false" />
+          <Property Name="CoolerType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FanType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FanQuantity" Type="Byte" />
+          <Property Name="ExpansionSlotSize" Type="Byte" Nullable="false" />
+          <Property Name="Thickness" Type="Int16" Nullable="false" />
+          <Property Name="Mass" Type="Int16" />
+          <Property Name="IdVideoCardPowerPlug" Type="Int32" />
+          <NavigationProperty Name="Component" Relationship="ConfiguratorPCModel.FK_VideoCard_Component" FromRole="VideoCard" ToRole="Component" />
+          <NavigationProperty Name="GraphicProcessor" Relationship="ConfiguratorPCModel.FK_VideoCard_GraphicProcessor" FromRole="VideoCard" ToRole="GraphicProcessor" />
+          <NavigationProperty Name="Microarchitecture" Relationship="ConfiguratorPCModel.FK_VideoCard_Microarchitecture" FromRole="VideoCard" ToRole="Microarchitecture" />
+          <NavigationProperty Name="PCIEController" Relationship="ConfiguratorPCModel.FK_VideoCard_PCIEController" FromRole="VideoCard" ToRole="PCIEController" />
+          <NavigationProperty Name="VideoCardPowerPlug" Relationship="ConfiguratorPCModel.FK_VideoCard_VideoCardPowerPlug" FromRole="VideoCard" ToRole="VideoCardPowerPlug" />
+          <NavigationProperty Name="VideoMemoryType" Relationship="ConfiguratorPCModel.FK_VideoCard_VideoMemoryType" FromRole="VideoCard" ToRole="VideoMemoryType" />
+          <NavigationProperty Name="VideoCardOutputs" Relationship="ConfiguratorPCModel.FK_VideoCardOutput_VideoCard" FromRole="VideoCard" ToRole="VideoCardOutput" />
+        </EntityType>
+        <EntityType Name="VideoCardOutput">
+          <Key>
+            <PropertyRef Name="IdVideoCard" />
+            <PropertyRef Name="IdVideoOutput" />
+          </Key>
+          <Property Name="IdVideoCard" Type="Int32" Nullable="false" />
+          <Property Name="IdVideoOutput" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="VideoCard" Relationship="ConfiguratorPCModel.FK_VideoCardOutput_VideoCard" FromRole="VideoCardOutput" ToRole="VideoCard" />
+          <NavigationProperty Name="VideoOutput" Relationship="ConfiguratorPCModel.FK_VideoCardOutput_VideoOutput" FromRole="VideoCardOutput" ToRole="VideoOutput" />
+        </EntityType>
+        <Association Name="FK_VideoCard_Component">
+          <End Type="ConfiguratorPCModel.Component" Role="Component" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Component">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoCard">
+              <PropertyRef Name="IdComponent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCard_GraphicProcessor">
+          <End Type="ConfiguratorPCModel.GraphicProcessor" Role="GraphicProcessor" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GraphicProcessor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoCard">
+              <PropertyRef Name="IdGraphicProcessor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCard_Microarchitecture">
+          <End Type="ConfiguratorPCModel.Microarchitecture" Role="Microarchitecture" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Microarchitecture">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoCard">
+              <PropertyRef Name="IdMicroarchitecture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCard_PCIEController">
+          <End Type="ConfiguratorPCModel.PCIEController" Role="PCIEController" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PCIEController">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoCard">
+              <PropertyRef Name="IdPCIEController" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCard_VideoCardPowerPlug">
+          <End Type="ConfiguratorPCModel.VideoCardPowerPlug" Role="VideoCardPowerPlug" Multiplicity="0..1" />
+          <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoCardPowerPlug">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoCard">
+              <PropertyRef Name="IdVideoCardPowerPlug" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCard_VideoMemoryType">
+          <End Type="ConfiguratorPCModel.VideoMemoryType" Role="VideoMemoryType" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoMemoryType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoCard">
+              <PropertyRef Name="IdVideoMemoryType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCardOutput_VideoCard">
+          <End Type="ConfiguratorPCModel.VideoCard" Role="VideoCard" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.VideoCardOutput" Role="VideoCardOutput" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoCard">
+              <PropertyRef Name="IdComponent" />
+            </Principal>
+            <Dependent Role="VideoCardOutput">
+              <PropertyRef Name="IdVideoCard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCardOutput_VideoOutput">
+          <End Type="ConfiguratorPCModel.VideoOutput" Role="VideoOutput" Multiplicity="1" />
+          <End Type="ConfiguratorPCModel.VideoCardOutput" Role="VideoCardOutput" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoOutput">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoCardOutput">
+              <PropertyRef Name="IdVideoOutput" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -4338,45 +4375,6 @@
               <ScalarProperty Name="Id" ColumnName="IdVideoCardPowerPlug" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="VideoCards">
-            <EntityTypeMapping TypeName="ConfiguratorPCModel.VideoCard">
-              <MappingFragment StoreEntitySet="VideoCard">
-                <ScalarProperty Name="IdVideoCardPowerPlug" ColumnName="IdVideoCardPowerPlug" />
-                <ScalarProperty Name="Mass" ColumnName="Mass" />
-                <ScalarProperty Name="Thickness" ColumnName="Thickness" />
-                <ScalarProperty Name="ExpansionSlotSize" ColumnName="ExpansionSlotSize" />
-                <ScalarProperty Name="FanQuantity" ColumnName="FanQuantity" />
-                <ScalarProperty Name="FanType" ColumnName="FanType" />
-                <ScalarProperty Name="CoolerType" ColumnName="CoolerType" />
-                <ScalarProperty Name="PowerSupply" ColumnName="PowerSupply" />
-                <ScalarProperty Name="IdPCIEController" ColumnName="IdPCIEController" />
-                <ScalarProperty Name="MaxMonitorQuantity" ColumnName="MaxMonitorQuantity" />
-                <ScalarProperty Name="RayTracingSupport" ColumnName="RayTracingSupport" />
-                <ScalarProperty Name="RasterizationBlockQuantity" ColumnName="RasterizationBlockQuantity" />
-                <ScalarProperty Name="TextureBlockQuantity" ColumnName="TextureBlockQuantity" />
-                <ScalarProperty Name="ALUQuantity" ColumnName="ALUQuantity" />
-                <ScalarProperty Name="VideoChipFrequency" ColumnName="VideoChipFrequency" />
-                <ScalarProperty Name="EffectiveMemoryFrequency" ColumnName="EffectiveMemoryFrequency" />
-                <ScalarProperty Name="MaxMemoryBandwidth" ColumnName="MaxMemoryBandwidth" />
-                <ScalarProperty Name="MemoryBusBitRate" ColumnName="MemoryBusBitRate" />
-                <ScalarProperty Name="IdVideoMemoryType" ColumnName="IdVideoMemoryType" />
-                <ScalarProperty Name="VideoMemorySize" ColumnName="VideoMemorySize" />
-                <ScalarProperty Name="TechProcess" ColumnName="TechProcess" />
-                <ScalarProperty Name="IdMicroarchitecture" ColumnName="IdMicroarchitecture" />
-                <ScalarProperty Name="IdGraphicProcessor" ColumnName="IdGraphicProcessor" />
-                <ScalarProperty Name="Length" ColumnName="Length" />
-                <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="VideoCardOutput" TypeName="ConfiguratorPCModel.VideoCardOutput" StoreEntitySet="VideoCardOutput">
-            <EndProperty Name="VideoOutput">
-              <ScalarProperty Name="Id" ColumnName="IdVideoOutput" />
-            </EndProperty>
-            <EndProperty Name="VideoCard">
-              <ScalarProperty Name="IdComponent" ColumnName="IdVideoCard" />
-            </EndProperty>
-          </AssociationSetMapping>
           <EntitySetMapping Name="Coolers">
             <EntityTypeMapping TypeName="ConfiguratorPCModel.Cooler">
               <MappingFragment StoreEntitySet="Cooler">
@@ -4556,6 +4554,46 @@
               <ScalarProperty Name="IdComponent" ColumnName="IdCase" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="VideoCards">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.VideoCard">
+              <MappingFragment StoreEntitySet="VideoCard">
+                <ScalarProperty Name="IdVideoCardPowerPlug" ColumnName="IdVideoCardPowerPlug" />
+                <ScalarProperty Name="Mass" ColumnName="Mass" />
+                <ScalarProperty Name="Thickness" ColumnName="Thickness" />
+                <ScalarProperty Name="ExpansionSlotSize" ColumnName="ExpansionSlotSize" />
+                <ScalarProperty Name="FanQuantity" ColumnName="FanQuantity" />
+                <ScalarProperty Name="FanType" ColumnName="FanType" />
+                <ScalarProperty Name="CoolerType" ColumnName="CoolerType" />
+                <ScalarProperty Name="PowerSupply" ColumnName="PowerSupply" />
+                <ScalarProperty Name="IdPCIEController" ColumnName="IdPCIEController" />
+                <ScalarProperty Name="MaxMonitorQuantity" ColumnName="MaxMonitorQuantity" />
+                <ScalarProperty Name="RayTracingSupport" ColumnName="RayTracingSupport" />
+                <ScalarProperty Name="RasterizationBlockQuantity" ColumnName="RasterizationBlockQuantity" />
+                <ScalarProperty Name="TextureBlockQuantity" ColumnName="TextureBlockQuantity" />
+                <ScalarProperty Name="ALUQuantity" ColumnName="ALUQuantity" />
+                <ScalarProperty Name="VideoChipFrequency" ColumnName="VideoChipFrequency" />
+                <ScalarProperty Name="EffectiveMemoryFrequency" ColumnName="EffectiveMemoryFrequency" />
+                <ScalarProperty Name="MaxMemoryBandwidth" ColumnName="MaxMemoryBandwidth" />
+                <ScalarProperty Name="MemoryBusBitRate" ColumnName="MemoryBusBitRate" />
+                <ScalarProperty Name="IdVideoMemoryType" ColumnName="IdVideoMemoryType" />
+                <ScalarProperty Name="VideoMemorySize" ColumnName="VideoMemorySize" />
+                <ScalarProperty Name="TechProcess" ColumnName="TechProcess" />
+                <ScalarProperty Name="IdMicroarchitecture" ColumnName="IdMicroarchitecture" />
+                <ScalarProperty Name="IdGraphicProcessor" ColumnName="IdGraphicProcessor" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="IdComponent" ColumnName="IdComponent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoCardOutputs">
+            <EntityTypeMapping TypeName="ConfiguratorPCModel.VideoCardOutput">
+              <MappingFragment StoreEntitySet="VideoCardOutput">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IdVideoOutput" ColumnName="IdVideoOutput" />
+                <ScalarProperty Name="IdVideoCard" ColumnName="IdVideoCard" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

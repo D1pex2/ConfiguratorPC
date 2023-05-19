@@ -18,7 +18,7 @@ namespace ConfiguratorPC.Data
         public VideoOutput()
         {
             this.MotherBoards = new HashSet<MotherBoard>();
-            this.VideoCards = new HashSet<VideoCard>();
+            this.VideoCardOutputs = new HashSet<VideoCardOutput>();
         }
     
         public int Id { get; set; }
@@ -27,6 +27,6 @@ namespace ConfiguratorPC.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MotherBoard> MotherBoards { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VideoCard> VideoCards { get; set; }
+        public virtual ICollection<VideoCardOutput> VideoCardOutputs { get; set; }
     }
 }

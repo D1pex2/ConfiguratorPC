@@ -88,14 +88,6 @@
         <AssociationConnector Association="ConfiguratorPCModel.MotherBoardVideoOutput" />
         <AssociationConnector Association="ConfiguratorPCModel.ProcessorConnectorPlug" />
         <AssociationConnector Association="ConfiguratorPCModel.VideoCardConnectorPlug" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.VideoCard" Width="1.5" PointX="16.5" PointY="24.375" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_Component" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_GraphicProcessor" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_Microarchitecture" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_PCIEController" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_VideoCardPowerPlug" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_VideoMemoryType" />
-        <AssociationConnector Association="ConfiguratorPCModel.VideoCardOutput" />
         <EntityTypeShape EntityType="ConfiguratorPCModel.Cooler" Width="1.5" PointX="8.25" PointY="15" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_Cooler_Material" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_Cooler_ProcessorCooler" />
@@ -129,6 +121,16 @@
         <EntityTypeShape EntityType="ConfiguratorPCModel.RadiatorSize" Width="1.5" PointX="5.25" PointY="39.75" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_LiquidCooler_RadiatorSize" />
         <AssociationConnector Association="ConfiguratorPCModel.CaseRadiatorSize" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.VideoCard" Width="1.5" PointX="16.5" PointY="24.375" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.VideoCardOutput" Width="1.5" PointX="18" PointY="15.625" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_Component" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_GraphicProcessor" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_Microarchitecture" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_PCIEController" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_VideoCardPowerPlug" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_VideoMemoryType" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCardOutput_VideoCard" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCardOutput_VideoOutput" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

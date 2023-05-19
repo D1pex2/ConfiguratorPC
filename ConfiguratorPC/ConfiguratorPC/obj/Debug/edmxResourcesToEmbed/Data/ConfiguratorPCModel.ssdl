@@ -570,12 +570,12 @@
     <Property Name="VideoMemorySize" Type="tinyint" Nullable="false" />
     <Property Name="IdVideoMemoryType" Type="int" Nullable="false" />
     <Property Name="MemoryBusBitRate" Type="smallint" Nullable="false" />
-    <Property Name="MaxMemoryBandwidth" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+    <Property Name="MaxMemoryBandwidth" Type="decimal" Precision="5" Scale="1" Nullable="false" />
     <Property Name="EffectiveMemoryFrequency" Type="smallint" Nullable="false" />
     <Property Name="VideoChipFrequency" Type="smallint" Nullable="false" />
-    <Property Name="ALUQuantity" Type="tinyint" Nullable="false" />
-    <Property Name="TextureBlockQuantity" Type="tinyint" Nullable="false" />
-    <Property Name="RasterizationBlockQuantity" Type="tinyint" Nullable="false" />
+    <Property Name="ALUQuantity" Type="smallint" Nullable="false" />
+    <Property Name="TextureBlockQuantity" Type="smallint" Nullable="false" />
+    <Property Name="RasterizationBlockQuantity" Type="smallint" Nullable="false" />
     <Property Name="RayTracingSupport" Type="bit" Nullable="false" />
     <Property Name="MaxMonitorQuantity" Type="tinyint" Nullable="false" />
     <Property Name="IdPCIEController" Type="int" Nullable="false" />
@@ -585,7 +585,7 @@
     <Property Name="FanQuantity" Type="tinyint" />
     <Property Name="ExpansionSlotSize" Type="tinyint" Nullable="false" />
     <Property Name="Thickness" Type="smallint" Nullable="false" />
-    <Property Name="Mass" Type="smallint" Nullable="false" />
+    <Property Name="Mass" Type="smallint" />
     <Property Name="IdVideoCardPowerPlug" Type="int" />
   </EntityType>
   <EntityType Name="VideoCardConnectorPlug">
@@ -603,6 +603,7 @@
     </Key>
     <Property Name="IdVideoCard" Type="int" Nullable="false" />
     <Property Name="IdVideoOutput" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="tinyint" Nullable="false" />
   </EntityType>
   <EntityType Name="VideoCardPowerPlug">
     <Key>
@@ -616,7 +617,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
   </EntityType>
   <EntityType Name="VideoOutput">
     <Key>

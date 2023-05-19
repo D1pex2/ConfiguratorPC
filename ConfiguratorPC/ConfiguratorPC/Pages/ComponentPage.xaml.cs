@@ -291,7 +291,7 @@ namespace ConfiguratorPC.Pages
 
         private void VideocardInit()
         {
-            var videoOutputs = component.VideoCard.VideoOutputs.Count == 0 ? "" : $"{component.VideoCard.VideoOutputs.Select(v => v.Name).Aggregate((first, second) => $"{first}, {second}")}, ";
+            var videoOutputs = component.VideoCard.VideoCardOutputs.Count == 0 ? "" : $"{component.VideoCard.VideoCardOutputs.Select(o => $"{o.VideoOutput.Name} x{o.Quantity}").Aggregate((first, second) => $"{first}, {second}")}, ";
             CommonInfoTextBlock.Text = $"{component.VideoCard.PCIEController.Name}, {component.VideoCard.VideoMemorySize} ГБ {component.VideoCard.VideoMemoryType.Name}, {component.VideoCard.MemoryBusBitRate} бит, " +
                 videoOutputs + $"{component.VideoCard.VideoChipFrequency} МГц";
             ComponentTypeTextBlock.Text = "Видеокарта";
@@ -312,7 +312,7 @@ namespace ConfiguratorPC.Pages
             VideocardRasterizationBlocksTextBlock.Text = component.VideoCard.RasterizationBlockQuantity.ToString();
             VideocardRayTracingTextBlock.Text = component.VideoCard.RayTracingSupport ? "есть" : "нет";
 
-            VideocardOutputsTextBlock.Text = component.VideoCard.VideoOutputs.Count == 0 ? "нет" : component.VideoCard.VideoOutputs.Select(o => o.Name).Aggregate((first, second) => $"{first}, {second}");
+            VideocardOutputsTextBlock.Text = component.VideoCard.VideoCardOutputs.Count == 0 ? "нет" : component.VideoCard.VideoCardOutputs.Select(o => $"{o.VideoOutput.Name} x{o.Quantity}").Aggregate((first, second) => $"{first}, {second}");
             VideocardMaxMonitorsTextBlock.Text = component.VideoCard.MaxMonitorQuantity.ToString();
 
             VideocardPCIVersionTextBlock.Text = component.VideoCard.PCIEController.Name;
@@ -325,7 +325,7 @@ namespace ConfiguratorPC.Pages
             VideocardExpansionSlotsTextBlock.Text = component.VideoCard.ExpansionSlotSize.ToString();
             VideocardLengthTextBlock.Text = $"{component.VideoCard.Length} мм";
             VideocardThicknessTextBlock.Text = $"{component.VideoCard.Thickness} мм";
-            VideocardMassTextBlock.Text = $"{component.VideoCard.Mass} г";
+            VideocardMassTextBlock.Text = component.VideoCard.Mass != null ? $"{component.VideoCard.Mass} г" : "-";
 
             VideocardGrid.Visibility = Visibility.Visible;
         }
