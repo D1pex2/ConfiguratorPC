@@ -59,6 +59,7 @@ namespace ConfiguratorPC.Pages
                 {
                     ImageListBorder.Visibility = Visibility.Hidden;
                     ImageBorder.CornerRadius = new CornerRadius(10, 10, 10, 10);
+                    SelectedImage.Width = 600;
                 }
                 else
                 {
@@ -206,8 +207,11 @@ namespace ConfiguratorPC.Pages
 
         private void InitRAM()
         {
+            var rcd = component.RAM.RAStoCAASDelay == null ? "" : $"-{component.RAM.RAStoCAASDelay}";
+            var rpd = component.RAM.RowPrechargeDelay == null ? "" : $"-{component.RAM.RowPrechargeDelay}";
+            var apcd = component.RAM.ActivateToPreChargeDelay == null ? "" : $"-{component.RAM.ActivateToPreChargeDelay}";
             CommonInfoTextBlock.Text = $"{component.RAM.RAMType.Name}, {component.RAM.MemorySize} ГБ, {component.RAM.Frequency} МГц," +
-                $" {component.RAM.CASLatency}-{component.RAM.RAStoCAASDelay}-{component.RAM.RowPrechargeDelay}-{component.RAM.ActivateToPreChargeDelay}";
+                $" {component.RAM.CASLatency}" + rcd + rpd + apcd;
             ComponentTypeTextBlock.Text = "Оперативная память";
 
             RAMTypeTextBlock.Text = component.RAM.RAMType.Name;
@@ -218,9 +222,9 @@ namespace ConfiguratorPC.Pages
             RAMREGTextBlock.Text = component.RAM.HasRegistr ? "есть" : "нет";
 
             RAMCLTextBlock.Text = component.RAM.CASLatency.ToString();
-            RAMtRCDTextBlock.Text = component.RAM.RAStoCAASDelay.ToString();
-            RAMtRPTextBlock.Text = component.RAM.RowPrechargeDelay.ToString();
-            RAMtRASTextBlock.Text = component.RAM.ActivateToPreChargeDelay.ToString();
+            RAMtRCDTextBlock.Text = component.RAM.RAStoCAASDelay == null ? "нет" : component.RAM.RAStoCAASDelay.ToString();
+            RAMtRPTextBlock.Text = component.RAM.RowPrechargeDelay == null ? "нет" : component.RAM.RowPrechargeDelay.ToString();
+            RAMtRASTextBlock.Text = component.RAM.ActivateToPreChargeDelay == null ? "нет" : component.RAM.ActivateToPreChargeDelay.ToString();
 
             RAMRadiatorTextBlock.Text = component.RAM.HasRadiator ? "есть" : "нет";
             RAMVoltageTextBlock.Text = $"{component.RAM.Voltage} В";

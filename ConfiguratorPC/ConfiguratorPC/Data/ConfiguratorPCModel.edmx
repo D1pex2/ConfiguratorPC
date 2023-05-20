@@ -517,9 +517,9 @@
           <Property Name="HasRegistr" Type="bit" Nullable="false" />
           <Property Name="HasECC" Type="bit" Nullable="false" />
           <Property Name="CASLatency" Type="tinyint" Nullable="false" />
-          <Property Name="RAStoCAASDelay" Type="tinyint" Nullable="false" />
-          <Property Name="RowPrechargeDelay" Type="tinyint" Nullable="false" />
-          <Property Name="ActivateToPreChargeDelay" Type="tinyint" Nullable="false" />
+          <Property Name="RAStoCAASDelay" Type="tinyint" />
+          <Property Name="RowPrechargeDelay" Type="tinyint" />
+          <Property Name="ActivateToPreChargeDelay" Type="tinyint" />
           <Property Name="HasRadiator" Type="bit" Nullable="false" />
           <Property Name="Voltage" Type="decimal" Precision="3" Scale="2" Nullable="false" />
         </EntityType>
@@ -2832,9 +2832,9 @@
           <Property Name="HasRegistr" Type="Boolean" Nullable="false" />
           <Property Name="HasECC" Type="Boolean" Nullable="false" />
           <Property Name="CASLatency" Type="Byte" Nullable="false" />
-          <Property Name="RAStoCAASDelay" Type="Byte" Nullable="false" />
-          <Property Name="RowPrechargeDelay" Type="Byte" Nullable="false" />
-          <Property Name="ActivateToPreChargeDelay" Type="Byte" Nullable="false" />
+          <Property Name="RAStoCAASDelay" Type="Byte" />
+          <Property Name="RowPrechargeDelay" Type="Byte" />
+          <Property Name="ActivateToPreChargeDelay" Type="Byte" />
           <Property Name="HasRadiator" Type="Boolean" Nullable="false" />
           <Property Name="Voltage" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
           <NavigationProperty Name="Component" Relationship="ConfiguratorPCModel.FK_RAM_Component" FromRole="RAM" ToRole="Component" />

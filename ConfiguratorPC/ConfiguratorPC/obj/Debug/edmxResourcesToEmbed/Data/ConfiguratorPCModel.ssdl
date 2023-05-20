@@ -512,9 +512,9 @@
     <Property Name="HasRegistr" Type="bit" Nullable="false" />
     <Property Name="HasECC" Type="bit" Nullable="false" />
     <Property Name="CASLatency" Type="tinyint" Nullable="false" />
-    <Property Name="RAStoCAASDelay" Type="tinyint" Nullable="false" />
-    <Property Name="RowPrechargeDelay" Type="tinyint" Nullable="false" />
-    <Property Name="ActivateToPreChargeDelay" Type="tinyint" Nullable="false" />
+    <Property Name="RAStoCAASDelay" Type="tinyint" />
+    <Property Name="RowPrechargeDelay" Type="tinyint" />
+    <Property Name="ActivateToPreChargeDelay" Type="tinyint" />
     <Property Name="HasRadiator" Type="bit" Nullable="false" />
     <Property Name="Voltage" Type="decimal" Precision="3" Scale="2" Nullable="false" />
   </EntityType>

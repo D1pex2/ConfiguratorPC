@@ -22,9 +22,9 @@ namespace ConfiguratorPC.Data
         public bool HasRegistr { get; set; }
         public bool HasECC { get; set; }
         public byte CASLatency { get; set; }
-        public byte RAStoCAASDelay { get; set; }
-        public byte RowPrechargeDelay { get; set; }
-        public byte ActivateToPreChargeDelay { get; set; }
+        public Nullable<byte> RAStoCAASDelay { get; set; }
+        public Nullable<byte> RowPrechargeDelay { get; set; }
+        public Nullable<byte> ActivateToPreChargeDelay { get; set; }
         public bool HasRadiator { get; set; }
         public decimal Voltage { get; set; }
     
