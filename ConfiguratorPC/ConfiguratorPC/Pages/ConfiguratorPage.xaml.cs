@@ -406,6 +406,12 @@ namespace ConfiguratorPC.Pages
 
         private void DeleteConfiguratorButton_Click(object sender, RoutedEventArgs e)
         {
+            var message = new MessageWindow("Сообщение", $"Вы уверены что хотите удалить сборку \"{currentConfigurator.Name}\"?");
+            message.ShowDialog();
+            if (message.DialogResult != true)
+            {
+                return;
+            }
             configurators.Remove(currentConfigurator);
             File.Delete($@"{path}\\{currentConfigurator.Name}.json");
             if (configurators.Count == 0)

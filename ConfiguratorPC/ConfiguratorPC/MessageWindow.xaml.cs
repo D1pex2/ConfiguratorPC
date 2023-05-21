@@ -33,6 +33,7 @@ namespace ConfiguratorPC
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
+            DialogResult = true;
             Close();
         }
 
@@ -43,6 +44,12 @@ namespace ConfiguratorPC
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
+            Close();
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
             Close();
         }
     }
