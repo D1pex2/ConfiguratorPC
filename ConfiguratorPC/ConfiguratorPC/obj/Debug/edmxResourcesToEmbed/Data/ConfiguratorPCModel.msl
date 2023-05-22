@@ -289,6 +289,7 @@
     <EntitySetMapping Name="ProcessorCoolers">
       <EntityTypeMapping TypeName="ConfiguratorPCModel.ProcessorCooler">
         <MappingFragment StoreEntitySet="ProcessorCooler">
+          <ScalarProperty Name="TDP" ColumnName="TDP" />
           <ScalarProperty Name="BearingType" ColumnName="BearingType" />
           <ScalarProperty Name="MaxStaticPressure" ColumnName="MaxStaticPressure" />
           <ScalarProperty Name="MaxAirflow" ColumnName="MaxAirflow" />
@@ -469,7 +470,6 @@
           <ScalarProperty Name="TermPipeQuantity" ColumnName="TermPipeQuantity" />
           <ScalarProperty Name="IdBaseMaterial" ColumnName="IdBaseMaterial" />
           <ScalarProperty Name="ConstructionType" ColumnName="ConstructionType" />
-          <ScalarProperty Name="DissipationPower" ColumnName="DissipationPower" />
           <ScalarProperty Name="Heigth" ColumnName="Heigth" />
           <ScalarProperty Name="IdProcessorCooler" ColumnName="IdProcessorCooler" />
         </MappingFragment>

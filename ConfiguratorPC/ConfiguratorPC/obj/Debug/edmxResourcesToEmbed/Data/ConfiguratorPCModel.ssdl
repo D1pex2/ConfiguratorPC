@@ -107,7 +107,6 @@
     </Key>
     <Property Name="IdProcessorCooler" Type="int" Nullable="false" />
     <Property Name="Heigth" Type="smallint" Nullable="false" />
-    <Property Name="DissipationPower" Type="smallint" Nullable="false" />
     <Property Name="ConstructionType" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="IdBaseMaterial" Type="int" Nullable="false" />
     <Property Name="TermPipeQuantity" Type="tinyint" />
@@ -478,6 +477,7 @@
     <Property Name="MaxAirflow" Type="decimal" Precision="5" Scale="2" />
     <Property Name="MaxStaticPressure" Type="decimal" Precision="5" Scale="2" />
     <Property Name="BearingType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TDP" Type="smallint" Nullable="false" />
   </EntityType>
   <EntityType Name="ProcessorPowerConnector">
     <Key>

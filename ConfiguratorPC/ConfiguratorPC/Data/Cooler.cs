@@ -16,7 +16,6 @@ namespace ConfiguratorPC.Data
     {
         public int IdProcessorCooler { get; set; }
         public short Heigth { get; set; }
-        public short DissipationPower { get; set; }
         public string ConstructionType { get; set; }
         public int IdBaseMaterial { get; set; }
         public Nullable<byte> TermPipeQuantity { get; set; }

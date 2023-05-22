@@ -717,6 +717,7 @@
     <NavigationProperty Name="Material" Relationship="ConfiguratorPCModel.FK_ProcessorCooler_Material" FromRole="ProcessorCooler" ToRole="Material" />
     <NavigationProperty Name="Sockets" Relationship="ConfiguratorPCModel.CoolerCompatibleSocket" FromRole="ProcessorCooler" ToRole="Socket" />
     <NavigationProperty Name="Cooler" Relationship="ConfiguratorPCModel.FK_Cooler_ProcessorCooler" FromRole="ProcessorCooler" ToRole="Cooler" />
+    <Property Name="TDP" Type="Int16" Nullable="false" />
   </EntityType>
   <EntityType Name="ProcessorPowerConnector">
     <Key>
@@ -1283,7 +1284,6 @@
     </Key>
     <Property Name="IdProcessorCooler" Type="Int32" Nullable="false" />
     <Property Name="Heigth" Type="Int16" Nullable="false" />
-    <Property Name="DissipationPower" Type="Int16" Nullable="false" />
     <Property Name="ConstructionType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="IdBaseMaterial" Type="Int32" Nullable="false" />
     <Property Name="TermPipeQuantity" Type="Byte" />

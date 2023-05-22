@@ -343,10 +343,10 @@ namespace ConfiguratorPC.Pages
             if (component.ProcessorCooler.Cooler != null)
             {
                 ComponentTypeTextBlock.Text = "Кулер для процессора";
-                CommonInfoTextBlock.Text = $"Основание - {component.ProcessorCooler.Cooler.Material.Name}, радиатор - {radiatorMaterial}, {fanPin}, {component.ProcessorCooler.Cooler.DissipationPower} Вт";
+                CommonInfoTextBlock.Text = $"Основание - {component.ProcessorCooler.Cooler.Material.Name}, радиатор - {radiatorMaterial}, {fanPin}, {component.ProcessorCooler.TDP} Вт";
 
                 CoolerSocketTextBlock.Text = sokets;
-                CoolerPowerTextBlock.Text = $"{component.ProcessorCooler.Cooler.DissipationPower} Вт";
+                CoolerPowerTextBlock.Text = $"{component.ProcessorCooler.TDP} Вт";
                 CoolerConstructionTypeTextBlock.Text = component.ProcessorCooler.Cooler.ConstructionType;
 
                 CoolerBaseMaterialTextBlock.Text = component.ProcessorCooler.Cooler.Material.Name;
@@ -366,7 +366,7 @@ namespace ConfiguratorPC.Pages
             if (component.ProcessorCooler.LiquidCooler != null)
             {
                 ComponentTypeTextBlock.Text = "Система жидкостного охлаждения";
-                CommonInfoTextBlock.Text = $"Водоблок - {component.ProcessorCooler.LiquidCooler.Material.Name}, радиатор - {radiatorMaterial}, {fanPin}, {component.ProcessorCooler.LiquidCooler.RadiatorSize.Size}";
+                CommonInfoTextBlock.Text = $"Водоблок - {component.ProcessorCooler.LiquidCooler.Material.Name}, радиатор - {radiatorMaterial}, {fanPin}, {component.ProcessorCooler.LiquidCooler.RadiatorSize.Size} мм, {component.ProcessorCooler.TDP} Вт";
 
                 LiquidServicedTextBlock.Text = component.ProcessorCooler.LiquidCooler.Serviced ? "да" : "нет";
                 LiquidCoolerSocketTextBlock.Text = sokets;
@@ -374,6 +374,7 @@ namespace ConfiguratorPC.Pages
                 LiquidBlockSizeTextBlock.Text = component.ProcessorCooler.LiquidCooler.WaterblockSize;
 
                 LiquidRadiatorMaterialTextBlock.Text = radiatorMaterial;
+                LiquidTDPTextBlock.Text = $"{component.ProcessorCooler.TDP} Вт";
                 LiquidRadiatorLengthTextBlock.Text = $"{component.ProcessorCooler.LiquidCooler.RadiatorLength} мм";
                 LiquidRadiatorWidthTextBlock.Text = $"{component.ProcessorCooler.LiquidCooler.RadiatorWidth} мм";
                 LiquidRadiatorThicknessTextBlock.Text = $"{component.ProcessorCooler.LiquidCooler.RadiatorThickness} мм";

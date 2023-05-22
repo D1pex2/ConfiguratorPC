@@ -969,6 +969,8 @@
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Водоблок" Style="{StaticResource TitleTextBlock}"/>
                         <TextBlock Text="Обслуживаемая СЖО" Grid.Row="1"/>
@@ -984,35 +986,38 @@
                         <TextBlock x:Name="LiquidBlockSizeTextBlock" Grid.Row="7" Grid.Column="1"/>
                         <Separator Grid.Row="8"/>
                         <TextBlock Text="Радиатор" Grid.Row="9" Style="{StaticResource TitleTextBlock}"/>
-                        <TextBlock Text="Монтажный размер радиатора" Grid.Row="10"/>
-                        <TextBlock x:Name="LiquidRadiatorSizeTextBlock" Grid.Row="10" Grid.Column="1"/>
+                        <TextBlock Text="Рассеиваемая мощность" Grid.Row="10"/>
+                        <TextBlock x:Name="LiquidTDPTextBlock" Grid.Row="10" Grid.Column="1"/>
                         <Separator Grid.Row="11"/>
-                        <TextBlock Text="Длина радиатора" Grid.Row="12"/>
-                        <TextBlock x:Name="LiquidRadiatorLengthTextBlock" Grid.Row="12" Grid.Column="1"/>
+                        <TextBlock Text="Монтажный размер радиатора" Grid.Row="12"/>
+                        <TextBlock x:Name="LiquidRadiatorSizeTextBlock" Grid.Row="12" Grid.Column="1"/>
                         <Separator Grid.Row="13"/>
-                        <TextBlock Text="Ширина радиатора" Grid.Row="14"/>
-                        <TextBlock x:Name="LiquidRadiatorWidthTextBlock" Grid.Row="14" Grid.Column="1"/>
+                        <TextBlock Text="Длина радиатора" Grid.Row="14"/>
+                        <TextBlock x:Name="LiquidRadiatorLengthTextBlock" Grid.Row="14" Grid.Column="1"/>
                         <Separator Grid.Row="15"/>
-                        <TextBlock Text="Толщина радиатора" Grid.Row="16"/>
-                        <TextBlock x:Name="LiquidRadiatorThicknessTextBlock" Grid.Row="16" Grid.Column="1"/>
+                        <TextBlock Text="Ширина радиатора" Grid.Row="16"/>
+                        <TextBlock x:Name="LiquidRadiatorWidthTextBlock" Grid.Row="16" Grid.Column="1"/>
                         <Separator Grid.Row="17"/>
-                        <TextBlock Text="Материал радиатора" Grid.Row="18"/>
-                        <TextBlock x:Name="LiquidRadiatorMaterialTextBlock" Grid.Row="18" Grid.Column="1"/>
+                        <TextBlock Text="Толщина радиатора" Grid.Row="18"/>
+                        <TextBlock x:Name="LiquidRadiatorThicknessTextBlock" Grid.Row="18" Grid.Column="1"/>
                         <Separator Grid.Row="19"/>
-                        <TextBlock Text="Помпа" Grid.Row="20" Style="{StaticResource TitleTextBlock}"/>
-                        <TextBlock Text="Скорость вращения помпы" Grid.Row="21"/>
-                        <TextBlock x:Name="LiquidPumpRotationSpeedTextBlock" Grid.Row="21" Grid.Column="1"/>
-                        <Separator Grid.Row="22"/>
-                        <TextBlock Text="Разъем подключения помпы" Grid.Row="23"/>
-                        <TextBlock x:Name="LiquidPumpConnectorTextBlock" Grid.Row="23" Grid.Column="1"/>
+                        <TextBlock Text="Материал радиатора" Grid.Row="20"/>
+                        <TextBlock x:Name="LiquidRadiatorMaterialTextBlock" Grid.Row="20" Grid.Column="1"/>
+                        <Separator Grid.Row="21"/>
+                        <TextBlock Text="Помпа" Grid.Row="22" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Скорость вращения помпы" Grid.Row="23"/>
+                        <TextBlock x:Name="LiquidPumpRotationSpeedTextBlock" Grid.Row="23" Grid.Column="1"/>
                         <Separator Grid.Row="24"/>
-                        <TextBlock Text="Трубки" Grid.Row="25" Style="{StaticResource TitleTextBlock}"/>
-                        <TextBlock Text="Длина трубок" Grid.Row="26"/>
-                        <TextBlock x:Name="LiquidPipeLengthTextBlock" Grid.Row="26" Grid.Column="1"/>
-                        <Separator Grid.Row="27"/>
-                        <TextBlock Text="Прозрачные трубки" Grid.Row="28"/>
-                        <TextBlock x:Name="LiquidTransparentLengthTextBlock" Grid.Row="28" Grid.Column="1"/>
+                        <TextBlock Text="Разъем подключения помпы" Grid.Row="25"/>
+                        <TextBlock x:Name="LiquidPumpConnectorTextBlock" Grid.Row="25" Grid.Column="1"/>
+                        <Separator Grid.Row="26"/>
+                        <TextBlock Text="Трубки" Grid.Row="27" Style="{StaticResource TitleTextBlock}"/>
+                        <TextBlock Text="Длина трубок" Grid.Row="28"/>
+                        <TextBlock x:Name="LiquidPipeLengthTextBlock" Grid.Row="28" Grid.Column="1"/>
                         <Separator Grid.Row="29"/>
+                        <TextBlock Text="Прозрачные трубки" Grid.Row="30"/>
+                        <TextBlock x:Name="LiquidTransparentLengthTextBlock" Grid.Row="30" Grid.Column="1"/>
+                        <Separator Grid.Row="31"/>
                     </Grid>
                     <Grid x:Name="CoolerFanGrid" Visibility="Collapsed">
                         <Grid.ColumnDefinitions>

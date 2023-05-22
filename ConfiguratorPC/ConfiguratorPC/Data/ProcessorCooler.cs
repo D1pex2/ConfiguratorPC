@@ -32,6 +32,7 @@ namespace ConfiguratorPC.Data
         public Nullable<decimal> MaxAirflow { get; set; }
         public Nullable<decimal> MaxStaticPressure { get; set; }
         public string BearingType { get; set; }
+        public short TDP { get; set; }
     
         public virtual Component Component { get; set; }
         public virtual LiquidCooler LiquidCooler { get; set; }

@@ -112,7 +112,6 @@
           </Key>
           <Property Name="IdProcessorCooler" Type="int" Nullable="false" />
           <Property Name="Heigth" Type="smallint" Nullable="false" />
-          <Property Name="DissipationPower" Type="smallint" Nullable="false" />
           <Property Name="ConstructionType" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IdBaseMaterial" Type="int" Nullable="false" />
           <Property Name="TermPipeQuantity" Type="tinyint" />
@@ -483,6 +482,7 @@
           <Property Name="MaxAirflow" Type="decimal" Precision="5" Scale="2" />
           <Property Name="MaxStaticPressure" Type="decimal" Precision="5" Scale="2" />
           <Property Name="BearingType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TDP" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="ProcessorPowerConnector">
           <Key>
@@ -2801,6 +2801,7 @@
           <NavigationProperty Name="Material" Relationship="ConfiguratorPCModel.FK_ProcessorCooler_Material" FromRole="ProcessorCooler" ToRole="Material" />
           <NavigationProperty Name="Sockets" Relationship="ConfiguratorPCModel.CoolerCompatibleSocket" FromRole="ProcessorCooler" ToRole="Socket" />
           <NavigationProperty Name="Cooler" Relationship="ConfiguratorPCModel.FK_Cooler_ProcessorCooler" FromRole="ProcessorCooler" ToRole="Cooler" />
+          <Property Name="TDP" Type="Int16" Nullable="false" />
         </EntityType>
         <EntityType Name="ProcessorPowerConnector">
           <Key>
@@ -3367,7 +3368,6 @@
           </Key>
           <Property Name="IdProcessorCooler" Type="Int32" Nullable="false" />
           <Property Name="Heigth" Type="Int16" Nullable="false" />
-          <Property Name="DissipationPower" Type="Int16" Nullable="false" />
           <Property Name="ConstructionType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IdBaseMaterial" Type="Int32" Nullable="false" />
           <Property Name="TermPipeQuantity" Type="Byte" />
@@ -4205,6 +4205,7 @@
           <EntitySetMapping Name="ProcessorCoolers">
             <EntityTypeMapping TypeName="ConfiguratorPCModel.ProcessorCooler">
               <MappingFragment StoreEntitySet="ProcessorCooler">
+                <ScalarProperty Name="TDP" ColumnName="TDP" />
                 <ScalarProperty Name="BearingType" ColumnName="BearingType" />
                 <ScalarProperty Name="MaxStaticPressure" ColumnName="MaxStaticPressure" />
                 <ScalarProperty Name="MaxAirflow" ColumnName="MaxAirflow" />
@@ -4385,7 +4386,6 @@
                 <ScalarProperty Name="TermPipeQuantity" ColumnName="TermPipeQuantity" />
                 <ScalarProperty Name="IdBaseMaterial" ColumnName="IdBaseMaterial" />
                 <ScalarProperty Name="ConstructionType" ColumnName="ConstructionType" />
-                <ScalarProperty Name="DissipationPower" ColumnName="DissipationPower" />
                 <ScalarProperty Name="Heigth" ColumnName="Heigth" />
                 <ScalarProperty Name="IdProcessorCooler" ColumnName="IdProcessorCooler" />
               </MappingFragment>

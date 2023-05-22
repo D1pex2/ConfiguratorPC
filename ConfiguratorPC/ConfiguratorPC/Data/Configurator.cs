@@ -360,7 +360,7 @@ namespace ConfiguratorPC
                 }
                 if (ProcessorCooler != null)
                 {
-                    processors = processors.Where(p => ProcessorCooler.Sockets.Any(s => s.Id == p.IdSocket)).ToList();
+                    processors = processors.Where(p => ProcessorCooler.Sockets.Any(s => s.Id == p.IdSocket) && p.TDP <= ProcessorCooler.TDP).ToList();
                 }
                 if (RAM != null)
                 {
@@ -474,7 +474,7 @@ namespace ConfiguratorPC
                 var processorCoolers = DAL.Context.ProcessorCoolers.AsNoTracking().ToList();
                 if (Processor != null)
                 {
-                    processorCoolers = processorCoolers.Where(pc => pc.Sockets.Any(s => s.Id == Processor.IdSocket)).ToList();
+                    processorCoolers = processorCoolers.Where(pc => pc.Sockets.Any(s => s.Id == Processor.IdSocket) && pc.TDP >= Processor.TDP).ToList();
                 }
                 if (MotherBoard != null)
                 {
