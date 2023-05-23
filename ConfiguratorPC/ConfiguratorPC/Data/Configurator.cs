@@ -356,6 +356,10 @@ namespace ConfiguratorPC
                 var processors = DAL.Context.Processors.AsNoTracking().ToList();
                 if (MotherBoard != null)
                 {
+                    if (MotherBoard.EmbeddedProcessor != null)
+                    {
+                        return new List<Processor>();
+                    }
                     processors = processors.Where(p => p.RAMTypes.Any(rt => rt.Id == MotherBoard.IdRAMType) && p.IdSocket == MotherBoard.IdSocket && MotherBoard.Cores.Any(c => c.Id == p.IdCore)).ToList();
                 }
                 if (ProcessorCooler != null)
@@ -398,7 +402,7 @@ namespace ConfiguratorPC
                 if (PowerSupply != null)
                 {
                     motherBoards = motherBoards.Where(m => m.MotherBoardPowerPlug.MotherBoardPowerConnectors.Any(c => PowerSupply.PowerSupplyMotherBoardConnectors.Any(mc => mc.IdMotherBoardPowerConnector == c.Id)))
-                        .Where(m => m.ProcessorPowerPlug.ProcessorPowerConnectors.Any(c => PowerSupply.PowerSupplyProcessorPowerConnectors.Any(pc => pc.IdProcessorPowerConnector == c.Id))).ToList();
+                        .Where(m => m.ProcessorPowerPlug == null || m.ProcessorPowerPlug.ProcessorPowerConnectors.Any(c => PowerSupply.PowerSupplyProcessorPowerConnectors.Any(pc => pc.IdProcessorPowerConnector == c.Id))).ToList();
                 }
                 foreach (var dataStorage in DataStorages)
                 {
@@ -542,8 +546,11 @@ namespace ConfiguratorPC
                 var powerSupplies = DAL.Context.PowerSupplies.AsNoTracking().ToList();
                 if (MotherBoard != null)
                 {
-                    powerSupplies = powerSupplies.Where(ps => ps.PowerSupplyProcessorPowerConnectors.Any(c => MotherBoard.ProcessorPowerPlug.ProcessorPowerConnectors.Any(pc => pc.Id == c.IdProcessorPowerConnector)))
-                        .Where(ps => ps.PowerSupplyMotherBoardConnectors.Any(c => MotherBoard.MotherBoardPowerPlug.MotherBoardPowerConnectors.Any(mc => mc.Id == c.IdMotherBoardPowerConnector))).ToList();
+                    powerSupplies = powerSupplies.Where(ps => ps.PowerSupplyMotherBoardConnectors.Any(c => MotherBoard.MotherBoardPowerPlug.MotherBoardPowerConnectors.Any(mc => mc.Id == c.IdMotherBoardPowerConnector))).ToList();
+                    if (MotherBoard.ProcessorPowerPlug != null)
+                    {
+                        powerSupplies = powerSupplies.Where(ps => ps.PowerSupplyProcessorPowerConnectors.Any(c => MotherBoard.ProcessorPowerPlug.ProcessorPowerConnectors.Any(pc => pc.Id == c.IdProcessorPowerConnector))).ToList();
+                    }
                 }
                 if (Case != null)
                 {

@@ -161,3 +161,12 @@ C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bi
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\Resources\Pictures\81_1.jpg
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\Resources\Pictures\82_1.jpg
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\Resources\Pictures\82_2.jpg
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\Resources\Pictures\83_1.jpg
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\Resources\Pictures\83_2.jpg
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\Resources\Pictures\83_3.jpg
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\Resources\Pictures\84_1.jpg
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\Resources\Pictures\84_2.jpg
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\Resources\Pictures\84_3.jpg
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\Resources\Pictures\85_1.jpg
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\Resources\Pictures\85_2.jpg
+C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\Resources\Pictures\86_1.jpg

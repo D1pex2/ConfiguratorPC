@@ -69,7 +69,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <EntityType Name="Chipset">
     <Key>
@@ -264,10 +264,10 @@
     <Property Name="Width" Type="smallint" Nullable="false" />
     <Property Name="IdChipset" Type="int" Nullable="false" />
     <Property Name="MaxRAMFrequency" Type="smallint" Nullable="false" />
-    <Property Name="IdPCIControllerVersion" Type="int" Nullable="false" />
+    <Property Name="IdPCIControllerVersion" Type="int" />
     <Property Name="RJ45Quantity" Type="tinyint" Nullable="false" />
     <Property Name="AnalogAudioOutputQuantity" Type="tinyint" Nullable="false" />
-    <Property Name="CoolerPowerSupply" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="CoolerPowerSupply" Type="varchar" MaxLength="5" />
     <Property Name="M2KeyE" Type="bit" Nullable="false" />
     <Property Name="InterfaceLPT" Type="bit" Nullable="false" />
     <Property Name="SoundSchema" Type="varchar" MaxLength="3" />
@@ -278,8 +278,9 @@
     <Property Name="HasBluetooth" Type="bit" Nullable="false" />
     <Property Name="PowerPhaseQuantity" Type="tinyint" Nullable="false" />
     <Property Name="IdMotherBoardPowerPlug" Type="int" Nullable="false" />
-    <Property Name="IdProcessorPowerPlug" Type="int" Nullable="false" />
+    <Property Name="IdProcessorPowerPlug" Type="int" />
     <Property Name="StreamRAMQuantity" Type="tinyint" Nullable="false" />
+    <Property Name="EmbeddedProcessor" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="MotherBoardCompatibleCore">
     <Key>
@@ -1090,7 +1091,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_MotherBoard_PCIEController">
-    <End Role="PCIEController" Type="Self.PCIEController" Multiplicity="1" />
+    <End Role="PCIEController" Type="Self.PCIEController" Multiplicity="0..1" />
     <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PCIEController">
@@ -1102,7 +1103,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_MotherBoard_ProcessorPowerPlug">
-    <End Role="ProcessorPowerPlug" Type="Self.ProcessorPowerPlug" Multiplicity="1" />
+    <End Role="ProcessorPowerPlug" Type="Self.ProcessorPowerPlug" Multiplicity="0..1" />
     <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ProcessorPowerPlug">

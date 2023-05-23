@@ -37,7 +37,7 @@ namespace ConfiguratorPC.Data
         public short Width { get; set; }
         public int IdChipset { get; set; }
         public short MaxRAMFrequency { get; set; }
-        public int IdPCIControllerVersion { get; set; }
+        public Nullable<int> IdPCIControllerVersion { get; set; }
         public byte RJ45Quantity { get; set; }
         public byte AnalogAudioOutputQuantity { get; set; }
         public string CoolerPowerSupply { get; set; }
@@ -51,8 +51,9 @@ namespace ConfiguratorPC.Data
         public bool HasBluetooth { get; set; }
         public byte PowerPhaseQuantity { get; set; }
         public int IdMotherBoardPowerPlug { get; set; }
-        public int IdProcessorPowerPlug { get; set; }
+        public Nullable<int> IdProcessorPowerPlug { get; set; }
         public byte StreamRAMQuantity { get; set; }
+        public string EmbeddedProcessor { get; set; }
     
         public virtual Chipset Chipset { get; set; }
         public virtual Component Component { get; set; }

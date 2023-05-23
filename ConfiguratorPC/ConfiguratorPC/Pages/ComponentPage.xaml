@@ -194,6 +194,9 @@
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Форм-фактор и размеры" Style="{StaticResource TitleTextBlock}"/>
                         <TextBlock Text="Форм-фактор" Grid.Row="1"/>
@@ -304,6 +307,10 @@
                         <TextBlock Text="Количество фаз питания" Grid.Row="74"/>
                         <TextBlock x:Name="MotherboardPowerPhaseTextBlock" Grid.Row="74" Grid.Column="1"/>
                         <Separator Grid.Row="75"/>
+                        <TextBlock Text="Дополнительно" Style="{StaticResource TitleTextBlock}" Grid.Row="76"/>
+                        <TextBlock Text="Модель встроенного процессора" Grid.Row="77"/>
+                        <TextBlock x:Name="MotherboardProcessorTextBlock" Grid.Row="77" Grid.Column="1"/>
+                        <Separator Grid.Row="78"/>
                     </Grid>
                     <Grid x:Name="ProcessorGrid" Visibility="Collapsed">
                         <Grid.ColumnDefinitions>

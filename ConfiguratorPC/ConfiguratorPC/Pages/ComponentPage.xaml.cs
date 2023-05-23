@@ -130,15 +130,15 @@ namespace ConfiguratorPC.Pages
             MotherboardM2SlotsTextBlock.Text = component.MotherBoard.MotherBoardM2Key.Count == 0 ? "нет" : component.MotherBoard.MotherBoardM2Key.Select(k => $"({k.M2Key.Name}) {k.M2FormFactor.Name}").Aggregate((first, second) => $"{first}, {second}");
             MotherboardSATAQuantityTextBlock.Text = component.MotherBoard.SATAQuantity.ToString();
 
-            MotherboardPCIEVersionTextBlock.Text = component.MotherBoard.PCIEController.Name;
-            MotherboardPCIEx16QuantityTextBlock.Text = component.MotherBoard.PCIEx16Quantity.ToString();
+            MotherboardPCIEVersionTextBlock.Text = component.MotherBoard.PCIEController == null ? "нет" : component.MotherBoard.PCIEController.Name;
+            MotherboardPCIEx16QuantityTextBlock.Text = component.MotherBoard.PCIEx16Quantity == 0 ? "нет" : component.MotherBoard.PCIEx16Quantity.ToString();
 
             MotherboardUsbTextBlock.Text = component.MotherBoard.MotherBoardConnectors.Count == 0 ? "нет" : component.MotherBoard.MotherBoardConnectors.Select(c => $"{c.Connector.Name} x{c.Quantity}").Aggregate((first, second) => $"{first}, {second}");
             MotherboardNetworkSlotsQuantityTextBlock.Text = component.MotherBoard.RJ45Quantity == 0 ? "нет" : component.MotherBoard.RJ45Quantity.ToString();
             MotherboardVideoOutputTextBlock.Text = component.MotherBoard.VideoOutputs.Count == 0 ? "нет" : component.MotherBoard.VideoOutputs.Select(v => v.Name).Aggregate((first, second) => $"{first}, {second}");
             MotherboardAudioSlotsQuantityTextBlock.Text = component.MotherBoard.AnalogAudioOutputQuantity.ToString();
 
-            MotherboardCoolerPowerPlugTextBlock.Text = component.MotherBoard.CoolerPowerSupply;
+            MotherboardCoolerPowerPlugTextBlock.Text = component.MotherBoard.CoolerPowerSupply == null ? "нет" : component.MotherBoard.CoolerPowerSupply;
             MotherboardM2KeyETextBlock.Text = component.MotherBoard.M2KeyE ? "есть" : "нет";
             MotherboardLPTTextBlock.Text = component.MotherBoard.InterfaceLPT ? "есть" : "нет";
 
@@ -151,8 +151,10 @@ namespace ConfiguratorPC.Pages
             MotherboardBluetoothTextBlock.Text = component.MotherBoard.HasBluetooth ? "есть" : "нет";
 
             MotherboardPowerPlugTextBlock.Text = component.MotherBoard.MotherBoardPowerPlug.Name;
-            ProcessorPowerPlugTextBlock.Text = component.MotherBoard.ProcessorPowerPlug.Name;
+            ProcessorPowerPlugTextBlock.Text = component.MotherBoard.ProcessorPowerPlug == null ? "нет" : component.MotherBoard.ProcessorPowerPlug.Name;
             MotherboardPowerPhaseTextBlock.Text = component.MotherBoard.PowerPhaseQuantity.ToString();
+
+            MotherboardProcessorTextBlock.Text = component.MotherBoard.EmbeddedProcessor == null ? "нет" : component.MotherBoard.EmbeddedProcessor;
 
             MotherboardGrid.Visibility = Visibility.Visible;
         }

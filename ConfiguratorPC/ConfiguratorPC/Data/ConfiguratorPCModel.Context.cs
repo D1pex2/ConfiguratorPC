@@ -41,7 +41,6 @@ namespace ConfiguratorPC.Data
         public virtual DbSet<Manufacturer> Manufacturers { get; set; }
         public virtual DbSet<Material> Materials { get; set; }
         public virtual DbSet<Microarchitecture> Microarchitectures { get; set; }
-        public virtual DbSet<MotherBoard> MotherBoards { get; set; }
         public virtual DbSet<MotherBoardConnector> MotherBoardConnectors { get; set; }
         public virtual DbSet<MotherBoardFormFactor> MotherBoardFormFactors { get; set; }
         public virtual DbSet<MotherBoardM2Key> MotherBoardM2Key { get; set; }
@@ -77,5 +76,6 @@ namespace ConfiguratorPC.Data
         public virtual DbSet<RadiatorSize> RadiatorSizes { get; set; }
         public virtual DbSet<VideoCard> VideoCards { get; set; }
         public virtual DbSet<VideoCardOutput> VideoCardOutputs { get; set; }
+        public virtual DbSet<MotherBoard> MotherBoards { get; set; }
     }
 }

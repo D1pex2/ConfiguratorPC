@@ -17,16 +17,16 @@ namespace ConfiguratorPC.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ProcessorPowerPlug()
         {
-            this.MotherBoards = new HashSet<MotherBoard>();
             this.ProcessorPowerConnectors = new HashSet<ProcessorPowerConnector>();
+            this.MotherBoards = new HashSet<MotherBoard>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MotherBoard> MotherBoards { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProcessorPowerConnector> ProcessorPowerConnectors { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MotherBoard> MotherBoards { get; set; }
     }
 }

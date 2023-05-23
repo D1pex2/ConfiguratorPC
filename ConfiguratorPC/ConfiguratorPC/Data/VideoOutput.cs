@@ -17,16 +17,16 @@ namespace ConfiguratorPC.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public VideoOutput()
         {
-            this.MotherBoards = new HashSet<MotherBoard>();
             this.VideoCardOutputs = new HashSet<VideoCardOutput>();
+            this.MotherBoards = new HashSet<MotherBoard>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MotherBoard> MotherBoards { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VideoCardOutput> VideoCardOutputs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MotherBoard> MotherBoards { get; set; }
     }
 }

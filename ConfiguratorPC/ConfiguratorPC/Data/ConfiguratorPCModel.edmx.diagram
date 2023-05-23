@@ -21,7 +21,6 @@
         <EntityTypeShape EntityType="ConfiguratorPCModel.Manufacturer" Width="1.5" PointX="1.5" PointY="0.875" />
         <EntityTypeShape EntityType="ConfiguratorPCModel.Material" Width="1.5" PointX="0.75" PointY="15.5" />
         <EntityTypeShape EntityType="ConfiguratorPCModel.Microarchitecture" Width="1.5" PointX="11.25" PointY="33.125" />
-        <EntityTypeShape EntityType="ConfiguratorPCModel.MotherBoard" Width="1.5" PointX="10.5" PointY="11.75" />
         <EntityTypeShape EntityType="ConfiguratorPCModel.MotherBoardConnector" Width="1.5" PointX="15.75" PointY="12.625" />
         <EntityTypeShape EntityType="ConfiguratorPCModel.MotherBoardFormFactor" Width="1.5" PointX="5.25" PointY="11.5" />
         <EntityTypeShape EntityType="ConfiguratorPCModel.MotherBoardM2Key" Width="1.5" PointX="12.75" PointY="13.5" />
@@ -47,10 +46,8 @@
         <EntityTypeShape EntityType="ConfiguratorPCModel.VideoOutput" Width="1.5" PointX="15.75" PointY="15.75" />
         <EntityTypeShape EntityType="ConfiguratorPCModel.VideoPowerConnector" Width="1.5" PointX="3" PointY="24.75" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_CaseConnector_Connector" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_Chipset" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_PowerSupply_Color" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_Component_Manufacturer" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_Component" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_PowerSupply_Component" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_ProcessorCooler_Component" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_RAM_Component" />
@@ -61,17 +58,6 @@
         <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoardM2Key_M2FormFactor" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoardM2Key_M2Key" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_ProcessorCooler_Material" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_MotherBoardFormFactor" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_MotherBoardPowerPlug" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_NetworkAdapterChipset" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_PCIEController" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_ProcessorPowerPlug" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_RAMFormFactor" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_RAMType" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_Socket" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_SoundAdapterChipset" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoardConnector_MotherBoard" />
-        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoardM2Key_MotherBoard" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_PowerSupplyMotherBoardConnector_MotherBoardPowerConnector" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_PowerSupply_PowerSupplyFormFactor" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_PowerSupplyMotherBoardConnector_PowerSupply" />
@@ -83,9 +69,7 @@
         <AssociationConnector Association="ConfiguratorPCModel.FK_RAM_RAMType" />
         <AssociationConnector Association="ConfiguratorPCModel.CoolerCompatibleSocket" />
         <AssociationConnector Association="ConfiguratorPCModel.M2SSDKey" />
-        <AssociationConnector Association="ConfiguratorPCModel.MotherBoardCompatibleCore" />
         <AssociationConnector Association="ConfiguratorPCModel.MotherBoardConnectorPlug" />
-        <AssociationConnector Association="ConfiguratorPCModel.MotherBoardVideoOutput" />
         <AssociationConnector Association="ConfiguratorPCModel.ProcessorConnectorPlug" />
         <AssociationConnector Association="ConfiguratorPCModel.VideoCardConnectorPlug" />
         <EntityTypeShape EntityType="ConfiguratorPCModel.Cooler" Width="1.5" PointX="8.25" PointY="15" />
@@ -131,6 +115,22 @@
         <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCard_VideoMemoryType" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCardOutput_VideoCard" />
         <AssociationConnector Association="ConfiguratorPCModel.FK_VideoCardOutput_VideoOutput" />
+        <EntityTypeShape EntityType="ConfiguratorPCModel.MotherBoard" Width="1.5" PointX="21" PointY="11.5" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_Chipset" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_Component" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_MotherBoardFormFactor" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_MotherBoardPowerPlug" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_NetworkAdapterChipset" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_PCIEController" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_ProcessorPowerPlug" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_RAMFormFactor" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_RAMType" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_Socket" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoard_SoundAdapterChipset" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoardConnector_MotherBoard" />
+        <AssociationConnector Association="ConfiguratorPCModel.FK_MotherBoardM2Key_MotherBoard" />
+        <AssociationConnector Association="ConfiguratorPCModel.MotherBoardCompatibleCore" />
+        <AssociationConnector Association="ConfiguratorPCModel.MotherBoardVideoOutput" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
