@@ -53,7 +53,7 @@
                                     </Floater>
                                 </Paragraph>
                                 <Paragraph TextIndent="20" FontWeight="DemiBold" FontSize="20">
-                                    Редактирование комплектующих
+                                    Выбор комплектующих
                                 </Paragraph>
                                 <Paragraph TextIndent="20">
                                     При нажатии на кнопку "+ Добавить" в ячейке комплектующего раскроется список со всеми совместимыми комплектуюищими. Чтобы добавить комплектующее нажать кнопку "Добавить"
@@ -116,6 +116,17 @@
                                 </Paragraph>
                                 <Paragraph TextIndent="20" FontWeight="DemiBold">
                                     Внимание! Для работы экспорта на ПК должны быть установлены MS Word и MS Excel!
+                                </Paragraph>
+                                <Paragraph TextIndent="20" FontWeight="DemiBold" FontSize="20">
+                                    Сохранение сборки ПК
+                                </Paragraph>
+                                <Paragraph TextIndent="20">
+                                    Сборка ПК сохраняется автоматически при изменении. Также доступна функция создания, переименовывания и удаления сборок ПК.
+                                    <Floater>
+                                        <BlockUIContainer>
+                                            <Image Source="/Resources/help_image7.png" Height="75"/>
+                                        </BlockUIContainer>
+                                    </Floater>
                                 </Paragraph>
                             </Section>
                         </FlowDocument>

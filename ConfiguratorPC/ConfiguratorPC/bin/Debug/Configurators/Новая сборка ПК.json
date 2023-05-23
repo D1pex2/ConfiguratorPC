@@ -1,7 +1,7 @@
 {
   "name": "Новая сборка ПК",
   "ramQuantity": 1,
-  "ProcessorId": 33,
+  "ProcessorId": -1,
   "MotherboardId": -1,
   "CaseId": -1,
   "VideocardId": -1,

@@ -385,6 +385,7 @@
       <DependentUpon>ConfiguratorPCModel.edmx</DependentUpon>
       <LastGenOutput>ConfiguratorPCModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\help_image7.png" />
     <None Include="Resources\Pictures\85_1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
