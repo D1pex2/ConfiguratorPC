@@ -12,72 +12,87 @@
             <Setter Property="Margin" Value="0,0,0,5"/>
         </Style>
     </Page.Resources>
-    <ScrollViewer x:Name="WindowScrollViewer">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="75"/>
-                <RowDefinition/>
-                <RowDefinition Height="75"/>
-            </Grid.RowDefinitions>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition MinHeight="0" Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer x:Name="WindowScrollViewer">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="75"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="1" Grid.Row="1"  MaxWidth="1300">
+                    <StackPanel x:Name="ConfigStackPanel" Margin="2">
+                        <Border Style="{StaticResource BorderDefault}" Height="75" Margin="0,0,0,15">
+                            <DockPanel>
+                                <Image Source="/Resources/pc.png" Margin="10"/>
+                                <ComboBox x:Name="ConfiguratorsComboBox" DisplayMemberPath="Name" VerticalAlignment="Center" Width="250" BorderThickness="0"/>
+                                <Button x:Name="AddConfiguratorButton" Style="{StaticResource WindowButton}" Cursor="Hand" Width="25" Height="25" Click="AddConfiguratorButton_Click">
+                                    <Image Source="/Resources/plus.png"/>
+                                    <Button.ToolTip>
+                                        Добавить
+                                    </Button.ToolTip>
+                                </Button>
+                                <Button x:Name="EditConfiguratorButton" Style="{StaticResource WindowButton}" Cursor="Hand" Width="25" Height="25" Click="EditConfiguratorButton_Click">
+                                    <Image Source="/Resources/pencil.png"/>
+                                    <Button.ToolTip>
+                                        Переименовать
+                                    </Button.ToolTip>
+                                </Button>
+                                <Button x:Name="DeleteConfiguratorButton" Style="{StaticResource WindowButton}" Cursor="Hand" Width="25" Height="25" Click="DeleteConfiguratorButton_Click">
+                                    <Image Source="/Resources/trash.png"/>
+                                    <Button.ToolTip>
+                                        Удалить
+                                    </Button.ToolTip>
+                                </Button>
+                                <Button x:Name="HelpButton" FontWeight="DemiBold" Click="HelpButton_Click" Content="Справка" Margin="5,0,15,0" HorizontalAlignment="Right" Background="#FF00B3FF" Foreground="White" DockPanel.Dock="Right" VerticalAlignment="Center">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5 5 5 5"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                                <Button x:Name="ExportButton" FontWeight="DemiBold" Click="ExportButton_Click" Content="Экспорт" HorizontalAlignment="Right" Background="#FF00B3FF" Foreground="White" DockPanel.Dock="Right" VerticalAlignment="Center">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5 5 5 5"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                                <TextBlock x:Name="CommonPriceTextBlock" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="DemiBold"/>
+                            </DockPanel>
+                        </Border>
+                        <controls:ComponentConfigurator x:Name="ProcessorConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
+                        <controls:ComponentConfigurator x:Name="MotherBoardConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
+                        <controls:ComponentConfigurator x:Name="CaseConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
+                        <controls:ComponentConfigurator x:Name="VideoCardConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
+                        <controls:ComponentConfigurator x:Name="CoolerConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
+                        <controls:ComponentConfigurator x:Name="RAMConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
+                        <controls:ComponentConfigurator x:Name="PowerSupplyConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
+                        <StackPanel x:Name="DataStorageStackPanel">
+                            <controls:ComponentConfigurator x:Name="MemoryConfigurator" ListOpened="ComponentConfigurator_ListOpened"
+                            AddDataStorageConfigurator="MemoryConfigurator_AddDataStorageConfigurator" RemoveDataStorageConfigurator="MemoryConfigurator_RemoveDataStorageConfigurator"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </ScrollViewer>
+        <Grid x:Name="NotifyGrid" Grid.Row="2" Background="#def2fc" Margin="0,-75,0,0" Visibility="Collapsed">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="5*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="1" Grid.Row="1"  MaxWidth="1300">
-                <StackPanel x:Name="ConfigStackPanel" Margin="2">
-                    <Border Style="{StaticResource BorderDefault}" Height="75" Margin="0,0,0,15">
-                        <DockPanel>
-                            <Image Source="/Resources/pc.png" Margin="10"/>
-                            <ComboBox x:Name="ConfiguratorsComboBox" DisplayMemberPath="Name" VerticalAlignment="Center" Width="250" BorderThickness="0"/>
-                            <Button x:Name="AddConfiguratorButton" Style="{StaticResource WindowButton}" Cursor="Hand" Width="25" Height="25" Click="AddConfiguratorButton_Click">
-                                <Image Source="/Resources/plus.png"/>
-                                <Button.ToolTip>
-                                    Добавить
-                                </Button.ToolTip>
-                            </Button>
-                            <Button x:Name="EditConfiguratorButton" Style="{StaticResource WindowButton}" Cursor="Hand" Width="25" Height="25" Click="EditConfiguratorButton_Click">
-                                <Image Source="/Resources/pencil.png"/>
-                                <Button.ToolTip>
-                                    Переименовать
-                                </Button.ToolTip>
-                            </Button>
-                            <Button x:Name="DeleteConfiguratorButton" Style="{StaticResource WindowButton}" Cursor="Hand" Width="25" Height="25" Click="DeleteConfiguratorButton_Click">
-                                <Image Source="/Resources/trash.png"/>
-                                <Button.ToolTip>
-                                    Удалить
-                                </Button.ToolTip>
-                            </Button>
-                            <Button x:Name="HelpButton" FontWeight="DemiBold" Click="HelpButton_Click" Content="Справка" Margin="5,0,15,0" HorizontalAlignment="Right" Background="#FF00B3FF" Foreground="White" DockPanel.Dock="Right" VerticalAlignment="Center">
-                                <Button.Resources>
-                                    <Style TargetType="Border">
-                                        <Setter Property="CornerRadius" Value="5 5 5 5"/>
-                                    </Style>
-                                </Button.Resources>
-                            </Button>
-                            <Button x:Name="ExportButton" FontWeight="DemiBold" Click="ExportButton_Click" Content="Экспорт" HorizontalAlignment="Right" Background="#FF00B3FF" Foreground="White" DockPanel.Dock="Right" VerticalAlignment="Center">
-                                <Button.Resources>
-                                    <Style TargetType="Border">
-                                        <Setter Property="CornerRadius" Value="5 5 5 5"/>
-                                    </Style>
-                                </Button.Resources>
-                            </Button>
-                            <TextBlock x:Name="CommonPriceTextBlock" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="DemiBold"/>
-                        </DockPanel>
-                    </Border>
-                    <controls:ComponentConfigurator x:Name="ProcessorConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
-                    <controls:ComponentConfigurator x:Name="MotherBoardConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
-                    <controls:ComponentConfigurator x:Name="CaseConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
-                    <controls:ComponentConfigurator x:Name="VideoCardConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
-                    <controls:ComponentConfigurator x:Name="CoolerConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
-                    <controls:ComponentConfigurator x:Name="RAMConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
-                    <controls:ComponentConfigurator x:Name="PowerSupplyConfigurator" ListOpened="ComponentConfigurator_ListOpened"/>
-                    <StackPanel x:Name="DataStorageStackPanel">
-                        <controls:ComponentConfigurator x:Name="MemoryConfigurator" ListOpened="ComponentConfigurator_ListOpened"
-                            AddDataStorageConfigurator="MemoryConfigurator_AddDataStorageConfigurator" RemoveDataStorageConfigurator="MemoryConfigurator_RemoveDataStorageConfigurator"/>
-                    </StackPanel>
-                </StackPanel>
-            </Border>
+            <TextBlock MaxWidth="1000" x:Name="NotifyTextBlock" Margin="20,20,20,30" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Grid.Column="1"/>
+            <Image x:Name="CloseNotifyImage" Cursor="Hand" MouseLeftButtonDown="CloseNotify_MouseLeftButtonDown" Source="/Resources/close_black.png" Width="20" HorizontalAlignment="Left" Margin="0,10,10,10" Grid.Column="2" VerticalAlignment="Top"/>
         </Grid>
-    </ScrollViewer>
+    </Grid>
 </Page>

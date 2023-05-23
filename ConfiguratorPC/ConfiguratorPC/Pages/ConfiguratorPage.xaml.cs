@@ -39,6 +39,7 @@ namespace ConfiguratorPC.Pages
             try
             {
                 currentConfigurator.ConfiguratorPropertyChanged -= CurrentConfigurator_ConfiguratorPropertyChanged;
+                currentConfigurator.ProcessorChanged -= CurrentConfigurator_ProcessorChanged;
 
                 ProcessorConfigurator.Init(currentConfigurator, ComponentType.Processor);
                 ProcessorConfigurator.Component = currentConfigurator.Processor == null ? null : currentConfigurator.Processor.Component;
@@ -103,10 +104,19 @@ namespace ConfiguratorPC.Pages
                 }
                 SetCommonPrice();
                 currentConfigurator.ConfiguratorPropertyChanged += CurrentConfigurator_ConfiguratorPropertyChanged;
+                currentConfigurator.ProcessorChanged += CurrentConfigurator_ProcessorChanged;
             }
             catch (Exception ex)
             {
                 FeedBack.ShowError(ex);
+            }
+        }
+
+        private void CurrentConfigurator_ProcessorChanged(object sender, EventArgs e)
+        {
+            if (currentConfigurator.Processor != null && currentConfigurator.Processor.HasCooler)
+            {
+                ShowNotify("В комплекте к процессору идёт штатный кулер, и система охлаждения теперь не обязательна для завершения сборки. Однако помните, что штатные системы охлаждения обладают ограниченными возможностями и могут не справиться с длительной нагрузкой в ресурсоёмких приложениях и играх.");
             }
         }
 
@@ -434,6 +444,17 @@ namespace ConfiguratorPC.Pages
         private void Configurator_ComponentChanged(object sender, EventArgs e)
         {
             SerializeConfigurator();
+        }
+
+        private void CloseNotify_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            NotifyGrid.Visibility = Visibility.Collapsed;
+        }
+
+        private void ShowNotify(string message)
+        {
+            NotifyTextBlock.Text = message;
+            NotifyGrid.Visibility = Visibility.Visible;
         }
     }
 }
