@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Release\
+C:\Users\kolya\Documents\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Release\
 ConfiguratorPC
 none
 false
 TRACE
-C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\App.xaml
-7-618472090
+C:\Users\kolya\Documents\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\App.xaml
+10-1159003587
 2-1569694249
-711524855866
-19779364229
-MainWindow.xaml;Controls\ComponentConfigurator.xaml;Controls\NumericTextBox.xaml;Controls\NumericUpDown.xaml;Pages\ComponentPage.xaml;Pages\ConfiguratorPage.xaml;Pages\HelpPage.xaml;
+76137517118
+23-404613278
+AboutProgramWindow.xaml;MainWindow.xaml;Controls\ComponentConfigurator.xaml;Controls\NumericTextBox.xaml;Controls\NumericUpDown.xaml;MessageWindow.xaml;Pages\ComponentPage.xaml;Pages\ConfiguratorPage.xaml;Pages\HelpPage.xaml;TextDialogWindow.xaml;
 
 False
 
