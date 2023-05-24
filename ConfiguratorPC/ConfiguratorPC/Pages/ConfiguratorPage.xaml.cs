@@ -40,6 +40,8 @@ namespace ConfiguratorPC.Pages
             {
                 currentConfigurator.ConfiguratorPropertyChanged -= CurrentConfigurator_ConfiguratorPropertyChanged;
                 currentConfigurator.ProcessorChanged -= CurrentConfigurator_ProcessorChanged;
+                currentConfigurator.MotherBoardChanged -= CurrentConfigurator_MotherBoardChanged;
+                currentConfigurator.RAMChanged -= CurrentConfigurator_RAMChanged;
 
                 ProcessorConfigurator.Init(currentConfigurator, ComponentType.Processor);
                 ProcessorConfigurator.Component = currentConfigurator.Processor == null ? null : currentConfigurator.Processor.Component;
@@ -105,10 +107,28 @@ namespace ConfiguratorPC.Pages
                 SetCommonPrice();
                 currentConfigurator.ConfiguratorPropertyChanged += CurrentConfigurator_ConfiguratorPropertyChanged;
                 currentConfigurator.ProcessorChanged += CurrentConfigurator_ProcessorChanged;
+                currentConfigurator.MotherBoardChanged += CurrentConfigurator_MotherBoardChanged;
+                currentConfigurator.RAMChanged += CurrentConfigurator_RAMChanged;
             }
             catch (Exception ex)
             {
                 FeedBack.ShowError(ex);
+            }
+        }
+
+        private void CurrentConfigurator_RAMChanged(object sender, EventArgs e)
+        {
+            if (currentConfigurator.RAM != null)
+            {
+                ShowNotify("Несмотря на электрическую, логическую и физическую совместимость по разъему, рекомендовано дополнительно перепроверить совместимость конкретной оперативной памяти с выбранной вами материнской платой.");
+            }
+        }
+
+        private void CurrentConfigurator_MotherBoardChanged(object sender, EventArgs e)
+        {
+            if (currentConfigurator.MotherBoard != null && currentConfigurator.MotherBoard.EmbeddedProcessor != null)
+            {
+                ShowNotify("Выбранная материнская плата имеет встроенный процессор с системой пассивного охлаждения на основе радиатора.");
             }
         }
 

@@ -25,6 +25,7 @@
                 <Image DockPanel.Dock="Left" Width="80" Height="80" VerticalAlignment="Center" Source="/Resources/pc.png"/>
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Text="Конфигуратор сборки ПК" FontWeight="DemiBold" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Версия: 1.0.0.0" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBlock Text="Разработчик: Шефов Николай" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </StackPanel>
             </DockPanel>

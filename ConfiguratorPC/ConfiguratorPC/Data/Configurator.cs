@@ -381,7 +381,7 @@ namespace ConfiguratorPC
                 var motherBoards = DAL.Context.MotherBoards.AsNoTracking().ToList();
                 if (Processor != null)
                 {
-                    motherBoards = motherBoards.Where(m => m.IdSocket == Processor.IdSocket && Processor.RAMTypes.Any(rt => rt.Id == m.IdRAMType) && m.Cores.Any(c => c.Id == Processor.IdCore)).ToList();
+                    motherBoards = motherBoards.Where(m => m.IdSocket == Processor.IdSocket && Processor.RAMTypes.Any(rt => rt.Id == m.IdRAMType) && m.Cores.Any(c => c.Id == Processor.IdCore) && m.EmbeddedProcessor == null).ToList();
                 }
                 if (Case != null)
                 {
@@ -393,7 +393,7 @@ namespace ConfiguratorPC
                 }
                 if (ProcessorCooler != null)
                 {
-                    motherBoards = motherBoards.Where(m => ProcessorCooler.Sockets.Any(s => s.Id == m.IdSocket)).ToList();
+                    motherBoards = motherBoards.Where(m => ProcessorCooler.Sockets.Any(s => s.Id == m.IdSocket) && m.EmbeddedProcessor == null).ToList();
                 }
                 if (RAM != null)
                 {
@@ -482,6 +482,10 @@ namespace ConfiguratorPC
                 }
                 if (MotherBoard != null)
                 {
+                    if (MotherBoard.EmbeddedProcessor != null)
+                    {
+                        return new List<ProcessorCooler>();
+                    }
                     processorCoolers = processorCoolers.Where(pc => pc.Sockets.Any(s => s.Id == MotherBoard.IdSocket)).ToList();
                 }
                 if (Case != null)
