@@ -307,7 +307,6 @@ C:\Users\kolya\Documents\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\
 C:\Users\kolya\Documents\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\Newtonsoft.Json.xml
 C:\Users\kolya\Documents\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\ru\EntityFramework.resources.dll
 C:\Users\kolya\Documents\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
-C:\Users\kolya\Documents\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\ConfiguratorPC.csproj.AssemblyReference.cache
 C:\Users\kolya\Documents\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\ConfiguratorPC.csproj.SuggestedBindingRedirects.cache
 C:\Users\kolya\Documents\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\AboutProgramWindow.g.cs
 C:\Users\kolya\Documents\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\MainWindow.g.cs
