@@ -1032,7 +1032,7 @@ namespace ConfiguratorPC.Controls
 
         private void Configurator_RAMChanged(object sender, EventArgs e)
         {
-            if (configurator.RAM != null && configurator.MotherBoard != null && configurator.Processor != null)
+            if (configurator.RAM != null)
             {
                 NumericRam.Visibility = Visibility.Visible;
             }

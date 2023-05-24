@@ -227,8 +227,8 @@ namespace ConfiguratorPC
                     {
                         dataStorages.Add(DAL.Context.DataStorages.Find(DataStoragesId[i]));
                     }
-                    dataStorages.CollectionChanged += DataStorages_CollectionChanged;
                 }
+                dataStorages.CollectionChanged += DataStorages_CollectionChanged;
                 return dataStorages;
             }
             set => dataStorages = value; 
