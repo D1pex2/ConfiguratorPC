@@ -436,7 +436,7 @@ namespace ConfiguratorPC.Pages
 
         private void DeleteConfiguratorButton_Click(object sender, RoutedEventArgs e)
         {
-            var message = new MessageWindow("Сообщение", $"Вы уверены что хотите удалить сборку \"{currentConfigurator.Name}\"?");
+            var message = new MessageWindow("Сообщение", $"Вы уверены что хотите удалить сборку \"{currentConfigurator.Name}\"?", IsDialog: true);
             message.ShowDialog();
             if (message.DialogResult != true)
             {

@@ -56,12 +56,20 @@
     <Property Name="IdCase" Type="int" Nullable="false" />
     <Property Name="IdMaterial" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="CaseRadiatorSize">
+    <Key>
+      <PropertyRef Name="IdCase" />
+      <PropertyRef Name="IdRadiatorSize" />
+    </Key>
+    <Property Name="IdCase" Type="int" Nullable="false" />
+    <Property Name="IdRadiatorSize" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="CaseSize">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <EntityType Name="Chipset">
     <Key>
@@ -86,14 +94,6 @@
     <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="Price" Type="decimal" Precision="9" Scale="2" Nullable="false" />
   </EntityType>
-  <EntityType Name="ComponentPicture">
-    <Key>
-      <PropertyRef Name="IdComponent" />
-      <PropertyRef Name="IdPicture" />
-    </Key>
-    <Property Name="IdComponent" Type="int" Nullable="false" />
-    <Property Name="IdPicture" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="Connector">
     <Key>
       <PropertyRef Name="Id" />
@@ -107,7 +107,6 @@
     </Key>
     <Property Name="IdProcessorCooler" Type="int" Nullable="false" />
     <Property Name="Heigth" Type="smallint" Nullable="false" />
-    <Property Name="DissipationPower" Type="smallint" Nullable="false" />
     <Property Name="ConstructionType" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="IdBaseMaterial" Type="int" Nullable="false" />
     <Property Name="TermPipeQuantity" Type="tinyint" />
@@ -156,7 +155,7 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="MaxFrequency" Type="smallint" Nullable="false" />
     <Property Name="ExecutiveUnitQuantity" Type="tinyint" Nullable="false" />
-    <Property Name="ShadingUnitsQuantity" Type="tinyint" Nullable="false" />
+    <Property Name="ShadingUnitsQuantity" Type="smallint" Nullable="false" />
   </EntityType>
   <EntityType Name="HDD">
     <Key>
@@ -188,7 +187,7 @@
     <Property Name="Serviced" Type="bit" Nullable="false" />
     <Property Name="IdWaterblockMaterial" Type="int" Nullable="false" />
     <Property Name="WaterblockSize" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="RadiatorMountingSize" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdRadiatorSize" Type="int" Nullable="false" />
     <Property Name="RadiatorLength" Type="smallint" Nullable="false" />
     <Property Name="RadiatorWidth" Type="smallint" Nullable="false" />
     <Property Name="RadiatorThickness" Type="smallint" Nullable="false" />
@@ -265,10 +264,10 @@
     <Property Name="Width" Type="smallint" Nullable="false" />
     <Property Name="IdChipset" Type="int" Nullable="false" />
     <Property Name="MaxRAMFrequency" Type="smallint" Nullable="false" />
-    <Property Name="IdPCIControllerVersion" Type="int" Nullable="false" />
+    <Property Name="IdPCIControllerVersion" Type="int" />
     <Property Name="RJ45Quantity" Type="tinyint" Nullable="false" />
     <Property Name="AnalogAudioOutputQuantity" Type="tinyint" Nullable="false" />
-    <Property Name="CoolerPowerSupply" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="CoolerPowerSupply" Type="varchar" MaxLength="5" />
     <Property Name="M2KeyE" Type="bit" Nullable="false" />
     <Property Name="InterfaceLPT" Type="bit" Nullable="false" />
     <Property Name="SoundSchema" Type="varchar" MaxLength="3" />
@@ -279,8 +278,9 @@
     <Property Name="HasBluetooth" Type="bit" Nullable="false" />
     <Property Name="PowerPhaseQuantity" Type="tinyint" Nullable="false" />
     <Property Name="IdMotherBoardPowerPlug" Type="int" Nullable="false" />
-    <Property Name="IdProcessorPowerPlug" Type="int" Nullable="false" />
+    <Property Name="IdProcessorPowerPlug" Type="int" />
     <Property Name="StreamRAMQuantity" Type="tinyint" Nullable="false" />
+    <Property Name="EmbeddedProcessor" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="MotherBoardCompatibleCore">
     <Key>
@@ -365,7 +365,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Picture" Type="varbinary(max)" Nullable="false" />
+    <Property Name="IdComponent" Type="int" Nullable="false" />
+    <Property Name="Path" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="PowerSupply">
     <Key>
@@ -438,12 +439,12 @@
     <Property Name="MaxFrequencyEnergyEfficientCore" Type="decimal" Precision="3" Scale="1" />
     <Property Name="FreeMultiplier" Type="bit" Nullable="false" />
     <Property Name="MaxRAMFrequency" Type="smallint" Nullable="false" />
+    <Property Name="StreamRAMQuantity" Type="tinyint" Nullable="false" />
     <Property Name="HasECC" Type="bit" Nullable="false" />
     <Property Name="TDP" Type="tinyint" Nullable="false" />
     <Property Name="MaxTemperature" Type="tinyint" Nullable="false" />
-    <Property Name="IdPCIEController" Type="int" Nullable="false" />
-    <Property Name="PCIEQuantity" Type="tinyint" Nullable="false" />
-    <Property Name="StreamRAMQuantity" Type="tinyint" Nullable="false" />
+    <Property Name="IdPCIEController" Type="int" />
+    <Property Name="PCIEQuantity" Type="tinyint" />
   </EntityType>
   <EntityType Name="ProcessorCompatibleMemoryType">
     <Key>
@@ -473,10 +474,11 @@
     <Property Name="MaxRotationSpeed" Type="smallint" Nullable="false" />
     <Property Name="MinRotationSpeed" Type="smallint" Nullable="false" />
     <Property Name="AdjustmentRotationSpeed" Type="nvarchar" MaxLength="50" />
-    <Property Name="MaxNoiseLevel" Type="tinyint" Nullable="false" />
-    <Property Name="MaxAirflow" Type="decimal" Precision="5" Scale="2" Nullable="false" />
-    <Property Name="MaxStaticPressure" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="MaxNoiseLevel" Type="tinyint" />
+    <Property Name="MaxAirflow" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="MaxStaticPressure" Type="decimal" Precision="5" Scale="2" />
     <Property Name="BearingType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TDP" Type="smallint" Nullable="false" />
   </EntityType>
   <EntityType Name="ProcessorPowerConnector">
     <Key>
@@ -492,6 +494,13 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
+  <EntityType Name="RadiatorSize">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Size" Type="smallint" Nullable="false" />
+  </EntityType>
   <EntityType Name="RAM">
     <Key>
       <PropertyRef Name="IdComponent" />
@@ -504,9 +513,9 @@
     <Property Name="HasRegistr" Type="bit" Nullable="false" />
     <Property Name="HasECC" Type="bit" Nullable="false" />
     <Property Name="CASLatency" Type="tinyint" Nullable="false" />
-    <Property Name="RAStoCAASDelay" Type="tinyint" Nullable="false" />
-    <Property Name="RowPrechargeDelay" Type="tinyint" Nullable="false" />
-    <Property Name="ActivateToPreChargeDelay" Type="tinyint" Nullable="false" />
+    <Property Name="RAStoCAASDelay" Type="tinyint" />
+    <Property Name="RowPrechargeDelay" Type="tinyint" />
+    <Property Name="ActivateToPreChargeDelay" Type="tinyint" />
     <Property Name="HasRadiator" Type="bit" Nullable="false" />
     <Property Name="Voltage" Type="decimal" Precision="3" Scale="2" Nullable="false" />
   </EntityType>
@@ -562,12 +571,12 @@
     <Property Name="VideoMemorySize" Type="tinyint" Nullable="false" />
     <Property Name="IdVideoMemoryType" Type="int" Nullable="false" />
     <Property Name="MemoryBusBitRate" Type="smallint" Nullable="false" />
-    <Property Name="MaxMemoryBandwidth" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+    <Property Name="MaxMemoryBandwidth" Type="decimal" Precision="5" Scale="1" Nullable="false" />
     <Property Name="EffectiveMemoryFrequency" Type="smallint" Nullable="false" />
     <Property Name="VideoChipFrequency" Type="smallint" Nullable="false" />
-    <Property Name="ALUQuantity" Type="tinyint" Nullable="false" />
-    <Property Name="TextureBlockQuantity" Type="tinyint" Nullable="false" />
-    <Property Name="RasterizationBlockQuantity" Type="tinyint" Nullable="false" />
+    <Property Name="ALUQuantity" Type="smallint" Nullable="false" />
+    <Property Name="TextureBlockQuantity" Type="smallint" Nullable="false" />
+    <Property Name="RasterizationBlockQuantity" Type="smallint" Nullable="false" />
     <Property Name="RayTracingSupport" Type="bit" Nullable="false" />
     <Property Name="MaxMonitorQuantity" Type="tinyint" Nullable="false" />
     <Property Name="IdPCIEController" Type="int" Nullable="false" />
@@ -577,7 +586,7 @@
     <Property Name="FanQuantity" Type="tinyint" />
     <Property Name="ExpansionSlotSize" Type="tinyint" Nullable="false" />
     <Property Name="Thickness" Type="smallint" Nullable="false" />
-    <Property Name="Mass" Type="smallint" Nullable="false" />
+    <Property Name="Mass" Type="smallint" />
     <Property Name="IdVideoCardPowerPlug" Type="int" />
   </EntityType>
   <EntityType Name="VideoCardConnectorPlug">
@@ -595,6 +604,7 @@
     </Key>
     <Property Name="IdVideoCard" Type="int" Nullable="false" />
     <Property Name="IdVideoOutput" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="tinyint" Nullable="false" />
   </EntityType>
   <EntityType Name="VideoCardPowerPlug">
     <Key>
@@ -608,7 +618,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
   </EntityType>
   <EntityType Name="VideoOutput">
     <Key>
@@ -756,6 +766,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_CaseRadiatorSize_Case">
+    <End Role="Case" Type="Self.Case" Multiplicity="1" />
+    <End Role="CaseRadiatorSize" Type="Self.CaseRadiatorSize" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Case">
+        <PropertyRef Name="IdComponent" />
+      </Principal>
+      <Dependent Role="CaseRadiatorSize">
+        <PropertyRef Name="IdCase" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CaseRadiatorSize_RadiatorSize">
+    <End Role="RadiatorSize" Type="Self.RadiatorSize" Multiplicity="1" />
+    <End Role="CaseRadiatorSize" Type="Self.CaseRadiatorSize" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RadiatorSize">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CaseRadiatorSize">
+        <PropertyRef Name="IdRadiatorSize" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_CompatibleCaseMotherBoardFormFactor_Case">
     <End Role="Case" Type="Self.Case" Multiplicity="1" />
     <End Role="CaseCompatibleMotherBoardFormFactor" Type="Self.CaseCompatibleMotherBoardFormFactor" Multiplicity="*" />
@@ -837,30 +871,6 @@
       </Principal>
       <Dependent Role="Component">
         <PropertyRef Name="IdManufacturer" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ComponentPicture_Component">
-    <End Role="Component" Type="Self.Component" Multiplicity="1" />
-    <End Role="ComponentPicture" Type="Self.ComponentPicture" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Component">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ComponentPicture">
-        <PropertyRef Name="IdComponent" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ComponentPicture_Picture">
-    <End Role="Picture" Type="Self.Picture" Multiplicity="1" />
-    <End Role="ComponentPicture" Type="Self.ComponentPicture" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Picture">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ComponentPicture">
-        <PropertyRef Name="IdPicture" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -957,6 +967,18 @@
       </Principal>
       <Dependent Role="LiquidCooler">
         <PropertyRef Name="IdProcessorCooler" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LiquidCooler_RadiatorSize">
+    <End Role="RadiatorSize" Type="Self.RadiatorSize" Multiplicity="1" />
+    <End Role="LiquidCooler" Type="Self.LiquidCooler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RadiatorSize">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LiquidCooler">
+        <PropertyRef Name="IdRadiatorSize" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1069,7 +1091,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_MotherBoard_PCIEController">
-    <End Role="PCIEController" Type="Self.PCIEController" Multiplicity="1" />
+    <End Role="PCIEController" Type="Self.PCIEController" Multiplicity="0..1" />
     <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PCIEController">
@@ -1081,7 +1103,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_MotherBoard_ProcessorPowerPlug">
-    <End Role="ProcessorPowerPlug" Type="Self.ProcessorPowerPlug" Multiplicity="1" />
+    <End Role="ProcessorPowerPlug" Type="Self.ProcessorPowerPlug" Multiplicity="0..1" />
     <End Role="MotherBoard" Type="Self.MotherBoard" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ProcessorPowerPlug">
@@ -1248,6 +1270,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Picture_Component">
+    <End Role="Component" Type="Self.Component" Multiplicity="1" />
+    <End Role="Picture" Type="Self.Picture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Component">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Picture">
+        <PropertyRef Name="IdComponent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_PowerSupply_Color">
     <End Role="Color" Type="Self.Color" Multiplicity="1" />
     <End Role="PowerSupply" Type="Self.PowerSupply" Multiplicity="*" />
@@ -1393,7 +1427,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Processor_PCIEController">
-    <End Role="PCIEController" Type="Self.PCIEController" Multiplicity="1" />
+    <End Role="PCIEController" Type="Self.PCIEController" Multiplicity="0..1" />
     <End Role="Processor" Type="Self.Processor" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PCIEController">
@@ -1638,11 +1672,11 @@
     <EntitySet Name="CaseConnector" EntityType="Self.CaseConnector" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CaseFrontPanelMaterial" EntityType="Self.CaseFrontPanelMaterial" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CaseMaterial" EntityType="Self.CaseMaterial" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CaseRadiatorSize" EntityType="Self.CaseRadiatorSize" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CaseSize" EntityType="Self.CaseSize" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Chipset" EntityType="Self.Chipset" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Component" EntityType="Self.Component" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ComponentPicture" EntityType="Self.ComponentPicture" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Connector" EntityType="Self.Connector" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Cooler" EntityType="Self.Cooler" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CoolerCompatibleSocket" EntityType="Self.CoolerCompatibleSocket" Schema="dbo" store:Type="Tables" />
@@ -1683,6 +1717,7 @@
     <EntitySet Name="ProcessorCooler" EntityType="Self.ProcessorCooler" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProcessorPowerConnector" EntityType="Self.ProcessorPowerConnector" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProcessorPowerPlug" EntityType="Self.ProcessorPowerPlug" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RadiatorSize" EntityType="Self.RadiatorSize" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RAM" EntityType="Self.RAM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RAMFormFactor" EntityType="Self.RAMFormFactor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RAMType" EntityType="Self.RAMType" Schema="dbo" store:Type="Tables" />
@@ -1740,6 +1775,14 @@
       <End Role="Material" EntitySet="Material" />
       <End Role="CaseMaterial" EntitySet="CaseMaterial" />
     </AssociationSet>
+    <AssociationSet Name="FK_CaseRadiatorSize_Case" Association="Self.FK_CaseRadiatorSize_Case">
+      <End Role="Case" EntitySet="Case" />
+      <End Role="CaseRadiatorSize" EntitySet="CaseRadiatorSize" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CaseRadiatorSize_RadiatorSize" Association="Self.FK_CaseRadiatorSize_RadiatorSize">
+      <End Role="RadiatorSize" EntitySet="RadiatorSize" />
+      <End Role="CaseRadiatorSize" EntitySet="CaseRadiatorSize" />
+    </AssociationSet>
     <AssociationSet Name="FK_CompatibleCaseMotherBoardFormFactor_Case" Association="Self.FK_CompatibleCaseMotherBoardFormFactor_Case">
       <End Role="Case" EntitySet="Case" />
       <End Role="CaseCompatibleMotherBoardFormFactor" EntitySet="CaseCompatibleMotherBoardFormFactor" />
@@ -1767,14 +1810,6 @@
     <AssociationSet Name="FK_Component_Manufacturer" Association="Self.FK_Component_Manufacturer">
       <End Role="Manufacturer" EntitySet="Manufacturer" />
       <End Role="Component" EntitySet="Component" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ComponentPicture_Component" Association="Self.FK_ComponentPicture_Component">
-      <End Role="Component" EntitySet="Component" />
-      <End Role="ComponentPicture" EntitySet="ComponentPicture" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ComponentPicture_Picture" Association="Self.FK_ComponentPicture_Picture">
-      <End Role="Picture" EntitySet="Picture" />
-      <End Role="ComponentPicture" EntitySet="ComponentPicture" />
     </AssociationSet>
     <AssociationSet Name="FK_Cooler_Material" Association="Self.FK_Cooler_Material">
       <End Role="Material" EntitySet="Material" />
@@ -1806,6 +1841,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_LiquidCooler_ProcessorCooler" Association="Self.FK_LiquidCooler_ProcessorCooler">
       <End Role="ProcessorCooler" EntitySet="ProcessorCooler" />
+      <End Role="LiquidCooler" EntitySet="LiquidCooler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LiquidCooler_RadiatorSize" Association="Self.FK_LiquidCooler_RadiatorSize">
+      <End Role="RadiatorSize" EntitySet="RadiatorSize" />
       <End Role="LiquidCooler" EntitySet="LiquidCooler" />
     </AssociationSet>
     <AssociationSet Name="FK_M2SSD_M2FormFactor" Association="Self.FK_M2SSD_M2FormFactor">
@@ -1903,6 +1942,10 @@
     <AssociationSet Name="FK_MotherBoardVideoOutput_VideoOutput" Association="Self.FK_MotherBoardVideoOutput_VideoOutput">
       <End Role="VideoOutput" EntitySet="VideoOutput" />
       <End Role="MotherBoardVideoOutput" EntitySet="MotherBoardVideoOutput" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Picture_Component" Association="Self.FK_Picture_Component">
+      <End Role="Component" EntitySet="Component" />
+      <End Role="Picture" EntitySet="Picture" />
     </AssociationSet>
     <AssociationSet Name="FK_PowerSupply_Color" Association="Self.FK_PowerSupply_Color">
       <End Role="Color" EntitySet="Color" />

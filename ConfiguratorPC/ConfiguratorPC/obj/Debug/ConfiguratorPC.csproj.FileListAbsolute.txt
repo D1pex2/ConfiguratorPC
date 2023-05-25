@@ -88,7 +88,6 @@ C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bi
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\Resources\Pictures\8_4.jpg
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\Resources\Pictures\9_1.jpg
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\Resources\Pictures\9_2.jpg
-C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\ConfiguratorPC.csproj.AssemblyReference.cache
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\Resources\Pictures\44_1.jpg
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\Resources\Pictures\44_2.jpg
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\bin\Debug\Resources\Pictures\44_3.jpg

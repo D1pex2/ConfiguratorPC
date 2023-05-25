@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ConfiguratorPC"
         mc:Ignorable="d"
-        Height="Auto" Width="500" WindowStyle="None" Background="#f5f5f5" SizeToContent="WidthAndHeight"
+        Height="Auto" MinWidth="300" MaxWidth="600" WindowStyle="None" Background="#f5f5f5" SizeToContent="WidthAndHeight"
         ResizeMode="NoResize" AllowsTransparency="True" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
@@ -27,7 +27,7 @@
                 <TextBlock x:Name="MessageTextBlock" Text="Сообщение" TextWrapping="WrapWithOverflow" FontSize="16" VerticalAlignment="Center"/>
             </DockPanel>
             <DockPanel Margin="10,0,10,10" LastChildFill="True" VerticalAlignment="Top">
-                <Button x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click"  Width="100" DockPanel.Dock="Right"
+                <Button x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click"  Width="100" DockPanel.Dock="Right" Visibility="Collapsed"
                     FontWeight="DemiBold" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Background="#FF00B3FF" Foreground="White">
                     <Button.Resources>
                         <Style TargetType="Border">

@@ -19,7 +19,7 @@ namespace ConfiguratorPC
     /// </summary>
     public partial class MessageWindow : Window
     {
-        public MessageWindow(string title, string message, bool isError = false)
+        public MessageWindow(string title, string message, bool isError = false, bool IsDialog = false)
         {
             InitializeComponent();
             TitleTextBlock.Text = title;
@@ -28,6 +28,10 @@ namespace ConfiguratorPC
             {
                 InfoImage.Visibility = Visibility.Collapsed;
                 ErrorImage.Visibility = Visibility.Visible;
+            }
+            if (IsDialog)
+            {
+                CancelButton.Visibility = Visibility.Visible;
             }
         }
 

@@ -46,7 +46,7 @@ namespace ConfiguratorPC
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Application.Current.Shutdown();
         }
 
         private void MaxMinButton_Click(object sender, RoutedEventArgs e)
