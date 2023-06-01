@@ -341,4 +341,3 @@ C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\ob
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Release\AboutProgramWindow.baml
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Release\MessageWindow.baml
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Release\TextDialogWindow.baml
-C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Release\ConfiguratorPC.csproj.AssemblyReference.cache

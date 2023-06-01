@@ -175,7 +175,6 @@ namespace ConfiguratorPC.Pages
                     configurators.Add(new Configurator());
                     currentConfigurator = configurators.FirstOrDefault();
                     SerializeConfigurator();
-
                 }
             }
             catch (Exception ex)
@@ -436,7 +435,14 @@ namespace ConfiguratorPC.Pages
                 FeedBack.ShowMessage($"Наименование \"{name}\" занято другой конфигурацией");
                 return;
             }
-            File.Delete($@"{path}\\{currentConfigurator.Name}.json");
+            try
+            {
+                File.Delete($@"{path}\\{currentConfigurator.Name}.json");
+            }
+            catch (Exception ex)
+            {
+                FeedBack.ShowError(ex.Message);
+            }
             currentConfigurator.Name = name;
             UpdateConfiguratorsList();
             ConfiguratorsComboBox.SelectedItem = currentConfigurator;
@@ -451,7 +457,14 @@ namespace ConfiguratorPC.Pages
                 return;
             }
             configurators.Remove(currentConfigurator);
-            File.Delete($@"{path}\\{currentConfigurator.Name}.json");
+            try
+            {
+                File.Delete($@"{path}\\{currentConfigurator.Name}.json");
+            }
+            catch (Exception ex)
+            {
+                FeedBack.ShowError(ex.Message);
+            }
             if (configurators.Count == 0)
             {
                 CreateNewConfigurator();
