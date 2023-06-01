@@ -3705,7 +3705,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Конфигуратор сборки ПК"
         "ProductCode" = "8:{AA4A3A2F-F9CC-4107-9101-99F2F3226FE5}"
-        "PackageCode" = "8:{68479D37-3803-4D93-AE9E-20D53C39D4F9}"
+        "PackageCode" = "8:{AF7703EE-A1EA-4A09-83FA-F77BE2B265A8}"
         "UpgradeCode" = "8:{F6A4CE89-7FFD-4FDA-B45E-3C95216C7A7B}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -3718,7 +3718,7 @@
         "ARPHELPLINK" = "8:"
         "Title" = "8:Конфигуратор сборки ПК"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
+        "ARPCONTACT" = "8:Shefov Nickolay"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
@@ -4254,7 +4254,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_DF9EAA23FA624EE99EDBB439E7CD53F5"
             {
-            "SourcePath" = "8:..\\ConfiguratorPC\\obj\\Debug\\ConfiguratorPC.exe"
+            "SourcePath" = "8:..\\ConfiguratorPC\\obj\\Release\\ConfiguratorPC.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4EBE8A1C1250460E9C872B0E91CC2CA2"

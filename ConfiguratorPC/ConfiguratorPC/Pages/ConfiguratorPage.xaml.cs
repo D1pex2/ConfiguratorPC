@@ -168,18 +168,21 @@ namespace ConfiguratorPC.Pages
                     {
                         configurators.Add(JsonConvert.DeserializeObject<Configurator>(File.ReadAllText(item)));
                     }
-                    
+                    currentConfigurator = configurators.FirstOrDefault();
                 }
                 else
                 {
                     configurators.Add(new Configurator());
+                    currentConfigurator = configurators.FirstOrDefault();
+                    SerializeConfigurator();
+
                 }
-                currentConfigurator = configurators.FirstOrDefault();
             }
             catch (Exception ex)
             {
                 configurators.Add(new Configurator());
                 currentConfigurator = configurators.First();
+                SerializeConfigurator();
                 FeedBack.ShowError(ex);
             }
         }
@@ -423,9 +426,14 @@ namespace ConfiguratorPC.Pages
             var name = textDialog.Message;
             if (textDialog.DialogResult != true)
                 return;
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                FeedBack.ShowMessage($"Наименование конфигурации не должно быть пустым");
+                return;
+            }
             if (configurators.Any(c => c.Name == name))
             {
-                FeedBack.ShowMessage("Имя занято");
+                FeedBack.ShowMessage($"Наименование \"{name}\" занято другой конфигурацией");
                 return;
             }
             File.Delete($@"{path}\\{currentConfigurator.Name}.json");
