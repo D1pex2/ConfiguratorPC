@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-06-02T12:54:09.577Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="BBd_hWRvZXDji1fxxIZ1" version="21.1.7" type="device">
+<mxfile host="app.diagrams.net" modified="2023-06-02T18:50:38.133Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="QUYI8NXcX1KiJ-hNbYnH" version="21.3.7" type="device">
   <diagram id="XE3-58NR4C3qe2uMAWxc" name="Страница 1">
-    <mxGraphModel dx="989" dy="549" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="819" dy="455" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -51,21 +51,10 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="DeNm0vP8CZX5GFhAEfxQ-13" value="" style="endArrow=none;html=1;rounded=0;endSize=6;strokeColor=default;strokeWidth=1;spacingRight=3;spacing=2;align=center;fontSize=11;" parent="1" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="70" y="330" as="sourcePoint" />
-            <mxPoint x="240" y="330" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="DeNm0vP8CZX5GFhAEfxQ-14" value="пояснительная записка" style="edgeLabel;html=1;align=center;verticalAlign=bottom;resizable=0;points=[];spacingRight=22;fontSize=11;labelBackgroundColor=none;" parent="DeNm0vP8CZX5GFhAEfxQ-13" vertex="1" connectable="0">
-          <mxGeometry x="0.2069" relative="1" as="geometry">
-            <mxPoint x="-27" as="offset" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="DeNm0vP8CZX5GFhAEfxQ-15" value="" style="endArrow=none;html=1;rounded=0;endSize=6;strokeColor=default;strokeWidth=1;spacingRight=3;spacing=2;fontSize=11;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="70" y="300" as="sourcePoint" />
-            <mxPoint x="240" y="300" as="targetPoint" />
+            <mxPoint x="70" y="313" as="sourcePoint" />
+            <mxPoint x="240" y="313" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="DeNm0vP8CZX5GFhAEfxQ-16" value="руководство пользователя" style="edgeLabel;html=1;align=center;verticalAlign=bottom;resizable=0;points=[];spacingRight=22;fontSize=11;labelBackgroundColor=none;" parent="DeNm0vP8CZX5GFhAEfxQ-15" vertex="1" connectable="0">
@@ -75,8 +64,8 @@
         </mxCell>
         <mxCell id="DeNm0vP8CZX5GFhAEfxQ-17" value="" style="endArrow=none;html=1;rounded=0;endSize=6;strokeColor=default;strokeWidth=1;spacingRight=3;spacing=2;fontSize=11;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="70" y="270" as="sourcePoint" />
-            <mxPoint x="240" y="270" as="targetPoint" />
+            <mxPoint x="70" y="283" as="sourcePoint" />
+            <mxPoint x="240" y="283" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="DeNm0vP8CZX5GFhAEfxQ-18" value="руководство оператора БД" style="edgeLabel;html=1;align=center;verticalAlign=bottom;resizable=0;points=[];spacingRight=22;fontSize=11;labelBackgroundColor=none;" parent="DeNm0vP8CZX5GFhAEfxQ-17" vertex="1" connectable="0">
