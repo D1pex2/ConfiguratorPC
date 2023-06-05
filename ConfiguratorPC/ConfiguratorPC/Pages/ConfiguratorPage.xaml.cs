@@ -251,12 +251,19 @@ namespace ConfiguratorPC.Pages
 
         private void ExportButton_Click(object sender, RoutedEventArgs e)
         {
+            Export();
+        }
+
+        private void Export()
+        {
+            //Открытие диалогового окна сохранения файла
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Документ Word (docx)|*.docx|Документ PDF (pdf)|*.pdf|Таблица Excel (xlsx)|*.xlsx";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
+                    //Проверка выбранного формата файла экспорта
                     var extension = System.IO.Path.GetExtension(saveFileDialog.FileName);
                     switch (extension)
                     {
@@ -279,7 +286,7 @@ namespace ConfiguratorPC.Pages
 
                                 var sameComponents = currentConfigurator.Components.Where(c => c.Id == component.Id).ToList();
 
-                                if(sameComponents.Count > 1)
+                                if (sameComponents.Count > 1)
                                 {
                                     row.Cells[1].Range.Text = $"{component.Name} {sameComponents.Count} шт.";
                                     row.Cells[2].Range.Text = (component.Price * sameComponents.Count).ToString();
@@ -300,6 +307,7 @@ namespace ConfiguratorPC.Pages
                             var wordExtension = Word.WdSaveFormat.wdFormatDocumentDefault;
                             if (extension == ".pdf")
                                 wordExtension = Word.WdSaveFormat.wdFormatPDF;
+                            //Сохранения файла в Word
                             doc.SaveAs(saveFileDialog.FileName, wordExtension);
                             wordApp.Quit();
                             break;
@@ -361,7 +369,7 @@ namespace ConfiguratorPC.Pages
                             sheet.Cells[3][num + 4] = currentConfigurator.CommonPrice.ToString();
 
                             sheet.Columns.Autofit();
-
+                            //Сохранение файла в Excel
                             workbook.SaveAs(saveFileDialog.FileName);
                             excelApp.Quit();
                             break;
@@ -377,6 +385,7 @@ namespace ConfiguratorPC.Pages
                 }
             }
         }
+
 
         private void CreateNewConfigurator(string name = null)
         {
