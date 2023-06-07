@@ -251,6 +251,11 @@ namespace ConfiguratorPC.Pages
 
         private void ExportButton_Click(object sender, RoutedEventArgs e)
         {
+            if (currentConfigurator.Components.Count == 0)
+            {
+                FeedBack.ShowMessage($"В сборке \"{currentConfigurator.Name}\" отсутствуют комплектующие");
+                return;
+            }
             Export();
         }
 
