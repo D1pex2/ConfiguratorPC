@@ -888,7 +888,8 @@ namespace ConfiguratorPC.Controls
                         configurator.RAM = null;
                         break;
                     case ComponentType.DataStorage:
-                        configurator.DataStorages.Remove(component.DataStorage);
+                        configurator.dataStorages.Remove(component.DataStorage);
+                        configurator.DataStorages_CollectionChanged(this, null);
                         RemoveDataStorageConfigurator?.Invoke(this, EventArgs.Empty);
                         break;
                     case ComponentType.PowerSupply:
@@ -934,7 +935,8 @@ namespace ConfiguratorPC.Controls
                     configurator.RAM = component.RAM;
                     break;
                 case ComponentType.DataStorage:
-                    configurator.DataStorages.Add(component.DataStorage);
+                    configurator.dataStorages.Add(component.DataStorage);
+                    configurator.DataStorages_CollectionChanged(this, null);
                     AddDataStorageConfigurator?.Invoke(this, EventArgs.Empty);
                     break;
                 case ComponentType.PowerSupply:

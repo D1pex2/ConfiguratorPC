@@ -215,7 +215,7 @@ namespace ConfiguratorPC
         [JsonProperty]
         public int[] DataStoragesId { get; set; }
 
-        private ObservableCollection<DataStorage> dataStorages = new ObservableCollection<DataStorage>();
+        public ObservableCollection<DataStorage> dataStorages = new ObservableCollection<DataStorage>();
 
         public ObservableCollection<DataStorage> DataStorages 
         { 
@@ -234,7 +234,7 @@ namespace ConfiguratorPC
             set => dataStorages = value; 
         }
 
-        private void DataStorages_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        public void DataStorages_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             if (dataStorages != null)
             {
@@ -277,7 +277,7 @@ namespace ConfiguratorPC
                     commonPrice += ProcessorCooler.Component.Price;
                 if (PowerSupply != null)
                     commonPrice += PowerSupply.Component.Price;
-                foreach (var dataStorage in DataStorages)
+                foreach (var dataStorage in dataStorages)
                 {
                     commonPrice += dataStorage.Component.Price;
                 }
@@ -304,7 +304,7 @@ namespace ConfiguratorPC
                     components.Add(ProcessorCooler.Component);
                 if (PowerSupply != null)
                     components.Add(PowerSupply.Component);
-                foreach (var dataStorage in DataStorages)
+                foreach (var dataStorage in dataStorages)
                 {
                     components.Add(dataStorage.Component);
                 }
@@ -343,11 +343,11 @@ namespace ConfiguratorPC
             }
         }
 
-        public int DataStorageM2Quantity { get => DataStorages.Where(d => d.SSD != null && d.SSD.M2SSD != null).Count(); }
+        public int DataStorageM2Quantity { get => dataStorages.Where(d => d.SSD != null && d.SSD.M2SSD != null).Count(); }
 
-        public int DataStorage25Quantity { get => DataStorages.Where(d => (d.SSD != null && d.SSD.M2SSD == null) || (d.HDD != null && d.HDD.FormFactor == "2.5\"")).Count(); }
+        public int DataStorage25Quantity { get => dataStorages.Where(d => (d.SSD != null && d.SSD.M2SSD == null) || (d.HDD != null && d.HDD.FormFactor == "2.5\"")).Count(); }
 
-        public int DataStorage35Quantity { get => DataStorages.Where(d => d.HDD != null && d.HDD.FormFactor == "3.5\"").Count(); }
+        public int DataStorage35Quantity { get => dataStorages.Where(d => d.HDD != null && d.HDD.FormFactor == "3.5\"").Count(); }
 
         public List<Processor> CompatibleProcessors
         {
@@ -404,7 +404,7 @@ namespace ConfiguratorPC
                     motherBoards = motherBoards.Where(m => m.MotherBoardPowerPlug.MotherBoardPowerConnectors.Any(c => PowerSupply.PowerSupplyMotherBoardConnectors.Any(mc => mc.IdMotherBoardPowerConnector == c.Id)))
                         .Where(m => m.ProcessorPowerPlug == null || m.ProcessorPowerPlug.ProcessorPowerConnectors.Any(c => PowerSupply.PowerSupplyProcessorPowerConnectors.Any(pc => pc.IdProcessorPowerConnector == c.Id))).ToList();
                 }
-                foreach (var dataStorage in DataStorages)
+                foreach (var dataStorage in dataStorages)
                 {
                     if (dataStorage.SSD != null && dataStorage.SSD.M2SSD != null)
                     {
