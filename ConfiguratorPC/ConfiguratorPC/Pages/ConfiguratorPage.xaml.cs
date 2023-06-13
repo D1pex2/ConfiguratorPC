@@ -85,14 +85,15 @@ namespace ConfiguratorPC.Pages
                     }
                 }
 
+
                 MemoryConfigurator.Init(currentConfigurator, ComponentType.DataStorage);
-                if (currentConfigurator.dataStorages != null && currentConfigurator.dataStorages.Count > 0)
+                if (currentConfigurator.DataStorages != null && currentConfigurator.DataStorages.Count > 0)
                 {
                     MemoryConfigurator.Component = currentConfigurator.dataStorages.First().Component;
-                    for (int i = 1; i < currentConfigurator.dataStorages.Count; i++)
+                    for (int i = 1; i < currentConfigurator.DataStorages.Count; i++)
                     {
                         var conf = AddDataStorageConfigurator();
-                        conf.Component = currentConfigurator.dataStorages[i].Component;
+                        conf.Component = currentConfigurator.DataStorages[i].Component;
                     }
                 }
                 else
@@ -100,7 +101,7 @@ namespace ConfiguratorPC.Pages
                     MemoryConfigurator.Component = null;
                 }
 
-                if (currentConfigurator.CompatibleDataStorage.Count > 0 && currentConfigurator.dataStorages.Count > 0)
+                if (currentConfigurator.CompatibleDataStorage.Count > 0 && currentConfigurator.DataStorages.Count > 0)
                 {
                     AddDataStorageConfigurator();
                 }
