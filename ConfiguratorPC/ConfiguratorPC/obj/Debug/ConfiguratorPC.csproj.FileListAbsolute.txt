@@ -341,3 +341,4 @@ C:\Users\kolya\Documents\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\
 C:\Users\kolya\Documents\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\ConfiguratorPC.exe
 C:\Users\kolya\Documents\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\ConfiguratorPC.pdb
 C:\Users\kirill\Documents\GitHub\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\ConfiguratorPC.csproj.AssemblyReference.cache
+C:\Users\kolya\Documents\ConfiguratorPC\ConfiguratorPC\ConfiguratorPC\obj\Debug\ConfiguratorPC.csproj.AssemblyReference.cache

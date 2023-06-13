@@ -1140,6 +1140,7 @@
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Накопитель" Style="{StaticResource TitleTextBlock}"/>
                         <TextBlock Text="Форм-фактор" Grid.Row="1"/>
