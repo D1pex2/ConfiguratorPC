@@ -13,15 +13,11 @@ namespace ConfiguratorPC
     [JsonObject(MemberSerialization.OptIn)]
     public class Configurator
     {
-        public Configurator() 
-        {
-            dataStorages.CollectionChanged += DataStorages_CollectionChanged;
-        }
+        public Configurator() { }
 
         public Configurator(string name)
         {
             this.name = name;
-            dataStorages.CollectionChanged += DataStorages_CollectionChanged;
         }
 
         [JsonProperty]
@@ -222,18 +218,8 @@ namespace ConfiguratorPC
         public ObservableCollection<DataStorage> dataStorages = new ObservableCollection<DataStorage>();
 
         public ObservableCollection<DataStorage> DataStorages 
-        { 
-            get
-            {
-                if (dataStorages.Count < 1 && DataStoragesId != null && DataStoragesId.Count() > 0)
-                {
-                    for (int i = 0; i < DataStoragesId.Length; i++)
-                    {
-                        dataStorages.Add(DAL.Context.DataStorages.Find(DataStoragesId[i]));
-                    }
-                }
-                return dataStorages;
-            }
+        {
+            get => dataStorages;
             set => dataStorages = value; 
         }
 

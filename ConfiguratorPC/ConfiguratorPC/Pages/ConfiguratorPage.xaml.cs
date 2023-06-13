@@ -38,6 +38,7 @@ namespace ConfiguratorPC.Pages
         {
             try
             {
+                currentConfigurator.dataStorages.CollectionChanged -= currentConfigurator.DataStorages_CollectionChanged;
                 currentConfigurator.ConfiguratorPropertyChanged -= CurrentConfigurator_ConfiguratorPropertyChanged;
                 currentConfigurator.ProcessorChanged -= CurrentConfigurator_ProcessorChanged;
                 currentConfigurator.MotherBoardChanged -= CurrentConfigurator_MotherBoardChanged;
@@ -78,13 +79,19 @@ namespace ConfiguratorPC.Pages
                 if (DataStorageStackPanel.Children.Count > 1)
                 {
                     List<ComponentConfigurator> componentConfigurators = DataStorageStackPanel.Children.OfType<ComponentConfigurator>().ToList();
-                    componentConfigurators.Remove(MemoryConfigurator);
-                    foreach (var item in componentConfigurators)
+                    foreach (var item in componentConfigurators.Where(c => c != MemoryConfigurator))
                     {
                         DataStorageStackPanel.Children.Remove(item);
                     }
                 }
 
+                if (currentConfigurator.dataStorages.Count < 1 && currentConfigurator.DataStoragesId != null && currentConfigurator.DataStoragesId.Count() > 0)
+                {
+                    for (int i = 0; i < currentConfigurator.DataStoragesId.Length; i++)
+                    {
+                        currentConfigurator.dataStorages.Add(DAL.Context.DataStorages.Find(currentConfigurator.DataStoragesId[i]));
+                    }
+                }
 
                 MemoryConfigurator.Init(currentConfigurator, ComponentType.DataStorage);
                 if (currentConfigurator.DataStorages != null && currentConfigurator.DataStorages.Count > 0)
@@ -106,6 +113,7 @@ namespace ConfiguratorPC.Pages
                     AddDataStorageConfigurator();
                 }
                 SetCommonPrice();
+                currentConfigurator.dataStorages.CollectionChanged += currentConfigurator.DataStorages_CollectionChanged;
                 currentConfigurator.ConfiguratorPropertyChanged += CurrentConfigurator_ConfiguratorPropertyChanged;
                 currentConfigurator.ProcessorChanged += CurrentConfigurator_ProcessorChanged;
                 currentConfigurator.MotherBoardChanged += CurrentConfigurator_MotherBoardChanged;
@@ -397,7 +405,7 @@ namespace ConfiguratorPC.Pages
         }
 
 
-        private void CreateNewConfigurator(string name = null)
+        private void CreateConfigurator(string name = null)
         {
             Configurator configurator = name == null ? new Configurator() : new Configurator(name);
             configurators.Add(configurator);
@@ -434,7 +442,7 @@ namespace ConfiguratorPC.Pages
                 FeedBack.ShowMessage($"Наименование \"{name}\" занято другой конфигурацией");
                 return;
             }
-            CreateNewConfigurator(name);
+            CreateConfigurator(name);
         }
 
         private void EditConfiguratorButton_Click(object sender, RoutedEventArgs e)
@@ -486,7 +494,7 @@ namespace ConfiguratorPC.Pages
             }
             if (configurators.Count == 0)
             {
-                CreateNewConfigurator();
+                CreateConfigurator();
             }
             else
             {
