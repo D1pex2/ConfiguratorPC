@@ -13,11 +13,15 @@ namespace ConfiguratorPC
     [JsonObject(MemberSerialization.OptIn)]
     public class Configurator
     {
-        public Configurator() { }
+        public Configurator() 
+        {
+            dataStorages.CollectionChanged += DataStorages_CollectionChanged;
+        }
 
         public Configurator(string name)
         {
             this.name = name;
+            dataStorages.CollectionChanged += DataStorages_CollectionChanged;
         }
 
         [JsonProperty]
@@ -227,7 +231,6 @@ namespace ConfiguratorPC
                     {
                         dataStorages.Add(DAL.Context.DataStorages.Find(DataStoragesId[i]));
                     }
-                    dataStorages.CollectionChanged += DataStorages_CollectionChanged;
                 }
                 return dataStorages;
             }

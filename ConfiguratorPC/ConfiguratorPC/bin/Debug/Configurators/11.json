@@ -1,0 +1,15 @@
+{
+  "name": "11",
+  "ramQuantity": 1,
+  "ProcessorId": -1,
+  "MotherboardId": -1,
+  "CaseId": -1,
+  "VideocardId": -1,
+  "CoolerId": -1,
+  "RamId": -1,
+  "PowerSupplyId": -1,
+  "DataStoragesId": [
+    28,
+    28
+  ]
+}

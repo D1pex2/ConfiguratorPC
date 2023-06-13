@@ -244,9 +244,13 @@ namespace ConfiguratorPC.Pages
         private void MemoryConfigurator_RemoveDataStorageConfigurator(object sender, EventArgs e)
         {
             List<ComponentConfigurator> dataStorageConfigurators = DataStorageStackPanel.Children.OfType<ComponentConfigurator>().ToList();
+            var config = sender as ComponentConfigurator;
             if (dataStorageConfigurators.Where(c => c.Component == null).Count() > 0)
             {
-                DataStorageStackPanel.Children.Remove(sender as ComponentConfigurator);
+                foreach (var item in dataStorageConfigurators.Where(c => c.Component == null && c != config))
+                {
+                    DataStorageStackPanel.Children.Remove(item);
+                }
             }
         }
 

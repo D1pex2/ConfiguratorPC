@@ -7,5 +7,6 @@
   "VideocardId": -1,
   "CoolerId": -1,
   "RamId": -1,
-  "PowerSupplyId": -1
+  "PowerSupplyId": -1,
+  "DataStoragesId": []
 }
